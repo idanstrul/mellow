@@ -4,7 +4,9 @@
     <input type="text"
            v-model="board.title"  
     >
+    <div class="flex">
     <board-group v-for="group in board.groups" :key="group.id" :group="group"></board-group>
+    </div>
     <!-- <p>{{board.title}}</p> -->
   </section>
 </template>

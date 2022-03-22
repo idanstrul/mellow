@@ -24,7 +24,8 @@ export const boardStore = {
             try {
                 const currBoard = await boardService.getById(boardId)
                 context.commit({ type: 'setCurrBoard', currBoard })
-                return currBoard
+                return JSON.parse(JSON.stringify(currBoard))
+                // return currBoard
                 // context.dispatch({type: 'flashUserMsg', msg: 'Toys loaded successfully', style: 'success' })
             }
             catch (err) {
