@@ -1,12 +1,12 @@
 <template>
+<section>
   <app-header></app-header>
-  <router-view>
-
-  </router-view>
+  <router-view></router-view>
+  </section>
 </template>
 
 <script>
-import appHeader from './components/app-header.cmp.vue'
+import appHeader from './components/app-header.vue'
 export default {
   name: 'app-vue',
   components: {

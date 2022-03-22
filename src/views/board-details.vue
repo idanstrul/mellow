@@ -1,13 +1,17 @@
 <template>
-  <section  class="board-details">
-    <!-- <p>{{ board.title }}</p> -->
-    <p>bla bla</p>
+  <section v-if="board" class="board-details">
+    <p>{{ board.title }}</p>
+    <input type="text"
+           v-model="board.title"
+           
+    >
+    <!-- <p>{{board.title}}</p> -->
   </section>
 </template>
 
 <script>
 
-import { boardService } from '../services/board.service.js'
+// import { boardService } from '../services/board.service.js'
 
 export default {
   name: 'board-details',
@@ -17,10 +21,13 @@ export default {
     }
   },
   async created() {
-    const { id } = this.$route.params
-    console.log(id);
-    const board = await boardService.getById(id)
+    // const { id } = this.$route.params
+    const boardId = 'b101'
+    // console.log(id);
+    const board = await this.$store.dispatch({type: 'loadCurrBoard', boardId})
+    // const board = await boardService.getById(id)
     this.board = board
+    console.log(board);
   },
   methods: {
   },
