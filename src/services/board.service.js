@@ -11,8 +11,6 @@ export const boardService = {
     getEmptyBoard
 }
 
-_createBoards()
-
 const defaultBoards = [
     {
         "_id": "b101",
@@ -140,6 +138,9 @@ const defaultBoards = [
         ],
     }
 ]
+
+_createBoards()
+
 
 
 async function query() {
