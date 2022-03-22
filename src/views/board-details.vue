@@ -2,9 +2,9 @@
   <section v-if="board" class="board-details">
     <p>{{ board.title }}</p>
     <input type="text"
-           v-model="board.title"
-           
+           v-model="board.title"  
     >
+    <board-group v-for="group in board.groups" :key="group.id" :group="group"></board-group>
     <!-- <p>{{board.title}}</p> -->
   </section>
 </template>
@@ -12,6 +12,7 @@
 <script>
 
 // import { boardService } from '../services/board.service.js'
+import boardGroup from "../components/board-group.vue"
 
 export default {
   name: 'board-details',
@@ -19,6 +20,9 @@ export default {
     return {
       board: null,
     }
+  },
+  components: {
+    boardGroup,
   },
   async created() {
     // const { id } = this.$route.params
