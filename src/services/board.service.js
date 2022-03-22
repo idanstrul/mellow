@@ -142,6 +142,7 @@ const defaultBoards = [
 _createBoards()
 
 
+//BOARD CRUD
 
 async function query() {
     return await storageService.query(STORAGE_KEY)
@@ -183,3 +184,7 @@ function _createBoards() {
     }
     return boards;
 }
+
+
+//GROUP CRUD: 
+
