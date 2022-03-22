@@ -1,11 +1,24 @@
 <template>
+  <section>
+    <board-details></board-details>
   <h1>I'm home page!</h1>
+  </section>
 </template>
 
 <script>
-export default {
-  name: 'home'
 
+import boardDetails from "./board-details.vue"
+
+export default {
+  name: 'home',
+  data() {
+    return {
+
+    }
+  },
+  components: {
+    boardDetails
+  }
 }
 </script>
 
