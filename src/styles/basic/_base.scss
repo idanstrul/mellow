@@ -8,6 +8,16 @@ html {
     font-family: sans-serif;
 }
 
+input{
+  cursor: pointer;
+}
+
+input:focus{
+  outline-color: $clr-input;
+  background-color: $clr-base;
+  cursor: auto;
+}
+
 ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
