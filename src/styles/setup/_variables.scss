@@ -1,9 +1,20 @@
 
 // COLOR PALETTE
-$clr-group: #ebecf0;
+$clr-group-bg: #ebecf0;
+$clr-btn-hover-group-menu: darken($clr-group-bg, 5%);
 $clr-base: #ffffff;
-$clr-input: #0079bf;
-$clr2: #000;
+$clr-input-ol: #0079bf;
+$clr-labe0: #61bd4f;
+$clr-labe1: #f2d600;;
+$clr-labe2: #ff9f1a;
+$clr-labe3: #eb5a46;
+$clr-labe4: #c377e0;
+$clr-labe5: #0079bf;
+$clr-labe6: #00c2e0;
+$clr-labe7: #51e898;
+$clr-labe8: #ff78cb;
+$clr-labe9: #344563;
+$clr-labe10: #b3bac5;
 // $clr4: darken($clr3, 40%);
 $clr5: #2d2d2d;
 
@@ -18,3 +29,5 @@ $break-wide: 1920px;
 $padded-break-narrow: $break-narrow + $layoutPadding * 2;
 $padded-break-normal: $break-normal + $layoutPadding * 2;
 $padded-break-wide: $break-wide + $layoutPadding * 2;
+
+$fa-font-path: "../lib/webfonts";

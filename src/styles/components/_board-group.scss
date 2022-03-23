@@ -1,8 +1,12 @@
 .board-group{
-    background-color: $clr-group;
+    background-color: $clr-group-bg;
 }
 
 .group-title{
     background-color: transparent;
     border: none;
+}
+
+.group-header > * {
+    display: inline-block;
 }
