@@ -47,8 +47,11 @@ export default {
   
     },
     saveTask(taskToSave){
-      this.group.tasks.unshift(taskToSave)
-      this.updateGroup()
+      if(taskToSave.title){
+        this.group.tasks.unshift(taskToSave)
+        this.updateGroup()
+      }
+      this.taskToEdit = null
     }
   },
 }

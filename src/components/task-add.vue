@@ -1,14 +1,16 @@
 <template>
   <section class="task-add">
-      <form action="submit" @submit.prevent="saveTask">
+      <form action="submit"
+            @submit.prevent.stop="saveTask">
       <textarea 
             style="resize: none; width: 256px; height: 66px" 
             placeholder="Enter a title for this card..."
             v-model="task.title"
+            @blur="saveTask"
             />
       <div>
       <button>Add card</button>
-      <span>X</span>
+      <span @mouseover="isSave = false" @mouseleave="isSave = true">X</span>
       </div>
       </form>
   </section>
@@ -20,9 +22,19 @@ export default {
     props: {
         task: Object,
     },
+    data() {
+        return{
+            isSave: true
+        }
+    },
   methods: {
       saveTask(){
+          if(!this.isSave) this.task.title = ''
+          console.log(this.task)
           this.$emit('saveTask', this.task)
+      },
+      func(){
+          console.log('hover');
       }
   }
 }
