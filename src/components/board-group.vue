@@ -6,7 +6,11 @@
             class="group-title"
             @blur="updateGroup"
      >
-     <group-menu @newTask="addTask"></group-menu>
+     <button @click="toggleMenu" class="btn-group-menu" title="Open menu">
+      <i class="fa-solid fa-ellipsis"></i>
+    </button>
+     <group-menu @newTask="addTask" @copyGroup="copyGroup" :menuOpen="menuOpen"></group-menu>
+    <copy-group-menu :menuOpen="subMenuOpen"></copy-group-menu>
      </div>
      <task-add v-if="taskToEdit" :task="taskToEdit" @saveTask="saveTask"></task-add>
     <task-preview v-for="task in group.tasks" :key="task.id" :task="task"></task-preview>
@@ -17,6 +21,7 @@
 
 import taskPreview from "./task-preview.vue"
 import groupMenu from "./group-menu.vue"
+import copyGroupMenu from "./copy-group-menu.vue"
 import taskAdd from "./task-add.vue"
 import { boardService } from '../services/board.service'
 
@@ -29,20 +34,31 @@ export default {
   },
   data() {
     return {
-      taskToEdit: null
+      taskToEdit: null,
+      menuOpen: false,
+      subMenuOpen: false,
     }
   },
   components: {
       taskPreview,
       groupMenu,
-      taskAdd
+      taskAdd,
+      copyGroupMenu
 },
   methods: {
+    toggleMenu(){
+      this.menuOpen = !this.menuOpen
+      if(this.subMenuOpen) {
+        this.subMenuOpen = !this.subMenuOpen
+        this.menuOpen = false
+      }
+    },
     updateGroup(){
         this.$emit('update', this.group)
     },
     addTask(){
       this.taskToEdit = boardService.getEmptyTask()
+      this.menuOpen = false
      console.log(this.taskToEdit);
   
     },
@@ -52,6 +68,12 @@ export default {
         this.updateGroup()
       }
       this.taskToEdit = null
+    },
+    copyGroup(){
+      const groupToCopy = JSON.parse(JSON.stringify(this.group))
+      this.menuOpen = false
+      this.subMenuOpen = true
+      this.$emit('copyGroup', groupToCopy)
     }
   },
 }
