@@ -11,6 +11,9 @@ export const boardStore = {
         },
         currBoard(state) {
             return JSON.parse(JSON.stringify(state.currBoard))
+        },
+        currBoardLabels(state){
+            return JSON.parse(JSON.stringify(state.currBoard.labels))
         }
     },
     mutations: {
@@ -64,6 +67,16 @@ export const boardStore = {
             finally {
                 commit({ type: 'setIsLoading', loadingStatus: false })
             }
+        },
+        async getTaskById({getters}, {groupId, taskId}){
+            const currBoard = getters.currBoard
+            const currGroup = currBoard.groups.find(g => g.id === groupId)
+            console.log('taskId',taskId);
+            console.log('groupId',groupId);
+            console.log('currGroup',currGroup);
+            const currTask = currGroup.tasks.find(t => t.id === taskId)
+            return currTask
+            
         }
     }
 }

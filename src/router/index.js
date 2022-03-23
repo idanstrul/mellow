@@ -23,7 +23,7 @@ const router = createRouter({
       component: boardDetails,
       children: [
         {
-          path: 'task/:taskId',
+          path: 'task/:groupId/:taskId',
           name: 'task-details',
           component: taskDetails
         }

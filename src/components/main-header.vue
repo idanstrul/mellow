@@ -4,7 +4,7 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/board/b101">/board/b101</router-link> |
-      <router-link to="/board/b101/task/c104">/board/b101/task/c104</router-link>
+      <router-link to="/board/b101/task/g102/c104">/board/b101/task/g102/c104</router-link>
     </nav>
     <div class="wh">
       <div class="btn-container">
