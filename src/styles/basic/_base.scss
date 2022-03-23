@@ -12,7 +12,7 @@ input{
   cursor: pointer;
 }
 
-input:focus{
+input:focus, textarea:focus{
   outline-color: $clr-input-ol;
   background-color: $clr-base;
   cursor: auto;
