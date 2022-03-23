@@ -29,13 +29,16 @@
 </template>
 
 <script>
+import labels from "../components/task-edit.cmps/labels.vue"
+
 export default {
   name: 'task-details',
   props: {
     task: Object
+  },
+  components: {
+    labels
   }
-
-
 }
 </script>
 
