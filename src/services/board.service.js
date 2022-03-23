@@ -1,6 +1,8 @@
 import { syncStorageService } from "./storage.service.sync.js"
 import { storageService } from './storage.service.js'
 import { utilService } from './util.service.js'
+import { userService } from './user.service.js'
+
 
 const STORAGE_KEY = 'boardDB'
 
@@ -192,7 +194,7 @@ function _createBoards() {
 
 //TASK CRUD:
 function getEmptyTask() {
-    const { _id, fullname, username, imgUrl } = this.$store.getters.loggedinUser
+    const { _id, fullname, imgUrl } = userService.getLoggedinUser()
     return {
         "id": utilService.makeId(),
         "title": "",
@@ -202,7 +204,6 @@ function getEmptyTask() {
         "dueDate": null,
         "byMember": {
             _id,
-            username,
             fullname,
             imgUrl
         },

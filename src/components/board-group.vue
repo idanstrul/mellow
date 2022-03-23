@@ -4,10 +4,11 @@
      <input type="text"
             v-model="group.title"
             class="group-title"
-            @blur="saveTitle"
+            @blur="updateGroup"
      >
      <group-menu @newTask="addTask"></group-menu>
      </div>
+     <task-add v-if="taskToEdit" :task="taskToEdit" @saveTask="saveTask"></task-add>
     <task-preview v-for="task in group.tasks" :key="task.id" :task="task"></task-preview>
  </section>
 </template>
@@ -16,6 +17,7 @@
 
 import taskPreview from "./task-preview.vue"
 import groupMenu from "./group-menu.vue"
+import taskAdd from "./task-add.vue"
 import { boardService } from '../services/board.service'
 
 export default {
@@ -33,15 +35,23 @@ export default {
   components: {
       taskPreview,
       groupMenu,
+      taskAdd
 },
   methods: {
-    saveTitle(){
+    updateGroup(){
         this.$emit('update', this.group)
     },
     addTask(){
       this.taskToEdit = boardService.getEmptyTask()
      console.log(this.taskToEdit);
   
+    },
+    saveTask(taskToSave){
+      if(taskToSave.title){
+        this.group.tasks.unshift(taskToSave)
+        this.updateGroup()
+      }
+      this.taskToEdit = null
     }
   },
 }

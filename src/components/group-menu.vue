@@ -27,6 +27,7 @@ export default {
   methods: {
     addTask(){
       this.$emit('newTask')
+      this.menuOpen = false
       // console.log('adding');
 
     }
