@@ -3,13 +3,14 @@
       <form action="submit"
             @submit.prevent.stop="saveTask">
       <textarea 
+            ref="taskTitle"
             style="resize: none; width: 256px; height: 66px" 
             placeholder="Enter a title for this card..."
             v-model="task.title"
             @blur="saveTask"
             />
       <div>
-      <button>Add card</button>
+      <button type="submit">Add card</button>
       <span @mouseover="isSave = false" @mouseleave="isSave = true">X</span>
       </div>
       </form>
@@ -36,6 +37,9 @@ export default {
       func(){
           console.log('hover');
       }
+  },
+  mounted() {
+      this.$refs.taskTitle.focus()
   }
 }
 </script>
