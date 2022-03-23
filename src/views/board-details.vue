@@ -1,5 +1,6 @@
 <template>
   <section v-if="board" class="board-details">
+    <router-view></router-view>
     <p>{{ board.title }}</p>
     <input type="text"
            v-model="board.title"  
