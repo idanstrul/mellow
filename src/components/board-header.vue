@@ -8,9 +8,6 @@
           tag="h1"
           :contenteditable="true"
           v-model="boardTitleToEdit"
-          :noNL="false"
-          :noHTML="true"
-          @keypress.enter="updateTitle"
           @input="updateTitle"
         />
         <h1
@@ -96,7 +93,6 @@ export default {
     },
   },
   created() {
-    this.updateTitle = debounce(this.updateTitle, 2000);
   },
   watch: {
     boardTitle: {
