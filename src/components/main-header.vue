@@ -11,18 +11,16 @@
       </div>
     </div>
     <button @click.stop="toggleBoardList" class="btn-container">
-      <span>space dashboard</span>
       <span>Boards</span>
     </button>
     </nav>
     <div class="logo" @click="goToHomePage">
-      <span class="material-icons-outlined logo-icon">space dashboard</span>
       <span>Mellow</span>
     </div>
     <div class="header-features">
       <button
         @click="toggleBoardCompose"
-        class="material-icons-outlined btn-container">
+        >
         add
       </button>
       </div>
