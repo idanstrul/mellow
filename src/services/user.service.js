@@ -4,6 +4,8 @@ import { socketService, SOCKET_EVENT_USER_UPDATED } from './socket.service'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 var gWatchedUser = null;
 
+_saveLocalUser({ _id: 'bk8d9sad', fullname: 'Puki Norma', username: 'user1', password: '123', imgUrl: '/', isAdmin: false })
+
 export const userService = {
     login,
     logout,
@@ -93,7 +95,7 @@ function getLoggedinUser() {
 
 
 
-// This IIFE functions for Dev purposes 
+// This IIFE functions for Dev purposes
 // It allows testing of real time updates (such as sockets) by listening to storage events
 // (async () => {
 //     var user = getLoggedinUser()
