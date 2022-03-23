@@ -1,14 +1,12 @@
 <template>
 <section class="group-menu">
 <custom-menu  :menuOpen="menuOpen">
-   <h4>List actions</h4>
+   <h4>Copy list</h4>
    <hr>
-   <p @click="addTask">Add card...</p>
-   <p @click="copyGroup">Copy list...</p>
-   <hr>
-   <p>Archive this list...</p>
+   <p>Name</p>
+   <textarea style="resize: none"></textarea>
+   <button>Create list</button>
 </custom-menu>
-
   </section>
 </template>
 
@@ -18,15 +16,14 @@ import customMenu from "./custom-menu.vue"
 
 export default {
   props: {
-    menuOpen:Boolean,
+    menuOpen:Boolean
   },
   data(){
     return {
     }
   },
   components: {
-    customMenu,
-    
+    customMenu
   },
   methods: {
     addTask(){
@@ -35,7 +32,7 @@ export default {
       // console.log('adding');
     },
     copyGroup(){
-      this.$emit('copyGroup')
+      
     }
   }
 }
