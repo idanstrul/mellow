@@ -3,6 +3,7 @@
      <input type="text"
             v-model="group.title"
             class="group-title"
+            @blur="saveTitle"
      >
     <task-preview v-for="task in group.tasks" :key="task.id" :task="task"></task-preview>
  </section>
@@ -23,7 +24,9 @@ export default {
       taskPreview
 },
   methods: {
-    
+    saveTitle(){
+        this.$emit('update', this.group)
+    }
   },
 }
 </script>
