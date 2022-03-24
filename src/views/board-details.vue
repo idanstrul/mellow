@@ -19,9 +19,9 @@
 <script>
 
 // import { boardService } from '../services/board.service.js'
-//import boardHeader from "../components/board-header.vue"
 import boardGroup from "../components/board-group.vue"
 import groupAdd from "../components/group-add.vue"
+//import boardHeader from "../components/board-header.vue"
 
 export default {
   name: 'board-details',
@@ -32,9 +32,9 @@ export default {
     }
   },
   components: {
-    //boardHeader,
     boardGroup,
     groupAdd,
+    //boardHeader,
   },
   async created() {
    this.loadBoard()
