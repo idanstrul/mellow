@@ -3,8 +3,8 @@ import home from '../views/home.vue'
 import about from '../views/about.vue'
 import boardDetails from '../views/board-details.vue'
 import taskDetails from '../views/task-details.vue'
-import login from '../components/pages/login.vue'
-import signup from '../components/pages/signup.vue'
+import login from '../views/login.vue'
+import signup from '../views/signup.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
