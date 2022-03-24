@@ -49,7 +49,7 @@ const defaultBoards = [
         "groups": [
             {
                 "id": "g101",
-                "title": "Group 1",
+                "title": "List 1",
                 "tasks": [
                     {
                         "id": "c101",
@@ -64,7 +64,7 @@ const defaultBoards = [
             },
             {
                 "id": "g102",
-                "title": "Group 2",
+                "title": "List 2",
                 "tasks": [
                     {
                         "id": "c103",

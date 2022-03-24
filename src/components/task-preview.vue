@@ -5,7 +5,6 @@
 </template>
 
 <script>
-// import customCard from './custom-card.vue'
 
 export default {
   name: 'task-preview',

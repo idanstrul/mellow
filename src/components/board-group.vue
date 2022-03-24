@@ -1,6 +1,6 @@
 <template>
  <section class="board-group">
-   <div class="group-header">
+   <div class="group-header ">
      <input type="text"
             v-model="group.title"
             class="group-title"
