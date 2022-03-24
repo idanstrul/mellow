@@ -1,6 +1,7 @@
 <template>
     <section class="trello-labels">
-        <ul>
+        <span class="title">Labels</span>
+        <ul class="clean-list">
             <li v-for="label in labels" :key="label.id">
                 <div class="label" :style="{ 'background-color': label.color }"></div>
             </li>
@@ -15,13 +16,14 @@ export default {
     props: {
         labels: Array
     },
-    data() {
-
-    }
 }
 </script>
 
 <style>
+ul {
+    display: flex;
+}
+
 .label {
     display: block;
     border-radius: 3px;
