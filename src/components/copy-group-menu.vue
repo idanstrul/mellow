@@ -1,10 +1,10 @@
 <template>
-<section class="group-menu">
+<section class="copy-group-menu">
 <custom-menu  :menuOpen="menuOpen">
-   <h4>Copy list</h4>
+   <p>Copy list</p>
    <hr>
    <form action="submit" @submit.prevent="saveGroup" >
-   <p>Name</p>
+   <div>Name</div>
    <textarea style="resize: none" v-model="titleForDisplay"></textarea>
    <button>Create list</button>
    </form>

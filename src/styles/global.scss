@@ -1,5 +1,6 @@
 /* SETUP  */
 @import 'setup/variables';
+@import 'setup/mixins';
 /* COMPONENTS */
 
 @import 'components/screen';
@@ -8,6 +9,8 @@
 @import 'components/group-menu';
 @import 'components/group-add';
 @import 'components/task-preview';
+@import 'components/board-details';
+@import 'components/task-add';
 
 /* BASE */
 
