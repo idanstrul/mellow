@@ -53,7 +53,36 @@ const defaultBoards = [
                 "tasks": [
                     {
                         "id": "c101",
-                        "title": "Replace logo"
+                        "title": "Replace logo",
+                        "members": [
+                            {
+                                "_id": "u101",
+                                "username": "Tal",
+                                "fullname": "Tal Tarablus",
+                                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                            },
+                            {
+                                "_id": "u328",
+                                "username": "Amit",
+                                "fullname": "Amit Miz",
+                                "color": "#0047AB"
+
+                            },
+                            {
+                                "_id": "u439",
+                                "username": "Idan",
+                                "fullname": "Idan Stru",
+                                "color": "#e12f09"
+
+                            },
+                            {
+                                "_id": "u429",
+                                "username": "Omer",
+                                "fullname": "Omer Esh",
+                                "color": "#09bd0d"
+
+                            },
+                        ],
                     },
                     {
                         "id": "c102",
@@ -106,6 +135,13 @@ const defaultBoards = [
                                 "username": "Tal",
                                 "fullname": "Tal Tarablus",
                                 "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                            },
+                            {
+                                "_id": "u328",
+                                "username": "Amit",
+                                "fullname": "Amit Miz",
+                                "color": "#0047AB"
+
                             }
                         ],
                         "labelIds": ["l101", "l102"],
