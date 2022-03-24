@@ -9,8 +9,8 @@
      <button @click="toggleMenu" class="btn-group-menu" title="Open menu">
       <i class="fa-solid fa-ellipsis"></i>
     </button>
-     <group-menu @newTask="addTask" @copyGroup="copyGroup" :menuOpen="menuOpen"></group-menu>
-    <copy-group-menu :menuOpen="subMenuOpen"></copy-group-menu>
+     <group-menu @copyGroup="menuOpen=false; subMenuOpen=true" @newTask="addTask" :menuOpen="menuOpen"></group-menu>
+    <copy-group-menu @saveGroup="saveGroup" :menuOpen="subMenuOpen" :groupTitle="group.title"></copy-group-menu>
      </div>
      <task-add v-if="taskToEdit" :task="taskToEdit" @saveTask="saveTask"></task-add>
     <task-preview v-for="task in group.tasks" :key="task.id" :task="task"></task-preview>
@@ -54,7 +54,7 @@ export default {
       }
     },
     updateGroup(){
-        this.$emit('update', this.group)
+        this.$emit('updateGroup', this.group)
     },
     addTask(){
       this.taskToEdit = boardService.getEmptyTask()
@@ -69,12 +69,17 @@ export default {
       }
       this.taskToEdit = null
     },
-    copyGroup(){
+    saveGroup(title){
       const groupToCopy = JSON.parse(JSON.stringify(this.group))
+      groupToCopy.title = title
+      groupToCopy.id = ''
       this.menuOpen = false
-      this.subMenuOpen = true
-      this.$emit('copyGroup', groupToCopy)
+      this.subMenuOpen = false
+      this.$emit('saveGroup', groupToCopy)
     }
   },
+  computed: {
+    
+  }
 }
 </script>

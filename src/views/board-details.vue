@@ -6,7 +6,7 @@
            v-model="board.title"  
     >
     <div class="flex">
-    <board-group v-for="group in board.groups" :key="group.id" :group="group" @update="updateBoard"></board-group>
+    <board-group v-for="group in board.groups" :key="group.id" :group="group" @updateGroup="updateGroup" @saveGroup="updateGroup"></board-group>
     </div>
     <!-- <p>{{board.title}}</p> -->
   </section>
@@ -31,12 +31,10 @@ export default {
    this.loadBoard()
   },
   methods: {
-    async updateBoard(groupToSave){
-      const idx =  this.board.groups.findIndex(g => g.id === groupToSave.id)
-      this.board.groups[idx] = groupToSave
-      await this.$store.dispatch({type: 'saveCurrBoard', boardToSave: this.board})
+    async updateGroup(groupToSave){
+      console.log(groupToSave);
+      await this.$store.dispatch({type: 'updateGroup', groupToSave})
       this.loadBoard()
-      // this.$store.dispatch.saveCurrBoard({boardToSave: this.board})
     },
     async loadBoard(){
        // const { id } = this.$route.params

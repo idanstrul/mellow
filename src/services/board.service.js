@@ -166,6 +166,10 @@ async function save(board) {
     return storageService.post(STORAGE_KEY, boardToSave)
 }
 
+async function saveGroup() {
+
+}
+
 async function getEmptyBoard() {
     return {
         "_id": "",
