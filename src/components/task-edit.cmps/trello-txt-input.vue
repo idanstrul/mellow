@@ -11,7 +11,7 @@
 
 <script>
 export default {
-    name: 'trello-txt-inpput',
+    name: 'trello-txt-input',
     props: {
         txt: String
     },
