@@ -2,13 +2,23 @@
     background-color: $clr-group-bg;
     margin: 10px;
     height: fit-content;
-    border-radius: 3px;
+    border-radius: 2px;
     padding-inline-start: 9px;
+    .btn-group-menu{
+        border: none;
+        border-radius: 2px;
+        margin: 5px;
+        width: 32px;
+        height: 32px;
+        &:hover {
+            background-color: $clr-btn-hover-group-menu;
+        }
+    }
 }
 
 .group-title{
-    background-color: transparent;
-    border: none;
+    // background-color: transparent;
+    // border: none;
 }
 
 .group-header > * {

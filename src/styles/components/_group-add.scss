@@ -1,0 +1,38 @@
+.group-add {
+    div{
+        width: 272px;
+        height: 40px;
+        cursor: pointer;
+        padding: 10px;
+        // padding-inline-end: 252px;
+        border-radius: 2px;
+        margin-block-start: 10px;
+        // text-shadow: -0.1px -1px 0 #000, 0.1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        color: rgb(255, 255, 255);
+        background-color: #b8b8b893;
+        font-weight: 400;
+        transition: background-color .2s ease-in-out;
+        // transition: text-shadow .1s ease-in-out;
+        &:hover{
+            // text-shadow: 1px 0px #00000075;
+            background-color: #bbbabaf6;
+
+        }
+        span:first-child{
+            font-size: 23px;
+            // line-height: 22px;
+            padding-inline-start: 3px;
+            padding-inline-end: 3px;
+            padding-block-end: 3px;
+        }
+        span:not(:first-child){
+           padding-block-start: 3px;
+        }
+    }
+}
+
+.group-edit{
+    input{
+        background-color: #ffffff;
+    }
+}

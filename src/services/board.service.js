@@ -13,6 +13,7 @@ export const boardService = {
     save,
     getEmptyBoard,
     getEmptyTask,
+    getEmptyGroup
 }
 
 const defaultBoards = [
@@ -195,6 +196,14 @@ function _createBoards() {
 
 
 //GROUP CRUD: 
+function getEmptyGroup() {
+    return {
+        "id": "",
+        "title": "",
+        "tasks": [],
+        "style": {}
+    }
+}
 
 //TASK CRUD:
 function getEmptyTask() {

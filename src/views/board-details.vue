@@ -7,6 +7,7 @@
     >
     <div class="flex">
     <board-group v-for="group in board.groups" :key="group.id" :group="group" @updateGroup="updateGroup" @saveGroup="updateGroup"></board-group>
+    <group-add @addGroup="isAddingGroup=false" @saveGroup="updateGroup" :isAddingGroup="isAddingGroup"></group-add>
     </div>
     <!-- <p>{{board.title}}</p> -->
   </section>
@@ -16,22 +17,26 @@
 
 // import { boardService } from '../services/board.service.js'
 import boardGroup from "../components/board-group.vue"
+import groupAdd from "../components/group-add.vue"
 
 export default {
   name: 'board-details',
   data() {
     return {
       board: null,
+      isAddingGroup: true 
     }
   },
   components: {
     boardGroup,
+    groupAdd,
   },
   async created() {
    this.loadBoard()
   },
   methods: {
     async updateGroup(groupToSave){
+      if(!this.isAddingGroup) this.isAddingGroup = true
       console.log(groupToSave);
       await this.$store.dispatch({type: 'updateGroup', groupToSave})
       this.loadBoard()
