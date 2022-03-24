@@ -1,7 +1,7 @@
 <template>
 <section class="group-menu">
 <custom-menu  :menuOpen="menuOpen">
-   <h4>List actions</h4>
+   <p>List actions</p>
    <hr>
    <p @click="addTask">Add card...</p>
    <p @click="copyGroup">Copy list...</p>

@@ -1,14 +1,18 @@
 .group-menu {
-
-    .btn-menu {
-     
-    }
-
     .group-menu-container {
        background-color: $clr-base;
        position: absolute;
        > :not( :first-child) {
         cursor: pointer;
        } 
+    }
+    p{
+        padding: 7px 0;
+    }
+    p:first-child{
+        text-align: center;
+    }
+    p:not(:first-child):hover{
+        background-color: #f5f6f8;
     }
 }

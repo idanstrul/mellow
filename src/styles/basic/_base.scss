@@ -6,12 +6,18 @@
 
 html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #b04632;
+    background-color: #3f89dfa9;
     font-size: 14px;
 }
 
 input{
   cursor: pointer;
+}
+
+hr{
+  height: 1px;
+  background-color: #dfe2e7;
+  border: none;
 }
 
 input:focus, textarea:focus{
