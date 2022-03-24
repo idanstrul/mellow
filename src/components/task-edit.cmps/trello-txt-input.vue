@@ -2,7 +2,7 @@
     <section class="trello-txt-inpput" @click="isInEdit = true">
         <span v-if="!isInEdit" class="todo-title">{{ updatedTxt }}</span>
         <div v-else class="todo-edit">
-            <textarea cols="30" rows="3" v-model="updatedTxt" placeholder="Write somthingr"></textarea>
+            <textarea cols="30" rows="3" v-model="updatedTxt" placeholder="Write somthingr" ></textarea>
             <button @click.stop="saveTxt">Save</button>
             <button @click.stop="cancel">X</button>
         </div>

@@ -1,10 +1,10 @@
 <template>
     <section class="trello-checklist">
-        <trello-txt-input :txt="checklist.title" @txt-saved="updateChecklistTitle"></trello-txt-input>
+        <trello-txt-input :txt="updatedChecklist.title" @txt-saved="updateChecklistTitle"></trello-txt-input>
         <button>Delete</button>
         <span class="progress-count"></span>
         <div class="progress-bar"></div>
-        <ul v-if="checklist.todos.length > 0" class="todos clean-list">
+        <ul class="todos clean-list">
             <li v-for="(todo, todoIdx) in updatedChecklist.todos" :key="todo.id">
                 <input type="checkbox" v-model="todo.isDone" />
                 <trello-txt-input :txt="todo.title" @txt-saved="updateTodoTitle($event, todo.id)" @txt-is-empty="removeTodo(todoIdx)"></trello-txt-input>
@@ -39,7 +39,7 @@ export default {
             this.updatedChecklist.title = updatedTitle
         },
         removeTodo(todoIdx){
-            delete this.updatedChecklist.todos[todoIdx]
+            this.updatedChecklist.todos.splice(todoIdx, 1)
         },
         cancel() {
             this.updatedDesc = this.description
