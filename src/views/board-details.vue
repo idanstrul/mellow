@@ -3,11 +3,10 @@
      <!--board-header
       :board="board"
     ></!--board-header-->
-    <router-view></router-view>
+    <!--router-view></!--router-view>
     <p>{{ board.title }}</p>
     <input type="text"
-           v-model="board.title"  
-    >
+           v-model="board.title"-->
     <div class="flex">
     <board-group v-for="group in board.groups" :key="group.id" :group="group" @updateGroup="updateGroup" @saveGroup="updateGroup"></board-group>
     <group-add @addGroup="isAddingGroup=false" @saveGroup="updateGroup" :isAddingGroup="isAddingGroup"></group-add>

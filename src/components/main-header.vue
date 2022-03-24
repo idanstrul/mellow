@@ -1,6 +1,6 @@
 <template>
-  <section class="app-header" :class="classBoardsPage">
-    <nav class="nav">
+  <section class="main-header" :class="classBoardsPage">
+    <nav class="btn-container">
       <router-link to="/about">About</router-link>|
       <router-link to="/board/b101/task/g102/c104">Board task</router-link>|
       <router-link to="/login">Login</router-link>|
@@ -14,11 +14,13 @@
     />
     <div>
       <div class="btn-container" @click="goToBoardsPage">
+        <span class="material-icons-outlined logo-icon"></span>
         <span>Boards</span>
       </div>
     </div>
     <div class="btn-container" @click="goToHomePage">
-      <span>Mellow Home</span>
+      <span class="material-icons-outlined logo-icon"></span>
+      <span>Mellow</span>
     </div>
   </section>
 </template>
