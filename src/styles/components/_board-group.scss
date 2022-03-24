@@ -1,18 +1,14 @@
 .board-group{
+    position: relative;
     min-width: 272px;
     background-color: $clr-group-bg;
-    margin: 10px;
+    margin-inline-end: 7px;
     height: fit-content;
     border-radius: 3px;
-    // padding-inline-start: 9px;
     .btn-group-menu{
-        // float: right;
         border: none;
         border-radius: 2px;
         margin: 5px;
-        position: relative;
-        left: 40px;
-        // margin-inline-start: 50px;
         width: 32px;
         height: 32px;
         &:hover {
@@ -24,8 +20,12 @@
 .group-title{
     background-color: transparent;
     border: none;
-    font-weight: bold;
-    padding-inline-start: 15px;
+    font-weight: 600;
+    padding-inline-start: 7px;
+    margin-inline-start: 11px;
+    color: #172b4d;
+    height: 28px;
+    width: 219px;
 }
 
 .group-header > * {

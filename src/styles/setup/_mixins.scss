@@ -1,0 +1,10 @@
+@mixin defaultBtn {
+  background-color: #0079bf;
+  color: white;
+  border-radius: 3px;
+  border: none;
+  height: 33px;
+  &:hover{
+    background-color: #026aa7;
+  }
+}

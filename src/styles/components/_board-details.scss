@@ -1,0 +1,12 @@
+.group-container{
+    // width: 100vw !important;
+    height: 82vh;
+    // background-color: #fff;
+    overflow-x: scroll;
+}
+
+.board-details{
+    .group-list{
+        overflow-x: auto;
+    }
+}

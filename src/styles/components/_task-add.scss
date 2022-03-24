@@ -1,0 +1,24 @@
+.task-add form{
+    > * {
+
+    }
+    textarea{
+        outline: none;
+        border: none;
+        width: 93% !important;
+        margin: 0 auto;
+        padding-inline-start: 7px;
+        padding-block-start: 7px;
+        border-radius: 3px;
+        border-bottom: 1px solid #b2b9c5;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;   
+    }
+    button{
+        @include defaultBtn;
+        margin-inline-start: 10px;
+        padding-inline-start: 12px;
+        padding-inline-end: 12px;
+        margin-block-start: 7px;
+        margin-block-end: 7px;
+    }
+}

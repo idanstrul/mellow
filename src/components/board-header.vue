@@ -6,37 +6,26 @@
           v-if="isEditing"
           tag="h1"
           :contenteditable="true"
-          v-model="boardTitleToEdit"
-        />
+          v-model="boardTitleToEdit"/>
         <h1
           v-else
-          @click="isEditing = !isEditing"
-        >
+          @click="isEditing = !isEditing">
           {{ boardTitle }}
         </h1>
-        <span
-          :class="selected"
-          ></span
-        >
       </div>
       <div>
-        <button 
-        >
+        <button class="board-header-btn">
           Invite
-        </button>
+        </button>|
       </div>
     </div>
-    <div class="menu-section">
-      <button
-      >
-        <span> leaderboard </span>
-      </button>
-      <button
-        @click.stop="isSideMenuOpen = true"
-      >
-        <span>More</span>
-        <span>Show&nbsp;</span>
-        <span>Menu</span>
+    <div class="board-section">
+      <button class="board-header-btn">
+        <span> Laderboard </span>
+      </button>|
+      <button class="board-header-btn"
+        @click.stop="isSideMenuOpen = true">
+        <span>Show menu</span>
       </button>
     </div>
   </div>

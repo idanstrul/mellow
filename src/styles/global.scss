@@ -1,5 +1,6 @@
 /* SETUP  */
 @import 'setup/variables';
+@import 'setup/mixins';
 /* COMPONENTS */
 
 @import 'components/screen';
@@ -9,7 +10,8 @@
 @import 'components/group-add';
 @import 'components/task-preview';
 @import 'components/user-avatar';
-@import 'components/board-details.scss';
+@import 'components/board-details';
+@import 'components/task-add';
 
 /* TASK-DETAILS-CMPS */
 
