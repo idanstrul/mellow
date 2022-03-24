@@ -8,6 +8,18 @@
 @import 'components/group-menu';
 @import 'components/group-add';
 @import 'components/task-preview';
+@import 'components/user-avatar';
+@import 'components/board-details.scss';
+
+/* TASK-DETAILS-CMPS */
+
+@import 'components/task-details-modal/activity-log';
+@import 'components/task-details-modal/task-description';
+@import 'components/task-details-modal/task-details';
+@import 'components/task-details-modal/trello-checklist';
+@import 'components/task-details-modal/trello-labels';
+@import 'components/task-details-modal/trello-members';
+@import 'components/task-details-modal/trello-txt-input';
 
 /* BASE */
 

@@ -27,7 +27,4 @@ export default {
 </script>
 
 <style>
-ul {
-    display: flex;
-}
 </style>

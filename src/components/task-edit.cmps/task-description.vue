@@ -37,7 +37,4 @@ export default {
 </script>
 
 <style>
-textarea {
-  display: block;
-}
 </style>

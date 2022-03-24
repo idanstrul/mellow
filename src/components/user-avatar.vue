@@ -30,32 +30,4 @@ export default {
 </script>
 
 <style>
-.user-avatar {
-    object-fit: cover;
-    height: 28px;
-    width: 28px;
-    border-radius: 50px;
-    /* margin: 5px 2px 0px 2px; */
-    margin: 3px 0px 0px 4px;
-}
-
-.user-avatar div{
-    width: 100%;
-    height: 100%;
-    color: white;
-    line-height: 28px;
-}
-
-.user-avatar:hover{
-    opacity: 0.7;
-    cursor: pointer;
-}
-
-img {
-    width: 100%;
-}
-
-.user-avatar * {
-    border-radius: inherit;
-}
 </style>

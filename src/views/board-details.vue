@@ -8,7 +8,7 @@
     <input type="text"
            v-model="board.title"  
     >
-    <div class="flex">
+    <div class="group-list flex">
     <board-group v-for="group in board.groups" :key="group.id" :group="group" @updateGroup="updateGroup" @saveGroup="updateGroup"></board-group>
     <group-add @addGroup="isAddingGroup=false" @saveGroup="updateGroup" :isAddingGroup="isAddingGroup"></group-add>
     </div>

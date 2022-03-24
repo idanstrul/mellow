@@ -20,21 +20,4 @@ export default {
 </script>
 
 <style>
-ul {
-    display: flex;
-}
-
-.label {
-    display: block;
-    border-radius: 3px;
-    height: 32px;
-    margin: 0 4px 4px 0;
-    min-width: 40px;
-    padding: 0 12px;
-}
-
-.label:hover{
-    opacity: 0.7;
-    cursor: pointer;
-}
 </style>

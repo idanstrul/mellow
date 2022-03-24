@@ -1,43 +1,48 @@
 <template>
   <section v-if="currTask" class="task-details">
-    <div class="modal-screen"></div>
-    <div class="modal-container">
-      <div v-if="false" class="cover"></div>
-      <div class="modal-header">I'm a task details modal</div>
-      <div class="flex-container flex">
-        <div class="modal-main">
-          <div v-if="true" class="notations">
-            <trello-labels v-if="hasLabels" :labels="currTaskLabels"></trello-labels>
-            <trello-members v-if="hasMembers" :members="currTask.members"></trello-members>
+    <div class="modal-screen flex center">
+      <div class="modal-container flex column center">
+        <div v-if="false" class="cover"></div>
+        <div class="modal-header">I'm a task details modal</div>
+        <div class="flex-container flex space-between">
+          <div class="modal-main">
+            <div v-if="true" class="notations flex wrap">
+              <trello-labels v-if="hasLabels" :labels="currTaskLabels"></trello-labels>
+              <trello-members v-if="hasMembers" :members="currTask.members"></trello-members>
+            </div>
+            <div class="description">
+              <task-description :description="currTask.description" @updated="updateDesc"></task-description>
+            </div>
+            <div v-if="false" class="attachments"></div>
+            <div v-if="true" class="checklists">
+              <trello-checklist
+                v-for="checklist in currTask.checklists"
+                :key="checklist.id"
+                :checklist="checklist"
+              ></trello-checklist>
+            </div>
+            <div class="activity-log">
+              <activity-log :comments="currTask.comments"></activity-log>
+            </div>
           </div>
-          <div class="description">
-            <task-description :description="currTask.description" @updated="updateDesc"></task-description>
-          </div>
-          <div v-if="false" class="attachments"></div>
-          <div v-if="true" class="checklists">
-            <trello-checklist v-for="checklist in currTask.checklists" :key="checklist.id" :checklist="checklist"></trello-checklist>
-          </div>
-          <div class="activity-log">
-            <activity-log :comments="currTask.comments"></activity-log>
+          <div class="modal-sidebar flex column">
+            <button>Join</button>
+            <span class="action-group">Add to card</span>
+            <button>Members</button>
+            <button>Labels</button>
+            <button>Checklist</button>
+            <button>Dates</button>
+            <button>Attachment</button>
+            <button>Cover</button>
+            <span class="action-group">Actions</span>
+            <button>Move</button>
+            <button>Copy</button>
+            <button>Archive</button>
           </div>
         </div>
-        <div class="modal-sidebar flex column">
-          <button>Join</button>
-          <span class="action-group">Add to card</span>
-          <button>Members</button>
-          <button>Labels</button>
-          <button>Checklist</button>
-          <button>Dates</button>
-          <button>Attachment</button>
-          <button>Cover</button>
-          <span class="action-group">Actions</span>
-          <button>Move</button>
-          <button>Copy</button>
-          <button>Archive</button>
-        </div>
+        <pre>{{ currTask }}</pre>
+        <pre>{{ currTaskLabels }}</pre>
       </div>
-      <pre>{{ currTask }}</pre>
-      <pre>{{ currTaskLabels }}</pre>
     </div>
   </section>
 </template>
@@ -65,9 +70,9 @@ export default {
       currTaskLabels: null
     }
   },
-  methods:{
-    updateDesc(updatedDesc){
-      console.log('updatedDesc',updatedDesc);
+  methods: {
+    updateDesc(updatedDesc) {
+      console.log('updatedDesc', updatedDesc);
       this.currTask.description = updatedDesc
     }
   },
@@ -85,32 +90,10 @@ export default {
     trelloMembers,
     taskDescription,
     activityLog,
-    trelloChecklist 
+    trelloChecklist
   }
 }
 </script>
 
 <style>
-/* .modal-header {
-  width: 100%;
-} */
-/* .modal-screen {
-    background-color: black;
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-}
-
-.modal-container {
-    background-color: white;
-    position: fixed;
-
-}
-
-.modal-container {
-    max-width: 500px;
-    margin: auto;
-} */
 </style>
