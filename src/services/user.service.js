@@ -46,18 +46,19 @@ async function update(user) {
     return user;
 }
 
-async function login(userCred) {
+async function login(user) {
     try {
-        const user = await httpService.post('auth/login', userCred)
+        console.log(user)
+        //const user = await httpService.post('auth/login', userCred)
         if (user) return _saveLocalUser(user)
     } catch (err) {
         console.log('userService: Error in login user', err)
         throw err
     }
 }
-async function signup(userCred) {
+async function signup(user) {
     try {
-        const user = await httpService.post('auth/signup', userCred)
+        //const user = await httpService.post('auth/signup', userCred)
         return _saveLocalUser(user)
     } catch (err) {
         console.log('userService: Error in signup user', err)

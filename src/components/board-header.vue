@@ -4,30 +4,23 @@
       <div class="board-section">
         <contenteditable
           v-if="isEditing"
-          class="board-header-btn title-board"
           tag="h1"
           :contenteditable="true"
           v-model="boardTitleToEdit"
-          @input="updateTitle"
         />
         <h1
           v-else
-          class="board-header-btn title-board"
           @click="isEditing = !isEditing"
         >
           {{ boardTitle }}
         </h1>
         <span
-          class="material-icons-round board-header-btn star"
-          @click="toggleStar"
           :class="selected"
-          >star_outline</span
+          ></span
         >
       </div>
-      <span class="seperator">|</span>
-      <div class="members-section">
-        <button
-          class="board-header-btn invite-btn"
+      <div>
+        <button 
           @click.stop="toggleMemberMenu"
         >
           Invite
@@ -36,30 +29,16 @@
     </div>
     <div class="menu-section">
       <button
-        class="board-header-btn menu-section dashboard"
-        @click="openDashboard"
       >
-        <span class="material-icons-outlined"> leaderboard </span>
+        <span> leaderboard </span>
       </button>
       <button
-        class="board-header-btn menu-section"
         @click.stop="isSideMenuOpen = true"
       >
-        <span class="material-icons title">More</span>
-        <span class="word-show">Show&nbsp;</span>
-        <span class="word-menu">menu</span>
+        <span>More</span>
+        <span>Show&nbsp;</span>
+        <span>Menu</span>
       </button>
-      <transition name="slide">
-        <sideMenu
-          v-if="isSideMenuOpen"
-          :board="board"
-          class="popup"
-          @updateMembers="updateMembers"
-          @close="isSideMenuOpen = false"
-          @setBackground="setBackground"
-          @openDeletePopup="openDeletePopup"
-        />
-      </transition>
     </div>
   </div>
 </template>
@@ -105,31 +84,6 @@ export default {
   methods: {
     setBackground(style) {
       this.$emit("setBackground", style);
-    },
-    toggleMemberMenu() {
-      this.isMembersMenuOpen = !this.isMembersMenuOpen;
-    },
-    closeMembersMenu() {
-      this.isMembersMenuOpen = false;
-    },
-    closeSideMenu() {
-      this.isSideMenuOpen = false;
-    },
-    toggleStar() {
-      this.$emit("toggleStar");
-    },
-    updateTitle() {
-      this.isEditing = false;
-      this.$emit("updateTitle", this.boardTitleToEdit);
-    },
-    updateMembers(members) {
-      this.$emit("updateMembers", members);
-    },
-    openDeletePopup(){
-       this.$emit('openDeletePopup')
-    },
-    openDashboard() {
-      this.$emit("openDashboard");
     },
   },
   components: {

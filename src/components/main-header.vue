@@ -1,31 +1,31 @@
 <template>
   <section class="app-header" :class="classBoardsPage">
     <nav class="nav">
-      <router-link to="/">Home</router-link>|
       <router-link to="/about">About</router-link>|
-      <router-link to="/board/b101">/board/b101</router-link>|
-      <router-link to="/board/b101/task/g102/c104">/board/b101/task/g102/c104</router-link>
-      <router-link to="/login">login</router-link>
-      <router-link to="/signup">signup</router-link>
+      <router-link to="/board/b101/task/g102/c104">Board task</router-link>|
+      <router-link to="/login">Login</router-link>|
+      <router-link to="/signup">Signup</router-link>
     </nav>
-    <div class="wh">
+    <board-list
+      v-if="isBoardListOpen"
+      @closeBoardList="isBoardListOpen = false"
+      @setBackground="setBackground"
+      :boards="boards"
+    />
+    <div>
       <div class="btn-container" @click="goToBoardsPage">
-        <span>Home</span>
+        <span>Boards</span>
       </div>
     </div>
-    <button @click.stop="toggleBoardList" class="btn-container">
-      <span>Boards</span>
-    </button>
-    <div class="logo" @click="goToHomePage">
-      <span>Mellow</span>
-    </div>
-    <div class="header-features">
-      <button @click="toggleBoardCompose">add</button>
+    <div class="btn-container" @click="goToHomePage">
+      <span>Mellow Home</span>
     </div>
   </section>
 </template>
 
 <script>
+import boardCompose from "../components/board-compose.vue";
+import boardList from "../components/board-list.vue";
 
 export default {
   data() {
@@ -37,7 +37,8 @@ export default {
     };
   },
   components: {
-
+    boardCompose,
+    boardList,
   },
   methods: {
     toggleBoardCompose() {
@@ -68,8 +69,8 @@ export default {
     goToBoardsPage() {
       const style = { "background-color": 'whitesmoke' };
       this.setBackground(style)
-      if (this.$route.path !== '/b') {
-        this.$router.push("/b");
+      if (this.$route.path !== '/board/b101') {
+        this.$router.push("/board/b101");
       }
       this.$store.commit({ type: 'setCurrBoard', board: null })
     },

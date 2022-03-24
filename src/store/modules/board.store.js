@@ -4,7 +4,8 @@ import { utilService } from "../../services/util.service";
 export const boardStore = {
     state: {
         boards: [], //maybe there will be no need for this
-        currBoard: null
+        currBoard: null,
+        recentBoards: [],
     },
     getters: {
         boards(state) {
@@ -15,12 +16,26 @@ export const boardStore = {
         },
         currBoardLabels(state) {
             return JSON.parse(JSON.stringify(state.currBoard.labels))
-        }
+        },
+        recentBoards({ recentBoards }) { return recentBoards },
+        cardEdit({ cardEdit }) { return cardEdit },
+        boardsToShow(state) {
+            let regex = new RegExp(state.filterBy.txt, 'i')
+            return state.boards.filter(board => {
+                return regex.test(board.title)
+            })
+        },
     },
     mutations: {
         setCurrBoard(state, { currBoard }) {
             state.currBoard = currBoard
-        }
+        },
+        addBoardToRecentBoards(state, { board }) {
+            if (state.recentBoards.length >= 5) state.recentBoards.pop()
+            state.recentBoards = state.recentBoards.filter(currBoard =>
+                currBoard._id !== board._id)
+            state.recentBoards.unshift(board)
+        },
     },
     actions: {
         async loadCurrBoard(context, { boardId }) {
