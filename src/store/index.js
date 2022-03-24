@@ -30,8 +30,10 @@ const store = createStore({
                 style,
                 isAlive
             }
-        }
-
+        },
+        setMsg(state, { msg }) {
+            state.userMsg = msg;
+        },
     },
     actions: {
         flashUserMsg(context, { msg, style }) {
@@ -39,8 +41,25 @@ const store = createStore({
             setTimeout(() => {
                 context.commit({ type: 'setUserMsg', msg: '', style: '', isAlive: false })
             }, 2000)
+        },
+        async showMsg({ state, commit }, { msg }) {
+            try {
+                if (state.setTimeId) clearTimeout(state.setTimeId);
+                commit({ type: 'setMsg', msg });
+                msg = {
+                    txt: '',
+                    type: ''
+                }
+                state.setTimeId = setTimeout(() => {
+                    commit({ type: 'setMsg', msg });
+                    clearTimeout(state.setTimeId)
+                }, 2500)
+            } catch (err) {
+                console.log('ERROR: cannot get userMsg', err);
+            }
         }
     },
+
     modules: {
         userStore,
         boardStore

@@ -18,11 +18,11 @@ export const userStore = {
     mutations: {
         setLoggedinUser(state, { user }) {
             // Yaron: needed this workaround as for score not reactive from birth
-            state.loggedinUser = (user)? {...user} : null;
+            state.loggedinUser = (user) ? { ...user } : null;
         },
         setWatchedUser(state, { user }) {
             state.watchedUser = user;
-        },       
+        },
         setUsers(state, { users }) {
             state.users = users;
         },
@@ -31,6 +31,10 @@ export const userStore = {
         },
         setUserScore(state, { score }) {
             state.loggedinUser.score = score
+        },
+        updateUser(state, { user }) {
+            const userIdx = state.users.findIndex(u => u._id === user._id)
+            state.users.splice(userIdx, 1, user)
         },
     },
     actions: {
@@ -73,7 +77,7 @@ export const userStore = {
                 console.log('userStore: Error in loadUsers', err)
                 throw err
             }
-        },        
+        },
         async loadAndWatchUser({ commit }, { userId }) {
             try {
                 const user = await userService.getById(userId);
@@ -115,6 +119,26 @@ export const userStore = {
                 console.log('userStore: Error in increaseScore', err)
                 throw err
             }
-        }
+        },
+        async signup({ commit }, { userCred }) {
+            try {
+                const user = await userService.signup(userCred)
+                commit({ type: 'setLoggedinUser', user })
+                return user;
+            } catch (err) {
+                console.log('userStore: Error in signup', err)
+                throw err
+            }
+        },
+        async signupAsGuest({ commit, dispatch }) {
+            try {
+                const user = await userService.signupAsGuest();
+                await dispatch({ type: 'loadAndWatchUser', userId: user._id })
+                commit({ type: 'setLoggedinUser', user })
+            } catch (err) {
+                console.log('userStore: Error in signup As Guest', err)
+                throw err
+            }
+        },
     }
 }
