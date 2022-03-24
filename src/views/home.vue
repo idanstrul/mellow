@@ -1,6 +1,6 @@
 <template>
   <section>
-    <board-details></board-details>
+    <!-- <board-details></board-details> -->
   <h1>I'm home page!</h1>
   </section>
 </template>
