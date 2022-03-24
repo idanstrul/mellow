@@ -21,7 +21,6 @@
       </div>
       <div>
         <button 
-          @click.stop="toggleMemberMenu"
         >
           Invite
         </button>
