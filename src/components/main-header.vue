@@ -5,6 +5,8 @@
       <router-link to="/about">About</router-link>|
       <router-link to="/board/b101">/board/b101</router-link>|
       <router-link to="/board/b101/task/g102/c104">/board/b101/task/g102/c104</router-link>
+      <router-link to="/login">login</router-link>
+      <router-link to="/signup">signup</router-link>
     </nav>
     <div class="wh">
       <div class="btn-container" @click="goToBoardsPage">
