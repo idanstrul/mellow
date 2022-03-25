@@ -1,7 +1,7 @@
 <template>
   <div class="board-header">
     <div class="board-members-section">
-      <div class="board-section">
+      <!--div class="board-section">
         <contenteditable
           v-if="isEditing"
           tag="h1"
@@ -12,20 +12,20 @@
           @click="isEditing = !isEditing">
           {{ boardTitle }}
         </h1>
-      </div>
-      <div>
-        <section class="user-avatar">
-          <!--user-avatar></!--user-avatar-->
-        </section>
+      </div-->
+      <div class="board-section">
+        <!--section class="user-avatar">
+          <user-avatar></user-avatar>
+        </@section-->
         <button class="board-header-btn">
           Invite
-        </button>|
+        </button>
       </div>
     </div>
     <div class="board-section">
       <button class="board-header-btn">
         <span> Laderboard </span>
-      </button>|
+      </button>
       <button class="board-header-btn"
         @click.stop="isSideMenuOpen = true">
         <span>Show menu</span>
@@ -47,7 +47,7 @@ export default {
   data() {
     return {
       boardTitleToEdit: null,
-      isEditing: true,
+      //isEditing: true,
       isMembersMenuOpen: false,
       isSideMenuOpen: false,
     };

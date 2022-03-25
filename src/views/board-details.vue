@@ -1,8 +1,8 @@
 <template>
   <section v-if="board" class="board-details">
-     <!--board-header
+     <board-header
       :board="board"
-    ></!--board-header-->
+    ></board-header>
     <router-view></router-view>
     <p>{{ board.title }}</p>
     <input type="text"
@@ -21,7 +21,7 @@
 // import { boardService } from '../services/board.service.js'
 import boardGroup from "../components/board-group.vue"
 import groupAdd from "../components/group-add.vue"
-//import boardHeader from "../components/board-header.vue"
+import boardHeader from "../components/board-header.vue"
 
 export default {
   name: 'board-details',
@@ -34,7 +34,7 @@ export default {
   components: {
     boardGroup,
     groupAdd,
-    //boardHeader,
+    boardHeader,
   },
   async created() {
    this.loadBoard()
