@@ -28,6 +28,7 @@
 <script>
 import boardCompose from "../components/board-compose.vue";
 import boardList from "../components/board-list.vue";
+import userMenu from "../components/user-menu.vue";
 
 export default {
   data() {
@@ -41,6 +42,7 @@ export default {
   components: {
     boardCompose,
     boardList,
+    userMenu
   },
   methods: {
     toggleBoardCompose() {
