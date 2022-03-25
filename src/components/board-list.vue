@@ -1,6 +1,6 @@
 <template>
-  <section class="board-list">
-    <header class="header-list">
+  <section >
+    <header>
       <input
         ref="searchBoard"
         class="input-search-boards"
@@ -18,163 +18,57 @@
         <div v-if="borads.length">
           <h2 class="title">
             <span>BOARDS</span>
-            <span
-              v-if="!listClose.includes('borads')"
-              @click="toggleListClose('borads')"
-              >remove</span
-            >
-            <span
-              v-else
-              @click="toggleListClose('borads')"
-              >add</span
-            >
           </h2>
-          <div class="main-list" v-if="!listClose.includes('borads')">
+          <div v-if="!listClose.includes('borads')">
             <article
               v-for="board in borads"
               :key="board._id"
               class="board-preview"
               @click="openBoard(board)"
             >
-              <div
-                class="bgc"
-                :style="{
-                  backgroundImage: board.style['background-image'],
-                  backgroundColor: board.style['background-color'],
-                }"
-              ></div>
-              <div
-                class="bgc-square"
-                :style="{
-                  backgroundImage: board.style['background-image'],
-                  backgroundColor: board.style['background-color'],
-                }"
-              ></div>
-              <span> {{ board.title }} </span>
-              <span
-                :class="{ selected: board.isStarred }"
-                ></span
               >
             </article>
           </div>
         </div>
 
-        <div class="list-recent">
-          <h2 class="title">
+        <div>
+          <h2>
             <span>RECENT BOARDS</span>
-            <span
-              v-if="!listClose.includes('recentBoards')"
-              @click="toggleListClose('recentBoards')"
-              >remove</span
-            >
-            <span
-              v-else
-              @click="toggleListClose('recentBoards')"
-              >add</span
-            >
           </h2>
           
-          <div class="main-list" v-if="!listClose.includes('recentBoards')">
+          <div v-if="!listClose.includes('recentBoards')">
             <article
               v-for="board in recentBoards"
               :key="board._id"
-              class="board-preview"
               @click="openBoard(board)"
             >
-              <div
-                class="bgc"
-                :style="{
-                  backgroundImage: board.style['background-image'],
-                  backgroundColor: board.style['background-color'],
-                }"
-              ></div>
-              <div
-                class="bgc-square"
-                :style="{
-                  backgroundImage: board.style['background-image'],
-                  backgroundColor: board.style['background-color'],
-                }"
-              ></div>
-              <span> {{ board.title }} </span>
-              <span
-                :class="{ selected: board.isStarred }"
-            ></span
-              >
             </article>
           </div>
         </div>
 
-        <div class="list-all">
-          <h2 class="title">
+        <div>
+          <h2>
             <span>ALL BOARDS</span>
-            <span
-              v-if="!listClose.includes('boards')"
-              @click="toggleListClose('boards')"
-              >remove</span
-            >
-            <span
-              v-else
-              @click="toggleListClose('boards')"
-              >add</span
-            >
           </h2>
-          <div class="main-list" v-if="!listClose.includes('boards')">
+          <div v-if="!listClose.includes('boards')">
             <article
               v-for="board in boards"
               :key="board._id"
               class="board-preview"
               @click="openBoard(board)"
             >
-              <div
-                class="bgc"
-                :style="{
-                  backgroundImage: board.style['background-image'],
-                  backgroundColor: board.style['background-color'],
-                }"
-              ></div>
-              <div
-                class="bgc-square"
-                :style="{
-                  backgroundImage: board.style['background-image'],
-                  backgroundColor: board.style['background-color'],
-                }"
-              ></div>
-              <span> {{ board.title }} </span>
-              <span
-                :class="{ selected: board.isStarred }"
-                ></span
-              >
             </article>
           </div>
         </div>
       </section>
-      <section class="search-list" v-else>
-        <div class="main-list">
+      <section  v-else>
+        <div>
           <article
             v-for="board in boardsAfterFilter"
             :key="board._id"
             class="board-preview"
             @click="openBoard(board)"
           >
-            <div
-              class="bgc"
-              :style="{
-                backgroundImage: board.style['background-image'],
-                backgroundColor: board.style['background-color'],
-              }"
-            ></div>
-            <div
-              class="bgc-square"
-              :style="{
-                backgroundImage: board.style['background-image'],
-                backgroundColor: board.style['background-color'],
-              }"
-            ></div>
-            <span> {{ board.title }} </span>
-            <span
-              :class="{ selected: board.isStarred }"
-              ></span
-            >
           </article>
         </div>
       </section>
