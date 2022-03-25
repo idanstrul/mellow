@@ -26,8 +26,7 @@
       <button class="board-header-btn">
         <span> Laderboard </span>
       </button>
-      <button class="board-header-btn"
-        @click.stop="isSideMenuOpen = true">
+      <button class="board-header-btn">
         <span>Show menu</span>
       </button>
     </div>
