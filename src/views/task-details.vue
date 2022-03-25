@@ -3,7 +3,7 @@
     <div class="modal-screen flex center">
       <div class="modal-container flex column center">
         <div v-if="false" class="cover"></div>
-        <div class="modal-header">{{currTask.title}}</div>
+        <div class="modal-header section-title text-l icon-task-title">{{currTask.title}}</div>
         <div class="flex-container flex space-between">
           <div class="modal-main">
             <div v-if="true" class="notations flex wrap">
@@ -28,40 +28,32 @@
           <div class="modal-sidebar flex column">
             <button class="btn side-bar">Join</button>
             <span class="action-group">Add to card</span>
-            <button class="btn side-bar">
-              <i class="fa-regular fa-user"></i>
+            <button class="btn side-bar icon-members">
               Members
             </button>
-            <button class="btn side-bar">
-              <i class="fa-solid fa-tag"></i>
+            <button class="btn side-bar icon-labels">
               Labels
             </button>
-            <button class="btn side-bar">
-              <i class="fa-regular fa-square-check"></i>
+            <button class="btn side-bar icon-checklist">
               Checklist
             </button>
-            <button class="btn side-bar">
-              <i class="fa-regular fa-clock"></i>
+            <button class="btn side-bar icon-dates">
               Dates
             </button>
-            <button class="btn side-bar">
-              <i class="fa-solid fa-paperclip"></i> Attachment
+            <button class="btn side-bar icon-attachment">
+              Attachment
             </button>
-            <button class="btn side-bar">
-              <i class="fa-solid fa-desktop"></i>
+            <button class="btn side-bar icon-cover">
               Cover
             </button>
             <span class="action-group">Actions</span>
-            <button class="btn side-bar">
-              <i class="fa-solid fa-arrow-right"></i>
+            <button class="btn side-bar icon-move">
               Move
             </button>
-            <button class="btn side-bar">
-              <i class="fa-regular fa-copy"></i>
+            <button class="btn side-bar icon-copy">
               Copy
             </button>
-            <button class="btn side-bar">
-              <i class="fa-regular fa-trash-can"></i>
+            <button class="btn side-bar icon-archive">
               Remove
             </button>
           </div>

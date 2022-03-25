@@ -20,11 +20,36 @@ section.task-details {
             margin: 48px 0 80px;
             padding: 16px;
             width: calc(100vw - 16px);
+
+            // ::before.icon{
+            //     color: $clr-dark-icon;
+            //     display: inline-block;
+            //     font-family: trellicons;
+            //     margin-inline-end: 6px;
+            //     margin-inline-start: -6px;
+            //     font-size: 1.143em;
+            //     line-height: 1.25;
+            //     vertical-align: bottom;
+            // }
+
             @media (min-width: 784px) {
                 width: 768px;
+
+                .modal-header {
+                    margin: 4px 35px 8px;
+                }
+
+                .modal-main{
+                    margin-inline-start: 40px;
+                }
             }
 
-            .modal-main{
+            .section-title {
+                font-family: sans-serif;
+                color: $clr-dark-title;
+            }
+
+            .modal-main {
                 width: 100%;
                 padding-inline-end: 16px;
             }
@@ -43,16 +68,27 @@ section.task-details {
         &.side-bar {
             width: 168px;
             text-align: start;
+            color: $clr-dark-title;
+
+            // &.icon::before{
+            //     color: $clr-dark-icon;
+            //     display: inline-block;
+            //     font-family: trellicons;
+            //     margin-inline-end: 6px;
+            //     margin-inline-start: -6px;
+            //     font-size: 1.143em;
+            //     line-height: 1.25;
+            //     vertical-align: bottom;
+            // }
         }
 
         i {
             margin: 0 6px 0 0;
-            display: inline-block;
         }
 
         &:hover {
-            color: #091e42;
-            background-color: #091e4214;
+            color: hsl(218, 76%, 15%);
+            background-color: hsla(218, 76%, 15%, 0.078);
         }
     }
 }
@@ -76,3 +112,61 @@ section.task-details {
 //     max-width: 500px;
 //     margin: auto;
 // }
+
+// .add-trello-icon{
+//     &-#{$icon-tag}{
+//         &::before{
+//             content: $icon-tag;
+//         }
+//     }
+// }
+
+// icons:
+
+.icon-members {
+    @include add-trello-icon("\e946");
+}
+
+.icon-labels {
+    @include add-trello-icon("\e93f");
+}
+
+.icon-checklist {
+    @include add-trello-icon("\e91a");
+}
+
+.icon-dates {
+    @include add-trello-icon("\e91a");
+}
+
+.icon-attachment {
+    @include add-trello-icon("\e908");
+}
+
+.icon-cover {
+    @include add-trello-icon("\e914");
+}
+
+.icon-move {
+    @include add-trello-icon("\e94a");
+}
+
+.icon-copy {
+    @include add-trello-icon("\e91f");
+}
+
+.icon-archive {
+    @include add-trello-icon("\e907");
+}
+
+.icon-task-title {
+    @include add-trello-icon("\e912");
+}
+
+.icon-description {
+    @include add-trello-icon("\e922");
+}
+
+.icon-activity {
+    @include add-trello-icon("\e900");
+}

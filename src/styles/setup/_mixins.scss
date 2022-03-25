@@ -4,7 +4,42 @@
   border-radius: 3px;
   border: none;
   height: 33px;
-  &:hover{
+  &:hover {
     background-color: #026aa7;
   }
 }
+
+@mixin add-trello-icon($icon-tag) {
+  & {
+    position: relative;
+  }
+
+  &::before {
+    content: $icon-tag;
+    color: $clr-dark-icon;
+    display: inline-block;
+    font-family: trellicons;
+    margin-inline-end: 6px;
+    margin-inline-start: -6px;
+    font-size: 1.143em;
+    line-height: 1.25;
+    vertical-align: bottom;
+  }
+
+  &.section-title::before {
+    vertical-align: middle;
+    font-size: 1.714rem;
+
+    @media (min-width: 784px) {
+      position: absolute;
+      left: -30px;
+      top: -5px;
+    }
+
+    .modal-main & {
+      margin-inline-end: 12px;
+    }
+  }
+}
+
+
