@@ -14,6 +14,9 @@
         </h1>
       </div>
       <div>
+        <section class="user-avatar">
+          <!--user-avatar></!--user-avatar-->
+        </section>
         <button class="board-header-btn">
           Invite
         </button>|
@@ -32,6 +35,7 @@
 </template>
 
  <script>
+//import userAvatar from "../components/user-avatar.vue";
 
 export default {
   props: {
@@ -75,6 +79,7 @@ export default {
     },
   },
   components: {
+    //userAvatar,
   },
 };
 </script>

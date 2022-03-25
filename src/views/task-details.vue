@@ -3,7 +3,7 @@
     <div class="modal-screen flex center">
       <div class="modal-container flex column center">
         <div v-if="false" class="cover"></div>
-        <div class="modal-header">I'm a task details modal</div>
+        <div class="modal-header">{{currTask.title}}</div>
         <div class="flex-container flex space-between">
           <div class="modal-main">
             <div v-if="true" class="notations flex wrap">
@@ -26,18 +26,44 @@
             </div>
           </div>
           <div class="modal-sidebar flex column">
-            <button>Join</button>
+            <button class="btn side-bar">Join</button>
             <span class="action-group">Add to card</span>
-            <button>Members</button>
-            <button>Labels</button>
-            <button>Checklist</button>
-            <button>Dates</button>
-            <button>Attachment</button>
-            <button>Cover</button>
+            <button class="btn side-bar">
+              <i class="fa-regular fa-user"></i>
+              Members
+            </button>
+            <button class="btn side-bar">
+              <i class="fa-solid fa-tag"></i>
+              Labels
+            </button>
+            <button class="btn side-bar">
+              <i class="fa-regular fa-square-check"></i>
+              Checklist
+            </button>
+            <button class="btn side-bar">
+              <i class="fa-regular fa-clock"></i>
+              Dates
+            </button>
+            <button class="btn side-bar">
+              <i class="fa-solid fa-paperclip"></i> Attachment
+            </button>
+            <button class="btn side-bar">
+              <i class="fa-solid fa-desktop"></i>
+              Cover
+            </button>
             <span class="action-group">Actions</span>
-            <button>Move</button>
-            <button>Copy</button>
-            <button>Archive</button>
+            <button class="btn side-bar">
+              <i class="fa-solid fa-arrow-right"></i>
+              Move
+            </button>
+            <button class="btn side-bar">
+              <i class="fa-regular fa-copy"></i>
+              Copy
+            </button>
+            <button class="btn side-bar">
+              <i class="fa-regular fa-trash-can"></i>
+              Remove
+            </button>
           </div>
         </div>
         <pre>{{ currTask }}</pre>
