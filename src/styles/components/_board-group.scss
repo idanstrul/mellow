@@ -34,9 +34,14 @@
     .btn-group-menu{
         border: none;
         border-radius: 2px;
-        margin: 5px;
+        margin: 4px;
         width: 32px;
         height: 32px;
+        font-family: trellicons;
+        font-size: rem(16px);
+        &::before{
+            content: "\e952";
+        }
         &:hover {
             background-color: $clr-btn-hover-group-menu;
         }
@@ -51,7 +56,7 @@
     margin-inline-start: 11px;
     color: #172b4d;
     height: 28px;
-    width: 219px;
+    width: 221px;
 }
 
 .group-header > * {

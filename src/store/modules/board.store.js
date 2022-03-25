@@ -71,7 +71,6 @@ export const boardStore = {
             }
         },
         async updateGroup(context, { groupToSave }) {
-            console.log(groupToSave);
             context.commit({ type: 'setIsLoading', loadingStatus: true })
             try {
                 const board = context.getters.currBoard

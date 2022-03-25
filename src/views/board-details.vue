@@ -10,7 +10,7 @@
     >
     <div class="group-list flex">
     <board-group v-for="group in board.groups" :key="group.id" :group="group" @updateGroup="updateGroup" @saveGroup="updateGroup"></board-group>
-    <group-add @addGroup="isAddingGroup=false" @saveGroup="updateGroup" :isAddingGroup="isAddingGroup"></group-add>
+    <group-add @addGroup="isAddingGroup=false" @saveGroup="updateGroup" @closeGroupAdd="isAddingGroup=true" :isAddingGroup="isAddingGroup"></group-add>
     </div>
     <!-- <p>{{board.title}}</p> -->
   </section>
@@ -43,6 +43,7 @@ export default {
     async updateGroup(groupToSave){
       if(!this.isAddingGroup) this.isAddingGroup = true
       console.log(groupToSave);
+      if(!groupToSave.title) return
       await this.$store.dispatch({type: 'updateGroup', groupToSave})
       this.loadBoard()
     },
