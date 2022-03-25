@@ -2,6 +2,7 @@
 <section class="group-menu">
 <custom-menu  :menuOpen="menuOpen">
    <p>List actions</p>
+   <button @click="closeMenu" class="close" title="Close"></button>
    <hr>
    <p @click="addTask">Add card...</p>
    <p @click="copyGroup">Copy list...</p>
@@ -36,6 +37,9 @@ export default {
     },
     copyGroup(){
       this.$emit('copyGroup')
+    },
+    closeMenu(){
+      this.$emit('closeMenu')
     }
   }
 }
