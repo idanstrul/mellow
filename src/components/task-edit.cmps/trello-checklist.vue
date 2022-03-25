@@ -1,7 +1,7 @@
 <template>
     <section class="trello-checklist">
         <trello-txt-input :txt="updatedChecklist.title" @txt-saved="updateChecklistTitle"></trello-txt-input>
-        <button>Delete</button>
+        <button class="btn">Delete</button>
         <span class="progress-count"></span>
         <div class="progress-bar"></div>
         <ul class="todos clean-list">
@@ -10,7 +10,7 @@
                 <trello-txt-input :txt="todo.title" @txt-saved="updateTodoTitle($event, todo.id)" @txt-is-empty="removeTodo(todoIdx)"></trello-txt-input>
             </li>
         </ul>
-        <button>Add an item</button>
+        <button class="btn">Add an item</button>
         <pre>{{updatedChecklist}}</pre>
     </section>
 </template>
