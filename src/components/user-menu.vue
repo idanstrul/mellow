@@ -1,6 +1,6 @@
 <template>
   <section class="user-menu">
-    <div class="card-edit-header">
+    <div class="group-edit-header">
       <span>Account</span>
       <span @click.stop="close">X</span>
     </div>
