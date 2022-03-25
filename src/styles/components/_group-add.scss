@@ -25,7 +25,42 @@
 }
 
 .group-edit{
+    min-width: 272px;
+    background-color: $clr-group-bg;
+    border-radius: 3px;
     input{
+        border-style: solid;
+        border-color: $clr-input-ol;
+        height: 34px;
+        width: 264px;
+        margin-inline-start: 4px;
+        margin-block-start: 5px;
+        border-radius: 3px;
         background-color: #ffffff;
+        padding: 5px 10px;
+    }
+    button:first-child{
+        @include defaultBtn;
+        padding: 0px 12px;
+        margin-inline-start: 4px;
+        margin-block-start: 5px;
+        margin-block-end: 5px;
+
+    }
+    button:nth-child(2){
+        position: relative;
+        top: 5px;
+        left: 8px;
+        border: none;
+        // width: 15px;
+        font-size: 24px;
+        color: #6b778c;
+        font-family: trellicons;
+        &::before{
+            content: "\e91c"; 
+        }
+        &:hover{
+            color: #172b4d;
+        }
     }
 }

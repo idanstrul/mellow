@@ -13,7 +13,9 @@
     <copy-group-menu @saveGroup="saveGroup" :menuOpen="subMenuOpen" :groupTitle="group.title"></copy-group-menu>
      </div>
      <task-add v-if="taskToEdit" :task="taskToEdit" @saveTask="saveTask"></task-add>
+     <div class="tasks-container">
     <task-preview v-for="task in group.tasks" :key="task.id" :task="task"></task-preview>
+    </div>
  </section>
 </template>
 
