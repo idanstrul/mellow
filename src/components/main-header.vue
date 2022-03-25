@@ -3,12 +3,12 @@
     <nav class="btn-container">
       <router-link to="/about">About</router-link>
     </nav>
-    <board-list
+    <!--board-list
       v-if="isBoardListOpen"
       @closeBoardList="isBoardListOpen = false"
       @setBackground="setBackground"
       :boards="boards"
-    />
+    /-->
     <div>
       <div class="btn-container" @click="goToBoardsPage">
         <span class="material-icons-outlined"></span>
@@ -26,11 +26,11 @@
           @logout="logout"
           @close="isUserMenuOpen = false"
         /-->
-        <board-compose
+        <!--board-compose
         @closeCompose="toggleBoardCompose"
         @addBoard="addBoard"
         v-if="isBoardComposeOn"
-        ></board-compose>
+        ></!--board-compose-->
       </div>
     </div>
   </section>
