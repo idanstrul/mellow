@@ -1,7 +1,7 @@
 <template>
     <section class="activity-log">
         <user-avatar :user="newComment.byMember"></user-avatar>
-        <span class="title">Activity</span>
+        <span class="section-title text-m icon-activity">Activity</span>
         <textarea cols="30" rows="2" v-model="newComment.txt" placeholder="Write a comment..."></textarea>
         <ul class="clean-list">
             <li v-for="comment in comments" :key="comment.id">

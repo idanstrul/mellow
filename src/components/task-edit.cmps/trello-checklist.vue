@@ -1,6 +1,6 @@
 <template>
     <section class="trello-checklist">
-        <trello-txt-input :txt="updatedChecklist.title" @txt-saved="updateChecklistTitle"></trello-txt-input>
+        <trello-txt-input class="section-title text-m icon-checklist" :txt="updatedChecklist.title" @txt-saved="updateChecklistTitle"></trello-txt-input>
         <button class="btn">Delete</button>
         <span class="progress-count"></span>
         <div class="progress-bar"></div>

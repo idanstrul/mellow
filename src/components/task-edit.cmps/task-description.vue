@@ -1,6 +1,6 @@
 <template>
   <section class="task-description">
-    <span class="title">Description</span>
+    <span class="section-title text-m icon-description">Description</span>
     <textarea
       cols="30"
       rows="10"
