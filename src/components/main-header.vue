@@ -37,7 +37,7 @@
 </template>
 
 <script>
-//import userAvatar from "../components/user-avatar.vue";
+import userAvatar from "../components/user-avatar.vue";
 import boardCompose from "../components/board-compose.vue";
 import boardList from "../components/board-list.vue";
 import userMenu from "../components/user-menu.vue";
@@ -55,7 +55,7 @@ export default {
     boardCompose,
     boardList,
     userMenu,
-    //userAvatar
+    userAvatar
   },
   methods: {
     toggleBoardCompose() {
