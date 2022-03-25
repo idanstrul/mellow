@@ -1,12 +1,26 @@
-.group-container{
-    // width: 100vw !important;
-    height: 82vh;
-    // background-color: #fff;
-    overflow-x: scroll;
-}
 
 .board-details{
+    // ::-webkit-scrollbar {
+    //     border-radius: 4px;
+    //     height: 12px;
+    //     border-radius: 10px;
+    //   }
+    //   ::-webkit-scrollbar-thumb {
+    //     background: rgba(255, 255, 255, 0.253);
+    //     border-radius: 4px;
+    //     // margin: 5px;
+    //   }
+    //   ::-webkit-scrollbar-track {
+    //     // margin: 25px;
+    //     // margin-bottom: 10px;
+    //       border-radius: 4px;
+    //       background: #00000038; 
+    //     }
     .group-list{
+        width: 98%;
+        margin: 0 auto;
+        overflow-y: hidden;
         overflow-x: auto;
+        height: 91.5vh;
     }
 }

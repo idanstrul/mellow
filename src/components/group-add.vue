@@ -15,7 +15,7 @@
         >
         <div>
         <button>Add list</button>
-        <button>X</button>
+        <button></button>
         </div>
           <!-- <span>+</span>
           <span>Add another list</span> -->

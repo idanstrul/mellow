@@ -1,9 +1,35 @@
 .board-group{
+    ::-webkit-scrollbar {
+        border-radius: 4px;
+        width: 8px;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #bfc4ce;
+        border-radius: 4px;
+        // margin: 5px;
+      }
+      ::-webkit-scrollbar-track {
+        // margin: 25px;
+        
+        margin-bottom: 50px;
+          border-radius: 4px;
+          background: #dadbe2; 
+        }
+        padding-inline-end: 3px;
+    .tasks-container{
+        overflow-y: auto;
+        max-height: 82vh;
+        // margin-inline-end: 2px/;
+    }
+    .group-header{
+        min-width: 272px;
+    }
     position: relative;
-    min-width: 272px;
+    // min-width: 272px;
     background-color: $clr-group-bg;
     margin-inline-end: 7px;
-    height: fit-content;
+    height: min-content;
     border-radius: 3px;
     .btn-group-menu{
         border: none;

@@ -9,6 +9,7 @@ html {
     background-color: #3f89dfa9;
     font-size: 14px;
     color: #172b4d;
+    height: 100vh;
   }
 
 input{
@@ -29,23 +30,25 @@ input:focus, textarea:focus{
   cursor: auto;
 }
 
-::-webkit-scrollbar-thumb{
-}
 
-::-webkit-scrollbar {
-  // width: 50px;
-  border-radius: 4px;
-  height: 12px;
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.253);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-track {
+  ::-webkit-scrollbar {
     border-radius: 4px;
-    background: #00000038; 
+    height: 12px;
+    border-radius: 10px;
   }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.253);
+    border-radius: 4px;
+    // margin: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    margin: 25px;
+    // margin-bottom: 10px;
+      border-radius: 4px;
+      background: #00000038; 
+    }
+
+
 //  ::-webkit-scrollbar-track {
 //     border-radius: 10px;
 //     background: #eee;
