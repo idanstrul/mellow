@@ -2,7 +2,6 @@
   <section class="main-header" :class="classBoardsPage">
     <nav class="btn-container">
       <router-link to="/about">About</router-link>|
-      <router-link to="/board/b101/task/g102/c104">Board task</router-link>|
       <router-link to="/login">Login</router-link>|
       <router-link to="/signup">Signup</router-link>
     </nav>
