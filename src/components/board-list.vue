@@ -15,23 +15,23 @@
     </header>
     <main>
       <section v-if="!searchBoard">
-        <div v-if="boardsStarred.length">
+        <div v-if="borads.length">
           <h2 class="title">
             <span>BOARDS</span>
             <span
-              v-if="!listClose.includes('boardsStarred')"
-              @click="toggleListClose('boardsStarred')"
+              v-if="!listClose.includes('borads')"
+              @click="toggleListClose('borads')"
               >remove</span
             >
             <span
               v-else
-              @click="toggleListClose('boardsStarred')"
+              @click="toggleListClose('borads')"
               >add</span
             >
           </h2>
-          <div class="main-list" v-if="!listClose.includes('boardsStarred')">
+          <div class="main-list" v-if="!listClose.includes('borads')">
             <article
-              v-for="board in boardsStarred"
+              v-for="board in borads"
               :key="board._id"
               class="board-preview"
               @click="openBoard(board)"
@@ -236,7 +236,7 @@ export default {
     },
   },
   computed: {
-    boardsStarred() {
+    borads() {
       return this.boards.filter((board) => board.isStarred);
     },
     boardsAfterFilter() {
