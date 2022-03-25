@@ -17,7 +17,7 @@
       <section v-if="!searchBoard">
         <div v-if="boardsStarred.length">
           <h2 class="title">
-            <span>STARRED BOARDS</span>
+            <span>BOARDS</span>
             <span
               v-if="!listClose.includes('boardsStarred')"
               @click="toggleListClose('boardsStarred')"
@@ -106,8 +106,7 @@
 
         <div class="list-all">
           <h2 class="title">
-            <span>ALL
-            BOARDS</span>
+            <span>ALL BOARDS</span>
             <span
               v-if="!listClose.includes('boards')"
               @click="toggleListClose('boards')"
