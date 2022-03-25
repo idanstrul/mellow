@@ -21,7 +21,8 @@
     .group-header{
         min-width: 272px;
     }
-    position: relative;
+    min-width: 272px;
+    // position: relative;
     background-color: $clr-group-bg;
     margin-inline-end: 7px;
     height: min-content;
@@ -55,5 +56,5 @@
 }
 
 .group-header > * {
-    display: inline-block;
+    // display: inline-block;
 }

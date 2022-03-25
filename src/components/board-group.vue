@@ -1,4 +1,6 @@
 <template>
+<Container >
+  <Draggable>
  <section class="board-group">
    <div class="group-header ">
      <input type="text"
@@ -15,6 +17,8 @@
     <task-preview v-for="task in group.tasks" :key="task.id" :task="task"></task-preview>
     </div>
  </section>
+ </Draggable>
+ </Container>
 </template>
 
 <script>
@@ -24,6 +28,8 @@ import groupMenu from "./group-menu.vue"
 import copyGroupMenu from "./copy-group-menu.vue"
 import taskAdd from "./task-add.vue"
 import { boardService } from '../services/board.service'
+import { Container, Draggable } from "vue3-smooth-dnd";
+
 
 export default {
   props: {
@@ -43,7 +49,9 @@ export default {
       taskPreview,
       groupMenu,
       taskAdd,
-      copyGroupMenu
+      copyGroupMenu,
+      Container,
+      Draggable,
 },
   methods: {
     toggleMenu(){
