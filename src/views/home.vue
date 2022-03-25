@@ -1,7 +1,10 @@
 <template>
   <section>
     <!-- <board-details></board-details> -->
-  <h1>I'm home page!</h1>
+  <nav class="btn-container">
+      <router-link to="/login">Login</router-link>|
+      <router-link to="/signup">Signup</router-link>
+    </nav>
   </section>
 </template>
 
