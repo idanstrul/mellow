@@ -6,9 +6,7 @@
             class="group-title"
             @blur="updateGroup"
      >
-     <button @click="toggleMenu" class="btn-group-menu" title="Open menu">
-      <i class="fa-solid fa-ellipsis"></i>
-    </button>
+     <button @click="toggleMenu" class="btn-group-menu" title="Open menu"></button>
      <group-menu @copyGroup="menuOpen=false; subMenuOpen=true" @newTask="addTask" :menuOpen="menuOpen"></group-menu>
     <copy-group-menu @saveGroup="saveGroup" :menuOpen="subMenuOpen" :groupTitle="group.title"></copy-group-menu>
      </div>

@@ -15,7 +15,7 @@
         >
         <div>
         <button>Add list</button>
-        <button></button>
+        <button @click="closeGroupAdd"></button>
         </div>
           <!-- <span>+</span>
           <span>Add another list</span> -->
@@ -45,8 +45,15 @@ export default {
       })
     },
     saveGroup(){
+      this.groupToAdd.title = this.groupToAdd.title.trim()
+      console.log('group>>',this.groupToAdd);
+      if(!this.groupToAdd.title) return
       this.$emit('saveGroup', this.groupToAdd)
       this.groupToAdd = boardService.getEmptyGroup()
+    },
+    closeGroupAdd(){
+      this.groupToAdd = boardService.getEmptyGroup()
+      this.$emit('closeGroupAdd')
     }
   }
 }
