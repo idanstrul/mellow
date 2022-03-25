@@ -11,21 +11,26 @@
     />
     <div>
       <div class="btn-container" @click="goToBoardsPage">
-        <span class="material-icons-outlined logo-icon"></span>
+        <span class="material-icons-outlined"></span>
         <span>Boards</span>
       </div>
     </div>
     <div class="btn-container" @click="goToHomePage">
-      <span class="material-icons-outlined logo-icon"></span>
+      <span class="material-icons-outlined"></span>
       <span>Mellow</span>
-      <div @click.stop="isUserMenuOpen = true" class="avatar">
+      <div @click.stop="isUserMenuOpen = true">
         <!--user-avatar></!--user-avatar-->
-        <user-menu
+        <!--user-menu
           v-if="isUserMenuOpen"
           :user="user"
           @logout="logout"
           @close="isUserMenuOpen = false"
-        />
+        /-->
+        <board-compose
+        @closeCompose="toggleBoardCompose"
+        @addBoard="addBoard"
+        v-if="isBoardComposeOn"
+        ></board-compose>
       </div>
     </div>
   </section>
