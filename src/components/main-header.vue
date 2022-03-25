@@ -21,11 +21,21 @@
     <div class="btn-container" @click="goToHomePage">
       <span class="material-icons-outlined logo-icon"></span>
       <span>Mellow</span>
+      <div @click.stop="isUserMenuOpen = true" class="avatar">
+        <!--user-avatar></!--user-avatar-->
+        <user-menu
+          v-if="isUserMenuOpen"
+          :user="user"
+          @logout="logout"
+          @close="isUserMenuOpen = false"
+        />
+      </div>
     </div>
   </section>
 </template>
 
 <script>
+//import userAvatar from "../components/user-avatar.vue";
 import boardCompose from "../components/board-compose.vue";
 import boardList from "../components/board-list.vue";
 import userMenu from "../components/user-menu.vue";
@@ -42,7 +52,8 @@ export default {
   components: {
     boardCompose,
     boardList,
-    userMenu
+    userMenu,
+    //userAvatar
   },
   methods: {
     toggleBoardCompose() {

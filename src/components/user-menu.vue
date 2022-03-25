@@ -5,6 +5,7 @@
       <span @click.stop="close">X</span>
     </div>
       <div class="account-info">
+       <!--user-avatar></!--user-avatar-->
         <div class="account-details">
           <span>{{ user.fullname }}</span>
           <span class="username"> ( {{ user.username }} )</span>
@@ -15,6 +16,8 @@
 </template>
 
 <script>
+//import userAvatar from "../components/user-avatar.vue";
+
 export default {
   props: {
     user: {
@@ -33,6 +36,9 @@ export default {
     logout() {
       this.$emit("logout");
     },
+  },
+  components: {
+    //userAvatar,
   },
 };
 </script>
