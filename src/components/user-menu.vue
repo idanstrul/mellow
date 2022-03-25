@@ -16,7 +16,7 @@
 </template>
 
 <script>
-//import userAvatar from "../components/user-avatar.vue";
+import userAvatar from "../components/user-avatar.vue";
 
 export default {
   props: {
@@ -38,7 +38,7 @@ export default {
     },
   },
   components: {
-    //userAvatar,
+    userAvatar,
   },
 };
 </script>
