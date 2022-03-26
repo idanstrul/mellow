@@ -1,5 +1,7 @@
 <template>
   <section class="main-header" :class="classBoardsPage">
+    <button class="btn-boards" title="Boards"><img src="../assets/boards.png" alt=""></button>
+    <button class="btn-logo" ><img src="../assets/logo.gif" alt=""></button>
     <nav class="btn-container">
       <router-link to="/about">About</router-link>
     </nav>
@@ -18,14 +20,14 @@
     <div class="btn-container" @click="goToHomePage">
       <span class="material-icons-outlined"></span>
       <span>Mellow</span>
-      <div @click.stop="isUserMenuOpen = true">
-        <!--user-avatar></!--user-avatar-->
-        <!--user-menu
+      <div @click.stop="isUserMenuOpen = true" class="avatar">
+        <!-- user-avatar></!--user-avatar -->
+        <!-- <user-menu
           v-if="isUserMenuOpen"
           :user="user"
           @logout="logout"
           @close="isUserMenuOpen = false"
-        /-->
+        /--> 
         <!--board-compose
         @closeCompose="toggleBoardCompose"
         @addBoard="addBoard"
