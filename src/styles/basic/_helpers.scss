@@ -83,4 +83,12 @@
     &:active {
         background-color: lighten(rgba(255, 255, 255, 0.6), 50);
     }
+    .login {
+        color: whitesmoke;
+    }
+
+    .signup {
+        color: whitesmoke;
+        border-radius: 5px;
+    }
 }

@@ -1,5 +1,5 @@
 .board-header {
-    background-color: rgba(88, 119, 167, 0.123);
+    background-color: rgba(39, 62, 88, 0.155);
     height: auto;
     padding: 8px 4px 0 8px;
     width: 100%;
@@ -18,11 +18,11 @@
 
     .board-header-btn {
         background-color: rgba(255, 255, 255, 0.3);
-        border-radius: 3px;
+        border-radius: 5px;
         color: #fff;
         cursor: pointer;
         float: left;
-        font-size: 18px;
+        font-size: rem(15px);
         height: 32px;
         line-height: 32px;
         margin: 0 4px 4px 0;
