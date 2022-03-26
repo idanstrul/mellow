@@ -24,7 +24,7 @@
       <span class="material-icons-outlined logo-icon"></span>
       <span>Mellow</span>
       <div @click.stop="isUserMenuOpen = true" class="avatar">
-        <!--user-avatar></!--user-avatar-->
+        <!-- user-avatar></!--user-avatar -->
         <user-menu
           v-if="isUserMenuOpen"
           :user="user"
