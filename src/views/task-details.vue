@@ -3,7 +3,7 @@
     <div class="modal-screen flex center">
       <div class="modal-container flex column center">
         <div v-if="false" class="cover"></div>
-        <div class="modal-header section-title text-l icon-task-title">{{currTask.title}}</div>
+        <div class="modal-header section-title text-l icon-task-title">{{ currTask.title }}</div>
         <div class="flex-container flex space-between">
           <div class="modal-main">
             <div v-if="true" class="notations flex wrap">
@@ -11,7 +11,13 @@
               <trello-members v-if="hasMembers" :members="currTask.members"></trello-members>
             </div>
             <div class="description">
-              <task-description :description="currTask.description" @updated="updateDesc"></task-description>
+              <span class="section-title text-m icon-description">Description</span>
+              <trello-txt-input
+                :txt="currTask.description"
+                placeholder="Add a more detailed description…"
+                @txt-saved="updateDesc"
+                @txt-is-empty="updateDesc"
+              ></trello-txt-input>
             </div>
             <div v-if="false" class="attachments"></div>
             <div v-if="true" class="checklists">
@@ -28,38 +34,20 @@
           <div class="modal-sidebar flex column">
             <button class="btn side-bar">Join</button>
             <span class="action-group">Add to card</span>
-            <button class="btn side-bar icon-members">
-              Members
-            </button>
-            <button class="btn side-bar icon-labels">
-              Labels
-            </button>
-            <button class="btn side-bar icon-checklist">
-              Checklist
-            </button>
-            <button class="btn side-bar icon-dates">
-              Dates
-            </button>
-            <button class="btn side-bar icon-attachment">
-              Attachment
-            </button>
-            <button class="btn side-bar icon-cover">
-              Cover
-            </button>
+            <button class="btn side-bar icon-members">Members</button>
+            <button class="btn side-bar icon-labels">Labels</button>
+            <button class="btn side-bar icon-checklist">Checklist</button>
+            <button class="btn side-bar icon-dates">Dates</button>
+            <button class="btn side-bar icon-attachment">Attachment</button>
+            <button class="btn side-bar icon-cover">Cover</button>
             <span class="action-group">Actions</span>
-            <button class="btn side-bar icon-move">
-              Move
-            </button>
-            <button class="btn side-bar icon-copy">
-              Copy
-            </button>
-            <button class="btn side-bar icon-archive">
-              Remove
-            </button>
+            <button class="btn side-bar icon-move">Move</button>
+            <button class="btn side-bar icon-copy">Copy</button>
+            <button class="btn side-bar icon-archive">Remove</button>
           </div>
         </div>
-        <pre>{{ currTask }}</pre>
-        <pre>{{ currTaskLabels }}</pre>
+        <!-- <pre>{{ currTask }}</pre> -->
+        <!-- <pre>{{ currTaskLabels }}</pre> -->
       </div>
     </div>
   </section>
@@ -68,9 +56,9 @@
 <script>
 import trelloLabels from "../components/task-edit.cmps/trello-labels.vue"
 import trelloMembers from "../components/task-edit.cmps/trello-members.vue"
-import taskDescription from "../components/task-edit.cmps/task-description.vue"
 import activityLog from "../components/task-edit.cmps/activity-log.vue"
 import trelloChecklist from "../components/task-edit.cmps/trello-checklist.vue"
+import trelloTxtInput from "../components/task-edit.cmps/trello-txt-input.vue"
 
 export default {
   name: 'task-details',
@@ -106,9 +94,9 @@ export default {
   components: {
     trelloLabels,
     trelloMembers,
-    taskDescription,
     activityLog,
-    trelloChecklist
+    trelloChecklist,
+    trelloTxtInput
   }
 }
 </script>
