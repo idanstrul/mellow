@@ -1,11 +1,37 @@
 .main-header {
-    background-color: #273240b0;
+    // width: 100vw;
+    height: 43px;
+    .btn-boards, .btn-logo{
+       @include mainHeaderBtn;
+       margin-inline-start: 5px;
+       width: 36px; 
+    }
+    .btn-logo{
+        margin-inline-start: 0px;
+        width: 93px;
+        padding-inline-start: 1px;
+        img{
+            width: auto;
+        }
+    }
+    background-color: #0000005b;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    color: #95959b;
+    // justify-content: center;
+    color: $clr-base;
+    .user-avatar{
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        right: 5px;
+        margin-bottom: 5px;
+        div{
+            font-size: 17px;
+            line-height: 32px;
+        }
+    }
 }
 
 .material-icons-outlined {
-    font-size: 19px;
+    font-size: rem(19px);
 }

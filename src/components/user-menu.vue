@@ -6,17 +6,17 @@
     </div>
       <div class="account-info">
        <!--user-avatar></!--user-avatar-->
-        <div class="account-details">
+        <!--div class="account-details">
           <span>{{ user.fullname }}</span>
           <span class="username"> ( {{ user.username }} )</span>
-        </div>
+        </div-->
       </div>
       <div class="logout" @click="logout">Log out</div>
   </section>
 </template>
 
 <script>
-//import userAvatar from "../components/user-avatar.vue";
+import userAvatar from "../components/user-avatar.vue";
 
 export default {
   props: {
@@ -38,7 +38,7 @@ export default {
     },
   },
   components: {
-    //userAvatar,
+    userAvatar,
   },
 };
 </script>

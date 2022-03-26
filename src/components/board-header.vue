@@ -1,7 +1,9 @@
 <template>
   <div class="board-header">
+    <button class="btn-boards-drop"><img src="../assets/boardDrop.png" alt=""></button>
+    <h2 contenteditable="true">{{ board.title }}</h2>
     <div class="board-members-section">
-      <div class="board-section">
+      <!--div class="board-section">
         <contenteditable
           v-if="isEditing"
           tag="h1"
@@ -12,22 +14,21 @@
           @click="isEditing = !isEditing">
           {{ boardTitle }}
         </h1>
-      </div>
-      <div>
-        <section class="user-avatar">
-          <!--user-avatar></!--user-avatar-->
-        </section>
+      </div-->
+      <div class="board-section">
+        <!--section class="user-avatar">
+          <user-avatar></user-avatar>
+        </@section-->
         <button class="board-header-btn">
           Invite
-        </button>|
+        </button>
       </div>
     </div>
     <div class="board-section">
       <button class="board-header-btn">
         <span> Laderboard </span>
-      </button>|
-      <button class="board-header-btn"
-        @click.stop="isSideMenuOpen = true">
+      </button>
+      <button class="board-header-btn">
         <span>Show menu</span>
       </button>
     </div>
@@ -35,7 +36,7 @@
 </template>
 
  <script>
-//import userAvatar from "../components/user-avatar.vue";
+import userAvatar from "../components/user-avatar.vue";
 
 export default {
   props: {
@@ -47,7 +48,7 @@ export default {
   data() {
     return {
       boardTitleToEdit: null,
-      isEditing: true,
+      //isEditing: true,
       isMembersMenuOpen: false,
       isSideMenuOpen: false,
     };
@@ -79,7 +80,7 @@ export default {
     },
   },
   components: {
-    //userAvatar,
+    userAvatar,
   },
 };
 </script>

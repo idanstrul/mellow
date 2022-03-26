@@ -1,13 +1,32 @@
 .board-header {
-    background-color: rgba(88, 119, 167, 0.123);
-    height: auto;
-    padding: 8px 4px 0 8px;
-    width: 100%;
-    position: relative;
+    // background-color: rgba(39, 62, 88, 0.155);
+    height: 52px;
+    // padding: 8px 4px 0 8px;
+    // width: 100%;
+    // position: relative;
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    align-items: center;
+    // justify-content: space-between;
+    // flex-wrap: wrap;
+    .btn-boards-drop{
+        @include mainHeaderBtn;
+        width: 92px;
+        background-color: #ffffff27;
+        margin-inline-start: 5px;
+        filter: brightness(190%);
 
+        img{
+            margin-inline-start: -3px;
+            width: auto;
+            transform: scale(0.75);
+        }
+        &:hover{
+            background-color: hsla(0, 0%, 100%, 0.253);
+        }
+    }
+    .board-title{
+        width: fit-content;
+    }
     .board-section {
         margin-top: 0.5px;
     }
@@ -18,11 +37,11 @@
 
     .board-header-btn {
         background-color: rgba(255, 255, 255, 0.3);
-        border-radius: 3px;
+        border-radius: 5px;
         color: #fff;
         cursor: pointer;
         float: left;
-        font-size: 18px;
+        font-size: rem(15px);
         height: 32px;
         line-height: 32px;
         margin: 0 4px 4px 0;

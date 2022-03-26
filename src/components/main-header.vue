@@ -1,41 +1,45 @@
 <template>
   <section class="main-header" :class="classBoardsPage">
+    <button class="btn-boards" title="Boards"><img src="../assets/boards.png" alt=""></button>
+    <button class="btn-logo" ><img src="../assets/logo.gif" alt=""></button>
     <nav class="btn-container">
-      <router-link to="/about">About</router-link>|
-      <router-link to="/board/b101/task/g102/c104">Board task</router-link>|
-      <router-link to="/login">Login</router-link>|
-      <router-link to="/signup">Signup</router-link>
+      <router-link to="/about">About</router-link>
     </nav>
-    <board-list
+    <!--board-list
       v-if="isBoardListOpen"
       @closeBoardList="isBoardListOpen = false"
       @setBackground="setBackground"
       :boards="boards"
-    />
+    /-->
     <div>
       <div class="btn-container" @click="goToBoardsPage">
-        <span class="material-icons-outlined logo-icon"></span>
+        <span class="material-icons-outlined"></span>
         <span>Boards</span>
       </div>
     </div>
     <div class="btn-container" @click="goToHomePage">
-      <span class="material-icons-outlined logo-icon"></span>
+      <span class="material-icons-outlined"></span>
       <span>Mellow</span>
       <div @click.stop="isUserMenuOpen = true" class="avatar">
-        <!--user-avatar></!--user-avatar-->
         <user-menu
           v-if="isUserMenuOpen"
           :user="user"
           @logout="logout"
-          @close="isUserMenuOpen = false"
-        />
+          @close="isUserMenuOpen = false"/>
+        
+        <!--board-compose
+        @closeCompose="toggleBoardCompose"
+        @addBoard="addBoard"
+        v-if="isBoardComposeOn"
+        ></!--board-compose-->
       </div>
     </div>
+        <user-avatar :user="user"/>
   </section>
 </template>
 
 <script>
-//import userAvatar from "../components/user-avatar.vue";
+import userAvatar from "../components/user-avatar.vue";
 import boardCompose from "../components/board-compose.vue";
 import boardList from "../components/board-list.vue";
 import userMenu from "../components/user-menu.vue";
@@ -47,13 +51,18 @@ export default {
       isBoardListOpen: false,
       user: null,
       isUserMenuOpen: false,
+      user: null
     };
   },
   components: {
     boardCompose,
     boardList,
     userMenu,
-    //userAvatar
+    userAvatar
+  },
+  created() {
+    this.user = this.$store.getters.loggedinUser
+    console.log(this.user);
   },
   methods: {
     toggleBoardCompose() {

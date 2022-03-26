@@ -1,8 +1,9 @@
 /* SETUP  */
-@import 'setup/functions';
-@import 'setup/variables';
-@import 'setup/mixins';
-@import 'setup/typography';
+@import "setup/functions";
+@import "setup/variables";
+@import "setup/mixins";
+@import "setup/typography";
+
 /* COMPONENTS */
 
 @import "components/screen";
@@ -17,6 +18,8 @@
 @import "components/board-details";
 @import "components/task-add";
 @import "components/group-menu";
+@import "components/home";
+@import "components/login-signup";
 
 /* TASK-DETAILS-CMPS */
 

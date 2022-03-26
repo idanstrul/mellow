@@ -1,10 +1,10 @@
 <template>
-  <div>
-     <section>
-      <div>
-          Mellow
+  <div class="login-signup">
+     <section class="header-home">
+      <div class="logo">
+          <span class="material-icons-outlined logo-icon"></span>Mellow
       </div>
-      <nav>
+      <nav class="homepage-nav">
          <router-link to='/' class="login">Home</router-link>
          <span> | </span>
          <router-link to='/login' class="signup">Log in</router-link>
@@ -24,7 +24,7 @@
             </div>
             <button>Sign up</button>
         </form>
-        <router-link to="/login">Already have an account? Log in</router-link>
+        <router-link class="btn-signup" to="/login">Already have an account? Log in</router-link>
     </div>
   </div>
 </template>
