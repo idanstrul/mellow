@@ -1,8 +1,9 @@
 <template>
   <section v-if="currTask" class="task-details">
-    <div class="modal-screen flex center">
-      <div class="modal-container flex column center">
+    <div class="modal-screen flex center" @click="closeModal">
+      <div @click.stop class="modal-container flex column center">
         <div v-if="false" class="cover"></div>
+        <button class="exit-btn" @click="closeModal"></button>
         <div class="modal-header section-title text-l icon-task-title">{{ currTask.title }}</div>
         <div class="flex-container flex space-between">
           <div class="modal-main">
@@ -80,6 +81,9 @@ export default {
     updateDesc(updatedDesc) {
       console.log('updatedDesc', updatedDesc);
       this.currTask.description = updatedDesc
+    },
+    closeModal(){
+      this.$router.go(-1)
     }
   },
   computed: {
