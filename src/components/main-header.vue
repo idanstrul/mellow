@@ -27,7 +27,7 @@
           :user="user"
           @logout="logout"
           @close="isUserMenuOpen = false"
-        /--> -->
+        /--> 
         <!--board-compose
         @closeCompose="toggleBoardCompose"
         @addBoard="addBoard"
