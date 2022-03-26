@@ -1,18 +1,27 @@
 <template>
     <section class="trello-checklist">
-        <trello-txt-input class="section-title text-m icon-checklist" :txt="updatedChecklist.title" @txt-saved="updateChecklistTitle"></trello-txt-input>
+        <trello-txt-input
+            class="section-title text-m icon-checklist"
+            :txt="updatedChecklist.title"
+            @txt-saved="updateChecklistTitle"
+        ></trello-txt-input>
         <button class="btn float-right">Delete</button>
         <span class="progress-count"></span>
-        <el-progress :percentage="50"/>
+        <el-progress :percentage="completePercentage" :status="passSuccess"/>
         <div class="progress-bar"></div>
         <ul class="todos clean-list">
             <li v-for="(todo, todoIdx) in updatedChecklist.todos" :key="todo.id">
                 <input type="checkbox" v-model="todo.isDone" />
-                <trello-txt-input class="inline-block" :txt="todo.title" @txt-saved="updateTodoTitle($event, todo.id)" @txt-is-empty="removeTodo(todoIdx)"></trello-txt-input>
+                <trello-txt-input
+                    class="inline-block"
+                    :txt="todo.title"
+                    @txt-saved="updateTodoTitle($event, todo.id)"
+                    @txt-is-empty="removeTodo(todoIdx)"
+                ></trello-txt-input>
             </li>
         </ul>
         <button class="btn">Add an item</button>
-        <!-- <pre>{{updatedChecklist}}</pre> -->
+        <!-- <pre>{{ updatedChecklist }}</pre> -->
     </section>
 </template>
 
@@ -31,19 +40,31 @@ export default {
     },
     methods: {
         updateTodoTitle(updatedTitle, todoId) {
-            console.log('updatedTitle',updatedTitle);
+            console.log('updatedTitle', updatedTitle);
             // this.$emit('updated', this.updatedDesc)
             const idx = this.updatedChecklist.todos.findIndex(todo => todo.id === todoId)
             this.updatedChecklist.todos[idx].title = updatedTitle
         },
-        updateChecklistTitle(updatedTitle){
+        updateChecklistTitle(updatedTitle) {
             this.updatedChecklist.title = updatedTitle
         },
-        removeTodo(todoIdx){
+        removeTodo(todoIdx) {
             this.updatedChecklist.todos.splice(todoIdx, 1)
         },
         cancel() {
             this.updatedDesc = this.description
+        }
+    },
+    computed: {
+        completePercentage() {
+            const todos = this.updatedChecklist.todos
+            const total = todos.length;
+            const completed = todos.filter(todo => todo.isDone).length
+            return (completed / total) * 100
+        },
+        passSuccess(){
+            if (this.completePercentage === 100) return 'success'
+            return ''
         }
     },
     components: {

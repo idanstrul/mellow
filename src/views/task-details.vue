@@ -33,14 +33,14 @@
           </div>
           <div class="modal-sidebar flex column">
             <button class="btn side-bar">Join</button>
-            <span class="action-group">Add to card</span>
+            <span class="secondary-section-title">Add to card</span>
             <button class="btn side-bar icon-members">Members</button>
             <button class="btn side-bar icon-labels">Labels</button>
             <button class="btn side-bar icon-checklist">Checklist</button>
             <button class="btn side-bar icon-dates">Dates</button>
             <button class="btn side-bar icon-attachment">Attachment</button>
             <button class="btn side-bar icon-cover">Cover</button>
-            <span class="action-group">Actions</span>
+            <span class="secondary-section-title">Actions</span>
             <button class="btn side-bar icon-move">Move</button>
             <button class="btn side-bar icon-copy">Copy</button>
             <button class="btn side-bar icon-archive">Remove</button>

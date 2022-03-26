@@ -1,6 +1,6 @@
 <template>
     <section class="trello-members">
-        <span class="title">Members</span>
+        <span class="secondary-section-title">Members</span>
         <ul class="clean-list">
             <li v-for="member in members" :key="member._id">
                 <user-avatar :user="member" :diameter="32"></user-avatar>

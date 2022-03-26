@@ -1,6 +1,6 @@
 <template>
     <section class="trello-labels">
-        <span class="title">Labels</span>
+        <span class="secondary-section-title">Labels</span>
         <ul class="clean-list">
             <li v-for="label in labels" :key="label.id">
                 <div class="label" :style="{ 'background-color': label.color }"></div>

@@ -4,17 +4,14 @@
         <ul class="clean-list">
             <li>
                 <user-avatar :user="newComment.byMember"></user-avatar>
-                <textarea
-                    cols="30"
-                    rows="2"
-                    v-model="newComment.txt"
-                    placeholder="Write a comment..."
-                ></textarea>
+                <trello-txt-input :txt="newComment.txt" placeholder="Write a comment..."></trello-txt-input>
             </li>
             <li v-for="comment in comments" :key="comment.id">
-                <user-avatar :user="comment.byMember"></user-avatar>
-                <span class="user-fullname">{{ comment.byMember.fullname }}</span> |
-                <span class="comment-time">{{ formatCreatedAt(comment.createdAt) }}</span>
+                <!-- <div class="flex-container"> -->
+                    <user-avatar :user="comment.byMember"></user-avatar>
+                    <span class="user-fullname">{{ comment.byMember.fullname }}</span>
+                    <span class="comment-time">{{ formatCreatedAt(comment.createdAt) }}</span>
+                <!-- </div> -->
                 <p>{{ comment.txt }}</p>
             </li>
         </ul>
@@ -23,6 +20,7 @@
 
 <script>
 import userAvatar from "../user-avatar.vue"
+import trelloTxtInput from "./trello-txt-input.vue"
 
 export default {
     name: 'activity-log',
@@ -48,7 +46,8 @@ export default {
         }
     },
     components: {
-        userAvatar
+        userAvatar,
+        trelloTxtInput
     }
 }
 </script>
