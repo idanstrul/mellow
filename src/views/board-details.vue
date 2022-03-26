@@ -1,8 +1,8 @@
 <template>
   <section v-if="board" class="board-details">
-    <!-- <board-header
+    <board-header
       :board="board"
-    ></board-header> -->
+    ></board-header>
     <router-view></router-view>
     <p>{{ board.title }}</p>
     <input type="text"

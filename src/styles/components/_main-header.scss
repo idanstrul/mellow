@@ -1,6 +1,6 @@
 .main-header {
     // width: 100vw;
-    height: 45px;
+    height: 43px;
     .btn-boards, .btn-logo{
        @include mainHeaderBtn;
        margin-inline-start: 5px;
@@ -19,6 +19,17 @@
     align-items: center;
     // justify-content: center;
     color: $clr-base;
+    .user-avatar{
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        right: 5px;
+        margin-bottom: 5px;
+        div{
+            font-size: 17px;
+            line-height: 32px;
+        }
+    }
 }
 
 .material-icons-outlined {

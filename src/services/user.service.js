@@ -4,7 +4,7 @@ import { socketService, SOCKET_EVENT_USER_UPDATED } from './socket.service'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 var gWatchedUser = null;
 
-_saveLocalUser({ _id: 'bk8d9sad', fullname: 'Puki Norma', username: 'user1', password: '123', imgUrl: '/', isAdmin: false })
+_saveLocalUser({ _id: 'bk8d9sad', fullname: 'Puki Norma', username: 'user1', password: '123', imgUrl: '', isAdmin: false, color: 'purple' })
 
 export const userService = {
     login,

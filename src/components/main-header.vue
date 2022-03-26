@@ -21,13 +21,12 @@
       <span class="material-icons-outlined"></span>
       <span>Mellow</span>
       <div @click.stop="isUserMenuOpen = true" class="avatar">
-        <!-- user-avatar></!--user-avatar -->
-        <!-- <user-menu
+        <user-menu
           v-if="isUserMenuOpen"
           :user="user"
           @logout="logout"
-          @close="isUserMenuOpen = false"
-        /--> 
+          @close="isUserMenuOpen = false"/>
+        
         <!--board-compose
         @closeCompose="toggleBoardCompose"
         @addBoard="addBoard"
@@ -35,6 +34,7 @@
         ></!--board-compose-->
       </div>
     </div>
+        <user-avatar :user="user"/>
   </section>
 </template>
 
@@ -51,6 +51,7 @@ export default {
       isBoardListOpen: false,
       user: null,
       isUserMenuOpen: false,
+      user: null
     };
   },
   components: {
@@ -58,6 +59,10 @@ export default {
     boardList,
     userMenu,
     userAvatar
+  },
+  created() {
+    this.user = this.$store.getters.loggedinUser
+    console.log(this.user);
   },
   methods: {
     toggleBoardCompose() {

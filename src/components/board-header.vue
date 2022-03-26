@@ -1,5 +1,7 @@
 <template>
   <div class="board-header">
+    <button class="btn-boards-drop"><img src="../assets/boardDrop.png" alt=""></button>
+    <h2 contenteditable="true">{{ board.title }}</h2>
     <div class="board-members-section">
       <!--div class="board-section">
         <contenteditable
