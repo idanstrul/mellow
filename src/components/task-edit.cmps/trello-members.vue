@@ -1,11 +1,13 @@
 <template>
     <section class="trello-members">
         <span class="title">Members</span>
-        <ul class="clean-list"> 
+        <ul class="clean-list">
             <li v-for="member in members" :key="member._id">
-                <user-avatar :user="member"></user-avatar>
+                <user-avatar :user="member" :diameter="32"></user-avatar>
             </li>
-            <button class="user-avatar">+</button>
+            <li>
+                <button class="btn-round"></button>
+            </li>
         </ul>
     </section>
 </template>

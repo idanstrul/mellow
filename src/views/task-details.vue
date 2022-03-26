@@ -7,8 +7,8 @@
         <div class="flex-container flex space-between">
           <div class="modal-main">
             <div v-if="true" class="notations flex wrap">
-              <trello-labels v-if="hasLabels" :labels="currTaskLabels"></trello-labels>
               <trello-members v-if="hasMembers" :members="currTask.members"></trello-members>
+              <trello-labels v-if="hasLabels" :labels="currTaskLabels"></trello-labels>
             </div>
             <div class="description">
               <span class="section-title text-m icon-description">Description</span>

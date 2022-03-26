@@ -1,5 +1,5 @@
 <template>
-    <div class="user-avatar">
+    <div class="user-avatar" :style="getSizeInCss">
         <img v-if="user.imgUrl" :src="user.imgUrl" />
         <div class="flex center" v-else :style="userColor">{{ getNameAbbreviation(user.fullname) }}</div>
     </div>
@@ -9,7 +9,11 @@
 export default {
     name: 'user-avatar',
     props: {
-        user: Object
+        user: Object,
+        diameter: {
+            type: Number,
+            default: 28
+        }
     },
     methods: {
         getNameAbbreviation(fullName) {
@@ -21,14 +25,20 @@ export default {
         }
     },
     computed: {
-        userColor(){
+        userColor() {
             // console.log(this.user.color);
             return `background-color: ${this.user.color}`
+        },
+        getSizeInCss(){
+            return {
+                width: this.diameter + 'px',
+                height: this.diameter + 'px',
+                'line-height': this.diameter + 'px' 
+            }
         }
     }
 }
 </script>
 
 <style>
-
 </style>

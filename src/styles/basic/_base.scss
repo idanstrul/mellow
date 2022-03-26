@@ -72,3 +72,14 @@ input:focus, textarea:focus{
     cursor: pointer;
   }
 
+  button.btn-default{
+    border: none;
+    background-color: #091e420a;
+    color: #172b4d;
+
+    &:hover{
+        background-color: #091e4214;
+        color: #091e42;
+    }
+  }
+

@@ -3,6 +3,21 @@
         float: right;
     }
 
+    .el-progress__text {
+        order: -1;
+        font-size: 11px !important;
+        min-width: 32px;
+    }
+    
+    .el-progress.el-progress--line {
+        margin-inline-start: -7px;
+        margin-bottom: 15px;
+        @media (min-width: 784px) {
+            width: calc(100% + 36px);
+            margin-inline-start: -37px;
+        }
+    }
+
     ul li {
         margin-bottom: 20px;
         display: flex;

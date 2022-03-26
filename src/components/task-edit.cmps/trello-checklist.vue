@@ -3,6 +3,7 @@
         <trello-txt-input class="section-title text-m icon-checklist" :txt="updatedChecklist.title" @txt-saved="updateChecklistTitle"></trello-txt-input>
         <button class="btn float-right">Delete</button>
         <span class="progress-count"></span>
+        <el-progress :percentage="50"/>
         <div class="progress-bar"></div>
         <ul class="todos clean-list">
             <li v-for="(todo, todoIdx) in updatedChecklist.todos" :key="todo.id">

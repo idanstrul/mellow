@@ -5,7 +5,9 @@
             <li v-for="label in labels" :key="label.id">
                 <div class="label" :style="{ 'background-color': label.color }"></div>
             </li>
-            <button class="btn add-label label">+</button>
+            <li>
+                <button class="btn add-label btn-default"></button>
+            </li>
         </ul>
     </section>
 </template>

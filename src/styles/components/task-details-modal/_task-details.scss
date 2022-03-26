@@ -36,7 +36,7 @@ section.task-details {
                 width: 768px;
 
                 .modal-header {
-                    margin: 4px 35px 8px;
+                    margin: 4px 38px 8px;
                 }
 
                 .modal-main{
@@ -58,6 +58,10 @@ section.task-details {
 
                 & > div{
                     margin-bottom: 24px;
+                }
+
+                .notations{
+                    gap: 15px;
                 }
             }
         }

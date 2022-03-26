@@ -3,6 +3,17 @@
         display: flex;
     }
 
+    button.add-label {
+        padding: 5px 12px;
+
+        &::before {
+            font-family: trellicons;
+            content: "\e901";
+            vertical-align: middle;
+            font-size: 16px;
+        }
+    }
+
     .label {
         display: block;
         border-radius: 3px;
