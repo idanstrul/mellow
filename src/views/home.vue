@@ -16,8 +16,6 @@
        <p class="txt-title"> Administer your strategy Collaborate with coworkers and friends unquestionably and effectively</p>
       <button class="start-btn" @click="goToBoardsPage">Get Started</button>
     </section>
-
-   
 </main>
 </div>
   </div>

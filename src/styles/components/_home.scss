@@ -1,4 +1,7 @@
 .homepage {
+    background-image: url(../src/assets/Asset3.png);
+    background-repeat: no-repeat;
+    background-size: 50% 50%;
     text-align: center;
     height: 100vh;
     .header-home {
@@ -11,7 +14,7 @@
         justify-content: space-between;
         align-items: center;
         .logo {
-            background-color: #df6c3fa9;
+            /*background-color: #df6c3fa9;*/
             font-size: 3rem;
             display: flex;
             justify-content: center;
@@ -42,17 +45,17 @@
         .homepage-nav {
             font-size: 20px;
             margin-right: 13px;
-            color: whitesmoke;
+            color: rgb(0, 0, 0);
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 15px;
             .login {
-                color: whitesmoke;
+                color: rgb(0, 0, 0);
             }
 
             .signup {
-                color: whitesmoke;
+                color: rgb(0, 0, 0);
                 border-radius: 5px;
             }
         }
@@ -64,7 +67,7 @@
         }
     }
     .layout {
-        background-color: #df6c3fa9;
+        /*background-color: #df6c3fa9;*/
         display: grid;
         grid-template-columns: 20px 1fr 20px;
         .main-home-page {
@@ -88,8 +91,10 @@
                     }
                 }
                 .txt-title {
-                    color: whitesmoke;
-                    font-size: 2rem;
+                    color: rgb(0, 0, 0);
+                    margin-top: 150px;
+                    margin-left: 180px;
+                    font-size: 1.3rem;
                     letter-spacing: 1;
                     line-height: 2;
                     text-align: left;
@@ -106,6 +111,7 @@
                 }
                 .start-btn {
                     margin-top: 20px;
+                    margin-left: 180px;
                     font-size: 2rem;
                     background-color: #df6c3fa9;
                     border-radius: 60px;
