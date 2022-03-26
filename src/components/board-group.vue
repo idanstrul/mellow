@@ -1,5 +1,10 @@
 <template>
-
+       <!-- <Container
+        orientation="vertical"
+        group-name="col-items"
+        :shouldAcceptDrop="(e, payload) =>  (e.groupName === 'col-items')"
+        :get-child-payload="getCardPayload(group.id)"
+        @drop="(e) => onCardDrop(group.id, e)"> -->
   <!-- <Draggable> -->
  <section class="board-group">
    <div class="group-header ">
@@ -14,17 +19,14 @@
      </div>
      <task-add v-if="taskToEdit" :task="taskToEdit" @saveTask="saveTask"></task-add>
      <div class="tasks-container">
-       <Container
-        orientation="vertical"
-        group-name="col-items"
-        :shouldAcceptDrop="(e, payload) =>  (e.groupName === 'col-items')"
-        :get-child-payload="getCardPayload(group.id)"
-        @drop="(e) => onCardDrop(group.id, e)">
+       <slot></slot>
+       <!-- <Container>
     <task-preview v-for="task in group.tasks" :key="task.id" :task="task"></task-preview>
-    </Container>
+    </Container> -->
     </div>
  </section>
  <!-- </Draggable> -->
+    <!-- </Container> -->
 </template>
 
 <script>
@@ -44,9 +46,7 @@ export default {
         type: Object,
         required: true
     },
-    board:{
-        type: Object,
-    }
+    
   },
   data() {
     return {
@@ -101,7 +101,7 @@ export default {
       }
     },
     onCardDrop (groupId, dropResult) {
-      
+      console.log(dropResult);
       // check if element where ADDED or REMOVED in current collumn
       if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
         

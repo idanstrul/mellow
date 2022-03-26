@@ -12,10 +12,23 @@
     <!-- <Container>  -->
   <Container
   group-name="cols"
+    tag="div"
+
   orientation="horizontal"
   @drop="onColumnDrop($event)">
   <Draggable v-for="group in board.groups" :key="group.id">
-    <board-group @move="move" :board="board" :group="group" @updateGroup="updateGroup" @saveGroup="updateGroup"></board-group>
+    <div>
+    <board-group @move="move" :group="group" @updateGroup="updateGroup" @saveGroup="updateGroup">
+      <Container
+        orientation="vertical"
+        group-name="col-items"
+        :shouldAcceptDrop="(e, payload) =>  (e.groupName === 'col-items')"
+        :get-child-payload="getCardPayload(group.id)"
+        @drop="(e) => onCardDrop(group.id, e)">
+    <task-preview v-for="task in group.tasks" :key="task.id" :task="task"></task-preview>
+      </Container>
+    </board-group>
+    </div>
   </Draggable>
     </Container>
     <!-- <Container 
@@ -41,6 +54,8 @@ import { utilService } from "../services/util.service";
 import boardGroup from "../components/board-group.vue"
 import groupAdd from "../components/group-add.vue"
 import boardHeader from "../components/board-header.vue"
+import taskPreview from "../components/task-preview.vue";
+// import TaskPreview from "../components/task-preview.vue";
 
 export default {
   name: 'board-details',
@@ -56,7 +71,8 @@ export default {
     Container,
     Draggable,
     boardHeader,
-  },
+    taskPreview
+},
   async created() {
    this.loadBoard()
   },
@@ -77,23 +93,24 @@ export default {
     this.board = board
     },
     onColumnDrop (dropResult) {
-      console.log(dropResult);
+      console.log('drop>>',dropResult);
       const scene = Object.assign({}, this.board)
+      console.log(scene);
       scene.groups = utilService.applyDrag(scene.groups, dropResult)
       this.board = scene
     },
-    getCardPayload (groupId) {
+   getCardPayload (groupId) {
       return index => {
         return this.board.groups.filter(p => p.id === groupId)[0].tasks[index]
       }
     },
-    onCardDrop (columnId, dropResult) {
-      
+    onCardDrop (groupId, dropResult) {
+      console.log(dropResult);
       // check if element where ADDED or REMOVED in current collumn
       if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
         
         const scene = Object.assign({}, this.board)
-        const column = scene.groups.filter(p => p.id === columnId)[0]
+        const column = scene.groups.filter(p => p.id === groupId)[0]
         const itemIndex = scene.groups.indexOf(column)
         const newColumn = Object.assign({}, column)
         
@@ -107,7 +124,8 @@ export default {
         
         newColumn.tasks = utilService.applyDrag(newColumn.tasks, dropResult)
         scene.groups.splice(itemIndex, 1, newColumn)
-        this.board = scene
+        this.$emit('move', scene)
+        // this.board = scene
       }
     },
     move(board){
