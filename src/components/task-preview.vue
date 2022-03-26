@@ -1,5 +1,5 @@
 <template>
-<Container>
+<!-- <Container> -->
   <Draggable>
 <section class="task-preview">
 <p>{{ task.title }}</p>
@@ -8,7 +8,7 @@
 </section>
 </section>
 </Draggable>
-</Container>
+<!-- </Container> -->
 </template>
 
 <script>

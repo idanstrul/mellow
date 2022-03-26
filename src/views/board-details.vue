@@ -1,36 +1,46 @@
 <template>
-  <!-- <Container> -->
   <section v-if="board" class="board-details">
-     <!--board-header
+    <!-- <board-header
       :board="board"
-    ></!--board-header-->
+    ></board-header> -->
     <router-view></router-view>
     <p>{{ board.title }}</p>
     <input type="text"
            v-model="board.title"  
     >
     <div class="group-list flex">
-    <!-- <Container     orientation="horizontal"
-> 
-    <Draggable> -->
-    <board-group v-for="group in board.groups" :key="group.id" :group="group" @updateGroup="updateGroup" @saveGroup="updateGroup"></board-group>
-    <!-- </Draggable>
-    </Container> -->
+    <!-- <Container>  -->
+  <Container
+  group-name="cols"
+  orientation="horizontal"
+  @drop="onColumnDrop($event)">
+  <Draggable v-for="group in board.groups" :key="group.id">
+    <board-group @move="move" :board="board" :group="group" @updateGroup="updateGroup" @saveGroup="updateGroup"></board-group>
+  </Draggable>
+    </Container>
+    <!-- <Container 
+    :group="group"
+    orientation="vertical"
+    group-name="col-items"
+    :shouldAcceptDrop="(e, payload) =>  (e.groupName === 'col-items')"
+    :get-child-payload="getCardPayload(group.id)"
+    @drop="(e) => onCardDrop(group.id, e)">
+  </Container> -->
+    <!-- </Container> -->
     <group-add @addGroup="isAddingGroup=false" @saveGroup="updateGroup" @closeGroupAdd="isAddingGroup=true" :isAddingGroup="isAddingGroup"></group-add>
     </div>
     <!-- <p>{{board.title}}</p> -->
   </section>
-  <!-- </Container> -->
 </template>
 
 <script>
 
 // import { boardService } from '../services/board.service.js'
 import { Container, Draggable } from "vue3-smooth-dnd";
-
+import { utilService } from "../services/util.service";
 import boardGroup from "../components/board-group.vue"
 import groupAdd from "../components/group-add.vue"
-//import boardHeader from "../components/board-header.vue"
+import boardHeader from "../components/board-header.vue"
 
 export default {
   name: 'board-details',
@@ -45,7 +55,7 @@ export default {
     groupAdd,
     Container,
     Draggable,
-    //boardHeader,
+    boardHeader,
   },
   async created() {
    this.loadBoard()
@@ -53,7 +63,7 @@ export default {
   methods: {
     async updateGroup(groupToSave){
       if(!this.isAddingGroup) this.isAddingGroup = true
-      console.log(groupToSave);
+      // console.log(groupToSave);
       if(!groupToSave.title) return
       await this.$store.dispatch({type: 'updateGroup', groupToSave})
       this.loadBoard()
@@ -67,15 +77,43 @@ export default {
     this.board = board
     },
     onColumnDrop (dropResult) {
-      const scene = Object.assign({}, this.scene)
-      scene.children = applyDrag(scene.children, dropResult)
-      this.scene = scene
+      console.log(dropResult);
+      const scene = Object.assign({}, this.board)
+      scene.groups = utilService.applyDrag(scene.groups, dropResult)
+      this.board = scene
     },
-     getCardPayload (groupId) {
+    getCardPayload (groupId) {
       return index => {
-        return this.scene.children.filter(p => p.id === columnId)[0].children[index]
+        return this.board.groups.filter(p => p.id === groupId)[0].tasks[index]
       }
+    },
+    onCardDrop (columnId, dropResult) {
+      
+      // check if element where ADDED or REMOVED in current collumn
+      if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
+        
+        const scene = Object.assign({}, this.board)
+        const column = scene.groups.filter(p => p.id === columnId)[0]
+        const itemIndex = scene.groups.indexOf(column)
+        const newColumn = Object.assign({}, column)
+        
+        // check if element was ADDED in current column
+        if((dropResult.removedIndex == null && dropResult.addedIndex >= 0)){
+          // your action / api call
+          // dropResult.payload.loading = true
+          // simulate api call
+          // setTimeout(function(){ dropResult.payload.loading = false }, (Math.random() * 5000) + 1000); 
+        }
+        
+        newColumn.tasks = utilService.applyDrag(newColumn.tasks, dropResult)
+        scene.groups.splice(itemIndex, 1, newColumn)
+        this.board = scene
+      }
+    },
+    move(board){
+      this.board = board
     }
+     
   },
 }
 </script>
@@ -85,6 +123,6 @@ export default {
 * In this case we need flex and not display table  
 */
 .smooth-dnd-container.horizontal{
-  /* display: flex !important; */
+  display: flex !important;
 }
 </style>
