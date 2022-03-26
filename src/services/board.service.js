@@ -23,7 +23,7 @@ const defaultBoards = [
         "createdAt": 1589983468418,
         "createdBy": {
             "_id": "u101",
-            "fullname": "Abi Abambi",
+            "fullname": "Puki Norma",
             "imgUrl": "http://some-img"
         },
         "style": {},
@@ -49,11 +49,11 @@ const defaultBoards = [
         "groups": [
             {
                 "id": "g101",
-                "title": "List 1",
+                "title": "Backlog",
                 "tasks": [
                     {
                         "id": "c101",
-                        "title": "Replace logo",
+                        "title": "Users Management",
                         "members": [
                             {
                                 "_id": "u101",
@@ -86,22 +86,324 @@ const defaultBoards = [
                     },
                     {
                         "id": "c102",
-                        "title": "Add Samples"
+                        "title": "Report Generator"
                     }
                 ],
                 "style": {}
             },
             {
                 "id": "g102",
-                "title": "List 2",
+                "title": "Working On",
                 "tasks": [
                     {
                         "id": "c103",
-                        "title": "Do that"
+                        "title": "Tweet System"
                     },
                     {
                         "id": "c104",
-                        "title": "Help me",
+                        "title": "File Management",
+                        "status": "in-progress",
+                        "description": "description",
+                        "comments": [
+                            {
+                                "id": "ZdPnm",
+                                "txt": "also @yaronb please CR this",
+                                "createdAt": 1590999817436.0,
+                                "byMember": {
+                                    "_id": "u101",
+                                    "fullname": "Tal Tarablus",
+                                    "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                                }
+                            }
+                        ],
+                        "checklists": [
+                            {
+                                "id": "YEhmF",
+                                "title": "Checklist",
+                                "todos": [
+                                    {
+                                        "id": "212jX",
+                                        "title": "To Do 1",
+                                        "isDone": false
+                                    }
+                                ]
+                            }
+                        ],
+                        "members": [
+                            {
+                                "_id": "u101",
+                                "username": "Tal",
+                                "fullname": "Tal Tarablus",
+                                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                            },
+                            {
+                                "_id": "u328",
+                                "username": "Amit",
+                                "fullname": "Amit Miz",
+                                "color": "#0047AB"
+
+                            },
+                            {
+                                "_id": "u785",
+                                "username": "Puki",
+                                "fullname": "Puki Norma",
+                                "color": "purple"
+
+                            },
+                        ],
+                        "labelIds": ["l101", "l102"],
+                        "createdAt": 1590999730348,
+                        "dueDate": 16156215211,
+                        "byMember": {
+                            "_id": "u101",
+                            "username": "Tal",
+                            "fullname": "Tal Tarablus",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        "style": {
+                            "bgColor": "#26de81"
+                        }
+                    },
+                    {
+                        "id": "c114",
+                        "title": "Design Grid",
+                        "status": "in-progress",
+                        "description": "description",
+                        "comments": [
+                            {
+                                "id": "ZdPnm",
+                                "txt": "also @yaronb please CR this",
+                                "createdAt": 1590999817436.0,
+                                "byMember": {
+                                    "_id": "u101",
+                                    "fullname": "Tal Tarablus",
+                                    "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                                }
+                            }
+                        ],
+                        "checklists": [
+                            {
+                                "id": "YEhmF",
+                                "title": "Checklist",
+                                "todos": [
+                                    {
+                                        "id": "212jX",
+                                        "title": "To Do 1",
+                                        "isDone": false
+                                    }
+                                ]
+                            }
+                        ],
+
+                        "labelIds": ["l101", "l102"],
+                        "createdAt": 1590999730348,
+                        "dueDate": 16156215211,
+                        "byMember": {
+                            "_id": "u101",
+                            "username": "Tal",
+                            "fullname": "Tal Tarablus",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        "style": {
+                            "bgColor": "#26de81"
+                        }
+                    },
+                    {
+                        "id": "c124",
+                        "title": "Finish drag&drop",
+                        "status": "in-progress",
+                        "description": "description",
+                        "comments": [
+                            {
+                                "id": "ZdPnm",
+                                "txt": "also @yaronb please CR this",
+                                "createdAt": 1590999817436.0,
+                                "byMember": {
+                                    "_id": "u101",
+                                    "fullname": "Tal Tarablus",
+                                    "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                                }
+                            }
+                        ],
+                        "checklists": [
+                            {
+                                "id": "YEhmF",
+                                "title": "Checklist",
+                                "todos": [
+                                    {
+                                        "id": "212jX",
+                                        "title": "To Do 1",
+                                        "isDone": false
+                                    }
+                                ]
+                            }
+                        ],
+                        "members": [
+                            {
+                                "_id": "u101",
+                                "username": "Tal",
+                                "fullname": "Tal Tarablus",
+                                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                            },
+                            {
+                                "_id": "u328",
+                                "username": "Amit",
+                                "fullname": "Amit Miz",
+                                "color": "#0047AB"
+
+                            },
+                            {
+                                "_id": "u429",
+                                "username": "Omer",
+                                "fullname": "Omer Esh",
+                                "color": "#09bd0d"
+
+                            },
+                            {
+                                "_id": "u785",
+                                "username": "Puki",
+                                "fullname": "Puki Norma",
+                                "color": "purple"
+
+                            },
+                        ],
+                        "labelIds": ["l101", "l102"],
+                        "createdAt": 1590999730348,
+                        "dueDate": 16156215211,
+                        "byMember": {
+                            "_id": "u101",
+                            "username": "Tal",
+                            "fullname": "Tal Tarablus",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        "style": {
+                            "bgColor": "#26de81"
+                        }
+                    },
+                    {
+                        "id": "c134",
+                        "title": "Responsive design",
+                        "status": "in-progress",
+                        "description": "description",
+                        "comments": [
+                            {
+                                "id": "ZdPnm",
+                                "txt": "also @yaronb please CR this",
+                                "createdAt": 1590999817436.0,
+                                "byMember": {
+                                    "_id": "u101",
+                                    "fullname": "Tal Tarablus",
+                                    "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                                }
+                            }
+                        ],
+                        "checklists": [
+                            {
+                                "id": "YEhmF",
+                                "title": "Checklist",
+                                "todos": [
+                                    {
+                                        "id": "212jX",
+                                        "title": "To Do 1",
+                                        "isDone": false
+                                    }
+                                ]
+                            }
+                        ],
+                        "members": [
+                            {
+                                "_id": "u439",
+                                "username": "Idan",
+                                "fullname": "Idan Stru",
+                                "color": "#e12f09"
+
+                            },
+                            {
+                                "_id": "u429",
+                                "username": "Omer",
+                                "fullname": "Omer Esh",
+                                "color": "#09bd0d"
+
+                            },
+                            {
+                                "_id": "u785",
+                                "username": "Puki",
+                                "fullname": "Puki Norma",
+                                "color": "purple"
+
+                            },
+                        ],
+                        "labelIds": ["l101", "l102"],
+                        "createdAt": 1590999730348,
+                        "dueDate": 16156215211,
+                        "byMember": {
+                            "_id": "u101",
+                            "username": "Tal",
+                            "fullname": "Tal Tarablus",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        "style": {
+                            "bgColor": "#26de81"
+                        }
+                    },
+                ],
+                "style": {}
+            },
+            {
+                "id": "g103",
+                "title": "Bugs",
+                "tasks": [
+                    {
+                        "id": "c105",
+                        "title": "Replace logo",
+                        "members": [
+                            {
+                                "_id": "u101",
+                                "username": "Tal",
+                                "fullname": "Tal Tarablus",
+                                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                            },
+                            {
+                                "_id": "u328",
+                                "username": "Amit",
+                                "fullname": "Amit Miz",
+                                "color": "#0047AB"
+
+                            },
+                            {
+                                "_id": "u439",
+                                "username": "Idan",
+                                "fullname": "Idan Stru",
+                                "color": "#e12f09"
+
+                            },
+                            {
+                                "_id": "u429",
+                                "username": "Omer",
+                                "fullname": "Omer Esh",
+                                "color": "#09bd0d"
+
+                            },
+                        ],
+                    },
+                    {
+                        "id": "c106",
+                        "title": "Add Samples"
+                    }
+                ],
+                "style": {}
+            },
+            {
+                "id": "g104",
+                "title": "Done",
+                "tasks": [
+                    {
+                        "id": "c107",
+                        "title": "Board design"
+                    },
+                    {
+                        "id": "c108",
+                        "title": "Task preview",
                         "status": "in-progress",
                         "description": "description",
                         "comments": [

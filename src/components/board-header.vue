@@ -1,7 +1,9 @@
 <template>
   <div class="board-header">
     <button class="btn-boards-drop"><img src="../assets/boardDrop.png" alt=""></button>
-    <h2 contenteditable="true">{{ board.title }}</h2>
+    <h2 class="board-title" contenteditable="true">{{ board.title }}</h2>
+    <button class="btn-star-board"><div></div></button> <span class="nav-divider">|</span>
+    <button class="btn-user-space"><h4>{{ userWorkspace }} Workspace</h4></button>
     <div class="board-members-section">
       <!--div class="board-section">
         <contenteditable
@@ -19,19 +21,19 @@
         <!--section class="user-avatar">
           <user-avatar></user-avatar>
         </@section-->
-        <button class="board-header-btn">
+        <!-- <button class="board-header-btn">
           Invite
-        </button>
+        </button> -->
       </div>
     </div>
-    <div class="board-section">
+    <!-- <div class="board-section">
       <button class="board-header-btn">
         <span> Laderboard </span>
       </button>
       <button class="board-header-btn">
         <span>Show menu</span>
       </button>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -63,6 +65,12 @@ export default {
     boardTitle() {
       return JSON.parse(JSON.stringify(this.board.title));
     },
+    userWorkspace(){
+      const name = this.board.createdBy.fullname.split(' ')
+      // const lName = this.board.createdBy.fullname.split(' ')
+      // console.log(name[1].split());
+      return name[0] +' ' +  name[1].split('')[0] + `'s`
+    }
   },
   created() {
   },

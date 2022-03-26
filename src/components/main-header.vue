@@ -1,23 +1,21 @@
 <template>
   <section class="main-header" :class="classBoardsPage">
     <button class="btn-boards" title="Boards"><img src="../assets/boards.png" alt=""></button>
-    <button class="btn-logo" ><img src="../assets/logo.gif" alt=""></button>
-    <nav class="btn-container">
-      <router-link to="/about">About</router-link>
-    </nav>
+    <router-link to="/"><button class="btn-logo" ><img src="../assets/logo.gif" alt=""></button></router-link>
+    
     <!--board-list
       v-if="isBoardListOpen"
       @closeBoardList="isBoardListOpen = false"
       @setBackground="setBackground"
       :boards="boards"
     /-->
-    <div>
+    <!-- <div>
       <div class="btn-container" @click="goToBoardsPage">
         <span class="material-icons-outlined"></span>
         <span>Boards</span>
       </div>
-    </div>
-    <div class="btn-container" @click="goToHomePage">
+    </div> -->
+    <!-- <div class="btn-container" @click="goToHomePage">
       <span class="material-icons-outlined"></span>
       <span>Mellow</span>
       <div @click.stop="isUserMenuOpen = true" class="avatar">
@@ -27,14 +25,14 @@
           @logout="logout"
           @close="isUserMenuOpen = false"/>
         
-        <!--board-compose
+        <board-compose
         @closeCompose="toggleBoardCompose"
         @addBoard="addBoard"
         v-if="isBoardComposeOn"
-        ></!--board-compose-->
+        ></board-compose>
       </div>
-    </div>
-        <user-avatar :user="user"/>
+    </div> -->
+        <user-avatar :diameter="32" :user="user"/>
   </section>
 </template>
 
@@ -58,7 +56,7 @@ export default {
     boardCompose,
     boardList,
     userMenu,
-    userAvatar
+    userAvatar,
   },
   created() {
     this.user = this.$store.getters.loggedinUser
