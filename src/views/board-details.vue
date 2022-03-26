@@ -25,7 +25,7 @@
         :shouldAcceptDrop="(e, payload) =>  (e.groupName === 'col-items')"
         :get-child-payload="getCardPayload(group.id)"
         @drop="(e) => onCardDrop(group.id, e)">
-    <task-preview v-for="task in group.tasks" :key="task.id" :task="task"></task-preview>
+    <task-preview @click="goToDetail(group, task)" v-for="task in group.tasks" :key="task.id" :task="task"></task-preview>
       </Container>
     </board-group>
     </div>
@@ -131,9 +131,13 @@ export default {
         // this.board = scene
       }
     },
-    move(board){
-      this.board = board
-    }
+    async move(boardToSave){
+      const board = await this.$store.dispatch({type: 'saveCurrBoard', boardToSave})
+      this.loadBoard()
+    },
+    goToDetail(group, task) {
+      this.$router.push(`/board/b101/task/${group.id}/${task.id}`)
+    },
      
   },
 }

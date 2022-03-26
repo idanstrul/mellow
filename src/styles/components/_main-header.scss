@@ -1,9 +1,24 @@
 .main-header {
-    background-color: #273240b0;
+    // width: 100vw;
+    height: 45px;
+    .btn-boards, .btn-logo{
+       @include mainHeaderBtn;
+       margin-inline-start: 5px;
+       width: 36px; 
+    }
+    .btn-logo{
+        margin-inline-start: 0px;
+        width: 93px;
+        padding-inline-start: 1px;
+        img{
+            width: auto;
+        }
+    }
+    background-color: #0000005b;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    color: #95959b;
+    // justify-content: center;
+    color: $clr-base;
 }
 
 .material-icons-outlined {

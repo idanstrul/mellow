@@ -1,5 +1,7 @@
 <template>
   <section class="main-header" :class="classBoardsPage">
+    <button class="btn-boards" title="Boards"><img src="../assets/boards.png" alt=""></button>
+    <button class="btn-logo" ><img src="../assets/logo.gif" alt=""></button>
     <nav class="btn-container">
       <router-link to="/about">About</router-link>|
       <router-link to="/board/b101/task/g102/c104">Board task</router-link>|
@@ -35,7 +37,7 @@
 </template>
 
 <script>
-//import userAvatar from "../components/user-avatar.vue";
+import userAvatar from "../components/user-avatar.vue";
 import boardCompose from "../components/board-compose.vue";
 import boardList from "../components/board-list.vue";
 import userMenu from "../components/user-menu.vue";
@@ -53,7 +55,7 @@ export default {
     boardCompose,
     boardList,
     userMenu,
-    //userAvatar
+    userAvatar
   },
   methods: {
     toggleBoardCompose() {
