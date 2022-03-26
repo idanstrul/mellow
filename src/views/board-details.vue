@@ -4,10 +4,7 @@
       :board="board"
     ></board-header>
     <router-view></router-view>
-    <p>{{ board.title }}</p>
-    <input type="text"
-           v-model="board.title"  
-    >
+    
     <div class="group-list flex">
     <!-- <Container>  -->
   <Container

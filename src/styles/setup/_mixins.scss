@@ -10,6 +10,22 @@
 }
 
 @mixin mainHeaderBtn {
+       cursor: pointer;
+       height: 34px;
+       background-color: transparent;
+       border: none;
+       border-radius: 3px;
+       &:hover{
+           background-color: rgba(255, 255, 255, 0.25);
+       }
+       img{
+           margin-top: 3px;
+           width: 16px;
+           height: 16px;
+       }
+}
+
+@mixin boardHeaderBtn {
        height: 34px;
        background-color: transparent;
        border: none;
