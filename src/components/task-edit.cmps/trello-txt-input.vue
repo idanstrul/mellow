@@ -1,10 +1,10 @@
 <template>
-    <section class="trello-txt-inpput" @click="isInEdit = true">
-        <span v-if="!isInEdit" class="todo-title">{{ updatedTxt }}</span>
-        <div v-else class="todo-edit">
-            <textarea cols="30" rows="3" v-model="updatedTxt" placeholder="Write somthingr" ></textarea>
-            <button @click.stop="saveTxt">Save</button>
-            <button @click.stop="cancel">X</button>
+    <section class="trello-txt-input" @click="isInEdit = true">
+        <span v-if="!isInEdit" class="input-title">{{ txtToShow }}</span>
+        <div v-else class="input-edit">
+            <textarea cols="30" rows="3" v-model="updatedTxt" :placeholder="placeholder" autofocus></textarea>
+            <button class="primary-btn" @click.stop="saveTxt">Save</button>
+            <button class="cancel-btn" @click.stop="cancel"></button>
         </div>
     </section>
 </template>
@@ -13,7 +13,11 @@
 export default {
     name: 'trello-txt-input',
     props: {
-        txt: String
+        txt: String,
+        placeholder: {
+            type: String,
+            default: ''
+        }
     },
     data() {
         return {
@@ -23,7 +27,10 @@ export default {
     },
     methods: {
         saveTxt() {
-            if (!this.updatedTxt) return this.$emit('txtIsEmpty')
+            if (!this.updatedTxt) {
+                if (this.placeholder) this.isInEdit = false
+                return this.$emit('txtIsEmpty', '')
+            }
             this.$emit('txtSaved', this.updatedTxt)
             this.isInEdit = false
         },
@@ -31,6 +38,12 @@ export default {
             this.updatedTxt = this.txt
             this.isInEdit = false
         },
+    },
+    computed: {
+        txtToShow() {
+            if (!this.updatedTxt && this.placeholder) return this.placeholder
+            return this.updatedTxt
+        }
     }
 }
 </script>

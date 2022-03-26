@@ -14,7 +14,7 @@ section.task-details {
         align-items: flex-start;
 
         .modal-container {
-            background-color: white;
+            background-color: $clr-modal-bg;
             position: relative;
             border-radius: 2px;
             margin: 48px 0 80px;
@@ -45,13 +45,20 @@ section.task-details {
             }
 
             .section-title {
+                display: inline-block;
                 font-family: sans-serif;
                 color: $clr-dark-title;
+                // padding: 8px 0;
+                margin-bottom: 12px;
             }
 
             .modal-main {
                 width: 100%;
                 padding-inline-end: 16px;
+
+                & > div{
+                    margin-bottom: 24px;
+                }
             }
         }
     }
@@ -82,9 +89,9 @@ section.task-details {
             // }
         }
 
-        i {
-            margin: 0 6px 0 0;
-        }
+        // i {
+        //     margin: 0 6px 0 0;
+        // }
 
         &:hover {
             color: hsl(218, 76%, 15%);
@@ -92,6 +99,31 @@ section.task-details {
         }
     }
 }
+
+
+// .icon-like-layout {
+//     // color: $clr-dark-icon;
+//     display: inline-block;
+//     margin-inline-end: 16px;
+//     margin-inline-start: 2px;
+//     vertical-align: middle;
+    
+//     @media (min-width: 784px) {
+//         margin-inline-start: -29px;
+//     }
+// }
+  
+    // &.section-title::before {
+    //   vertical-align: middle;
+    //   font-size: 1.714rem;
+  
+  
+    //   .modal-main & {
+    //     margin-inline-end: 12px;
+    //   }
+    // }
+//   }
+  
 
 // .modal-header {
 //   width: 100%;
@@ -136,7 +168,7 @@ section.task-details {
 }
 
 .icon-dates {
-    @include add-trello-icon("\e91a");
+    @include add-trello-icon("\e91b");
 }
 
 .icon-attachment {

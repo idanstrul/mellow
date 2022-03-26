@@ -1,17 +1,17 @@
 <template>
     <section class="trello-checklist">
         <trello-txt-input class="section-title text-m icon-checklist" :txt="updatedChecklist.title" @txt-saved="updateChecklistTitle"></trello-txt-input>
-        <button class="btn">Delete</button>
+        <button class="btn float-right">Delete</button>
         <span class="progress-count"></span>
         <div class="progress-bar"></div>
         <ul class="todos clean-list">
             <li v-for="(todo, todoIdx) in updatedChecklist.todos" :key="todo.id">
                 <input type="checkbox" v-model="todo.isDone" />
-                <trello-txt-input :txt="todo.title" @txt-saved="updateTodoTitle($event, todo.id)" @txt-is-empty="removeTodo(todoIdx)"></trello-txt-input>
+                <trello-txt-input class="inline-block" :txt="todo.title" @txt-saved="updateTodoTitle($event, todo.id)" @txt-is-empty="removeTodo(todoIdx)"></trello-txt-input>
             </li>
         </ul>
         <button class="btn">Add an item</button>
-        <pre>{{updatedChecklist}}</pre>
+        <!-- <pre>{{updatedChecklist}}</pre> -->
     </section>
 </template>
 
