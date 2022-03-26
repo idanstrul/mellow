@@ -13,9 +13,14 @@
     <div class="layout">
     <main class="main-home-page">
     <section class="started">
-       <p class="txt-title"> Administer your strategy Collaborate with coworkers and friends unquestionably and effectively</p>
+       <p class="txt-title"> As your software team grows, Mellow makes it easy to manage workflows across multiple teams and projects. Simple, intuitive, fast: Mellow is where software teams do their best work.
+
+Free to get started, with easy user experience Mellow.</p>
       <button class="start-btn" @click="goToBoardsPage">Get Started</button>
     </section>
+        <div class="img">
+          <img src="../assets/Asset3.png">
+        </div>
 </main>
 </div>
   </div>
