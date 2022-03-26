@@ -93,9 +93,12 @@ export default {
     this.board = board
     },
     onColumnDrop (dropResult) {
-      console.log('drop>>',dropResult);
       const scene = Object.assign({}, this.board)
       console.log(scene);
+      dropResult.payload = {}
+      dropResult.payload.data = this.board.groups[dropResult.removedIndex].title
+      dropResult.payload.id = this.board.groups[dropResult.removedIndex].id
+      console.log('drop>>',dropResult);
       scene.groups = utilService.applyDrag(scene.groups, dropResult)
       this.board = scene
     },

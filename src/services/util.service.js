@@ -20,7 +20,7 @@ function getRndIntInc(min, max) {
 }
 
 function applyDrag(arr, dragResult) {
-    console.log(dragResult);
+    console.log('arr>>', arr, 'drag', dragResult);
     const { removedIndex, addedIndex, payload } = dragResult;
     if (removedIndex === null && addedIndex === null) return arr;
     const result = [...arr];
