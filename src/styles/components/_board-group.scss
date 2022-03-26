@@ -7,11 +7,8 @@
       ::-webkit-scrollbar-thumb {
         background: #bfc4ce;
         border-radius: 4px;
-        // margin: 5px;
       }
-      ::-webkit-scrollbar-track {
-        // margin: 25px;
-        
+      ::-webkit-scrollbar-track {        
         margin-bottom: 50px;
           border-radius: 4px;
           background: #dadbe2; 
@@ -20,13 +17,12 @@
     .tasks-container{
         overflow-y: auto;
         max-height: 82vh;
-        // margin-inline-end: 2px/;
     }
     .group-header{
         min-width: 272px;
     }
-    position: relative;
-    // min-width: 272px;
+    min-width: 272px;
+    // position: relative;
     background-color: $clr-group-bg;
     margin-inline-end: 7px;
     height: min-content;
@@ -60,5 +56,5 @@
 }
 
 .group-header > * {
-    display: inline-block;
+    // display: inline-block;
 }

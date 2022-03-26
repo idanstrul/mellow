@@ -14,15 +14,15 @@ export default {
     methods: {
         getNameAbbreviation(fullName) {
             const names = fullName.split(' ')
-            console.log('names', names);
-            console.log(this.user);
+            // console.log('names', names);
+            // console.log(this.user);
             const initiates = names.map(n => n.charAt(0).toUpperCase())
             return initiates.join('')
         }
     },
     computed: {
         userColor(){
-            console.log(this.user.color);
+            // console.log(this.user.color);
             return `background-color: ${this.user.color}`
         }
     }

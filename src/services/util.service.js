@@ -3,7 +3,8 @@ export const utilService = {
     delay,
     getRndIntInc,
     makeId,
-    getRandomColor
+    getRandomColor,
+    applyDrag,
 }
 
 function delay(ms = 1500) {
@@ -18,6 +19,20 @@ function getRndIntInc(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+function applyDrag(arr, dragResult) {
+    console.log('arr>>', arr, 'drag', dragResult);
+    const { removedIndex, addedIndex, payload } = dragResult;
+    if (removedIndex === null && addedIndex === null) return arr;
+    const result = [...arr];
+    let itemToAdd = payload;
+    if (removedIndex !== null) {
+        itemToAdd = result.splice(removedIndex, 1)[0];
+    }
+    if (addedIndex !== null) {
+        result.splice(addedIndex, 0, itemToAdd);
+    }
+    return result;
+}
 
 function makeId(length = 8) {
     var txt = '';

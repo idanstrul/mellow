@@ -1,9 +1,16 @@
 <template>
     <section class="activity-log">
-        <user-avatar :user="newComment.byMember"></user-avatar>
-        <span class="title">Activity</span>
-        <textarea cols="30" rows="2" v-model="newComment.txt" placeholder="Write a comment..."></textarea>
+        <span class="section-title text-m icon-activity">Activity</span>
         <ul class="clean-list">
+            <li>
+                <user-avatar :user="newComment.byMember"></user-avatar>
+                <textarea
+                    cols="30"
+                    rows="2"
+                    v-model="newComment.txt"
+                    placeholder="Write a comment..."
+                ></textarea>
+            </li>
             <li v-for="comment in comments" :key="comment.id">
                 <user-avatar :user="comment.byMember"></user-avatar>
                 <span class="user-fullname">{{ comment.byMember.fullname }}</span> |

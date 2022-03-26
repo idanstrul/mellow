@@ -54,7 +54,7 @@ export const boardStore = {
             }
         },
         async saveCurrBoard(context, { boardToSave }) {
-            console.log(boardToSave);
+            // console.log(boardToSave);
             context.commit({ type: 'setIsLoading', loadingStatus: true })
             try {
                 const currBoard = await boardService.save(boardToSave)
@@ -77,7 +77,7 @@ export const boardStore = {
                 if (groupToSave.id) {
                     const idx = board.groups.findIndex(g => g.id === groupToSave.id)
                     board.groups.splice(idx, 1, groupToSave)
-                    console.log('board>>', board, 'group>>', groupToSave);
+                    // console.log('board>>', board, 'group>>', groupToSave);
                 } else {
                     groupToSave.id = utilService.makeId()
                     board.groups.push(groupToSave)
@@ -97,10 +97,10 @@ export const boardStore = {
             context.commit({ type: 'setIsLoading', loadingStatus: true })
             try {
                 groupToSave.id = utilService.makeId()
-                console.log(context.getters.currBoard);
+                // console.log(context.getters.currBoard);
                 const board = context.getters.currBoard
                 board.groups.push(groupToSave)
-                console.log(board);
+                // console.log(board);
                 return await context.dispatch({ type: 'saveCurrBoard', boardToSave: board })
                 // console.log(this.currBoard);
                 // this.currBoard.groups.push(groupToSave)
@@ -129,9 +129,9 @@ export const boardStore = {
         async getTaskById({ getters }, { groupId, taskId }) {
             const currBoard = getters.currBoard
             const currGroup = currBoard.groups.find(g => g.id === groupId)
-            console.log('taskId', taskId);
-            console.log('groupId', groupId);
-            console.log('currGroup', currGroup);
+            // console.log('taskId', taskId);
+            // console.log('groupId', groupId);
+            // console.log('currGroup', currGroup);
             const currTask = currGroup.tasks.find(t => t.id === taskId)
             return currTask
 

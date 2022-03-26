@@ -2,6 +2,7 @@
 <section class="copy-group-menu">
 <custom-menu  :menuOpen="menuOpen">
    <p>Copy list</p>
+    <button @click="closeMenu" class="close" title="Close"></button>
    <hr>
    <form action="submit" @submit.prevent="saveGroup" >
    <div>Name</div>
@@ -38,9 +39,9 @@ export default {
     saveGroup(){
       this.$emit('saveGroup', this.titleForDisplay)
     },
-    focusMe(){
-      
-      }
+    closeMenu(){
+      this.$emit('closeMenu')
+    }
   },
  
 }

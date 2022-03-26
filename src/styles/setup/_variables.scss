@@ -1,9 +1,12 @@
 
 // COLOR PALETTE
-$clr-group-bg: #ebecf0;
+$clr-group-bg: rgb(235, 236, 240);
+$clr-modal-bg: rgb(243, 244, 246);
 $clr-btn-hover-group-menu: darken($clr-group-bg, 5%);
 $clr-base: #ffffff;
 $clr-input-ol: #0079bf;
+$clr-dark-title: #172b4d;
+$clr-dark-icon:  lighten(desaturate($clr-dark-title, 30%), 15%);
 $clr-labe0: #61bd4f;
 $clr-labe1: #f2d600;;
 $clr-labe2: #ff9f1a;

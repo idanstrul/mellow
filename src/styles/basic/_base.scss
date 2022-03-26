@@ -12,6 +12,11 @@ html {
     height: 100vh;
   }
 
+  .smooth-dnd-container{
+    min-width: auto;
+    min-height: auto;
+  }
+
 input{
   cursor: pointer;
 }
