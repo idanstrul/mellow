@@ -1,14 +1,8 @@
 <template>
   <section v-if="board" class="board-details">
-<<<<<<< HEAD
-     <board-header
-      :board="board"
-    ></board-header>
-=======
     <!-- <board-header
       :board="board"
     ></board-header> -->
->>>>>>> 61a8c8f8d167873c42ff9dcaec97d278bfc5ea67
     <router-view></router-view>
     <p>{{ board.title }}</p>
     <input type="text"
@@ -60,11 +54,8 @@ import { utilService } from "../services/util.service";
 import boardGroup from "../components/board-group.vue"
 import groupAdd from "../components/group-add.vue"
 import boardHeader from "../components/board-header.vue"
-<<<<<<< HEAD
-=======
 import taskPreview from "../components/task-preview.vue";
 // import TaskPreview from "../components/task-preview.vue";
->>>>>>> 61a8c8f8d167873c42ff9dcaec97d278bfc5ea67
 
 export default {
   name: 'board-details',
@@ -77,16 +68,11 @@ export default {
   components: {
     boardGroup,
     groupAdd,
-<<<<<<< HEAD
-    boardHeader,
-  },
-=======
     Container,
     Draggable,
     boardHeader,
     taskPreview
 },
->>>>>>> 61a8c8f8d167873c42ff9dcaec97d278bfc5ea67
   async created() {
    this.loadBoard()
   },
