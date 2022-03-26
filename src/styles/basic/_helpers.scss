@@ -30,15 +30,15 @@
 
 /* typography */
 
-.text-l{
+.text-l {
     font-size: 1.43rem; //20px
 }
 
-.text-m{
+.text-m {
     font-size: 1.143rem; //16px
 }
 
-.text-s{
+.text-s {
     font-size: 1rem; //14px
 }
 
@@ -82,13 +82,5 @@
     }
     &:active {
         background-color: lighten(rgba(255, 255, 255, 0.6), 50);
-    }
-    .login {
-        color: whitesmoke;
-    }
-
-    .signup {
-        color: whitesmoke;
-        border-radius: 5px;
     }
 }
