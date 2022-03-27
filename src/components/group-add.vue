@@ -1,12 +1,15 @@
 <template>
 <section>
+  
   <div v-if="isAddingGroup" @click="addGroup" class="group-add">
       <div class="flex align-center">
           <span></span>
           <span>Add another list</span>
      </div>
   </div>
-  <div v-else class="group-edit">
+  <!-- <Transition enter-active-class="animate__animated animate__fadeIn animate__faster"
+    leave-active-class="animate__animated animate__fadeOut animate__faster"> -->
+  <div v-if="!isAddingGroup" class="group-edit">
       <form type="submit" @submit.prevent="saveGroup">
         <input type="text"
                ref="title"
@@ -21,6 +24,7 @@
           <span>Add another list</span> -->
      </form>
   </div>
+  <!-- </Transition> -->
 </section>
 </template>
 
