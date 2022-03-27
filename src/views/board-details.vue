@@ -1,5 +1,6 @@
 <template>
   <section v-if="board" class="board-details">
+    <div class="bg"></div>
     <board-header
       :board="board"
     ></board-header>
