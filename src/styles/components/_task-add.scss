@@ -1,9 +1,13 @@
+.task-add{
+}
+
 .task-add form{
-    
+    // position: ;
+    // background-color: red;
     textarea{
         outline: none;
         border: none;
-        width: 93%;
+        width: 248px !important;
         margin: 0 auto;
         padding-inline-start: 7px;
         padding-block-start: 7px;

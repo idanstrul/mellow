@@ -21,20 +21,59 @@
     .group-header{
         min-width: 272px;
     }
-    .task-add{
+    .btn-task-add{
         // background-color: red;
+        color: #5e6c84;
+        height: 28px;
+        width: 95%;
+        padding: 4px 8px;
+        border-radius: 3px;
+        margin-inline-start: 8px;
+        margin-block-end: 3px;
+        // position: absolute;
+        // bottom: 10px;
+        cursor: pointer;
+        // margin: 0 auto;
+        // margin:  0px 100px 3px 0px !important;
+        // margin-bottom: 90px;
+        &:hover{
+            color: $clr-dark-title;
+            background-color: #091e4214;
+
+        }
         span:first-child{
             font-family: trellicons;
+            font-size: rem(16px);
+            margin-block-start: 2px;
+            margin-inline-end: 5px;
         }
         span:first-child::before{
-            font-family: trellicons;
+            content: "\e901";
+        }
+    }
+    .sub-task-add{
+        // position: absolute;
+        // bottom: 0px;
+        // box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.75);
+        // transform: scale(?);
+        // width: 100%;
+        .task-add{
+            textarea{
+
+                // width: 256px !important;
+                // min-width: inherit !important;
+            }
+            overflow-y: auto !important;
+            background-color: #ebecf0;
+            // margin-inline-start: -1px;
         }
     }
     width: 272px;
     position: relative;
     background-color: $clr-group-bg;
     margin-inline-end: 7px;
-    height: min-content;
+    padding-block-end: 5px;
+    // height: calc(100% - 300px) !important; 
     border-radius: 3px;
     .btn-group-menu{
         border: none;

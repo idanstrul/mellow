@@ -14,7 +14,7 @@
             @blur="updateGroup"
      >
      <button @click="toggleMenu" class="btn-group-menu" title="Menu"></button>
-     <group-menu @copyGroup="menuOpen=false;  subMenuOpen=true" @closeMenu="menuOpen=false" @newTask="addTask" :menuOpen="menuOpen"></group-menu>
+     <group-menu @copyGroup="menuOpen=false;  subMenuOpen=true" @closeMenu="menuOpen=false" @newTask="addTask('taskToEdit')" :menuOpen="menuOpen"></group-menu>
     <copy-group-menu @saveGroup="saveGroup" @closeMenu="subMenuOpen=false" :menuOpen="subMenuOpen" :groupTitle="group.title"></copy-group-menu>
      </div>
      <task-add v-if="taskToEdit" :task="taskToEdit" @saveTask="saveTask"></task-add>
@@ -24,9 +24,12 @@
     <task-preview v-for="task in group.tasks" :key="task.id" :task="task"></task-preview>
     </Container> -->
     </div>
-    <div class="flex align-center task-add">
+    <div v-if="!subTaskToEdit" @click="addTask('subTaskToEdit')" class="flex align-center btn-task-add">
           <span></span>
           <span>Add a card</span>
+     </div>
+     <div class="sub-task-add">
+     <task-add v-if="subTaskToEdit" :task="subTaskToEdit" @saveTask="saveTask"></task-add>
      </div>
  </section>
  <!-- </Draggable> -->
@@ -42,6 +45,7 @@ import taskAdd from "./task-add.vue"
 import { utilService } from "../services/util.service"
 import { boardService } from '../services/board.service'
 import { Container, Draggable } from "vue3-smooth-dnd";
+import TaskAdd from "./task-add.vue"
 
 
 export default {
@@ -57,15 +61,17 @@ export default {
       taskToEdit: null,
       menuOpen: false,
       subMenuOpen: false,
+      subTaskToEdit: null,
     }
   },
   components: {
-      taskPreview,
-      groupMenu,
-      taskAdd,
-      copyGroupMenu,
-      Container,
-      Draggable,
+    taskPreview,
+    groupMenu,
+    taskAdd,
+    copyGroupMenu,
+    Container,
+    Draggable,
+    TaskAdd
 },
   methods: {
     toggleMenu(){
@@ -78,10 +84,11 @@ export default {
     updateGroup(){
         this.$emit('updateGroup', this.group)
     },
-    addTask(){
-      this.taskToEdit = boardService.getEmptyTask()
+    addTask(task){
+      
+      this[task] = boardService.getEmptyTask()
       this.menuOpen = false
-     console.log(this.taskToEdit);
+    //  console.log(this.taskToEdit);
   
     },
     saveTask(taskToSave){
@@ -90,6 +97,7 @@ export default {
         this.updateGroup()
       }
       this.taskToEdit = null
+      this.subTaskToEdit = null
     },
     saveGroup(title){
       const groupToCopy = JSON.parse(JSON.stringify(this.group))

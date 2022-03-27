@@ -22,7 +22,10 @@ html {
   .smooth-dnd-container{
     min-width: auto;
     // min-height: auto;
-    height: fit-content;
+    height: min-content;
+    // height: auto;
+    max-height: calc(100vh - 200px) !important;
+
   }
 
 input{
@@ -48,6 +51,7 @@ input:focus, textarea:focus{
     border-radius: 4px;
     height: 12px;
     border-radius: 10px;
+   
   }
   ::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.253);
@@ -56,6 +60,8 @@ input:focus, textarea:focus{
   }
   ::-webkit-scrollbar-track {
     margin: 25px;
+    // margin-top: 100px;
+    
     // margin-bottom: 10px;
       border-radius: 4px;
       background: #00000038; 
