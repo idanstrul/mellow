@@ -32,11 +32,12 @@ import trelloTxtInput from "./trello-txt-input.vue"
 export default {
     name: 'activity-log',
     props: {
-        comments: Array
+        comments: Array,
+        default: []
     },
     data() {
         return {
-            updatedComments: JSON.parse(JSON.stringify(this.comments)),
+            updatedComments: (this.comments)? JSON.parse(JSON.stringify(this.comments)) : [],
             newComment: {
                 id: '',
                 txt: '',
