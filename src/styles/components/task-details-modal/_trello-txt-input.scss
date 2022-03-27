@@ -1,3 +1,21 @@
+section.trello-txt-input.make-btn{
+    .input-title{  //everything from .btn class
+        background-color: #091e420a;
+        border-radius: 3px;
+        border: none;
+        margin-bottom: 8px;
+        padding: 6px 12px;
+        font-size: inherit;
+        line-height: 1.43;
+
+        &:hover {
+            color: hsl(218, 76%, 15%);
+            background-color: hsla(218, 76%, 15%, 0.078);
+        }
+    }
+}
+
+
 .input-title{
     cursor: pointer;
 }

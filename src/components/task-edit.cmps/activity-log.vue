@@ -4,7 +4,7 @@
         <ul class="clean-list">
             <li>
                 <user-avatar :user="newComment.byMember"></user-avatar>
-                <trello-txt-input :txt="newComment.txt" placeholder="Write a comment..."></trello-txt-input>
+                <trello-txt-input :txt="newComment.txt" placeholder="Write a comment..." deny-empty-save reset-on-save></trello-txt-input>
             </li>
             <li v-for="comment in comments" :key="comment.id">
                 <!-- <div class="flex-container"> -->
