@@ -1,5 +1,5 @@
 .activity-log {
-    ul li /* div.flex-container */{
+    ul li /* div.flex-container */ {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
@@ -11,19 +11,30 @@
         .user-avatar {
             margin: 0 8px 0 -8px;
             align-self: flex-start;
-            
+
             @media (min-width: 784px) {
                 margin: 0 8px 0 -36px;
             }
         }
 
-        .user-fullname{
+        // .user-avatar {
+        //     width: 32px !important;
+        //     margin-inline-start: -48px !important;
+        //     margin-bottom: -10px !important;
+        // }
+
+        //**************In orderto dmake the user avatar inside activity-log in the same size oftrello these are the declerations needed
+        
+
+        .user-fullname {
             font-weight: bold;
             color: #172b4d;
             margin-inline-end: 8px;
+            max-width: calc(100% - 150px);
+            overflow: hidden;
         }
 
-        .comment-time{
+        .comment-time {
             color: #5e6c84;
             font-size: 0.857rem;
         }

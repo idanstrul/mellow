@@ -1,8 +1,18 @@
 <template>
     <section class="trello-txt-input" @click="isInEdit = true">
-        <span v-if="!isInEdit" class="input-title">{{ txtToShow }}</span>
+        <div v-if="!isInEdit" class="flex space-between">
+            <span class="input-title">{{ txtToShow }}</span>
+            <slot></slot>
+        </div>
         <div v-else class="input-edit">
-            <textarea cols="30" rows="3" @keydown.enter.prevent="next" v-model="updatedTxt" :placeholder="placeholder" v-focus></textarea>
+            <textarea
+                cols="30"
+                rows="3"
+                @keydown.enter.prevent="next"
+                v-model="updatedTxt"
+                :placeholder="placeholder"
+                v-focus
+            ></textarea>
             <button class="primary-btn" @click.stop="saveTxt">Save</button>
             <button class="cancel-btn" @click.stop="cancel"></button>
         </div>
@@ -47,7 +57,7 @@ export default {
             this.updatedTxt = this.txt
             this.isInEdit = false
         },
-        next(){
+        next() {
             this.saveTxt()
             if (!this.isInEdit) this.$emit('enterClicked')
         }
