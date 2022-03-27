@@ -65,7 +65,7 @@ const defaultBoards = [
                                 "_id": "u328",
                                 "username": "Amit",
                                 "fullname": "Amit Miz",
-                                "color": "#0909a8"
+                                "color": "#00875a"
 
                             },
                             {
@@ -79,7 +79,7 @@ const defaultBoards = [
                                 "_id": "u429",
                                 "username": "Omer",
                                 "fullname": "Omer Esh",
-                                "color": "#07912a"
+                                "color": "#5243aa"
 
                             },
                         ],
@@ -140,7 +140,7 @@ const defaultBoards = [
                                 "_id": "u328",
                                 "username": "Amit",
                                 "fullname": "Amit Miz",
-                                "color": "#0909a8"
+                                "color": "#00875a"
 
                             },
                             {
@@ -249,14 +249,14 @@ const defaultBoards = [
                                 "_id": "u328",
                                 "username": "Amit",
                                 "fullname": "Amit Miz",
-                                "color": "#0909a8"
+                                "color": "#00875a"
 
                             },
                             {
                                 "_id": "u429",
                                 "username": "Omer",
                                 "fullname": "Omer Esh",
-                                "color": "#07912a"
+                                "color": "#5243aa"
 
                             },
                             {
@@ -322,7 +322,7 @@ const defaultBoards = [
                                 "_id": "u429",
                                 "username": "Omer",
                                 "fullname": "Omer Esh",
-                                "color": "#07912a"
+                                "color": "#5243aa"
 
                             },
                             {
@@ -367,7 +367,7 @@ const defaultBoards = [
                                 "_id": "u328",
                                 "username": "Amit",
                                 "fullname": "Amit Miz",
-                                "color": "#0909a8"
+                                "color": "#00875a"
 
                             },
                             {
@@ -381,7 +381,7 @@ const defaultBoards = [
                                 "_id": "u429",
                                 "username": "Omer",
                                 "fullname": "Omer Esh",
-                                "color": "#07912a"
+                                "color": "#5243aa"
 
                             },
                         ],
@@ -442,7 +442,7 @@ const defaultBoards = [
                                 "_id": "u328",
                                 "username": "Amit",
                                 "fullname": "Amit Miz",
-                                "color": "#0909a8"
+                                "color": "#00875a"
 
                             }
                         ],
