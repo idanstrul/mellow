@@ -11,12 +11,15 @@
 
 @mixin mainHeaderBtn {
        cursor: pointer;
-       height: 34px;
+       height: 32px;
        background-color: transparent;
        border: none;
        border-radius: 3px;
        &:hover{
            background-color: rgba(255, 255, 255, 0.25);
+       }
+       &:active{
+           background-color: rgba(255, 255, 255, 0.375);
        }
        img{
            margin-top: 3px;

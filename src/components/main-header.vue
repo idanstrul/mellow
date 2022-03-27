@@ -2,9 +2,9 @@
   <section class="main-header" :class="classBoardsPage">
     <button class="btn-boards" title="Boards"><img src="../assets/boards.png" alt=""></button>
     <router-link to="/"><button title="Mello" class="btn-logo" ><img src="../assets/logo.gif" alt=""></button></router-link>
-    <button class="btn-container" title="Workspaces">Workspaces</button>
-    <button class="btn-container" title="Recent">Recent</button>
-    <button class="btn-container" title="Create">Create</button>
+    <button class="btn-opt work" title="Workspaces">Workspaces <img class="img-arrow" src="../assets/arrow.png" alt=""></button>
+    <button class="btn-opt" title="Recent">Recent <img class="img-arrow" src="../assets/arrow.png" alt=""></button>
+    <button class="btn-opt create" title="Create">Create</button>
   
     
     <!--board-list

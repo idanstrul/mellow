@@ -1,10 +1,11 @@
 <template>
   <div class="board-header">
     <div class="flex">
-    <button class="btn-boards-drop"><img src="../assets/boardDrop.png" alt=""></button>
+    <button class="btn-boards-drop"><img class="boards-icon" src="../assets/boardsIcon.png" alt=""><span> Boards </span><img class="img-arrow" src="../assets/arrow.png" alt=""></button>
     <h2 class="board-title" contenteditable="true">{{ board.title }}</h2>
     <button class="btn-star-board"><div></div></button> <span class="nav-divider">|</span>
     <button class="btn-user-space"><h4>{{ userWorkspace }} Workspace</h4></button>
+    <button class="btn-show-menu"><span></span><span> Show menu</span></button>
     </div>
     <div class="board-members-section">
       <!--div class="board-section">
