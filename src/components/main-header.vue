@@ -2,6 +2,10 @@
   <section class="main-header" :class="classBoardsPage">
     <button class="btn-boards" title="Boards"><img src="../assets/boards.png" alt=""></button>
     <router-link to="/"><button title="Mello" class="btn-logo" ><img src="../assets/logo.gif" alt=""></button></router-link>
+    <button class="btn-container" title="Workspaces">Workspaces</button>
+    <button class="btn-container" title="Recent">Recent</button>
+    <button class="btn-container" title="Create">Create</button>
+  
     
     <!--board-list
       v-if="isBoardListOpen"
@@ -53,10 +57,10 @@ export default {
     };
   },
   components: {
+    userAvatar,
     boardCompose,
     boardList,
     userMenu,
-    userAvatar,
   },
   created() {
     this.user = this.$store.getters.loggedinUser
@@ -109,7 +113,7 @@ export default {
     },
     classBoardsPage() {
       return { 'isBoards-page': this.$route.path === '/b' }
-    }
+    },
   },
 };
 </script>
