@@ -65,21 +65,21 @@ const defaultBoards = [
                                 "_id": "u328",
                                 "username": "Amit",
                                 "fullname": "Amit Miz",
-                                "color": "#0047AB"
+                                "color": "#0909a8"
 
                             },
                             {
                                 "_id": "u439",
                                 "username": "Idan",
                                 "fullname": "Idan Stru",
-                                "color": "#e12f09"
+                                "color": "#aa0d0d"
 
                             },
                             {
                                 "_id": "u429",
                                 "username": "Omer",
                                 "fullname": "Omer Esh",
-                                "color": "#09bd0d"
+                                "color": "#07912a"
 
                             },
                         ],
@@ -140,7 +140,7 @@ const defaultBoards = [
                                 "_id": "u328",
                                 "username": "Amit",
                                 "fullname": "Amit Miz",
-                                "color": "#0047AB"
+                                "color": "#0909a8"
 
                             },
                             {
@@ -249,14 +249,14 @@ const defaultBoards = [
                                 "_id": "u328",
                                 "username": "Amit",
                                 "fullname": "Amit Miz",
-                                "color": "#0047AB"
+                                "color": "#0909a8"
 
                             },
                             {
                                 "_id": "u429",
                                 "username": "Omer",
                                 "fullname": "Omer Esh",
-                                "color": "#09bd0d"
+                                "color": "#07912a"
 
                             },
                             {
@@ -315,14 +315,14 @@ const defaultBoards = [
                                 "_id": "u439",
                                 "username": "Idan",
                                 "fullname": "Idan Stru",
-                                "color": "#e12f09"
+                                "color": "#aa0d0d"
 
                             },
                             {
                                 "_id": "u429",
                                 "username": "Omer",
                                 "fullname": "Omer Esh",
-                                "color": "#09bd0d"
+                                "color": "#07912a"
 
                             },
                             {
@@ -367,21 +367,21 @@ const defaultBoards = [
                                 "_id": "u328",
                                 "username": "Amit",
                                 "fullname": "Amit Miz",
-                                "color": "#0047AB"
+                                "color": "#0909a8"
 
                             },
                             {
                                 "_id": "u439",
                                 "username": "Idan",
                                 "fullname": "Idan Stru",
-                                "color": "#e12f09"
+                                "color": "#aa0d0d"
 
                             },
                             {
                                 "_id": "u429",
                                 "username": "Omer",
                                 "fullname": "Omer Esh",
-                                "color": "#09bd0d"
+                                "color": "#07912a"
 
                             },
                         ],
@@ -442,7 +442,7 @@ const defaultBoards = [
                                 "_id": "u328",
                                 "username": "Amit",
                                 "fullname": "Amit Miz",
-                                "color": "#0047AB"
+                                "color": "#0909a8"
 
                             }
                         ],
