@@ -13,7 +13,7 @@
             class="group-title"
             @blur="updateGroup"
      >
-     <button @click="toggleMenu" class="btn-group-menu" title="Open menu"></button>
+     <button @click="toggleMenu" class="btn-group-menu" title="Menu"></button>
      <group-menu @copyGroup="menuOpen=false;  subMenuOpen=true" @closeMenu="menuOpen=false" @newTask="addTask" :menuOpen="menuOpen"></group-menu>
     <copy-group-menu @saveGroup="saveGroup" @closeMenu="subMenuOpen=false" :menuOpen="subMenuOpen" :groupTitle="group.title"></copy-group-menu>
      </div>

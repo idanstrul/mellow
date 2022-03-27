@@ -1,9 +1,11 @@
 <template>
   <div class="board-header">
+    <div class="flex">
     <button class="btn-boards-drop"><img src="../assets/boardDrop.png" alt=""></button>
     <h2 class="board-title" contenteditable="true">{{ board.title }}</h2>
     <button class="btn-star-board"><div></div></button> <span class="nav-divider">|</span>
     <button class="btn-user-space"><h4>{{ userWorkspace }} Workspace</h4></button>
+    </div>
     <div class="board-members-section">
       <!--div class="board-section">
         <contenteditable

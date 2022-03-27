@@ -1,7 +1,7 @@
 <template>
   <section class="main-header" :class="classBoardsPage">
     <button class="btn-boards" title="Boards"><img src="../assets/boards.png" alt=""></button>
-    <router-link to="/"><button class="btn-logo" ><img src="../assets/logo.gif" alt=""></button></router-link>
+    <router-link to="/"><button title="Mello" class="btn-logo" ><img src="../assets/logo.gif" alt=""></button></router-link>
     
     <!--board-list
       v-if="isBoardListOpen"

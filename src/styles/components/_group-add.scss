@@ -6,11 +6,11 @@
         padding: 10px;
         border-radius: 2px;
         color: rgb(255, 255, 255);
-        background-color: #b8b8b893;
+        background-color: hsla(0, 0%, 100%, 0.2);
         font-weight: 400;
         transition: background-color .2s ease-in-out;
         &:hover{
-            background-color: #bbbabaf6;
+            background-color: hsla(0, 0%, 100%, 0.3);
         }
         span:first-child{
             font-size: rem(23px);
