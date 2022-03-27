@@ -101,7 +101,7 @@
                 }
                 .txt-title {
                     color: #091e42;
-                    margin-bottom: 10rem;
+                    margin-bottom: 13rem;
                     font-size: rem(20px);
                     font-weight: 400;
                     letter-spacing: 1;
@@ -121,6 +121,7 @@
                 .start-btn {
                     display: inline-block;
                     font-size: 1.25rem;
+                    margin-bottom: 18rem;
                     color: #fff;
                     background-color: #0065ff;
                     border-color: #0065ff;
@@ -155,5 +156,6 @@
         grid-template-columns: 450px;
         max-width: 100%;
         height: auto;
+        margin-bottom: 100px;
     }
 }
