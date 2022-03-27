@@ -5,6 +5,7 @@ section.task-details {
     left: 0;
     overflow-y: auto;
     height: 100%;
+    color: #172b4d;
 
     .modal-screen {
         background-color: rgba(0, 0, 0, 0.64);
@@ -21,28 +22,28 @@ section.task-details {
             padding: 16px;
             width: calc(100vw - 16px);
 
-            button.exit-btn{
-                    position: absolute;
-                    top: 5px;
-                    right: 5px;
-                    font-size: 20px;
-                    border-radius: 50%;
-                    line-height: 20px;
-                    padding: 4px;
-                    width: 36px;
-                    height: 36px;
-                    border: none;
-                    color: #42526e;
-                    z-index: 10;
+            button.exit-btn {
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                font-size: 20px;
+                border-radius: 50%;
+                line-height: 20px;
+                padding: 4px;
+                width: 36px;
+                height: 36px;
+                border: none;
+                color: #42526e;
+                z-index: 10;
 
-                    &:hover{
-                        background-color: #091e4214;
-                    }
+                &:hover {
+                    background-color: #091e4214;
+                }
 
-                    &::before{
-                        font-family: trellicons;
-                        content: "\e91c";
-                    }
+                &::before {
+                    font-family: trellicons;
+                    content: "\e91c";
+                }
             }
 
             // ::before.icon{
@@ -63,21 +64,21 @@ section.task-details {
                     margin: 4px 38px 8px;
                 }
 
-                .modal-main{
+                .modal-main {
                     margin-inline-start: 40px;
                 }
             }
 
             .section-title {
                 display: inline-block;
-                font-family: sans-serif;
+                font-family: segSemiBold;
                 color: $clr-dark-title;
                 // padding: 8px 0;
                 margin-bottom: 12px;
             }
 
-            .secondary-section-title{
-                margin-bottom: 4px;
+            .secondary-section-title {
+                margin-bottom: 6px;
                 display: inline-block;
                 font-size: 0.857rem;
                 font-weight: 600;
@@ -88,11 +89,11 @@ section.task-details {
                 width: 100%;
                 padding-inline-end: 16px;
 
-                & > div{
+                & > div {
                     margin-bottom: 24px;
                 }
 
-                .notations{
+                .notations {
                     gap: 15px;
                 }
             }
@@ -107,6 +108,7 @@ section.task-details {
         padding: 6px 12px;
         font-size: inherit;
         line-height: 1.43;
+        font-family: inherit;
 
         &.side-bar {
             width: 168px;
@@ -136,30 +138,27 @@ section.task-details {
     }
 }
 
-
 // .icon-like-layout {
 //     // color: $clr-dark-icon;
 //     display: inline-block;
 //     margin-inline-end: 16px;
 //     margin-inline-start: 2px;
 //     vertical-align: middle;
-    
+
 //     @media (min-width: 784px) {
 //         margin-inline-start: -29px;
 //     }
 // }
-  
-    // &.section-title::before {
-    //   vertical-align: middle;
-    //   font-size: 1.714rem;
-  
-  
-    //   .modal-main & {
-    //     margin-inline-end: 12px;
-    //   }
-    // }
+
+// &.section-title::before {
+//   vertical-align: middle;
+//   font-size: 1.714rem;
+
+//   .modal-main & {
+//     margin-inline-end: 12px;
 //   }
-  
+// }
+//   }
 
 // .modal-header {
 //   width: 100%;
@@ -201,6 +200,9 @@ section.task-details {
 
 .icon-checklist {
     @include add-trello-icon("\e91a");
+    &::before{
+        top: 1px !important;
+    }
 }
 
 .icon-dates {

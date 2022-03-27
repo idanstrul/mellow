@@ -14,6 +14,7 @@
             <div class="description">
               <span class="section-title text-m icon-description">Description</span>
               <trello-txt-input
+                class="make-btn"
                 :txt="currTask.description"
                 placeholder="Add a more detailed description…"
                 @txt-saved="updateDesc"

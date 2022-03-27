@@ -5,8 +5,9 @@
             :txt="updatedChecklist.title"
             @txt-saved="updateChecklistTitle"
             deny-empty-save
-        ></trello-txt-input>
-        <button class="btn float-right">Delete</button>
+        >
+        <button class="btn float-right btn-default" @click.stop>Delete</button>
+        </trello-txt-input>
         <!-- <span class="progress-count"></span> -->
         <el-progress :percentage="completePercentage" :status="passSuccess" />
         <!-- <div class="progress-bar"></div> -->
