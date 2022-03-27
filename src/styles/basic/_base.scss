@@ -5,7 +5,7 @@
 }
 
 html {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Segoe UI;
     // background-color: #df6c3fe0;
     font-size: 14px;
     background-image: url(../assets/bg.jpg);
@@ -21,14 +21,15 @@ html {
 
   .smooth-dnd-container{
     min-width: auto;
-    // min-height: auto;
+    min-height: 5px;
     height: min-content;
     // height: auto;
     max-height: calc(100vh - 200px) !important;
-
+    
   }
 
 input{
+  font-family: Segoe UI;
   cursor: pointer;
 }
 

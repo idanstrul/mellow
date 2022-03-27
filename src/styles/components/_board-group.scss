@@ -95,12 +95,15 @@
 .group-title{
     background-color: transparent;
     border: none;
-    font-weight: 600;
+    font-family: segSemiBold;
+    // font-size: 14px;
+    // font-weight: 1s00;
     padding-inline-start: 6px;
     margin-inline-start: 8px;
-    color: #172b4d;
+    color: #172b4dea;
     height: 28px;
     width: 221px;
+    font-size: rem(14px);
 }
 
 .group-header > * {
