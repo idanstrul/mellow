@@ -54,14 +54,15 @@ export default {
         this.isLoaded = true
       } catch (err) {
         console.log("cannot upload image", err);
-        throw err;
+        throw err;_
       } finally {
         this.isLoading = false;
       }
     },
     async signup() {
       await this.$store.dispatch({ type: "signup", userCred: this.user });
-      this.$router.push(`/b/${this.$store.getters.boards[0]._id}`);
+      this.$router.push(`/board/b101`);
+      //this.$router.push(`/b/${this.$store.getters.boards[0]}`);
     },
   },
 };
