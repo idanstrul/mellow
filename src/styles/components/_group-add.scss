@@ -9,6 +9,16 @@
         background-color: hsla(0, 0%, 100%, 0.2);
         font-weight: 400;
         transition: background-color .2s ease-in-out;
+        span:first-child{
+            font-family: trellicons;
+            font-size: rem(16px) !important;
+            margin-block-start: 7px;
+            margin-inline-end: 4px;
+            margin-inline-start: 2px;
+        }
+        span:first-child::before{
+            content: "\e901";
+        }
         &:hover{
             background-color: hsla(0, 0%, 100%, 0.3);
         }

@@ -21,6 +21,15 @@
     .group-header{
         min-width: 272px;
     }
+    .task-add{
+        // background-color: red;
+        span:first-child{
+            font-family: trellicons;
+        }
+        span:first-child::before{
+            font-family: trellicons;
+        }
+    }
     width: 272px;
     position: relative;
     background-color: $clr-group-bg;
@@ -48,7 +57,7 @@
     background-color: transparent;
     border: none;
     font-weight: 600;
-    padding-inline-start: 7px;
+    padding-inline-start: 6px;
     margin-inline-start: 8px;
     color: #172b4d;
     height: 28px;

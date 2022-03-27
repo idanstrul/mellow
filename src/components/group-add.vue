@@ -2,7 +2,7 @@
 <section>
   <div v-if="isAddingGroup" @click="addGroup" class="group-add">
       <div class="flex align-center">
-          <span>+</span>
+          <span></span>
           <span>Add another list</span>
      </div>
   </div>

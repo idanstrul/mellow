@@ -24,6 +24,10 @@
     <task-preview v-for="task in group.tasks" :key="task.id" :task="task"></task-preview>
     </Container> -->
     </div>
+    <div class="flex align-center task-add">
+          <span></span>
+          <span>Add a card</span>
+     </div>
  </section>
  <!-- </Draggable> -->
     <!-- </Container> -->
