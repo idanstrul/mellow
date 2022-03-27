@@ -2,7 +2,7 @@
   <div class="login-signup">
      <section class="header-home">
       <div class="logo">
-          <span class="material-icons-outlined logo-icon"></span>Mellow
+          <span class="material-icons-outlined logo-icon"></span>Mello
       </div>
       <nav class="homepage-nav">
          <router-link to='/' class="login">Home</router-link>

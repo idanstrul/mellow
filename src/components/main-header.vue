@@ -21,7 +21,7 @@
     </div> -->
     <!-- <div class="btn-container" @click="goToHomePage">
       <span class="material-icons-outlined"></span>
-      <span>Mellow</span>
+      <span>Mello</span>
       <div @click.stop="isUserMenuOpen = true" class="avatar">
         <user-menu
           v-if="isUserMenuOpen"

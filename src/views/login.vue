@@ -3,7 +3,7 @@
     <section class="header-home">
       <div class="logo">
     <span class="material-icons-outlined logo-icon"></span
-        >Mellow
+        >Mello
       </div>
       <nav class="homepage-nav">
         <router-link to="/" class="login">Home</router-link>
@@ -12,7 +12,7 @@
       </nav>
     </section>
     <div class="main-container login-container">
-      <p>Log in to Mellow</p>
+      <p>Log in to Mello</p>
       <form @submit.prevent="login">
         <input
           type="text"
