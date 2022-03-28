@@ -83,6 +83,7 @@ const defaultBoards = [
 
                             },
                         ],
+                        "startDate": 16156211111,
                     },
                     {
                         "id": "c102",
@@ -153,8 +154,8 @@ const defaultBoards = [
                         ],
                         "labelIds": ["l101"],
                         "createdAt": 1590999730348,
-                        // "startDate": 16156211111,
-                        "dueDate": 16156215211,
+                        "startDate": 16156211111,
+                        "dueDate": 1648655802996,
                         "byMember": {
                             "_id": "u101",
                             "username": "Tal",
@@ -198,7 +199,7 @@ const defaultBoards = [
 
                         "labelIds": ["l101", "l102"],
                         "createdAt": 1590999730348,
-                        "dueDate": 16156215211,
+                        "dueDate": 1648489253250,
                         "byMember": {
                             "_id": "u101",
                             "username": "Tal",
@@ -336,7 +337,7 @@ const defaultBoards = [
                         ],
                         "labelIds": ["l102"],
                         "createdAt": 1590999730348,
-                        "dueDate": 16156215211,
+                        "dueDate": 1652809253250,
                         "byMember": {
                             "_id": "u101",
                             "username": "Tal",
