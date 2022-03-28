@@ -42,6 +42,7 @@
 
  <script>
 import userAvatar from "../components/user-avatar.vue";
+import showMenu from "../components/show-menu.vue";
 
 export default {
   props: {
@@ -92,6 +93,7 @@ export default {
   },
   components: {
     userAvatar,
+    showMenu,
   },
 };
 </script>
