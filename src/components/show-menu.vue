@@ -1,5 +1,5 @@
 <template>
-  <div class="side-menu-popup">
+  <div class="custom-menu">
     <div>
       <Transition enter-active-class="animate__animated animate__slideInRight">
         <div v-if="menuOpen" class="custom-menu-container"></div>
