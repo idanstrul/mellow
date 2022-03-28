@@ -135,7 +135,7 @@
             &:hover{
                 span:first-child{
                     &::before{
-                        content: "\e918";
+                        content: "\e919";
                     }
                 }
             }
@@ -150,6 +150,11 @@
             background-color: #61bd4f;
             &:hover{
                 background-color: #519839;
+                span:first-child{
+                    &::before{
+                        content: "\e918";
+                    }
+                }
             }
         }
         .due-soon{
