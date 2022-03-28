@@ -75,6 +75,7 @@ export default {
 },
   methods: {
     toggleMenu(){
+      
       this.menuOpen = !this.menuOpen
       if(this.subMenuOpen) {
         this.subMenuOpen = !this.subMenuOpen

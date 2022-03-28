@@ -19,10 +19,13 @@ html {
 
 .smooth-dnd-container {
   min-width: auto;
-  min-height: 5px;
+  min-height: 1px;
   height: min-content;
   // height: auto;
   max-height: calc(100vh - 200px) !important;
+  &:hover{
+    min-height: fit-content;
+  }
 }
 
 input {
