@@ -1,7 +1,8 @@
 <template>
   <div class="custom-menu">
     <div>
-      <Transition enter-active-class="animate__animated animate__slideInRight">
+      <Transition enter-active-class="animate__animated animate__slideInRight"
+      leave-active-class="animate__animated animate__slideOutLeft">
         <div v-if="menuOpen" class="custom-menu-container"></div>
       </Transition>
     </div>
@@ -18,6 +19,9 @@ export default {
     }
   },
   methods: {
+      close() {
+      this.$emit("close");
+    },
   }
 }
 </script>
