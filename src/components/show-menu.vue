@@ -2,9 +2,9 @@
   <div class="side-menu-popup">
     <div>
       <Transition enter-active-class="animate__animated animate__slideInRight">
-<div v-if="menuOpen" class="custom-menu-container"></div>
+        <div v-if="menuOpen" class="custom-menu-container"></div>
       </Transition>
-   </div>
+    </div>
    </div>
 </template>
 
