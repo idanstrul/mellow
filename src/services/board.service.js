@@ -31,7 +31,7 @@ const defaultBoards = [
             {
                 "id": "l101",
                 "title": "Done",
-                "color": "#61bd4f"
+                "color": "#FF0000"
             },
             {
                 "id": "l102",
@@ -151,7 +151,7 @@ const defaultBoards = [
 
                             },
                         ],
-                        "labelIds": ["l101", "l102"],
+                        "labelIds": ["l101"],
                         "createdAt": 1590999730348,
                         "dueDate": 16156215211,
                         "byMember": {
@@ -333,7 +333,7 @@ const defaultBoards = [
 
                             },
                         ],
-                        "labelIds": ["l101", "l102"],
+                        "labelIds": ["l102"],
                         "createdAt": 1590999730348,
                         "dueDate": 16156215211,
                         "byMember": {

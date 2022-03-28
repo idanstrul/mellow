@@ -28,8 +28,11 @@
     //     }
     .group-list{
         // padding-block-end: 70px !important;
-        width: 98%;
-        margin: 0 auto;
+        width: 99%;
+        position: absolute;
+        right: 0;
+        // margin: 0 auto;
+        // margin-inline-start: 10px;
         overflow-y: hidden;
         overflow-x: auto;
         // max-height: 820px;

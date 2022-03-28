@@ -1,8 +1,6 @@
 .task-preview{
     cursor: pointer;
     background-color: $clr-base;
-    // padding: 6px;
-
     max-width: 95%;
     margin: 0 5px 0 auto;
     margin-block-end: 8px;
@@ -10,22 +8,60 @@
     border-bottom: 1px solid #b2b9c5;
     // line-height: 2;
     min-height: 32px;
+    // min-height: min-content;
     p{
         position: relative;
-        top: 5px;
+        // top: 5px;
+        padding: 5px 0;
         left: 8px;
+        width: 95%;
     }
     &:hover{
         background-color: #f4f5f7;
     }
-   
+    .task-labels{
+        
+        // position: relative;
+        margin-block-end: -5px;
+    }
+
+    .task-preview-label{
+        margin-inline-start: 8px;
+        display: inline-block;
+        color: $clr-base;
+        font-family: segSemiBold;
+        margin-inline-end: -5px;
+        transition: all .3s ease-in-out, background-color 0.15s;
+        // transition: background-color .0s ease-in-out;
+        font-size: 12px;
+        &.close{
+            border-radius: 10px;
+            width: 40px;
+            height: 8px;
+            span{
+                display: none;
+            }
+        }
+        &.open{
+            padding-inline-start: 5px;
+            border-radius: 4px;
+            min-width: 56px;
+            max-width: 214px;
+            height: 16px;
+            line-height: 16px;
+            margin-block-start: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
 }
 
 .task-members{
     justify-content: flex-end;
     margin-inline-end: 8px;
     margin-block-end: 4px;
-    margin-block-start: 5px;
+    margin-block-start: 10px;
     * {
         margin-inline-start: 4px;
 

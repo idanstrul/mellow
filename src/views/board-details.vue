@@ -23,7 +23,7 @@
         :shouldAcceptDrop="(e, payload) =>  (e.groupName === 'col-items')"
         :get-child-payload="getCardPayload(group.id)"
         @drop="(e) => onCardDrop(group.id, e)">
-    <task-preview @click="goToDetail(group, task)" v-for="task in group.tasks" :key="task.id" :task="task"></task-preview>
+    <task-preview @openLabels="labelsOpen=!labelsOpen" :labelsOpen="labelsOpen" @click="goToDetail(group, task)" v-for="task in group.tasks" :key="task.id" :task="task"></task-preview>
       </Container>
     </board-group>
     </div>
@@ -60,7 +60,8 @@ export default {
   data() {
     return {
       board: null,
-      isAddingGroup: true 
+      isAddingGroup: true,
+      labelsOpen: false 
     }
   },
   components: {
