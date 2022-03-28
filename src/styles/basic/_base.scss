@@ -1,7 +1,7 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
@@ -17,23 +17,20 @@ html {
     height: 100vh;
     box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.2);
 
-  }
+.smooth-dnd-container {
+  min-width: auto;
+  min-height: 5px;
+  height: min-content;
+  // height: auto;
+  max-height: calc(100vh - 200px) !important;
+}
 
-  .smooth-dnd-container{
-    min-width: auto;
-    min-height: 5px;
-    height: min-content;
-    // height: auto;
-    max-height: calc(100vh - 200px) !important;
-    
-  }
-
-input{
+input {
   font-family: Segoe UI;
   cursor: pointer;
 }
 
-hr{
+hr {
   height: 1px;
   background-color: #dfe2e7;
   border: none;
@@ -41,33 +38,31 @@ hr{
   margin: 0 auto;
 }
 
-input:focus, textarea:focus{
+input:focus,
+textarea:focus {
   outline-color: $clr-input-ol;
   background-color: $clr-base;
   cursor: auto;
 }
 
+::-webkit-scrollbar {
+  border-radius: 4px;
+  height: 12px;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.253);
+  border-radius: 4px;
+  // margin: 5px;
+}
+::-webkit-scrollbar-track {
+  margin: 25px;
+  // margin-top: 100px;
 
-  ::-webkit-scrollbar {
-    border-radius: 4px;
-    height: 12px;
-    border-radius: 10px;
-   
-  }
-  ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.253);
-    border-radius: 4px;
-    // margin: 5px;
-  }
-  ::-webkit-scrollbar-track {
-    margin: 25px;
-    // margin-top: 100px;
-    
-    // margin-bottom: 10px;
-      border-radius: 4px;
-      background: #00000038; 
-    }
-
+  // margin-bottom: 10px;
+  border-radius: 4px;
+  background: #00000038;
+}
 
 //  ::-webkit-scrollbar-track {
 //     border-radius: 10px;
@@ -83,18 +78,23 @@ input:focus, textarea:focus{
 //     background: linear-gradient(left, #8391A6, #536175);
 //   }
 
-  button{
-    cursor: pointer;
+button {
+  cursor: pointer;
+}
+
+button.btn-default {
+  border-radius: 3px;
+  border: none;
+  padding: 6px 12px;
+  font-size: inherit;
+  line-height: 1.43;
+  font-family: inherit;
+  background-color: #091e420a;
+  color: #172b4d;
+
+  &:hover {
+    background-color: #091e4214;
+    color: #091e42;
   }
-
-  button.btn-default{
-    border: none;
-    background-color: #091e420a;
-    color: #172b4d;
-
-    &:hover{
-        background-color: #091e4214;
-        color: #091e42;
-    }
-  }
-
+}
+}

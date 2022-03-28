@@ -85,7 +85,7 @@
         .main-home-page {
             grid-column: 2;
             margin-top: 180px;
-            margin-left: 20px;
+            margin-left: 220px;
             display: flex;
             align-items: center;
             justify-content: space-around;
@@ -104,8 +104,8 @@
                 }
                 .txt-title {
                     color: #091e42;
-                    margin-bottom: 13rem;
-                    font-size: rem(20px);
+                    margin-bottom: 8rem;
+                    font-size: rem(24px);
                     font-weight: 400;
                     letter-spacing: 1;
                     line-height: 2;
@@ -131,7 +131,7 @@
                     border-radius: 6px;
                     border: 1px solid transparent;
                     color: rgb(255, 255, 255);
-                    padding: 0.375rem 0.75rem;
+                    padding: 0.875rem 0.75rem;
                     width: 180px;
                     cursor: pointer;
                     &:hover {
@@ -160,6 +160,6 @@
         max-width: 100%;
         height: auto;
         position: relative;
-        bottom: 30px;
+        bottom: 90px;
     }
 }
