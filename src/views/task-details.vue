@@ -10,6 +10,7 @@
             <div v-if="true" class="notations flex wrap">
               <trello-members v-if="hasMembers" :members="currTask.members"></trello-members>
               <trello-labels v-if="hasLabels" :labels="currTaskLabels"></trello-labels>
+              <trello-dates v-if="currTask.dueDate" :dueDate="currTask.dueDate" :status="currTask.status"></trello-dates>
             </div>
             <div class="description">
               <span class="section-title text-m icon-description">Description</span>
@@ -61,6 +62,7 @@ import trelloMembers from "../components/task-edit.cmps/trello-members.vue"
 import activityLog from "../components/task-edit.cmps/activity-log.vue"
 import trelloChecklist from "../components/task-edit.cmps/trello-checklist.vue"
 import trelloTxtInput from "../components/task-edit.cmps/trello-txt-input.vue"
+import trelloDates from "../components/task-edit.cmps/trello-dates.vue"
 
 export default {
   name: 'task-details',
@@ -68,6 +70,7 @@ export default {
     const taskId = this.$route.params.taskId
     const groupId = this.$route.params.groupId
     this.currTask = await this.$store.dispatch({ type: 'getTaskById', groupId, taskId })
+    if (!this.currTask.labelIds) return
     const boardLabels = this.$store.getters.currBoardLabels
     this.currTaskLabels = boardLabels.filter(label =>
       this.currTask.labelIds.includes(label.id))
@@ -84,7 +87,9 @@ export default {
       this.currTask.description = updatedDesc
     },
     closeModal(){
-      this.$router.go(-1)
+      const boardId = this.$route.params.boardId
+      // console.log('boardId',boardId);
+      this.$router.push({name: 'board', params:{boardId} })
     }
   },
   computed: {
@@ -101,7 +106,8 @@ export default {
     trelloMembers,
     activityLog,
     trelloChecklist,
-    trelloTxtInput
+    trelloTxtInput,
+    trelloDates
   }
 }
 </script>

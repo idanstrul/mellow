@@ -135,6 +135,15 @@ section.task-details {
             color: hsl(218, 76%, 15%);
             background-color: hsla(218, 76%, 15%, 0.078);
         }
+
+    }
+
+    input[type="checkbox"] {
+        box-shadow: inset 0 0 1px 1px #dfe1e6;
+        transform: scale(1.1);
+        &:checked {
+            box-shadow: none;
+        }
     }
 }
 
