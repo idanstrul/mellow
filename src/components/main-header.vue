@@ -5,8 +5,16 @@
     <button class="btn-opt work" title="Workspaces">Workspaces <img class="img-arrow" src="../assets/arrow.png" alt=""></button>
     <button class="btn-opt" title="Recent">Recent <img class="img-arrow" src="../assets/arrow.png" alt=""></button>
     <button class="btn-opt create" title="Create">Create</button>
-  
-    
+
+  <!--div class="header-features"></!--div>
+    <div @click.stop="isUserMenuOpen = true">
+    <user-menu
+          v-if="isUserMenuOpen"
+          v-clickoutside="hideUserMenu"
+          :user="user"
+          @logout="logout"
+          @close="isUserMenuOpen = false"
+        /-->
     <!--board-list
       v-if="isBoardListOpen"
       @closeBoardList="isBoardListOpen = false"
@@ -20,14 +28,6 @@
       </div>
     </div> -->
     <!-- <div class="btn-container" @click="goToHomePage">
-      <span class="material-icons-outlined"></span>
-      <span>Mello</span>
-      <div @click.stop="isUserMenuOpen = true" class="avatar">
-        <user-menu
-          v-if="isUserMenuOpen"
-          :user="user"
-          @logout="logout"
-          @close="isUserMenuOpen = false"/>
         
         <board-compose
         @closeCompose="toggleBoardCompose"
@@ -36,6 +36,7 @@
         ></board-compose>
       </div>
     </div> -->
+    </div>
         <user-avatar :diameter="32" :user="user"/>
   </section>
 </template>
