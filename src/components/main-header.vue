@@ -36,7 +36,6 @@
         ></board-compose>
       </div>
     </div> -->
-    </div>
         <user-avatar :diameter="32" :user="user"/>
   </section>
 </template>
