@@ -3,9 +3,8 @@
         <span class="section-title text-m icon-activity">Activity</span>
         <ul class="clean-list">
             <li>
-                <user-avatar :user="newComment.byMember"></user-avatar>
+                <user-avatar :user="byMember"></user-avatar>
                 <trello-txt-input
-                    :txt="newComment.txt"
                     placeholder="Write a comment..."
                     deny-empty-save
                     reset-on-save
@@ -26,6 +25,7 @@
 </template>
 
 <script>
+import { utilService } from "../../services/util.service"
 import userAvatar from "../user-avatar.vue"
 import trelloTxtInput from "./trello-txt-input.vue"
 
@@ -37,17 +37,12 @@ export default {
     },
     data() {
         return {
-            updatedComments: (this.comments)? JSON.parse(JSON.stringify(this.comments)) : [],
-            newComment: {
-                id: '',
-                txt: '',
-                createdAt: null,
-                byMember: {
-                    "_id": "u101",
-                    "fullname": "Tal Tarablus",
-                    "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                } //should be the logged in user
-            }
+            updatedComments: (this.comments) ? JSON.parse(JSON.stringify(this.comments)) : [],
+            byMember: {
+                "_id": "u101",
+                "fullname": "Tal Tarablus",
+                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+            } //should be the logged in user
         }
     },
     methods: {
@@ -55,19 +50,15 @@ export default {
             const options = { month: 'long', day: '2-digit', hour: 'numeric', minute: 'numeric' }
             return new Date(timeStamp).toLocaleString(undefined, options)
         },
-        addComment(commentTxt) {
-            this.newComment.id = this.makeId()
-            this.newComment.txt = commentTxt,
-            this.newComment.createdAt= Date.now()
-            this.updatedComments.unshift(JSON.parse(JSON.stringify(this.newComment)))
-        },
-        makeId(length = 8) {
-            var txt = '';
-            var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            for (var i = 0; i < length; i++) {
-                txt += possible.charAt(Math.floor(Math.random() * possible.length));
+        addComment(newCommentTxt) {
+            const newComment = {
+                id: utilService.makeId(),
+                txt: newCommentTxt,
+                createdAt: Date.now(),
+                byMember: this.byMember
             }
-            return txt;
+            this.updatedComments.unshift(newComment)
+            this.$emit('updated', JSON.parse(JSON.stringify(this.updatedComments)))
         },
     },
     components: {

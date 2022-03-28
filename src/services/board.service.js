@@ -561,3 +561,14 @@ function getEmptyTask() {
         },
     }
 }
+
+// async function removeTask(groupId, taskId) {
+
+// }
+
+// async function saveTask(task) {
+//     const taskToSave = JSON.parse(JSON.stringify(task))
+//     if (taskToSave._id) return storageService.putTask(STORAGE_KEY, taskToSave);
+//     return storageService.postTask(STORAGE_KEY, taskToSave)
+
+// }

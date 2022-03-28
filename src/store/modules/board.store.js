@@ -36,6 +36,21 @@ export const boardStore = {
                 currBoard._id !== board._id)
             state.recentBoards.unshift(board)
         },
+        // saveTaskToStore(state, { groupId, taskToSave }) {
+        //     const currGroup = state.currBoard.groups.find(g => g.id === groupId)
+        //     if (!taskToSave.id) {
+        //         taskToSave.id = utilService.makeId()
+        //         taskToSave.createdAt = Date.now()
+        //         currGroup.tasks.unshift(taskToSave)
+        //     }
+        //     const taskIdx = currGroup.tasks.findIndex(t => t.id === taskToSave.id)
+        //     currGroup.tasks[taskIdx] = taskToSave
+        // },
+        // removeTaskInStore(state, { groupId, taskId }) {
+        //     const currGroup = state.currBoard.groups.find(g => g.id === groupId)
+        //     const taskIdx = currGroup.tasks.findIndex(t => t.id === taskId)
+        //     currGroup.tasks.splice(taskIdx, 1)
+        // },
     },
     actions: {
         async loadCurrBoard(context, { boardId }) {
@@ -134,7 +149,41 @@ export const boardStore = {
             // console.log('currGroup', currGroup);
             const currTask = currGroup.tasks.find(t => t.id === taskId)
             return currTask
+        },
+        async saveTask(context, { groupId, taskToSave }) {
+            const boardToSave = context.getters.currBoard
+            const currGroup = boardToSave.groups.find(g => g.id === groupId)
+            if (!taskToSave.id) {
+                taskToSave.id = utilService.makeId()
+                taskToSave.createdAt = Date.now()
+                currGroup.tasks.unshift(taskToSave)
+            } else {
+                const taskIdx = currGroup.tasks.findIndex(t => t.id === taskToSave.id)
+                currGroup.tasks[taskIdx] = taskToSave
+            }
+            return context.dispatch({ type: 'saveCurrBoard', boardToSave })
+        },
+        async removeTask(context, { groupId, taskId }) {
+            const boardToSave = context.getters.currBoard
+            const currGroup = boardToSave.groups.find(g => g.id === groupId)
+            const taskIdx = currGroup.tasks.findIndex(t => t.id === taskId)
+            currGroup.tasks.splice(taskIdx, 1)
+            return context.dispatch({ type: 'saveCurrBoard', boardToSave })
+        },
+        // async saveTask(context, {groupId, taskToSave}){
+        //     context.commit({ type: 'setIsLoading', loadingStatus: true })
+        //     try {
+        //         context.commit({type: 'saveTaskToStore', groupId, taskToSave})
+        //         const savedTask = boardService.saveTask(taskToSave)
+        //     }
+        //     catch {
+        //         console.error(`Cannot save task: `, err)
+        //         context.dispatch({ type: 'flashUserMsg', msg: `Oops! Cannot save task...`, style: 'warning' })
+        //     }
+        //     finally {
+        //         context.commit({ type: 'setIsLoading', loadingStatus: false })
+        //     }
+        // },
 
-        }
     }
 }

@@ -13,6 +13,7 @@
                 :placeholder="placeholder"
                 v-focus
             ></textarea>
+            <!-- <pre>{{updatedTxt}}</pre> -->
             <button class="primary-btn" @click.stop="saveTxt">Save</button>
             <button class="cancel-btn" @click.stop="cancel"></button>
         </div>

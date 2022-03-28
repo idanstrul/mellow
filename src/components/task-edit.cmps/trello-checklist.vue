@@ -6,14 +6,14 @@
             @txt-saved="updateChecklistTitle"
             deny-empty-save
         >
-        <button class="btn float-right btn-default" @click.stop>Delete</button>
+            <button class="btn float-right btn-default" @click.stop>Delete</button>
         </trello-txt-input>
         <!-- <span class="progress-count"></span> -->
         <el-progress :percentage="completePercentage" :status="passSuccess" />
         <!-- <div class="progress-bar"></div> -->
         <ul class="todos clean-list">
             <li v-for="(todo, todoIdx) in updatedChecklist.todos" :key="todo.id">
-                <input type="checkbox" v-model="todo.isDone" />
+                <input type="checkbox" :checked="todo.isDone" @change="toggleTodoStatus(todoIdx)"/>
                 <trello-txt-input
                     :txt="todo.title"
                     @txt-saved="updateTodoTitle($event, todo.id)"
@@ -35,11 +35,13 @@
 </template>
 
 <script>
+import { utilService } from "../../services/util.service"
 import trelloTxtInput from "./trello-txt-input.vue"
 
 export default {
     name: 'trello-checklist',
     props: {
+        // modelValue: Object
         checklist: Object
     },
     data() {
@@ -48,37 +50,40 @@ export default {
         }
     },
     methods: {
+        saveChecklist(){
+            const checklistToSave = JSON.parse(JSON.stringify(this.updatedChecklist))
+            this.$emit('updated', checklistToSave)
+        },
+        toggleTodoStatus(todoIdx){
+            const todo = this.updatedChecklist.todos[todoIdx]
+            todo.isDone = !todo.isDone
+            this.saveChecklist()
+        },
         updateChecklistTitle(updatedTitle) {
             this.updatedChecklist.title = updatedTitle
+            this.saveChecklist()
         },
         updateTodoTitle(updatedTitle, todoId) {
-            console.log('updatedTitle', updatedTitle);
+            // console.log('updatedTitle', updatedTitle);
             // this.$emit('updated', this.updatedDesc)
             const idx = this.updatedChecklist.todos.findIndex(todo => todo.id === todoId)
             this.updatedChecklist.todos[idx].title = updatedTitle
+            this.saveChecklist()
         },
         removeTodo(todoIdx) {
             this.updatedChecklist.todos.splice(todoIdx, 1)
+            this.saveChecklist()
+
         },
         addTodo(title) {
             this.updatedChecklist.todos.push({
-                id: this.makeId(),
+                id: utilService.makeId(),
                 title,
                 isDone: false
             })
+            this.saveChecklist()
         },
-        cancel() {
-            this.updatedDesc = this.description
-        },
-        makeId(length = 8) {
-            var txt = '';
-            var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            for (var i = 0; i < length; i++) {
-                txt += possible.charAt(Math.floor(Math.random() * possible.length));
-            }
-            return txt;
-        },
-        next(){
+        next() {
             // console.log('event',event);
             // console.log(this.$refs.input.$el);
             this.$refs.input.$el.click()

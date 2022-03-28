@@ -10,7 +10,11 @@
             <div v-if="true" class="notations flex wrap">
               <trello-members v-if="hasMembers" :members="currTask.members"></trello-members>
               <trello-labels v-if="hasLabels" :labels="currTaskLabels"></trello-labels>
-              <trello-dates v-if="currTask.dueDate" :dueDate="currTask.dueDate" :status="currTask.status"></trello-dates>
+              <trello-dates
+                v-if="currTask.dueDate"
+                :dueDate="currTask.dueDate"
+                :status="currTask.status"
+              ></trello-dates>
             </div>
             <div class="description">
               <span class="section-title text-m icon-description">Description</span>
@@ -28,10 +32,11 @@
                 v-for="checklist in currTask.checklists"
                 :key="checklist.id"
                 :checklist="checklist"
+                @updated="updateChecklist"
               ></trello-checklist>
             </div>
             <div class="activity-log">
-              <activity-log :comments="currTask.comments"></activity-log>
+              <activity-log :comments="currTask.comments" @updated="updateComments"></activity-log>
             </div>
           </div>
           <div class="modal-sidebar flex column">
@@ -82,14 +87,40 @@ export default {
     }
   },
   methods: {
+    async saveCurrTask() {
+      await this.$store.dispatch({
+        type: 'saveTask',
+        groupId: this.$route.params.groupId,
+        taskToSave: JSON.parse(JSON.stringify(this.currTask))
+      })
+      console.log('Current task saved!');
+      /// This function returns a promise with the value of 
+      //the current board. I'm not sure if methods 
+      //inside this component that call SaveCurrTask 
+      //should wait for this promise to resolve or not. 
+      //if it will cuase problems with saving tasks this 
+      //could be the reason 
+    },
     updateDesc(updatedDesc) {
       console.log('updatedDesc', updatedDesc);
       this.currTask.description = updatedDesc
+      this.saveCurrTask()
     },
-    closeModal(){
+    updateChecklist(updatedChecklist) {
+      // console.log('updatedChecklist', updatedChecklist);
+      const idx = this.currTask.checklists.findIndex(cl => cl.id === updatedChecklist.id)
+      this.currTask.checklists[idx] = updatedChecklist
+      this.saveCurrTask()
+    },
+    updateComments(updatedComments) {
+      this.currTask.comments = updatedComments
+      this.saveCurrTask()
+    },
+    closeModal() {
+      this.saveCurrTask()
       const boardId = this.$route.params.boardId
       // console.log('boardId',boardId);
-      this.$router.push({name: 'board', params:{boardId} })
+      this.$router.push({ name: 'board', params: { boardId } })
     }
   },
   computed: {

@@ -65,3 +65,36 @@ function _makeId(length = 8) {
   }
   return text
 }
+
+
+//// EDITIONS FOR BOARD COMPONENTS CRUD:
+
+// async function postTask(entityType, newEntity) {
+//   newEntity.id = _makeId()
+//   newEntity.createdAt = Date.now()
+//   const boards = 
+
+//   return query(entityType).then((entities) => {
+//     entities.push(newEntity)
+//     _save(entityType, entities)
+//     return newEntity
+//   })
+// }
+
+
+// function putTask(entityType, updatedEntity) {
+//   return query(entityType).then((entities) => {
+//     const idx = entities.findIndex((entity) => entity.id === updatedEntity.id)
+//     entities.splice(idx, 1, updatedEntity)
+//     _save(entityType, entities)
+//     return updatedEntity
+//   })
+// }
+
+// function postMany(entityType, newEntities) {
+//   return query(entityType).then((entities) => {
+//     entities.push(...newEntities)
+//     _save(entityType, entities)
+//     return entities
+//   })
+// }
