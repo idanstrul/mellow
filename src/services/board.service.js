@@ -31,13 +31,53 @@ const defaultBoards = [
             {
                 "id": "l101",
                 "title": "Done",
-                "color": "#FF0000"
+                "color": "#61bd4f"
             },
             {
                 "id": "l102",
                 "title": "Progress",
-                "color": "#61bd33"
-            }
+                "color": "#f2d600"
+            },
+            {
+                "id": "l103",
+                "title": "Urgent",
+                "color": "#ff9f1a"
+            },
+            {
+                "id": "l104",
+                "title": "Production",
+                "color": "#eb5a46"
+            },
+            {
+                "id": "l105",
+                "title": "Developmnet",
+                "color": "#c377e0"
+            },
+            {
+                "id": "l106",
+                "title": "",
+                "color": "#0079bf"
+            },
+            {
+                "id": "l107",
+                "title": "",
+                "color": "#00c2e0"
+            },
+            {
+                "id": "l108",
+                "title": "",
+                "color": "#51e898"
+            },
+            {
+                "id": "l109",
+                "title": "",
+                "color": "#ff78cb"
+            },
+            {
+                "id": "l110",
+                "title": "",
+                "color": "#344563"
+            },
         ],
         "members": [
             {
@@ -54,6 +94,7 @@ const defaultBoards = [
                     {
                         "id": "c101",
                         "title": "Users Management",
+                        labelIds: ["l104", "l105", "l106", "l107", "l108", "l109", "l110"],
                         "members": [
                             {
                                 "_id": "u101",
@@ -87,7 +128,9 @@ const defaultBoards = [
                     },
                     {
                         "id": "c102",
-                        "title": "Report Generator"
+                        "title": "Report Generator",
+                        "dueDate": 1648587536553,
+                        labelIds: ["l108", "l109", "l102"]
                     }
                 ],
                 "style": {}
@@ -152,7 +195,7 @@ const defaultBoards = [
 
                             },
                         ],
-                        "labelIds": ["l101"],
+                        "labelIds": ["l101", "l106", "l108", "l103"],
                         "createdAt": 1590999730348,
                         "startDate": 16156211111,
                         "dueDate": 1648655802996,
@@ -169,7 +212,7 @@ const defaultBoards = [
                     {
                         "id": "c114",
                         "title": "Design Grid",
-                        "status": "in-progress",
+                        "status": "",
                         "description": "description",
                         "comments": [
                             {

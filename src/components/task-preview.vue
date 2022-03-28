@@ -46,7 +46,7 @@ export default {
   name: 'task-preview',
   props: {
     task: Object,
-    labelsOpen: Boolean
+    labelsOpen: Boolean,
   },
   components: {
     userAvatar,
@@ -65,18 +65,20 @@ export default {
     this.loadDate()
   },
   methods: {
+    async updateTask(){
+      const taskToSave = JSON.parse(JSON.stringify(this.task))
+      this.$emit('saveTask', taskToSave)
+      // const task =  await this.$store.dispatch({type: 'updateTask', taskToSave: this.task, groupIdx: this.groupIdx})
+    },
     toggleDateBg(diff){
       this.dateBg = utilService.lightenDarkenColor(this.dateBg, diff)
-    },
-    toggleIcon(icon){
-      this.content = icon
     },
     getStyle(labelId){
       const boardLabels = this.$store.getters.currBoardLabels
       const label = boardLabels.find(label => label.id === labelId)
       // console.log(label);
       if(this.hover)
-      return `background-color: ${utilService.lightenDarkenColor(label.color, -60)}`
+      return `background-color: ${utilService.lightenDarkenColor(label.color, -30)}`
       return `background-color: ${label.color}`
     },
     getLabelText(labelId){
@@ -91,25 +93,35 @@ export default {
     },
     toggleDate(){
         if(this.task.status === 'over-due' || this.task.status === 'in-progress' || this.task.status === 'due-soon'){
-          this.task.status = 'done'
+          this.$emit('done')
+          this.updateTask()
           return
         }
         if (this.task.dueDate - Date.now() < 0){
-          this.task.status = 'over-due'
+          this.$emit('over-due')
+          this.updateTask()
+          // this.$emit('done')
+          // this.task.status = 'over-due'
           return
         } 
         if (this.task.dueDate - Date.now() > 86400 * 1000){
-          console.log('hi');
-          this.task.status = 'in-progress'
+          this.$emit('in-progress')
+          this.updateTask()
+          // console.log('hi');
+          // this.task.status = 'in-progress'
           return
         } 
       if (this.task.dueDate - Date.now() < (86400 * 1000) ) {
-        console.log(this.task.dueDate - Date.now());
-        this.task.status = 'due-soon'
+        this.$emit('due-soon')
+        this.updateTask()
+        // console.log(this.task.dueDate - Date.now());
+        // this.task.status = 'due-soon'
         return
       }
     },
     loadDate(){
+      console.log(this.task.dueDate - Date.now() < 86400 * 1000);
+      if (this.task.status === 'done') return
         if (this.task.dueDate - Date.now() < 0){
           this.task.status = 'over-due'
           return
@@ -120,6 +132,7 @@ export default {
           return
         } 
       if (this.task.dueDate - Date.now() < 86400 * 1000) {
+        console.log(this.task.title);
         this.task.status = 'due-soon'
         return
       }

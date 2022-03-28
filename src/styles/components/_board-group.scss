@@ -83,6 +83,7 @@
         height: 32px;
         font-family: trellicons;
         font-size: rem(16px);
+        background-color: $clr-group-bg;
         &::before{
             content: "\e952";
         }

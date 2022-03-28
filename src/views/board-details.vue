@@ -14,7 +14,7 @@
 
   orientation="horizontal"
   @drop="onColumnDrop($event)">
-  <Draggable v-for="group in board.groups" :key="group.id">
+  <Draggable v-for="(group, idx) in board.groups" :key="group.id">
     <div>
     <board-group @move="move" :group="group" @updateGroup="updateGroup" @saveGroup="updateGroup">
       <Container
@@ -23,7 +23,17 @@
         :shouldAcceptDrop="(e, payload) =>  (e.groupName === 'col-items')"
         :get-child-payload="getCardPayload(group.id)"
         @drop="(e) => onCardDrop(group.id, e)">
-    <task-preview @openLabels="labelsOpen=!labelsOpen" :labelsOpen="labelsOpen" @click="goToDetail(group, task)" v-for="task in group.tasks" :key="task.id" :task="task"></task-preview>
+    <task-preview 
+    @due-soon="task.status='due-soon'"
+    @in-progress="task.status='in-progress'"
+    @over-due="task.status='over-due'"
+    @done="task.status='done'"
+    @saveTask="saveTask(task, idx)"
+    @openLabels="labelsOpen=!labelsOpen"
+    :groupIdx="idx" :labelsOpen="labelsOpen"
+    @click="goToDetail(group, task)" 
+    v-for="task in group.tasks" :key="task.id" :task="task">
+    </task-preview>
       </Container>
     </board-group>
     </div>
@@ -76,9 +86,22 @@ export default {
    this.loadBoard()
   },
   methods: {
+    async saveTask(taskToSave, groupIdx){
+      // console.log('hi');
+      console.log(taskToSave, groupIdx);
+      const board = await this.$store.dispatch({type: 'updateTask', taskToSave, groupIdx})
+      // this.loadBoard()
+      // this.board = board
+      // this.board.groups[groupIdx].tasks.findIndex(t => t.id === taskToSave.id)
+      // this.updateGroup(this.board.groups[groupIdx])
+      // await this.$store.dispatch({type: 'updateGroup', groupToSave})
+
+      // const idx = this.board.groups.findIndex(g => g.id === groupId)
+      // this.board.groups[idx].tasks
+    },
     async updateGroup(groupToSave){
       if(!this.isAddingGroup) this.isAddingGroup = true
-      // console.log(groupToSave);
+      console.log(groupToSave);
       if(!groupToSave.title) return
       await this.$store.dispatch({type: 'updateGroup', groupToSave})
       this.loadBoard()

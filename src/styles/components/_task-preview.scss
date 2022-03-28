@@ -4,6 +4,7 @@
         justify-content: space-between;
         max-width: 255px;
         min-height: 32px;
+        // line-height: 0.1;
     }
     cursor: pointer;
     background-color: $clr-base;
@@ -26,11 +27,10 @@
         background-color: #f4f5f7;
     }
     .task-labels{
-        
-        // position: relative;
-        margin-block-end: -5px;
+        padding-block-start: 3px;
+        line-height: 12px;
     }
-
+    
     .task-preview-label{
         margin-inline-start: 8px;
         display: inline-block;
