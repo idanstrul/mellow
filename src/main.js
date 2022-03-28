@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import ElementPlus from 'element-plus'
 import { focusDirective } from './directives'
+// import { format } from 'date-fns'
 import 'element-plus/dist/index.css'
 import './styles/global.scss'
 
@@ -15,5 +16,6 @@ app.directive('focus', focusDirective)
 app.use(router)
 app.use(store)
 app.use(ElementPlus)
+// app.use(format)
 
 app.mount('#app')
