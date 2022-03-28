@@ -6,7 +6,7 @@
     </div>
       <div class="account-info">
        <user-avatar
-          :size="40"
+          :size="32"
           :username="user.fullname"
           :src="user.imgUrl"
           backgroundColor="#DFE1E6"
