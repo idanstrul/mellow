@@ -1,8 +1,8 @@
 <template>
-  <section class="main-edit-modal">
+  <section v-clickoutside="closeModal" class="main-edit-modal">
       <header class="modal-header">
           <span class="modal-header-title">{{modalTitle}}</span>
-          <button class="exit-btn" @click.stop="closeModal"></button>
+          <button class="exit-btn" @click="closeModal"></button>
       </header>
       <main class="edit-modal-main">
       <slot></slot>
@@ -18,7 +18,7 @@ export default {
     },
     methods: {
         closeModal(){
-            this.$store.commit({type: 'toggleEditModal', status: false})
+            this.$store.commit({type: 'toggleEditModal', isOpen: false, editType: ''})
         }
     }
 

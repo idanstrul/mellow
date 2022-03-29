@@ -140,4 +140,22 @@
         width: 100%;
         margin: 8px 4px 0 0;
     }
+
+    select {
+        width: 100%;
+        margin-bottom: 14px;
+        min-height: 21px;
+    }
+    
+    select:focus {
+        outline-style: auto;
+    }
+    button.primary-btn {
+        @include defaultBtn;
+        height: 32px;
+        margin-top: 8px;
+        padding: 0px 24px;
+        margin-block-start: 5px;
+        margin-block-end: 5px;
+    }
 }

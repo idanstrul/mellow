@@ -10,7 +10,7 @@
                 </div>
             </li>
         </ul>
-        <pre>{{members}}</pre>
+        <!-- <pre>{{members}}</pre> -->
     </section>
 </template>
 

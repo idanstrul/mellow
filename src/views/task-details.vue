@@ -42,16 +42,22 @@
           <div class="modal-sidebar flex column">
             <button class="btn side-bar">Join</button>
             <span class="secondary-section-title">Add to card</span>
-            <button class="btn side-bar icon-members">Members</button>
-            <button class="btn side-bar icon-labels">Labels</button>
-            <button class="btn side-bar icon-checklist">Checklist</button>
-            <button class="btn side-bar icon-dates">Dates</button>
-            <button class="btn side-bar icon-attachment">Attachment</button>
-            <button class="btn side-bar icon-cover">Cover</button>
+            <button class="btn side-bar icon-members" @click="openEditModal('members-edit')">Members</button>
+            <button class="btn side-bar icon-labels" @click="openEditModal('labels-edit')">Labels</button>
+            <button
+              class="btn side-bar icon-checklist"
+              @click="openEditModal('checklists-edit')"
+            >Checklist</button>
+            <button class="btn side-bar icon-dates" @click="openEditModal('dates-edit')">Dates</button>
+            <button
+              class="btn side-bar icon-attachment"
+              @click="openEditModal('attachment-edit')"
+            >Attachment</button>
+            <button class="btn side-bar icon-cover" @click="openEditModal('cover-edit')">Cover</button>
             <span class="secondary-section-title">Actions</span>
-            <button class="btn side-bar icon-move">Move</button>
-            <button class="btn side-bar icon-copy">Copy</button>
-            <button class="btn side-bar icon-archive">Remove</button>
+            <button class="btn side-bar icon-move" @click="openEditModal('move-edit')">Move</button>
+            <button class="btn side-bar icon-copy" @click="openEditModal('copy-edit')">Copy</button>
+            <button class="btn side-bar icon-archive" @click="openEditModal('')">Remove</button>
           </div>
         </div>
         <!-- <pre>{{ currTask }}</pre> -->
@@ -121,6 +127,9 @@ export default {
       const boardId = this.$route.params.boardId
       // console.log('boardId',boardId);
       this.$router.push({ name: 'board', params: { boardId } })
+    },
+    openEditModal(editType) {
+      this.$store.commit({ type: 'toggleEditModal', isOpen: true, editType })
     }
   },
   computed: {

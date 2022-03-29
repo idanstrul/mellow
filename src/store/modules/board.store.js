@@ -14,17 +14,33 @@ export const boardStore = {
         currBoard(state) {
             return JSON.parse(JSON.stringify(state.currBoard))
         },
-        currBoardLabels(state) {
-            return JSON.parse(JSON.stringify(state.currBoard.labels))
+        currBoardLabels(getters) {
+            return getters.currBoard.labels
         },
-        currBoardMembers(state, rootGetters){
+        currBoardMembers(getters){
             // const users = rootGetters.users
             // console.log('users',users);
             // if (!users || !users.length) return []
             // const result = state.currBoard.members.map(member => {
             //     return users.find(user => user._id === member._id)
             // })
-            return JSON.parse(JSON.stringify(state.currBoard.members))
+            return getters.currBoard.members
+        },
+        currBoardChecklists(getters){
+            const allChecklists = []
+            getters.currBoard.groups.forEach(g => {
+                g.tasks.forEach(t => {
+                    if (!t.checklists || !t.checklists.length) return
+                    allChecklists.push({taskId: t.id, taskTitle: t.title, checklists: t.checklists})
+                    // t.checklists.forEach(cl => {
+                    //     cl.parentTask = t
+                    //     allChecklists.push(cl)
+                    // })
+
+                })
+            })
+            console.log(allChecklists)
+            return allChecklists
         },
         recentBoards({ recentBoards }) { return recentBoards },
         cardEdit({ cardEdit }) { return cardEdit },

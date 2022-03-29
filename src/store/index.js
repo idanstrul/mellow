@@ -5,7 +5,10 @@ import { boardStore } from "./modules/board.store.js";
 const store = createStore({
     strict: true,
     state: {
-        isEditModalOpen: false,
+        editModalStatus:{
+            isOpen: false,
+            editType: ''
+        },
         isLoading: false,
         userMsg: {
             msg: '',
@@ -14,8 +17,8 @@ const store = createStore({
         }
     },
     getters: {
-        isEditModalOpen(state){
-            return state.isEditModalOpen
+        editModalStatus(state){
+            return JSON.parse(JSON.stringify(state.editModalStatus))
         },
         isLoading(state) {
             return JSON.parse(JSON.stringify(state.isLoading))
@@ -25,8 +28,11 @@ const store = createStore({
         }
     },
     mutations: {
-        toggleEditModal(state, {status}){
-            state.isEditModalOpen = status
+        toggleEditModal(state, {isOpen, editType}){
+            state.editModalStatus = {
+                isOpen,
+                editType
+            }
         },
         setIsLoading(state, { loadingStatus }) {
             state.isLoading = loadingStatus
