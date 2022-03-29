@@ -22,7 +22,7 @@
                 Loading image...
               </div>
             </div>
-            <button>Sign up</button>
+            <button >Sign up</button>
         </form>
         <router-link class="btn-signup" to="/login">Already have an account? Log in</router-link>
     </div>
@@ -30,6 +30,8 @@
 </template>
 
 <script>
+
+
 export default {
   data(){
     return {
@@ -62,7 +64,8 @@ export default {
     async signup() {
       await this.$store.dispatch({ type: "signup", userCred: this.user });
       this.$router.push(`/board/b101`);
-      //this.$router.push(`/b/${this.$store.getters.boards[0]}`);
+      //add(this.user);
+      //this.$router.push(`/b/${this.$store.getters.boards[0]._id}`);
     },
   },
 };

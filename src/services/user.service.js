@@ -15,7 +15,8 @@ export const userService = {
     getById,
     remove,
     update,
-    changeScore
+    changeScore,
+    getMiniUser
 }
 
 // Debug technique
@@ -46,19 +47,18 @@ async function update(user) {
     return user;
 }
 
-async function login(user) {
+async function login(userCred) {
     try {
-        console.log(user)
-        //const user = await httpService.post('auth/login', userCred)
+        const user = await httpService.post('auth/login', userCred)
         if (user) return _saveLocalUser(user)
     } catch (err) {
         console.log('userService: Error in login user', err)
         throw err
     }
 }
-async function signup(user) {
+async function signup(userCred) {
     try {
-        //const user = await httpService.post('auth/signup', userCred)
+        const user = await httpService.post('auth/signup', userCred)
         return _saveLocalUser(user)
     } catch (err) {
         console.log('userService: Error in signup user', err)
@@ -87,6 +87,21 @@ function _saveLocalUser(user) {
 
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER) || 'null')
+}
+
+async function getMiniUser(userId) {
+    try {
+        const user = await getById(userId);
+        return {
+            _id: user._id,
+            username: user.username,
+            fullname: user.fullname,
+            imgUrl: user.imgUrl,
+        }
+    } catch (err) {
+        console.log('userService: Error in getById user', err)
+        throw err
+    }
 }
 
 
