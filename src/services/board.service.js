@@ -20,13 +20,18 @@ const defaultBoards = [
     {
         "_id": "b101",
         "title": "Robot dev proj",
+        "bgOptions": ['../../src/assets/bg.jpg', '../../src/assets/bg1'],
+
         "createdAt": 1589983468418,
         "createdBy": {
             "_id": "u101",
             "fullname": "Puki Norma",
             "imgUrl": "http://some-img"
         },
-        "style": {},
+        "style": {
+            "bg": '../../src/assets/bg.jpg',
+
+        },
         "labels": [
             {
                 "id": "l101",
@@ -560,11 +565,15 @@ async function getEmptyBoard() {
         "title": "",
         "createdAt": Date.now(),
         "createdBy": {},
-        "style": {},
+        "style": {
+            "bgImg": ['../../src/assets/bg.jpg', '../../src/assets/bg1.jpg'],
+
+        },
         "labels": [],
         "members": [],
         "groups": [],
         "activities": [],
+
     }
 }
 

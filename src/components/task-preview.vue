@@ -120,7 +120,7 @@ export default {
       }
     },
     loadDate(){
-      console.log(this.task.dueDate - Date.now() < 86400 * 1000);
+      // console.log(this.task.dueDate - Date.now() < 86400 * 1000);
       if (this.task.status === 'done') return
         if (this.task.dueDate - Date.now() < 0){
           this.task.status = 'over-due'
@@ -132,7 +132,7 @@ export default {
           return
         } 
       if (this.task.dueDate - Date.now() < 86400 * 1000) {
-        console.log(this.task.title);
+        // console.log(this.task.title);
         this.task.status = 'due-soon'
         return
       }

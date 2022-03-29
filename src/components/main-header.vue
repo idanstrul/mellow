@@ -4,7 +4,8 @@
     <router-link to="/"><button title="Mello" class="btn-logo" ><img src="../assets/logo.gif" alt=""></button></router-link>
     <button class="btn-opt work" title="Workspaces">Workspaces <img class="img-arrow" src="../assets/arrow.png" alt=""></button>
     <button class="btn-opt" title="Recent">Recent <img class="img-arrow" src="../assets/arrow.png" alt=""></button>
-    <button class="btn-opt create" title="Create">Create</button>
+    <button @click="boardMenuOpen=!boardMenuOpen" class="btn-opt create" title="Create">Create</button>
+    <board-add-menu :menuOpen="boardMenuOpen"></board-add-menu>
 
   <!--div class="header-features"></!--div>
     <div @click.stop="isUserMenuOpen = true">
@@ -45,14 +46,17 @@ import userAvatar from "../components/user-avatar.vue";
 import boardCompose from "../components/board-compose.vue";
 import boardList from "../components/board-list.vue";
 import userMenu from "../components/user-menu.vue";
+import boardAddMenu from "./board-add-menu.vue";
+import BoardAddMenu from "./board-add-menu.vue";
 
 export default {
   data() {
     return {
-      isBoardComposeOn: false,
-      isBoardListOpen: false,
-      user: null,
-      isUserMenuOpen: false,
+      // isBoardComposeOn: false,
+      // isBoardListOpen: false,
+
+      // isUserMenuOpen: false,
+      boardMenuOpen: false,
       user: null
     };
   },
@@ -61,7 +65,9 @@ export default {
     boardCompose,
     boardList,
     userMenu,
-  },
+    boardAddMenu,
+    BoardAddMenu
+},
   created() {
     this.user = this.$store.getters.loggedinUser
     // console.log(this.user);

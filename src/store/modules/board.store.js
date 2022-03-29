@@ -69,7 +69,7 @@ export const boardStore = {
             }
         },
         async saveCurrBoard(context, { boardToSave }) {
-            console.log(boardToSave.groups[1].tasks);
+            // console.log(boardToSave.groups[1].tasks);
             context.commit({ type: 'setIsLoading', loadingStatus: true })
             try {
                 const currBoard = await boardService.save(boardToSave)
@@ -111,7 +111,7 @@ export const boardStore = {
         async updateTask(context, { taskToSave, groupIdx }) {
             context.commit({ type: 'setIsLoading', loadingStatus: true })
             try {
-                console.log(taskToSave, groupIdx);
+                // console.log(taskToSave, groupIdx);
                 const board = context.getters.currBoard
                 if (taskToSave.id) {
                     taskToSave = JSON.parse(JSON.stringify(taskToSave))

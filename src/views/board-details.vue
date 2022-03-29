@@ -63,6 +63,7 @@ import boardGroup from "../components/board-group.vue"
 import groupAdd from "../components/group-add.vue"
 import boardHeader from "../components/board-header.vue"
 import taskPreview from "../components/task-preview.vue";
+  // import bg from '../../src/assets/bg.'
 // import TaskPreview from "../components/task-preview.vue";
 
 export default {
@@ -83,12 +84,13 @@ export default {
     taskPreview
 },
   async created() {
-   this.loadBoard()
+   await this.loadBoard()
+   document.body.style=`background-image: url(${this.board.style.bg});`
   },
   methods: {
     async saveTask(taskToSave, groupIdx){
       // console.log('hi');
-      console.log(taskToSave, groupIdx);
+      // console.log(taskToSave, groupIdx);
       const board = await this.$store.dispatch({type: 'updateTask', taskToSave, groupIdx})
       // this.loadBoard()
       // this.board = board
@@ -113,6 +115,7 @@ export default {
     const board = await this.$store.dispatch({type: 'loadCurrBoard', boardId})
     // const board = await boardService.getById(id)
     this.board = board
+    return board
     },
     onColumnDrop (dropResult) {
       const scene = Object.assign({}, this.board)
