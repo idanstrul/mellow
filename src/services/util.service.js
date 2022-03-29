@@ -66,6 +66,8 @@ function loadFromStorage(key) {
 }
 
 function lightenDarkenColor(colorCode, amount) {
+    if (colorCode === '#0079bf') return '#055a8c'
+    if (colorCode === '#00c2e0') return '#0098b7'
     var usePound = false;
 
     if (colorCode[0] == "#") {

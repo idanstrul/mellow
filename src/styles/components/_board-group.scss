@@ -77,16 +77,19 @@
     border-radius: 3px;
     .btn-group-menu{
         border: none;
-        border-radius: 2px;
+        border-radius: 3px;
         margin: 4px;
         width: 32px;
         height: 32px;
         font-family: trellicons;
         font-size: rem(16px);
+        background-color: $clr-group-bg;
+        color: #6b778c;
         &::before{
             content: "\e952";
         }
         &:hover {
+            color: #172b4d;
             background-color: $clr-btn-hover-group-menu;
         }
     }
@@ -101,8 +104,11 @@
     padding-inline-start: 6px;
     margin-inline-start: 10px;
     color: #172b4dea;
-    height: 28px;
+    // height: 28px;
     width: 221px;
+    position: relative;
+    bottom: 1px;
+    // margin-bottom: 10px;
     font-size: rem(14px);
 }
 
