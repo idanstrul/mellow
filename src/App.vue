@@ -1,8 +1,8 @@
 <template>
   <section>
-    <!-- <main-edit-modal v-if="isEditModalOpen" modal-title="Hello">
-      <labels-edit></labels-edit>
-    </main-edit-modal> -->
+    <main-edit-modal v-if="isEditModalOpen" modal-title="Hello">
+      <members-edit></members-edit>
+    </main-edit-modal>
     <main-header></main-header>
     <router-view></router-view>
   </section>
@@ -12,6 +12,7 @@
 import mainHeader from './components/main-header.vue'
 import mainEditModal from './views/main-edit-modal.vue'
 import labelsEdit from './components/main-edit-modal.cmps/labels-Edit.vue'
+import membersEdit from './components/main-edit-modal.cmps/members-edit.vue'
 
 export default {
   name: 'app-vue',
@@ -32,7 +33,8 @@ export default {
   components: {
     mainHeader,
     mainEditModal,
-    labelsEdit
+    labelsEdit,
+    membersEdit
   },
 
 

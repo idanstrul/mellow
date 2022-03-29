@@ -17,6 +17,15 @@ export const boardStore = {
         currBoardLabels(state) {
             return JSON.parse(JSON.stringify(state.currBoard.labels))
         },
+        currBoardMembers(state, rootGetters){
+            // const users = rootGetters.users
+            // console.log('users',users);
+            // if (!users || !users.length) return []
+            // const result = state.currBoard.members.map(member => {
+            //     return users.find(user => user._id === member._id)
+            // })
+            return JSON.parse(JSON.stringify(state.currBoard.members))
+        },
         recentBoards({ recentBoards }) { return recentBoards },
         cardEdit({ cardEdit }) { return cardEdit },
         boardsToShow(state) {

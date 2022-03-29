@@ -21,22 +21,6 @@
             display: inline-block;
         }
 
-        &.selected {
-            padding-right: 32px;
-
-            &::before {
-                font-family: trellicons;
-                position: absolute;
-                right: 6px;
-                top: 6px;
-                content: "\e916";
-                color: white;
-                font-size: 16px;
-                height: 20px;
-                line-height: 20px;
-                width: 20px;
-            }
-        }
     }
 
     li {
