@@ -12,14 +12,16 @@
      <form action="submit" @submit.prevent="">
    <button v-for="(bg, idx) in boardToAdd.style.bgImg" :key="idx" @click="setBg(bg)">
    <label :idx="idx">
-      <input name="bgImg" type="radio" style="appearance: none">
+      <input  name="bgImg" type="radio" style="appearance: none">
       <img v-if="bg.split('')[0] !== '#'" class="bg-opt" :src="bg" alt="" :ref="bg">
       <div :style="getStyle(bg)" class="bg-opt clr" v-if="bg.split('')[0] == '#'" :ref="bg"></div>
    </label>
    </button>
    <p>Board title <span>*</span></p>
-   <input placeholder="   " v-focus type="text">
-   <!-- <div class="emoticon">👋 Board title is required</div> -->
+   <input required ref="title" @focus="getClass" @input="getClass" placeholder="   " v-focus type="text">
+   <!-- <a href=""></a> -->
+   <div class="emoticon">👋 Board title is required</div>
+   <button ref="btn" type="submit" @click="saveBoard">Create</button>
    </form>
    </div>
    </div> 
@@ -46,7 +48,7 @@ export default {
   data(){
     return {
       boardToAdd: null,
-      boardBg: ''
+      boardBg: '#0079bf'
     }
   },
   components: {
@@ -59,10 +61,12 @@ export default {
     // console.log(this.boardToAdd);
   },
   mounted() {
+    // console.log(this.$refs);
   },
   methods: {
     setBg(bg){
       this.boardBg=bg
+      // console.log(this.$refs);
       for (const bg in this.$refs) {
         if(this.boardBg === bg){
           console.log(this.$refs[bg][0].classList);
@@ -86,16 +90,37 @@ export default {
     return `background-color: ${bg}`
       // if (this.boardBg === )
     },
+    getClass(){
+      console.log(this.$refs);
+      if(this.$refs.title.value) this.$refs.btn.classList.value = 'enable'
+      else this.$refs.btn.classList.value = 'disable'
+    },
+    async saveBoard(){
+      this.boardToAdd.title = this.$refs.title.value
+      this.boardToAdd.style.bg = this.boardBg
+      const user = this.$store.getters.loggedinUser
+      this.boardToAdd.createdBy = {
+        "_id": user._id,
+        "fullname": user.fullname,
+        "imgUrl": "http://some-img"
+      }
+      delete this.boardToAdd.style.bgImg
+     const board = await this.$store.dispatch({type: 'saveCurrBoard', boardToSave: this.boardToAdd})
+    //  this.$router.push('')
+    this.boardToAdd = await this.$store.dispatch({type: "getEmptyBoard"})
+      this.$router.push(`/board/${board._id}`);
+
+    }
   },
   computed: {
     getBg(){
       if(this.boardBg){
-        console.log(this.boardBg);
+        // console.log(this.boardBg);
         if(this.boardBg.split('')[0] === '#')
         return `background-color: ${this.boardBg}` 
         return `background-image: url(${this.boardBg})` 
       }
-    }
+    },
   },
  
 }

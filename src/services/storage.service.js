@@ -19,7 +19,7 @@ function get(entityType, entityId) {
 }
 
 function post(entityType, newEntity) {
-  newEntity.id = _makeId()
+  newEntity._id = _makeId()
   newEntity.createdAt = Date.now()
   return query(entityType).then((entities) => {
     entities.push(newEntity)
@@ -38,7 +38,7 @@ function postMany(entityType, newEntities) {
 
 function put(entityType, updatedEntity) {
   return query(entityType).then((entities) => {
-    const idx = entities.findIndex((entity) => entity.id === updatedEntity.id)
+    const idx = entities.findIndex((entity) => entity._id === updatedEntity._id)
     entities.splice(idx, 1, updatedEntity)
     _save(entityType, entities)
     return updatedEntity
@@ -72,7 +72,7 @@ function _makeId(length = 8) {
 // async function postTask(entityType, newEntity) {
 //   newEntity.id = _makeId()
 //   newEntity.createdAt = Date.now()
-//   const boards = 
+//   const boards =
 
 //   return query(entityType).then((entities) => {
 //     entities.push(newEntity)

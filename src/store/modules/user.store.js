@@ -13,6 +13,12 @@ export const userStore = {
     getters: {
         users({ users }) { return JSON.parse(JSON.stringify(users)) },
         loggedinUser({ loggedinUser }) { return loggedinUser },
+        getMyMiniUser(otherGetters) {
+            const miniUser = JSON.parse(JSON.stringify(otherGetters.loggedinUser))
+            delete miniUser.email
+            delete miniUser.mentions
+            return miniUser
+        },
         watchedUser({ watchedUser }) { return watchedUser }
     },
     mutations: {
@@ -140,5 +146,13 @@ export const userStore = {
                 throw err
             }
         },
+        async getMiniUser(content, { userId }) {
+            try {
+                return await userService.getMiniUser(userId);
+            } catch (err) {
+                console.log('userStore: Error in getById user', err)
+                throw err
+            }
+        }
     }
 }

@@ -95,6 +95,7 @@ export const boardStore = {
         },
         async saveCurrBoard(context, { boardToSave }) {
             // console.log(boardToSave.groups[1].tasks);
+            console.log('hi');
             context.commit({ type: 'setIsLoading', loadingStatus: true })
             try {
                 const currBoard = await boardService.save(boardToSave)
@@ -220,6 +221,13 @@ export const boardStore = {
             const taskIdx = currGroup.tasks.findIndex(t => t.id === taskId)
             currGroup.tasks.splice(taskIdx, 1)
             return context.dispatch({ type: 'saveCurrBoard', boardToSave })
+        },
+        async removeGroup(context, { group }) {
+            const boardToSave = context.getters.currBoard
+            const idx = boardToSave.groups.findIndex(g => g.id === group.id)
+            boardToSave.groups.splice(idx, 1)
+            const board = await context.dispatch({ type: 'saveCurrBoard', boardToSave })
+            return board
         },
         // async saveTask(context, {groupId, taskToSave}){
         //     context.commit({ type: 'setIsLoading', loadingStatus: true })

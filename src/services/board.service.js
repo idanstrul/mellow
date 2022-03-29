@@ -571,6 +571,7 @@ async function remove(boardId) {
 
 async function save(board) {
     const boardToSave = JSON.parse(JSON.stringify(board))
+    console.log(boardToSave);
     if (boardToSave._id) return storageService.put(STORAGE_KEY, boardToSave);
     return storageService.post(STORAGE_KEY, boardToSave)
 }
@@ -606,7 +607,58 @@ async function getEmptyBoard() {
             ],
 
         },
-        "labels": [],
+        "labels": [
+            {
+                "id": "l101",
+                "title": "Done",
+                "color": "#61bd4f"
+            },
+            {
+                "id": "l102",
+                "title": "Progress",
+                "color": "#f2d600"
+            },
+            {
+                "id": "l103",
+                "title": "Urgent",
+                "color": "#ff9f1a"
+            },
+            {
+                "id": "l104",
+                "title": "Production",
+                "color": "#eb5a46"
+            },
+            {
+                "id": "l105",
+                "title": "Developmnet",
+                "color": "#c377e0"
+            },
+            {
+                "id": "l106",
+                "title": "",
+                "color": "#0079bf"
+            },
+            {
+                "id": "l107",
+                "title": "",
+                "color": "#00c2e0"
+            },
+            {
+                "id": "l108",
+                "title": "",
+                "color": "#51e898"
+            },
+            {
+                "id": "l109",
+                "title": "",
+                "color": "#ff78cb"
+            },
+            {
+                "id": "l110",
+                "title": "",
+                "color": "#344563"
+            },
+        ],
         "members": [],
         "groups": [],
         "activities": [],
