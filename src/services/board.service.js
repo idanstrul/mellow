@@ -20,8 +20,6 @@ const defaultBoards = [
     {
         "_id": "b101",
         "title": "Robot dev proj",
-        "bgOptions": ['../../src/assets/bg.jpg', '../../src/assets/bg1'],
-
         "createdAt": 1589983468418,
         "createdBy": {
             "_id": "u101",
@@ -29,7 +27,7 @@ const defaultBoards = [
             "imgUrl": "http://some-img"
         },
         "style": {
-            "bg": '../../src/assets/bg.jpg',
+            "bg": '../../src/assets/bg2.jpg',
 
         },
         "labels": [
@@ -566,7 +564,24 @@ async function getEmptyBoard() {
         "createdAt": Date.now(),
         "createdBy": {},
         "style": {
-            "bgImg": ['../../src/assets/bg.jpg', '../../src/assets/bg1.jpg'],
+            "bgImg": [
+                '../../src/assets/bg.jpg',
+                '../../src/assets/bg1.jpg',
+                '../../src/assets/bg2.jpg',
+                '../../src/assets/bg3.jpg',
+                '../../src/assets/bg4.jpg',
+                '../../src/assets/bg5.jpg',
+                '../../src/assets/bg6.jpg',
+                '../../src/assets/bg7.jpg',
+                '#0079bf',
+                '#d29034',
+                '#519839',
+                '#b04632',
+                '#89609e',
+                '#cd5a91',
+                '#4bbf6b',
+                '#00aecc',
+            ],
 
         },
         "labels": [],

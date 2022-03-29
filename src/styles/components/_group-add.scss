@@ -13,9 +13,9 @@
         span:first-child{
             font-family: trellicons;
             font-size: rem(16px) !important;
-            margin-block-start: 7px;
+            margin-block-start: 2px;
             margin-inline-end: 4px;
-            margin-inline-start: 2px;
+            margin-inline-start: 3px;
         }
         span:first-child::before{
             content: "\e901";
@@ -24,12 +24,13 @@
             background-color: hsla(0, 0%, 100%, 0.3);
         }
         span:first-child{
-            font-size: rem(23px);
-            padding-inline-start: 3px;
-            padding-inline-end: 3px;
-            padding-block-end: 3px;
+            // font-size: rem(23px);
+            // padding-inline-start: 3px;
+            // padding-inline-end: 3px;
+            // padding-block-end: 3px;
         }
         span:not(:first-child){
+            margin-block-end: 3.25px;
            padding-block-start: 3px;
         }
     }
