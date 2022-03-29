@@ -16,14 +16,19 @@
   @drop="onColumnDrop($event)">
   <Draggable v-for="(group, idx) in board.groups" :key="group.id">
     <div>
-    <board-group @move="move" :group="group" @updateGroup="updateGroup" @saveGroup="updateGroup">
+    <board-group
+    :group="group"
+    @move="move"
+    @updateGroup="updateGroup"
+    @saveGroup="updateGroup"
+    @removeGroup="removeGroup">
       <Container
         orientation="vertical"
         group-name="col-items"
         :shouldAcceptDrop="(e, payload) =>  (e.groupName === 'col-items')"
         :get-child-payload="getCardPayload(group.id)"
         @drop="(e) => onCardDrop(group.id, e)">
-    <task-preview 
+    <task-preview
     @due-soon="task.status='due-soon'"
     @in-progress="task.status='in-progress'"
     @over-due="task.status='over-due'"
@@ -32,7 +37,8 @@
     @openLabels="labelsOpen=!labelsOpen"
     :groupIdx="idx" :labelsOpen="labelsOpen"
     @click="goToDetail(group, task)" 
-    v-for="task in group.tasks" :key="task.id" :task="task">
+    v-for="task in group.tasks" :key="task.id" :task="task"
+    @removeTask="removeTask(task, group)">
     </task-preview>
       </Container>
     </board-group>
@@ -72,7 +78,8 @@ export default {
     return {
       board: null,
       isAddingGroup: true,
-      labelsOpen: false 
+      labelsOpen: false,
+      loadDate: false,
     }
   },
   components: {
@@ -83,11 +90,11 @@ export default {
     boardHeader,
     taskPreview
 },
-  async created() {
+  async mounted() {
    await this.loadBoard()
-   document.body.style=`
-   background-image: url(${this.board.style.bg});
-   background-color: ${this.board.style.bg};`
+  //  document.body.style=`
+  //  background-image: url(${this.board.style.bg});
+  //  background-color: ${this.board.style.bg};`
   },
   methods: {
     async saveTask(taskToSave, groupIdx){
@@ -103,20 +110,42 @@ export default {
       // const idx = this.board.groups.findIndex(g => g.id === groupId)
       // this.board.groups[idx].tasks
     },
+    async removeGroup(group){
+      const board = await this.$store.dispatch({type: 'removeGroup', group})
+      const idx = this.board.groups.findIndex(g => g.id === group.id)
+      this.board.groups.splice(idx,1)
+      // this.loadDate = true
+      // this.$router=`board/${this.board._id}`
+      // await this.loadBoard()
+    },
+    async removeTask(task, group){
+      // console.log(task,);
+      const board = await this.$store.dispatch({type: 'removeTask', groupId: group.id ,taskId: task.id})
+      const currGroup = this.board.groups.find(g => g.id === group.id)
+      const taskIdx = currGroup.tasks.findIndex(t => t.id === task.id)
+      currGroup.tasks.splice(taskIdx, 1)
+      // this.loadDate = true
+      // this.$router=`board/${this.board._id}`
+      // await this.loadBoard()
+    },
     async updateGroup(groupToSave){
       if(!this.isAddingGroup) this.isAddingGroup = true
       console.log(groupToSave);
       if(!groupToSave.title) return
-      await this.$store.dispatch({type: 'updateGroup', groupToSave})
-      this.loadBoard()
+      const board = await this.$store.dispatch({type: 'updateGroup', groupToSave})
+      this.board = board
+      // this.loadBoard()
     },
     async loadBoard(){
-       // const { id } = this.$route.params
-    const boardId = 'b101'
+       const { boardId } = this.$route.params
+    // const boardId = 'b101'
     // console.log(id);
     const board = await this.$store.dispatch({type: 'loadCurrBoard', boardId})
     // const board = await boardService.getById(id)
     this.board = board
+     document.body.style=`
+   background-image: url(${this.board.style.bg});
+   background-color: ${this.board.style.bg};`
     return board
     },
     onColumnDrop (dropResult) {
@@ -163,10 +192,17 @@ export default {
       this.loadBoard()
     },
     goToDetail(group, task) {
-      this.$router.push(`/board/b101/task/${group.id}/${task.id}`)
+      this.$router.push(`/board/${this.board._id}/task/${group.id}/${task.id}`)
     },
      
   },
+   watch: {
+        '$route.params.boardId'(id) {
+            console.log('Changed to', id)
+            this.loadBoard()
+       {immediate:true}
+        }
+    }
 }
 </script>
 <style>

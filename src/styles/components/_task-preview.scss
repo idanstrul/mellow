@@ -1,5 +1,36 @@
 .task-preview{
     // height: fit-content;
+    &:hover{
+        .btn-remove-task{
+            display: block;
+            background-color: #f4f5f7e1;
+        }
+    }
+    .btn-remove-task{
+        display: block;
+        z-index: 1;
+        &:hover{
+            background-color: #ececec;
+        }
+        &:active{
+            background-color: #dfdede;
+            
+        }
+        border-radius: 3px;
+        position: absolute;
+        right: 7px;
+        margin-block-start: 2px;
+        // bottom: 0px;
+        width: 28px;
+        height: 28px;
+        font-size: rem(14px);
+        display: none;
+        border: none;
+        font-family: trellicons;
+        &::before{
+            content: "\e907";
+        }
+    }
     .task-preview-badges{
         justify-content: space-between;
         max-width: 255px;
@@ -27,7 +58,7 @@
         background-color: #f4f5f7;
     }
     .task-labels{
-        max-width: 230px;
+        max-width: 235px;
         padding-block-start: 3px;
         line-height: 12px;
     }

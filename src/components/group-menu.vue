@@ -7,7 +7,7 @@
    <p @click="addTask">Add card...</p>
    <p @click="copyGroup">Copy list...</p>
    <hr>
-   <p>Archive this list...</p>
+   <p @click="removeGroup">Delete this list...</p>
 </custom-menu>
 
   </section>
@@ -37,6 +37,10 @@ export default {
     },
     copyGroup(){
       this.$emit('copyGroup')
+    },
+    removeGroup(){
+      // console.log('hi');
+      this.$emit('removeGroup')
     },
     closeMenu(){
       this.$emit('closeMenu')

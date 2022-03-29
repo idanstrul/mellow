@@ -2,6 +2,7 @@
 <!-- <Container> -->
   <Draggable>
 <section class="task-preview">
+  <button @click.stop="removeTask" title="Remove card" class="btn-remove-task"></button>
   <section v-if="task.labelIds" class="task-labels">
     <span @click.stop="toggleLabels" @mouseover="hover=true" @mouseleave="hover=false" v-for="l in task.labelIds" :key="l" class="task-preview-label" :class="getClass" :style="getStyle(l)"><span>{{ getLabelText(l) }}</span></span>
   </section>
@@ -69,6 +70,9 @@ export default {
       const taskToSave = JSON.parse(JSON.stringify(this.task))
       this.$emit('saveTask', taskToSave)
       // const task =  await this.$store.dispatch({type: 'updateTask', taskToSave: this.task, groupIdx: this.groupIdx})
+    },
+    removeTask(){
+      this.$emit('removeTask', this.task)
     },
     toggleDateBg(diff){
       this.dateBg = utilService.lightenDarkenColor(this.dateBg, diff)
@@ -168,6 +172,13 @@ export default {
       if (this.task.startDate && !this.task.dueDate)
       return
     },
-  }
+  },
+    watch: {
+      //   'this.loadDate'() {
+      //       // console.log('Changed to', id)
+      //       // this.loadDate()
+      //  {immediate:true}
+      //   }
+    }
 }
 </script>

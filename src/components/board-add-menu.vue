@@ -18,10 +18,10 @@
    </label>
    </button>
    <p>Board title <span>*</span></p>
-   <input ref="title" @focus="getClass" @input="getClass" placeholder="   " v-focus type="text">
+   <input required ref="title" @focus="getClass" @input="getClass" placeholder="   " v-focus type="text">
    <!-- <a href=""></a> -->
    <div class="emoticon">👋 Board title is required</div>
-   <button ref="btn" type="submit">Create</button>
+   <button ref="btn" type="submit" @click="saveBoard">Create</button>
    </form>
    </div>
    </div> 
@@ -95,6 +95,22 @@ export default {
       if(this.$refs.title.value) this.$refs.btn.classList.value = 'enable'
       else this.$refs.btn.classList.value = 'disable'
     },
+    async saveBoard(){
+      this.boardToAdd.title = this.$refs.title.value
+      this.boardToAdd.style.bg = this.boardBg
+      const user = this.$store.getters.loggedinUser
+      this.boardToAdd.createdBy = {
+        "_id": user._id,
+        "fullname": user.fullname,
+        "imgUrl": "http://some-img"
+      }
+      delete this.boardToAdd.style.bgImg
+     const board = await this.$store.dispatch({type: 'saveCurrBoard', boardToSave: this.boardToAdd})
+    //  this.$router.push('')
+    this.boardToAdd = await this.$store.dispatch({type: "getEmptyBoard"})
+      this.$router.push(`/board/${board._id}`);
+
+    }
   },
   computed: {
     getBg(){
