@@ -1,8 +1,8 @@
 <template>
   <section>
-    <main-edit-modal v-if="isEditModalOpen" modal-title="Hello">
+    <!-- <main-edit-modal v-if="isEditModalOpen" modal-title="Hello">
       <members-edit></members-edit>
-    </main-edit-modal>
+    </main-edit-modal> -->
     <main-header></main-header>
     <router-view></router-view>
   </section>
@@ -22,7 +22,7 @@ export default {
       if (!elMainEditModal || !elMainEditModal.contains(ev.target)){
         this.$store.commit({type: 'toggleEditModal', status: true})
       }
-      console.log(!elMainEditModal || !elMainEditModal.contains(ev.target))
+      // console.log(!elMainEditModal || !elMainEditModal.contains(ev.target))
     })
   },
   computed: {

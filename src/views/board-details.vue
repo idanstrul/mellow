@@ -85,7 +85,9 @@ export default {
 },
   async created() {
    await this.loadBoard()
-   document.body.style=`background-image: url(${this.board.style.bg});`
+   document.body.style=`
+   background-image: url(${this.board.style.bg});
+   background-color: ${this.board.style.bg};`
   },
   methods: {
     async saveTask(taskToSave, groupIdx){

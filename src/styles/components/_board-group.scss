@@ -2,6 +2,7 @@
     ::-webkit-scrollbar {
         border-radius: 4px;
         width: 8px;
+        // length: 150%;
         border-radius: 10px;
       }
       ::-webkit-scrollbar-thumb {
@@ -9,8 +10,9 @@
         border-radius: 4px;
       }
       ::-webkit-scrollbar-track {        
-        margin-bottom: 50px;
+        // margin-bottom: 500px;
           border-radius: 4px;
+          min-height: 3000px;
           background: #dadbe2; 
         }
         padding-inline-end: 3px;
