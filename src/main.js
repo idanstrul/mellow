@@ -8,8 +8,11 @@ import { focusDirective } from './directives'
 import 'element-plus/dist/index.css'
 import './styles/global.scss'
 
-
 const app = createApp(App)
+
+app.config.globalProperties.$filters = {
+    
+}
 
 app.directive('focus', focusDirective)
 

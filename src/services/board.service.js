@@ -85,9 +85,31 @@ const defaultBoards = [
         "members": [
             {
                 "_id": "u101",
+                "username": "Tal",
                 "fullname": "Tal Tarablus",
-                "imgUrl": "https://www.google.com"
-            }
+                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+            },
+            {
+                "_id": "u328",
+                "username": "Amit",
+                "fullname": "Amit Miz",
+                "color": "#00875a"
+
+            },
+            {
+                "_id": "u439",
+                "username": "Idan",
+                "fullname": "Idan Stru",
+                "color": "#aa0d0d"
+
+            },
+            {
+                "_id": "u429",
+                "username": "Omer",
+                "fullname": "Omer Esh",
+                "color": "#5243aa"
+
+            },
         ],
         "groups": [
             {

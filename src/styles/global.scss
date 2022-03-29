@@ -21,6 +21,7 @@
 @import "components/group-menu";
 @import "components/home";
 @import "components/login-signup";
+@import "components/main-edit-modal.scss";
 @import "components/board-add-menu";
 
 /* TASK-DETAILS-CMPS */
@@ -33,6 +34,10 @@
 @import "components/task-details-modal/trello-members";
 @import "components/task-details-modal/trello-txt-input";
 @import "components/task-details-modal/trello-dates";
+
+/* MAIN-EDIT-MODAL-CMPS */
+@import "components/main-edit-modal.cmps/labels-edit.scss";
+@import "components/main-edit-modal.cmps/members-edit.scss";
 
 /* BASE */
 
