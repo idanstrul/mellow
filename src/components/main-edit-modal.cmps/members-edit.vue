@@ -16,7 +16,7 @@
                 </div>
             </li>
         </ul>
-        <pre>{{ currTask }}</pre>
+        <!-- <pre>{{ currTask }}</pre> -->
     </section>
 </template>
 
