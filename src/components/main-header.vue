@@ -2,10 +2,10 @@
   <section class="main-header" :class="classBoardsPage">
     <button class="btn-boards" title="Boards"><img src="../assets/boards.png" alt=""></button>
     <router-link to="/"><button title="Mello" class="btn-logo" ><img src="../assets/logo.gif" alt=""></button></router-link>
-    <button class="btn-opt work" title="Workspaces">Workspaces <img class="img-arrow" src="../assets/arrow.png" alt=""></button>
+    <!-- <button class="btn-opt work" title="Workspaces">Workspaces <img class="img-arrow" src="../assets/arrow.png" alt=""></button> -->
     <button class="btn-opt" title="Recent">Recent <img class="img-arrow" src="../assets/arrow.png" alt=""></button>
     <button @click="boardMenuOpen=!boardMenuOpen" class="btn-opt create" title="Create">Create</button>
-    <board-add-menu :menuOpen="boardMenuOpen"></board-add-menu>
+    <board-add-menu  @closeMenu="boardMenuOpen=false" :menuOpen="boardMenuOpen"></board-add-menu>
 
   <!--div class="header-features"></!--div>
     <div @click.stop="isUserMenuOpen = true">

@@ -74,6 +74,10 @@ export default {
     TaskAdd
 },
   methods: {
+    closeMenu(){
+      this.menuOpen = false
+      this.subMenuOpen = false
+    },
     toggleMenu(){
       
       this.menuOpen = !this.menuOpen

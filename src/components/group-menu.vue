@@ -7,7 +7,7 @@
    <p @click="addTask">Add card...</p>
    <p @click="copyGroup">Copy list...</p>
    <hr>
-   <p @click="removeGroup">Delete this list...</p>
+   <p @click="removeGroup">Remove this list...</p>
 </custom-menu>
 
   </section>

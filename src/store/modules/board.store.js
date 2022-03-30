@@ -18,7 +18,7 @@ export const boardStore = {
         currBoardLabels(getters) {
             return getters.currBoard.labels
         },
-        currBoardMembers(getters){
+        currBoardMembers(getters) {
             // const users = rootGetters.users
             // console.log('users',users);
             // if (!users || !users.length) return []
@@ -27,12 +27,12 @@ export const boardStore = {
             // })
             return getters.currBoard.members
         },
-        currBoardChecklists(getters){
+        currBoardChecklists(getters) {
             const allChecklists = []
             getters.currBoard.groups.forEach(g => {
                 g.tasks.forEach(t => {
                     if (!t.checklists || !t.checklists.length) return
-                    allChecklists.push({taskId: t.id, taskTitle: t.title, checklists: t.checklists})
+                    allChecklists.push({ taskId: t.id, taskTitle: t.title, checklists: t.checklists })
                     // t.checklists.forEach(cl => {
                     //     cl.parentTask = t
                     //     allChecklists.push(cl)
@@ -73,6 +73,9 @@ export const boardStore = {
                 currBoard._id !== board._id)
             state.recentBoards.unshift(board)
         },
+        addBoard(state, { savedBoard }) {
+            state.boards.push(savedBoard);
+        },
         // saveTaskToStore(state, { groupId, taskToSave }) {
         //     const currGroup = state.currBoard.groups.find(g => g.id === groupId)
         //     if (!taskToSave.id) {
@@ -107,23 +110,25 @@ export const boardStore = {
         },
         async saveCurrBoard(context, { boardToSave }) {
             // console.log(boardToSave.groups[1].tasks);
-            console.log('hi');
+            // console.log('hi');
             context.commit({ type: 'setIsLoading', loadingStatus: true })
             try {
                 const currBoard = await boardService.save(boardToSave)
                 context.commit({ type: 'setCurrBoard', currBoard: boardToSave })
-                context.dispatch({ type: 'flashUserMsg', msg: `Board ${currBoard._Id} saved successfully`, style: 'success' })
+                context.dispatch({ type: 'flashUserMsg', msg: `Board ${currBoard._id} saved successfully`, style: 'success' })
                 return currBoard
             }
             catch (err) {
-                console.error(`Cannot save board ${context.getters.currBoard._Id}: `, err)
-                context.dispatch({ type: 'flashUserMsg', msg: `Oops! Cannot save board ${context.getters.currBoard._Id}...`, style: 'warning' })
+                console.error(`Cannot save board ${context.getters.currBoard._id}: `, err)
+                context.dispatch({ type: 'flashUserMsg', msg: `Oops! Cannot save board ${context.getters.currBoard._id}...`, style: 'warning' })
             }
             finally {
                 context.commit({ type: 'setIsLoading', loadingStatus: false })
             }
         },
         async updateGroup(context, { groupToSave }) {
+            console.log(groupToSave);
+            // debugger
             context.commit({ type: 'setIsLoading', loadingStatus: true })
             try {
                 const board = context.getters.currBoard
@@ -140,38 +145,38 @@ export const boardStore = {
             }
             catch (err) {
                 console.error(`Cannot save group ${context.getters.currBoard._Id}: `, err)
-                context.dispatch({ type: 'flashUserMsg', msg: `Oops! Cannot save board ${context.getters.currBoard._Id}...`, style: 'warning' })
+                context.dispatch({ type: 'flashUserMsg', msg: `Oops! Cannot save board ${context.getters.currBoard._id}...`, style: 'warning' })
             }
             finally {
                 context.commit({ type: 'setIsLoading', loadingStatus: false })
             }
         },
-        async updateTask(context, { taskToSave, groupIdx }) {
-            context.commit({ type: 'setIsLoading', loadingStatus: true })
-            try {
-                // console.log(taskToSave, groupIdx);
-                const board = context.getters.currBoard
-                if (taskToSave.id) {
-                    taskToSave = JSON.parse(JSON.stringify(taskToSave))
-                    const idx = board.groups[groupIdx].tasks.findIndex(t => t.id === taskToSave.id)
-                    board.groups[groupIdx].tasks.splice(idx, 1, taskToSave)
-                    // return taskToSave
-                    // console.log('board>>', board, 'group>>', groupToSave);
-                } else {
-                    groupToSave.id = utilService.makeId()
-                    board.groups.push(groupToSave)
-                }
-                const currBoard = await context.dispatch({ type: 'saveCurrBoard', boardToSave: board })
-                return currBoard
-            }
-            catch (err) {
-                console.error(`Cannot save group ${context.getters.currBoard._Id}: `, err)
-                context.dispatch({ type: 'flashUserMsg', msg: `Oops! Cannot save board ${context.getters.currBoard._Id}...`, style: 'warning' })
-            }
-            finally {
-                context.commit({ type: 'setIsLoading', loadingStatus: false })
-            }
-        },
+        // async updateTask(context, { taskToSave, groupIdx }) {
+        //     context.commit({ type: 'setIsLoading', loadingStatus: true })
+        //     try {
+        //         // console.log(taskToSave, groupIdx);
+        //         const board = context.getters.currBoard
+        //         if (taskToSave.id) {
+        //             taskToSave = JSON.parse(JSON.stringify(taskToSave))
+        //             const idx = board.groups[groupIdx].tasks.findIndex(t => t.id === taskToSave.id)
+        //             board.groups[groupIdx].tasks.splice(idx, 1, taskToSave)
+        //             // return taskToSave
+        //             // console.log('board>>', board, 'group>>', groupToSave);
+        //         } else {
+        //             groupToSave.id = utilService.makeId()
+        //             board.groups.push(groupToSave)
+        //         }
+        //         const currBoard = await context.dispatch({ type: 'saveCurrBoard', boardToSave: board })
+        //         return currBoard
+        //     }
+        //     catch (err) {
+        //         console.error(`Cannot save group ${context.getters.currBoard._Id}: `, err)
+        //         context.dispatch({ type: 'flashUserMsg', msg: `Oops! Cannot save board ${context.getters.currBoard._Id}...`, style: 'warning' })
+        //     }
+        //     finally {
+        //         context.commit({ type: 'setIsLoading', loadingStatus: false })
+        //     }
+        // },
         async copyGroup(context, { groupToSave }) {
             context.commit({ type: 'setIsLoading', loadingStatus: true })
             try {
@@ -240,7 +245,7 @@ export const boardStore = {
             const currGroup = boardToSave.groups.find(g => g.id === groupId)
             const taskIdx = currGroup.tasks.findIndex(t => t.id === taskId)
             currGroup.tasks.splice(taskIdx, 1)
-            return context.dispatch({ type: 'saveCurrBoard', boardToSave })
+            return await context.dispatch({ type: 'saveCurrBoard', boardToSave })
         },
         async removeGroup(context, { group }) {
             const boardToSave = context.getters.currBoard
@@ -248,6 +253,14 @@ export const boardStore = {
             boardToSave.groups.splice(idx, 1)
             const board = await context.dispatch({ type: 'saveCurrBoard', boardToSave })
             return board
+        },
+        async getBoardById(context, { boardId }) {
+            try {
+                return await boardService.getById(boardId)
+            } catch (err) {
+                console.log('Cannot get board', boardId, ',', err);
+                throw err;
+            }
         },
         // async saveTask(context, {groupId, taskToSave}){
         //     context.commit({ type: 'setIsLoading', loadingStatus: true })

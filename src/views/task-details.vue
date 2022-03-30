@@ -58,7 +58,7 @@
             <span class="secondary-section-title">Actions</span>
             <button class="btn side-bar icon-move" @click="openEditModal('move-edit')">Move</button>
             <button class="btn side-bar icon-copy" @click="openEditModal('copy-edit')">Copy</button>
-            <button class="btn side-bar icon-archive" @click="openEditModal('')">Remove</button>
+            <button class="btn side-bar icon-archive" @click="removeTask()">Remove</button>
           </div>
         </div>
         <main-edit-modal v-if="editModalStatus.isOpen" modal-title="Hello">
@@ -118,7 +118,7 @@ export default {
     async saveCurrTask(updatedTask = null) {
       // Logic to support updatedTask param which only comes when updating from edit modal
       const taskToSave = updatedTask? updatedTask : this.currTask
-      await this.$store.dispatch({
+            await this.$store.dispatch({
         type: 'saveTask',
         groupId: this.parentGroupId,
         taskToSave: JSON.parse(JSON.stringify(taskToSave))
@@ -130,6 +130,11 @@ export default {
       //should wait for this promise to resolve or not. 
       //if it will cuase problems with saving tasks this 
       //could be the reason 
+    },
+    async removeTask(){
+      const groupId = this.$route.params.groupId
+      const board = await this.$store.dispatch({type: 'removeTask', groupId, taskId: this.currTask.id})
+      this.$router.push(`/board/${board._id}`)
     },
     updateDesc(updatedDesc) {
       console.log('updatedDesc', updatedDesc);
