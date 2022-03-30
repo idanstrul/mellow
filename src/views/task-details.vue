@@ -95,7 +95,7 @@ export default {
     // if (!this.currTask.labelIds) return
     // This should be computed boardLabels
     await this.$store.dispatch({ type: 'loadCurrTask', groupId, taskId })
-    console.log('this.currTask after dispatch', this.currTask)
+    // console.log('this.currTask after dispatch', this.currTask)
     // const boardLabels = this.$store.getters.currBoardLabels
     // Should be in a function
     if (!this.currTask.labelIds || !this.currTask.labelIds.length) return

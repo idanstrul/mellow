@@ -4,22 +4,49 @@
         <span class="secondary-section-title">Labels</span>
         <ul>
             <li v-for="label in labels" :key="label.id">
-                <div class="label selected" :style="{ 'background-color': label.color }">
+                <div
+                    class="label"
+                    :class="{ 'selected': checkIfTaskLabel(label) }"
+                    :style="{ 'background-color': label.color }"
+                    @click="toggleLabelFromTask(label)"
+                >
                     <span>{{ label.title }}</span>
                 </div>
                 <span class="edit-icon"></span>
             </li>
         </ul>
         <button class="btn-default">Create a new label</button>
+        <pre>{{ taskToEdit }}</pre>
+        <pre>{{ labels }}</pre>
     </section>
 </template>
 
 <script>
 export default {
     name: 'labels-edit',
+    props: {
+        currTask: Object
+    },
+    methods: {
+        checkIfTaskLabel(label) {
+            return this.taskToEdit.labelIds.some(id => id === label.id)
+        },
+        toggleLabelFromTask(label) {
+            if (!this.taskToEdit.labelIds) this.taskToEdit.labelIds = [];
+            var labelIds = this.taskToEdit.labelIds
+            const idx = labelIds.findIndex(id => id === label.id)
+            if (idx === -1) labelIds.push(label)
+            else labelIds.splice(idx, 1)
+            this.$emit('taskUpdated', this.taskToEdit)
+
+        }
+    },
     computed: {
         labels() {
             return this.$store.getters.currBoardLabels
+        },
+        taskToEdit() {
+            return JSON.parse(JSON.stringify(this.currTask))
         }
     }
 }
