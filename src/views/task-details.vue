@@ -1,7 +1,8 @@
 <template>
+  <!-- v-clickoutside="closeModal" -->
   <section v-if="currTask" class="task-details">
-    <div class="modal-screen flex center" >
-      <div v-clickoutside="closeModal" class="modal-container flex column center">
+    <div class="modal-screen flex center">
+      <div class="modal-container flex column center">
         <div v-if="false" class="cover"></div>
         <button class="exit-btn" @click="closeModal"></button>
         <div class="modal-header section-title text-l icon-task-title">{{ currTask.title }}</div>
@@ -48,7 +49,7 @@
               class="btn side-bar icon-checklist"
               @click="openEditModal('checklists-edit')"
             >Checklist</button>
-            <button class="btn side-bar icon-dates" @click="openEditModal('dates-edit')">Dates</button>
+            <button class="btn side-bar icon-dates" @click="openEditModal('date-edit')">Dates</button>
             <button
               class="btn side-bar icon-attachment"
               @click="openEditModal('attachment-edit')"
@@ -60,6 +61,10 @@
             <button class="btn side-bar icon-archive" @click="openEditModal('')">Remove</button>
           </div>
         </div>
+        <main-edit-modal v-if="editModalStatus.isOpen" modal-title="Hello">
+          <component :is="editModalStatus.editType" :currTask="currTask" @taskUpdated="saveCurrTask"></component>
+          <!-- <date-edit></date-edit> -->
+        </main-edit-modal>
         <!-- <pre>{{ currTask }}</pre> -->
         <!-- <pre>{{ currTaskLabels }}</pre> -->
       </div>
@@ -74,30 +79,49 @@ import activityLog from "../components/task-edit.cmps/activity-log.vue"
 import trelloChecklist from "../components/task-edit.cmps/trello-checklist.vue"
 import trelloTxtInput from "../components/task-edit.cmps/trello-txt-input.vue"
 import trelloDates from "../components/task-edit.cmps/trello-dates.vue"
+import mainEditModal from './main-edit-modal.vue'
+import labelsEdit from '../components/main-edit-modal.cmps/labels-Edit.vue'
+import membersEdit from '../components/main-edit-modal.cmps/members-edit.vue'
+import checklistsEdit from '../components/main-edit-modal.cmps/checklists-edit.vue'
+import dateEdit from '../components/main-edit-modal.cmps/date-edit.vue'
 
 export default {
   name: 'task-details',
   async created() {
-    const taskId = this.$route.params.taskId
-    const groupId = this.$route.params.groupId
-    this.currTask = await this.$store.dispatch({ type: 'getTaskById', groupId, taskId })
-    if (!this.currTask.labelIds) return
-    const boardLabels = this.$store.getters.currBoardLabels
-    this.currTaskLabels = boardLabels.filter(label =>
+    this.currTaskId = this.$route.params.taskId
+    this.parentGroupId = this.$route.params.groupId
+    const { groupId, taskId } = this.$route.params
+    // this.currTask = await this.$store.dispatch({ type: 'getTaskById', groupId: this.parentGroupId, taskId: this.currTaskId })
+    // if (!this.currTask.labelIds) return
+    // This should be computed boardLabels
+    await this.$store.dispatch({ type: 'loadCurrTask', groupId, taskId })
+    console.log('this.currTask after dispatch', this.currTask)
+    // const boardLabels = this.$store.getters.currBoardLabels
+    // Should be in a function
+    if (!this.currTask.labelIds || !this.currTask.labelIds.length) return
+    this.currTaskLabels = this.boardLabels.filter(label =>
       this.currTask.labelIds.includes(label.id))
   },
   data() {
     return {
-      currTask: null,
-      currTaskLabels: null
+      editModalStatus: {
+        isOpen: false,
+        editType: ''
+      },
+      // currTask: null,
+      currTaskLabels: null,
+      currTaskId: '',
+      parentGroupId: ''
     }
   },
   methods: {
-    async saveCurrTask() {
+    async saveCurrTask(updatedTask = null) {
+      // Logic to support updatedTask param which only comes when updating from edit modal
+      const taskToSave = updatedTask? updatedTask : this.currTask
       await this.$store.dispatch({
         type: 'saveTask',
-        groupId: this.$route.params.groupId,
-        taskToSave: JSON.parse(JSON.stringify(this.currTask))
+        groupId: this.parentGroupId,
+        taskToSave: JSON.parse(JSON.stringify(taskToSave))
       })
       console.log('Current task saved!');
       /// This function returns a promise with the value of 
@@ -129,25 +153,48 @@ export default {
       this.$router.push({ name: 'board', params: { boardId } })
     },
     openEditModal(editType) {
-      this.$store.commit({ type: 'toggleEditModal', isOpen: true, editType, currTask: this.currTask })
+      console.log('this.currTask', this.currTask);
+      const status = {
+        isOpen: true,
+        editType
+      }
+      this.editModalStatus = status
+      // this.$store.commit({ type: 'toggleEditModal', isOpen: true, editType, currTask: this.currTask, parentGroupId: this.parentGroupId })
     }
   },
   computed: {
+    boardLabels() {
+      return this.$store.getters.currBoardLabels
+    },
     hasLabels() {
       return (this.currTaskLabels && this.currTaskLabels.length > 0)
     },
     hasMembers() {
       if (!this.currTask) return
       return (this.currTask.members && this.currTask.members.length > 0)
-    }
+    },
+    currTask() {
+      return this.$store.getters.getCurrTask
+    },
+
   },
+  // watch: {
+  //   this.updatedTask: {
+
+  //   }
+  // },
   components: {
+    mainEditModal,
     trelloLabels,
     trelloMembers,
     activityLog,
     trelloChecklist,
     trelloTxtInput,
-    trelloDates
+    trelloDates,
+    labelsEdit,
+    membersEdit,
+    checklistsEdit,
+    dateEdit
   }
 }
 </script>

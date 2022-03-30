@@ -8,7 +8,8 @@ const store = createStore({
         editModalStatus:{
             isOpen: false,
             editType: '',
-            currTask: null
+            currTask: null,
+            parentGroupId: ''
         },
         isLoading: false,
         userMsg: {
@@ -29,11 +30,12 @@ const store = createStore({
         }
     },
     mutations: {
-        toggleEditModal(state, {isOpen, editType, currTask }){
+        toggleEditModal(state, {isOpen, editType, currTask, parentGroupId }){
             state.editModalStatus = {
                 isOpen,
                 editType,
-                currTask
+                currTask,
+                parentGroupId
             }
         },
         setIsLoading(state, { loadingStatus }) {

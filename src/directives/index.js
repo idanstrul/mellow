@@ -13,7 +13,7 @@ export const clickOutside ={
                 // here we check if the click event is outside the element and it's children
                 if (!(el == event.target || el.contains(event.target))) {
                     // if clicked outside, call the provided method
-                    // console.log('puki');
+                    console.log('puki');
                     binding.value(event)
                 }
             }

@@ -6,6 +6,7 @@ export const boardStore = {
         boards: [], //maybe there will be no need for this
         currBoard: null,
         recentBoards: [],
+        currTaskIdxs: null
     },
     getters: {
         boards(state) {
@@ -42,6 +43,14 @@ export const boardStore = {
             console.log(allChecklists)
             return allChecklists
         },
+        getCurrTask({currTaskIdxs, currBoard}) {
+            // const currGroup =  state.currBoard.groups.find(g => g.id === groupId)
+            // const currTask = currGroup.tasks.find(t => t.id === taskId)
+            if (!currTaskIdxs) return null
+            const {groupIdx, currTaskIdx} = currTaskIdxs
+            const currTask = currBoard.groups[groupIdx].tasks[currTaskIdx]
+            return JSON.parse(JSON.stringify(currTask))
+        },
         recentBoards({ recentBoards }) { return recentBoards },
         cardEdit({ cardEdit }) { return cardEdit },
         boardsToShow(state) {
@@ -52,6 +61,9 @@ export const boardStore = {
         },
     },
     mutations: {
+        setCurrTask(state, {currTaskIdx, groupIdx}){
+            state.currTaskIdxs = {currTaskIdx, groupIdx}
+        },
         setCurrBoard(state, { currBoard }) {
             state.currBoard = currBoard
         },
@@ -193,6 +205,13 @@ export const boardStore = {
                 context.commit({ type: 'setIsLoading', loadingStatus: false })
             }
         },
+        async loadCurrTask({commit, getters}, {groupId, taskId}){
+            // Should work with boardService.getTaskById and get it from DB
+            const currBoard =   getters.currBoard
+            const groupIdx = currBoard.groups.findIndex(g => g.id ===groupId )
+            const currTaskIdx = currBoard.groups[groupIdx].tasks.findIndex(t => t.id === taskId)
+            commit({type:'setCurrTask', groupIdx, currTaskIdx})
+        },
         async getTaskById({ getters }, { groupId, taskId }) {
             const currBoard = getters.currBoard
             const currGroup = currBoard.groups.find(g => g.id === groupId)
@@ -205,6 +224,7 @@ export const boardStore = {
         async saveTask(context, { groupId, taskToSave }) {
             const boardToSave = context.getters.currBoard
             const currGroup = boardToSave.groups.find(g => g.id === groupId)
+            console.log('taskToSave',taskToSave);
             if (!taskToSave.id) {
                 taskToSave.id = utilService.makeId()
                 taskToSave.createdAt = Date.now()

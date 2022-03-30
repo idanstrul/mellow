@@ -26,30 +26,47 @@ import userAvatar from "../user-avatar.vue"
 export default {
     name: 'members-edit',
     props: {
-        currTask: Object
+        currTask: Object,
     },
+    // created(){
+    //     console.log('this.currTask',this.currTask);
+    // },
     data() {
         return {
-            updatedTask: JSON.parse(JSON.stringify(this.currTask))
+            // taskToEdit: JSON.parse(JSON.stringify(this.currTask))
         }
     },
     methods: {
         checkIfTaskMember(memberId) {
-            return this.currTask.members.some(taskMember => {
+            if (!this.taskToEdit.members) return false
+            return this.taskToEdit.members.some(taskMember => {
                 return taskMember._id === memberId
             })
         },
-        toggleMembership(member) {
-            const idx = this.updatedTask.members.findIndex(m => m._id === member._id)
-            if (idx === -1) this.updatedTask.members.push(member)
-            else this.updatedTask.members.splice(idx, 1)
-            // this.$store.dispatch({type: 'updateTask', taskToSave: this.updatedTask, groupId: })
+        async toggleMembership(member) {
+            console.log('toggleMembership()')
+            if (!this.taskToEdit.members) this.taskToEdit.members = []
+            var members = this.taskToEdit.members
+            console.log('member._id', member._id)
+            console.log('members',members)
+            const idx = members.findIndex(m => m._id === member._id)
+            console.log('idx', idx)
+            if (idx === -1) members.push(member)
+            else members.splice(idx, 1)
+            // await this.$store.dispatch({type: 'saveTask', taskToSave: JSON.parse(JSON.stringify(this.taskToEdit)), groupId: this.parentGroupId})
+           // console.log('this.$store.getters.currBoard.groups.find(g => g.id === this.parentGroupId).tasks[]', this.$store.getters.currBoard.groups.find(g => g.id === this.parentGroupId).tasks.find(t => t.id === this.taskToEdit.id))
+            console.log('this.taskToEdit.members', this.taskToEdit.members)
+            this.$emit('taskUpdated', this.taskToEdit)
+
         }
 
     },
     computed: {
         currBoardMembers() {
             return this.$store.getters.currBoardMembers
+        },
+        taskToEdit() {
+            return JSON.parse(JSON.stringify(this.currTask))
         }
     },
     components: {

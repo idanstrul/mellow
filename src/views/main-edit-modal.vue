@@ -1,5 +1,6 @@
 <template>
-  <section v-clickoutside="closeModal" class="main-edit-modal">
+  <section class="main-edit-modal"> 
+      <!-- v-clickoutside="closeModal" -->
       <header class="modal-header">
           <span class="modal-header-title">{{modalTitle}}</span>
           <button class="exit-btn" @click="closeModal"></button>
