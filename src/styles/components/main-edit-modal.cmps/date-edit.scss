@@ -61,6 +61,9 @@ min-height: 500px;
             background-color: #42526e;
             border-radius: 3px;
         }
+        .dp__time_input:first-child{
+            display: none;
+        }
     }
 }
 

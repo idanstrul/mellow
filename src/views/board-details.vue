@@ -195,12 +195,13 @@ export default {
   },
    watch: {
         '$route.params.boardId'(id) {
+          if(!id) return
             console.log('Changed to', id)
             this.loadBoard()
        {immediate:true}
         },
         '$route.params'(p){
-          console.log(p);
+          if(!p.board) return
           if(!p.taskId)
          this.loadBoard()
        {immediate:true}
