@@ -36,7 +36,7 @@ export default {
   methods: {
     async goToBoardsPage() {
       // await this.$store.dispatch({ type: "goToBoardsPage" });
-      this.$router.push("/board/624484b5207696d8ae076cdf");
+      this.$router.push("/board/6244b761207696d8ae1f3618");
     },
   },
 };
