@@ -1,6 +1,8 @@
 <template>
     <section class="date-edit">
-        <el-calendar v-model="currTaskDates.startDate" />
+            <Datepicker v-model="currTaskDates.endDate"  utc inline range :monthChangeOnScroll="false" weekStart="0" monthNameFormat="long"></Datepicker>
+
+        <!-- <el-calendar v-model="currTaskDates.startDate" /> -->
         <!-- <el-date-picker
             v-model="value3"
             type="datetime"
@@ -28,14 +30,20 @@
 </template>
 
 <script>
+
+  import Datepicker from '@vuepic/vue-datepicker';
+    import '@vuepic/vue-datepicker/dist/main.css'
+
 export default {
     name: 'date-edit',
+    components: { Datepicker },
     data() {
         return {
             currTaskDates: {
                 startDate: null,
                 endDate: null,
-                endTime: null
+                endTime: null,
+                date: null
             }
         }
     },

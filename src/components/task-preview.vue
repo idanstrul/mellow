@@ -82,14 +82,14 @@ export default {
       const label = boardLabels.find(label => label.id === labelId)
       // console.log(label);
       if(this.hover)
-      return `background-color: ${utilService.lightenDarkenColor(label.color, -30)}`
-      return `background-color: ${label.color}`
+      return `background-color: ${utilService.lightenDarkenColor(label?.color, -30)}`
+      return `background-color: ${label?.color}`
     },
     getLabelText(labelId){
       const boardLabels = this.$store.getters.currBoardLabels
       const label = boardLabels.find(label => label.id === labelId)
       // console.log(label);
-      return `${label.title}`
+      return `${label?.title}`
     },
     toggleLabels(){
       this.$emit('openLabels')

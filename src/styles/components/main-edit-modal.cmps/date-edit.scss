@@ -1,3 +1,70 @@
+.date-edit{
+min-height: 500px;
+    .dp__menu{
+        border: none;
+        overflow: hidden;
+        height: 400px;
+        .dp__month_year_row{
+            height: 50px;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        .dp__month_year_select{
+            font-family: segBold;
+            color: $clr-dark-title;
+            width: 50px;
+        }
+        .dp__inner_nav{
+            color: #A5ADBA;
+        }
+        .dp__month_year_col_nav{
+            // width: 20px;
+            // height: 20px;
+            transform: scale(0.9);
+            &:first-child{
+               position: absolute;
+               left: 5px;
+            }
+            &:nth-child(4){
+                position: absolute;
+                right: 5px;
+
+            }
+        }
+        .dp__calendar_header_item{
+            color: #6b778c;
+            font-size: rem(12px);
+            font-family: segBold;
+            margin-bottom: -10px;
+            width: 40px;
+        }
+        .dp__calendar_header_separator{
+            display: none;
+        }
+        .dp__cell_inner{
+            // background-color: #42526e;
+            border-radius: 3px;
+            width: 40px;
+            height: 32px;
+        }
+        .dp__today{
+            border: none;
+            color: #0052cc;
+            font-family: segBold !important;
+            border-bottom: 2.75px solid #0052cc;
+            border-radius: 3px 3px 0px 0px;
+        }
+        .dp__range_start, .dp__range_end{
+            font-family: seg;
+            border: none;
+            color: $clr-base;
+            background-color: #42526e;
+            border-radius: 3px;
+        }
+    }
+}
+
+
 .el-calendar {
     padding: 16px 0;
 }
