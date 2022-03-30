@@ -19,11 +19,14 @@ export const clickOutside ={
             }
             // console.log('v-click-outside', vnode);
             // register click and touch events
-          document.body.addEventListener('click', el.clickOutsideEvent)
-          document.body.addEventListener('touchstart', el.clickOutsideEvent)
+            setTimeout(() => {
+              document.body.addEventListener('click', el.clickOutsideEvent)
+              document.body.addEventListener('touchstart', el.clickOutsideEvent)
+            }, 500)
         },
         unmounted: function (el) {
       // unregister click and touch events before the element is unmounted
+          // console.log('puki',el.clickOutsideEvent );
           document.body.removeEventListener('click', el.clickOutsideEvent)
           document.body.removeEventListener('touchstart', el.clickOutsideEvent)
         },

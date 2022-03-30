@@ -1,7 +1,7 @@
 <template>
   <section v-if="currTask" class="task-details">
-    <div class="modal-screen flex center" @click="closeModal">
-      <div @click.stop class="modal-container flex column center">
+    <div class="modal-screen flex center" >
+      <div v-clickoutside="closeModal" class="modal-container flex column center">
         <div v-if="false" class="cover"></div>
         <button class="exit-btn" @click="closeModal"></button>
         <div class="modal-header section-title text-l icon-task-title">{{ currTask.title }}</div>
@@ -134,7 +134,7 @@ export default {
       this.$router.push({ name: 'board', params: { boardId } })
     },
     openEditModal(editType) {
-      this.$store.commit({ type: 'toggleEditModal', isOpen: true, editType })
+      this.$store.commit({ type: 'toggleEditModal', isOpen: true, editType, currTask: this.currTask })
     }
   },
   computed: {
