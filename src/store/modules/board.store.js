@@ -17,7 +17,7 @@ export const boardStore = {
         currBoardLabels(getters) {
             return getters.currBoard.labels
         },
-        currBoardMembers(getters){
+        currBoardMembers(getters) {
             // const users = rootGetters.users
             // console.log('users',users);
             // if (!users || !users.length) return []
@@ -26,12 +26,12 @@ export const boardStore = {
             // })
             return getters.currBoard.members
         },
-        currBoardChecklists(getters){
+        currBoardChecklists(getters) {
             const allChecklists = []
             getters.currBoard.groups.forEach(g => {
                 g.tasks.forEach(t => {
                     if (!t.checklists || !t.checklists.length) return
-                    allChecklists.push({taskId: t.id, taskTitle: t.title, checklists: t.checklists})
+                    allChecklists.push({ taskId: t.id, taskTitle: t.title, checklists: t.checklists })
                     // t.checklists.forEach(cl => {
                     //     cl.parentTask = t
                     //     allChecklists.push(cl)
@@ -60,6 +60,9 @@ export const boardStore = {
             state.recentBoards = state.recentBoards.filter(currBoard =>
                 currBoard._id !== board._id)
             state.recentBoards.unshift(board)
+        },
+        addBoard(state, { savedBoard }) {
+            state.boards.push(savedBoard);
         },
         // saveTaskToStore(state, { groupId, taskToSave }) {
         //     const currGroup = state.currBoard.groups.find(g => g.id === groupId)
@@ -228,6 +231,14 @@ export const boardStore = {
             boardToSave.groups.splice(idx, 1)
             const board = await context.dispatch({ type: 'saveCurrBoard', boardToSave })
             return board
+        },
+        async getBoardById(context, { boardId }) {
+            try {
+                return await boardService.getById(boardId)
+            } catch (err) {
+                console.log('Cannot get board', boardId, ',', err);
+                throw err;
+            }
         },
         // async saveTask(context, {groupId, taskToSave}){
         //     context.commit({ type: 'setIsLoading', loadingStatus: true })

@@ -563,6 +563,12 @@ async function query() {
 
 async function getById(boardId) {
     return storageService.get(STORAGE_KEY, boardId)
+    /*try {
+        const board = await httpService.get(`board/${boardId}`)
+        return board
+    } catch (err) {
+        console.log('Error:', err);
+    }*/
 }
 
 async function remove(boardId) {
