@@ -137,32 +137,32 @@ export const boardStore = {
                 context.commit({ type: 'setIsLoading', loadingStatus: false })
             }
         },
-        async updateTask(context, { taskToSave, groupIdx }) {
-            context.commit({ type: 'setIsLoading', loadingStatus: true })
-            try {
-                // console.log(taskToSave, groupIdx);
-                const board = context.getters.currBoard
-                if (taskToSave.id) {
-                    taskToSave = JSON.parse(JSON.stringify(taskToSave))
-                    const idx = board.groups[groupIdx].tasks.findIndex(t => t.id === taskToSave.id)
-                    board.groups[groupIdx].tasks.splice(idx, 1, taskToSave)
-                    // return taskToSave
-                    // console.log('board>>', board, 'group>>', groupToSave);
-                } else {
-                    groupToSave.id = utilService.makeId()
-                    board.groups.push(groupToSave)
-                }
-                const currBoard = await context.dispatch({ type: 'saveCurrBoard', boardToSave: board })
-                return currBoard
-            }
-            catch (err) {
-                console.error(`Cannot save group ${context.getters.currBoard._Id}: `, err)
-                context.dispatch({ type: 'flashUserMsg', msg: `Oops! Cannot save board ${context.getters.currBoard._Id}...`, style: 'warning' })
-            }
-            finally {
-                context.commit({ type: 'setIsLoading', loadingStatus: false })
-            }
-        },
+        // async updateTask(context, { taskToSave, groupIdx }) {
+        //     context.commit({ type: 'setIsLoading', loadingStatus: true })
+        //     try {
+        //         // console.log(taskToSave, groupIdx);
+        //         const board = context.getters.currBoard
+        //         if (taskToSave.id) {
+        //             taskToSave = JSON.parse(JSON.stringify(taskToSave))
+        //             const idx = board.groups[groupIdx].tasks.findIndex(t => t.id === taskToSave.id)
+        //             board.groups[groupIdx].tasks.splice(idx, 1, taskToSave)
+        //             // return taskToSave
+        //             // console.log('board>>', board, 'group>>', groupToSave);
+        //         } else {
+        //             groupToSave.id = utilService.makeId()
+        //             board.groups.push(groupToSave)
+        //         }
+        //         const currBoard = await context.dispatch({ type: 'saveCurrBoard', boardToSave: board })
+        //         return currBoard
+        //     }
+        //     catch (err) {
+        //         console.error(`Cannot save group ${context.getters.currBoard._Id}: `, err)
+        //         context.dispatch({ type: 'flashUserMsg', msg: `Oops! Cannot save board ${context.getters.currBoard._Id}...`, style: 'warning' })
+        //     }
+        //     finally {
+        //         context.commit({ type: 'setIsLoading', loadingStatus: false })
+        //     }
+        // },
         async copyGroup(context, { groupToSave }) {
             context.commit({ type: 'setIsLoading', loadingStatus: true })
             try {
