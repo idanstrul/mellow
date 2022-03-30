@@ -14,7 +14,7 @@
 
   orientation="horizontal"
   @drop="onColumnDrop($event)">
-  <Draggable v-for="(group, idx) in board.groups" :key="group.id">
+  <Draggable v-for="(group) in board.groups" :key="group.id">
     <div>
     <board-group
     :group="group"
@@ -33,9 +33,9 @@
     @in-progress="task.status='in-progress'"
     @over-due="task.status='over-due'"
     @done="task.status='done'"
-    @saveTask="saveTask(task, idx)"
+    @saveTask="saveTask(task, group.id)"
     @openLabels="labelsOpen=!labelsOpen"
-    :groupIdx="idx" :labelsOpen="labelsOpen"
+    :labelsOpen="labelsOpen"
     @click="goToDetail(group, task)" 
     v-for="task in group.tasks" :key="task.id" :task="task"
     @removeTask="removeTask(task, group)">
@@ -100,10 +100,11 @@ export default {
    background-color: ${this.board.style.bg};`
   },
   methods: {
-    async saveTask(taskToSave, groupIdx){
+    async saveTask(taskToSave, groupId){
+      
       // console.log('hi');
       // console.log(taskToSave, groupIdx);
-      const board = await this.$store.dispatch({type: 'updateTask', taskToSave, groupIdx})
+      const board = await this.$store.dispatch({type: 'saveTask', groupId, taskToSave})
       // this.loadBoard()
       // this.board = board
       // this.board.groups[groupIdx].tasks.findIndex(t => t.id === taskToSave.id)
