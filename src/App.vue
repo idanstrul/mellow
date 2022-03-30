@@ -1,7 +1,7 @@
 <template>
   <section>
     <main-edit-modal v-if="editModalStatus.isOpen" modal-title="Hello">
-      <component :is="editModalStatus.editType"></component>
+      <component :is="editModalStatus.editType" :currTask="editModalStatus.currTask"></component>
       <!-- <date-edit></date-edit> -->
     </main-edit-modal>
     <main-header></main-header>
