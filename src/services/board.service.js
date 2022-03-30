@@ -1,11 +1,11 @@
-import { syncStorageService } from "./storage.service.sync.js"
-import { storageService } from './storage.service.js'
+//import { syncStorageService } from "./storage.service.sync.js"
+//import { storageService } from './storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 import { httpService } from "./http.service.js"
 
 
-const STORAGE_KEY = 'boardDB'
+//const STORAGE_KEY = 'boardDB'
 
 export const boardService = {
     query,
@@ -553,7 +553,7 @@ const defaultBoards = [
     }
 ]
 
-_createBoards()
+//_createBoards()
 
 
 //BOARD CRUD
@@ -693,14 +693,14 @@ async function getEmptyBoard() {
     }
 }
 
-function _createBoards() {
+/*function _createBoards() {
     var boards = syncStorageService.load(STORAGE_KEY)
     if (!boards || !boards.length) {
         boards = defaultBoards
         syncStorageService.store(STORAGE_KEY, boards)
     }
     return boards;
-}
+}*/
 
 
 //GROUP CRUD: 
