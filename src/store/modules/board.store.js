@@ -17,7 +17,7 @@ export const boardStore = {
         currBoardLabels(getters) {
             return getters.currBoard.labels
         },
-        currBoardMembers(getters){
+        currBoardMembers(getters) {
             // const users = rootGetters.users
             // console.log('users',users);
             // if (!users || !users.length) return []
@@ -26,12 +26,12 @@ export const boardStore = {
             // })
             return getters.currBoard.members
         },
-        currBoardChecklists(getters){
+        currBoardChecklists(getters) {
             const allChecklists = []
             getters.currBoard.groups.forEach(g => {
                 g.tasks.forEach(t => {
                     if (!t.checklists || !t.checklists.length) return
-                    allChecklists.push({taskId: t.id, taskTitle: t.title, checklists: t.checklists})
+                    allChecklists.push({ taskId: t.id, taskTitle: t.title, checklists: t.checklists })
                     // t.checklists.forEach(cl => {
                     //     cl.parentTask = t
                     //     allChecklists.push(cl)
@@ -95,7 +95,7 @@ export const boardStore = {
         },
         async saveCurrBoard(context, { boardToSave }) {
             // console.log(boardToSave.groups[1].tasks);
-            console.log('hi');
+            // console.log('hi');
             context.commit({ type: 'setIsLoading', loadingStatus: true })
             try {
                 const currBoard = await boardService.save(boardToSave)
@@ -220,7 +220,7 @@ export const boardStore = {
             const currGroup = boardToSave.groups.find(g => g.id === groupId)
             const taskIdx = currGroup.tasks.findIndex(t => t.id === taskId)
             currGroup.tasks.splice(taskIdx, 1)
-            return context.dispatch({ type: 'saveCurrBoard', boardToSave })
+            return await context.dispatch({ type: 'saveCurrBoard', boardToSave })
         },
         async removeGroup(context, { group }) {
             const boardToSave = context.getters.currBoard

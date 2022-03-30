@@ -57,7 +57,7 @@
             <span class="secondary-section-title">Actions</span>
             <button class="btn side-bar icon-move" @click="openEditModal('move-edit')">Move</button>
             <button class="btn side-bar icon-copy" @click="openEditModal('copy-edit')">Copy</button>
-            <button class="btn side-bar icon-archive" @click="openEditModal('')">Remove</button>
+            <button class="btn side-bar icon-archive" @click="removeTask()">Remove</button>
           </div>
         </div>
         <!-- <pre>{{ currTask }}</pre> -->
@@ -93,6 +93,11 @@ export default {
     }
   },
   methods: {
+    async removeTask(){
+      const groupId = this.$route.params.groupId
+      const board = await this.$store.dispatch({type: 'removeTask', groupId, taskId: this.currTask.id})
+      this.$router.push(`/board/${board._id}`)
+    },
     async saveCurrTask() {
       await this.$store.dispatch({
         type: 'saveTask',

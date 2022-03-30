@@ -13,8 +13,8 @@
             class="group-title"
             @blur="updateGroup"
      >
-     <button @click="toggleMenu" class="btn-group-menu" title="Menu"></button>
-     <group-menu @removeGroup="removeGroup" @copyGroup="menuOpen=false;  subMenuOpen=true" @closeMenu="menuOpen=false" @newTask="addTask('taskToEdit')" :menuOpen="menuOpen"></group-menu>
+     <button @click.stop="toggleMenu" class="btn-group-menu" title="Menu"></button>
+     <group-menu v-clickoutside="closeMenu" @removeGroup="removeGroup" @copyGroup="menuOpen=false;  subMenuOpen=true" @closeMenu="menuOpen=false" @newTask="addTask('taskToEdit')" :menuOpen="menuOpen"></group-menu>
     <copy-group-menu @saveGroup="saveGroup" @closeMenu="subMenuOpen=false" :menuOpen="subMenuOpen" :groupTitle="group.title"></copy-group-menu>
      </div>
      <task-add v-if="taskToEdit" :task="taskToEdit" @saveTask="saveTask"></task-add>
@@ -74,6 +74,10 @@ export default {
     TaskAdd
 },
   methods: {
+    closeMenu(){
+      this.menuOpen = false
+      this.subMenuOpen = false
+    },
     toggleMenu(){
       
       this.menuOpen = !this.menuOpen
