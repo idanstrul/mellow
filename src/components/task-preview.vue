@@ -174,11 +174,9 @@ export default {
     },
   },
     watch: {
-      //   'this.loadDate'() {
-      //       // console.log('Changed to', id)
-      //       // this.loadDate()
-      //  {immediate:true}
-      //   }
+      task(n, o){
+        this.loadDate()
+      }
     }
 }
 </script>

@@ -91,10 +91,13 @@ export default {
     taskPreview
 },
   async mounted() {
-   await this.loadBoard()
-  //  document.body.style=`
-  //  background-image: url(${this.board.style.bg});
-  //  background-color: ${this.board.style.bg};`
+  //  await this.loadBoard()
+   const { boardId } = this.$route.params
+  const board = await this.$store.dispatch({type: 'loadCurrBoard', boardId})
+  this.board = board
+   document.body.style=`
+   background-image: url(${this.board.style.bg});
+   background-color: ${this.board.style.bg};`
   },
   methods: {
     async saveTask(taskToSave, groupIdx){
@@ -112,58 +115,46 @@ export default {
     },
     async removeGroup(group){
       const board = await this.$store.dispatch({type: 'removeGroup', group})
-      const idx = this.board.groups.findIndex(g => g.id === group.id)
-      this.board.groups.splice(idx,1)
-      // this.loadDate = true
-      // this.$router=`board/${this.board._id}`
-      // await this.loadBoard()
+      this.board = board
     },
     async removeTask(task, group){
-      // console.log(task,);
       const board = await this.$store.dispatch({type: 'removeTask', groupId: group.id ,taskId: task.id})
-      const currGroup = this.board.groups.find(g => g.id === group.id)
-      const taskIdx = currGroup.tasks.findIndex(t => t.id === task.id)
-      currGroup.tasks.splice(taskIdx, 1)
-      // this.loadDate = true
-      // this.$router=`board/${this.board._id}`
-      // await this.loadBoard()
+      this.board = board
     },
     async updateGroup(groupToSave){
       if(!this.isAddingGroup) this.isAddingGroup = true
-      console.log(groupToSave);
+      // console.log(groupToSave);
       if(!groupToSave.title) return
       const board = await this.$store.dispatch({type: 'updateGroup', groupToSave})
       this.board = board
-      // this.loadBoard()
     },
     async loadBoard(){
-       const { boardId } = this.$route.params
-    // const boardId = 'b101'
-    // console.log(id);
+    const { boardId } = this.$route.params
     const board = await this.$store.dispatch({type: 'loadCurrBoard', boardId})
-    // const board = await boardService.getById(id)
+    // const board = this.$store.getters.currBoard
     this.board = board
-     document.body.style=`
-   background-image: url(${this.board.style.bg});
-   background-color: ${this.board.style.bg};`
+    document.body.style=`
+    background-image: url(${this.board.style.bg});
+    background-color: ${this.board.style.bg};`
     return board
     },
-    onColumnDrop (dropResult) {
+    async onColumnDrop (dropResult) {
       const scene = Object.assign({}, this.board)
       console.log(scene);
       dropResult.payload = {}
-      dropResult.payload.data = this.board.groups[dropResult.removedIndex].title
+      dropResult.payload.data = this.board.groups[dropResult.removedIndex]
       dropResult.payload.id = this.board.groups[dropResult.removedIndex].id
       console.log('drop>>',dropResult);
       scene.groups = utilService.applyDrag(scene.groups, dropResult)
-      this.board = scene
+      const board = await this.$store.dispatch({type: 'saveCurrBoard', boardToSave: scene})
+      this.board = board
     },
    getCardPayload (groupId) {
       return index => {
         return this.board.groups.filter(p => p.id === groupId)[0].tasks[index]
       }
     },
-    onCardDrop (groupId, dropResult) {
+    async onCardDrop (groupId, dropResult) {
       console.log(dropResult);
       // check if element where ADDED or REMOVED in current collumn
       if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
@@ -183,7 +174,10 @@ export default {
         
         newColumn.tasks = utilService.applyDrag(newColumn.tasks, dropResult)
         scene.groups.splice(itemIndex, 1, newColumn)
-        this.$emit('move', scene)
+        const board = await this.$store.dispatch({type: 'saveCurrBoard', boardToSave: scene})
+        this.board = board
+        // this.$emit('move', scene)
+        // console.log(scene);
         // this.board = scene
       }
     },
