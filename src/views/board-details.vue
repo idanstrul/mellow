@@ -112,6 +112,7 @@ export default {
     },
     async removeGroup(group){
       const board = await this.$store.dispatch({type: 'removeGroup', group})
+      // this.board = board
       const idx = this.board.groups.findIndex(g => g.id === group.id)
       this.board.groups.splice(idx,1)
       // this.loadDate = true
