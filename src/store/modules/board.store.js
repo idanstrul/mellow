@@ -103,18 +103,20 @@ export const boardStore = {
             try {
                 const currBoard = await boardService.save(boardToSave)
                 context.commit({ type: 'setCurrBoard', currBoard: boardToSave })
-                context.dispatch({ type: 'flashUserMsg', msg: `Board ${currBoard._Id} saved successfully`, style: 'success' })
+                context.dispatch({ type: 'flashUserMsg', msg: `Board ${currBoard._id} saved successfully`, style: 'success' })
                 return currBoard
             }
             catch (err) {
-                console.error(`Cannot save board ${context.getters.currBoard._Id}: `, err)
-                context.dispatch({ type: 'flashUserMsg', msg: `Oops! Cannot save board ${context.getters.currBoard._Id}...`, style: 'warning' })
+                console.error(`Cannot save board ${context.getters.currBoard._id}: `, err)
+                context.dispatch({ type: 'flashUserMsg', msg: `Oops! Cannot save board ${context.getters.currBoard._id}...`, style: 'warning' })
             }
             finally {
                 context.commit({ type: 'setIsLoading', loadingStatus: false })
             }
         },
         async updateGroup(context, { groupToSave }) {
+            console.log(groupToSave);
+            // debugger
             context.commit({ type: 'setIsLoading', loadingStatus: true })
             try {
                 const board = context.getters.currBoard
@@ -131,7 +133,7 @@ export const boardStore = {
             }
             catch (err) {
                 console.error(`Cannot save group ${context.getters.currBoard._Id}: `, err)
-                context.dispatch({ type: 'flashUserMsg', msg: `Oops! Cannot save board ${context.getters.currBoard._Id}...`, style: 'warning' })
+                context.dispatch({ type: 'flashUserMsg', msg: `Oops! Cannot save board ${context.getters.currBoard._id}...`, style: 'warning' })
             }
             finally {
                 context.commit({ type: 'setIsLoading', loadingStatus: false })

@@ -147,8 +147,8 @@ export default {
       dropResult.payload.id = this.board.groups[dropResult.removedIndex].id
       console.log('drop>>',dropResult);
       scene.groups = utilService.applyDrag(scene.groups, dropResult)
+      this.board = scene
       const board = await this.$store.dispatch({type: 'saveCurrBoard', boardToSave: scene})
-      this.board = board
     },
    getCardPayload (groupId) {
       return index => {
@@ -175,8 +175,8 @@ export default {
         
         newColumn.tasks = utilService.applyDrag(newColumn.tasks, dropResult)
         scene.groups.splice(itemIndex, 1, newColumn)
+        this.board = scene
         const board = await this.$store.dispatch({type: 'saveCurrBoard', boardToSave: scene})
-        this.board = board
         // this.$emit('move', scene)
         // console.log(scene);
         // this.board = scene
@@ -196,7 +196,13 @@ export default {
             console.log('Changed to', id)
             this.loadBoard()
        {immediate:true}
-        }
+        },
+        '$route.params'(p){
+          console.log(p);
+          if(!p.taskId)
+         this.loadBoard()
+       {immediate:true}
+      }
     }
 }
 </script>
