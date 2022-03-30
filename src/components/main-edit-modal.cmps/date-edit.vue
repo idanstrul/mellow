@@ -1,6 +1,6 @@
 <template>
     <section class="date-edit">
-            <Datepicker v-model="currTaskDates.endDate"  utc inline range :monthChangeOnScroll="false" weekStart="0" monthNameFormat="long"></Datepicker>
+            <Datepicker v-model="currTaskDates.endDate" startTime="" utc inline range :monthChangeOnScroll="false" weekStart="0" monthNameFormat="long"></Datepicker>
 
         <!-- <el-calendar v-model="currTaskDates.startDate" /> -->
         <!-- <el-date-picker
