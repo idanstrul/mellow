@@ -14,7 +14,7 @@ export const boardService = {
     save,
     getEmptyBoard,
     getEmptyTask,
-    getEmptyGroup
+    getEmptyGroup,
 }
 
 const defaultBoards = [
@@ -559,7 +559,14 @@ _createBoards()
 //BOARD CRUD
 
 async function query() {
-    return await storageService.query(STORAGE_KEY)
+    //return await storageService.query(STORAGE_KEY)
+    try {
+        const boards = await httpService.get('board')
+        return boards
+
+    } catch (err) {
+        console.log('query had an error', err);
+    }
 }
 
 async function getById(boardId) {
@@ -573,18 +580,31 @@ async function getById(boardId) {
 }
 
 async function remove(boardId) {
-    return storageService.remove(STORAGE_KEY, boardId)
+    //return storageService.remove(STORAGE_KEY, boardId)
+    try {
+        const board = await httpService.get(`board/${boardId}`)
+        return board
+    } catch (err) {
+        console.log('Error:', err);
+    }
 }
 
 async function save(board) {
-    const boardToSave = JSON.parse(JSON.stringify(board))
+    /*const boardToSave = JSON.parse(JSON.stringify(board))
     // console.log(boardToSave);
     if (boardToSave._id) return storageService.put(STORAGE_KEY, boardToSave);
-    return storageService.post(STORAGE_KEY, boardToSave)
-}
-
-async function saveGroup() {
-
+    return storageService.post(STORAGE_KEY, boardToSave)*/
+    try {
+        if (board._id) {
+            const savedBoard = await httpService.put(`board`, board)
+            return savedBoard
+        } else {
+            const savedBoard = await httpService.post(`board`, board)
+            return savedBoard
+        }
+    } catch (err) {
+        console.log('Error:', err);
+    }
 }
 
 async function getEmptyBoard() {
@@ -710,10 +730,6 @@ function getEmptyTask() {
         },
     }
 }
-
-// async function removeTask(groupId, taskId) {
-
-// }
 
 // async function saveTask(task) {
 //     const taskToSave = JSON.parse(JSON.stringify(task))
