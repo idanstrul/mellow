@@ -105,6 +105,7 @@ export default {
       // console.log('hi');
       // console.log(taskToSave, groupIdx);
       const board = await this.$store.dispatch({type: 'saveTask', groupId, taskToSave})
+      this.board = board
       // this.loadBoard()
       // this.board = board
       // this.board.groups[groupIdx].tasks.findIndex(t => t.id === taskToSave.id)
@@ -147,7 +148,7 @@ export default {
       dropResult.payload.id = this.board.groups[dropResult.removedIndex].id
       console.log('drop>>',dropResult);
       scene.groups = utilService.applyDrag(scene.groups, dropResult)
-      this.board = scene
+      this.board = JSON.parse(JSON.stringify(scene))
       const board = await this.$store.dispatch({type: 'saveCurrBoard', boardToSave: scene})
     },
    getCardPayload (groupId) {
@@ -175,8 +176,9 @@ export default {
         
         newColumn.tasks = utilService.applyDrag(newColumn.tasks, dropResult)
         scene.groups.splice(itemIndex, 1, newColumn)
-        this.board = scene
+        this.board = JSON.parse(JSON.stringify(scene))
         const board = await this.$store.dispatch({type: 'saveCurrBoard', boardToSave: scene})
+        // this.board = board
         // this.$emit('move', scene)
         // console.log(scene);
         // this.board = scene
