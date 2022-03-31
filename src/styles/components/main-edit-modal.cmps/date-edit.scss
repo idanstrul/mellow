@@ -9,6 +9,10 @@
     z-index: 900;
 }
 .dp__menu{
+    .dp__active_date{
+            background-color: #42526e;
+
+    }
     .btn-save-date{
         @include defaultBtn;
         // z-index: 900;

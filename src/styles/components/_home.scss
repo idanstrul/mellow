@@ -1,14 +1,15 @@
 .home{
     height: 100vh;
+    // overflow: hidden;
 }
 
 .homepage {
+    // overflow: hidden;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    // overflow: hidden;
     // width: 100vw;
     background-color: whitesmoke;
     -webkit-text-size-adjust: 100%;
