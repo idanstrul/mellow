@@ -1,6 +1,6 @@
 <template>
-  <section @click="goToBoardsPage" class="main-header" :class="classBoardsPage">
-    <button class="btn-boards" title="Boards"><img src="../assets/boards.png" alt=""></button>
+  <section class="main-header" :class="classBoardsPage">
+    <button @click="goToBoardsPage" class="btn-boards" title="Boards"><img src="../assets/boards.png" alt=""></button>
     <router-link to="/"><button title="Mello" class="btn-logo" ><img src="../assets/logo.gif" alt=""></button></router-link>
     <!-- <button class="btn-opt work" title="Workspaces">Workspaces <img class="img-arrow" src="../assets/arrow.png" alt=""></button> -->
     <button class="btn-opt" title="Recent">Recent <img class="img-arrow" src="../assets/arrow.png" alt=""></button>
@@ -101,8 +101,8 @@ export default {
     goToBoardsPage() {
       const style = { "background-color": 'whitesmoke' };
       this.setBackground(style)
-      if (this.$route.path !== '/boards') {
-        this.$router.push("/boards");
+      if (this.$route.path !== '/board') {
+        this.$router.push("/board");
       }
       this.$store.commit({ type: 'setCurrBoard', board: null })
     },

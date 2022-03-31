@@ -15,7 +15,7 @@ const router = createRouter({
       component: home
     },
     {
-      path: '/boards',
+      path: '/board',
       name: 'boards',
       component: boards
     },
