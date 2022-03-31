@@ -1,5 +1,5 @@
 <template>
-    <section class="trello-txt-input" @click="isInEdit = true">
+    <section class="trello-txt-input" @click="isInEdit = true"> <!-- v-clickoutside="saveTxt" -->
         <div v-if="!isInEdit" class="flex space-between">
             <span class="input-title">{{ txtToShow }}</span>
             <slot></slot>
@@ -9,6 +9,7 @@
                 cols="30"
                 rows="3"
                 @keydown.enter.prevent="next"
+                @keydown.esc="cancel"
                 v-model="updatedTxt"
                 :placeholder="placeholder"
                 v-focus
@@ -45,6 +46,7 @@ export default {
     },
     methods: {
         saveTxt() {
+            console.log('saving Text!');
             if (!this.updatedTxt) {
                 console.log('this.denyEmptySave', this.denyEmptySave);
                 if (!this.denyEmptySave) this.isInEdit = false

@@ -2,11 +2,11 @@
     <section class="trello-members">
         <span class="secondary-section-title">Members</span>
         <ul class="clean-list">
-            <li v-for="member in members" :key="member._id">
+            <li v-for="member in members" :key="member._id" @click="openEditModal">
                 <user-avatar :user="member" :diameter="32"></user-avatar>
             </li>
             <li>
-                <button class="btn-round"></button>
+                <button class="btn-round" @click="openEditModal"></button>
             </li>
         </ul>
     </section>
@@ -21,6 +21,10 @@ export default {
         members: Array
     },
     methods: {
+        openEditModal(event) {
+            console.log('event', event);
+            this.$emit('editModalOpened', event, 'membersEdit')
+        }
     },
     components: {
         userAvatar

@@ -32,11 +32,14 @@ export default {
             return this.taskToEdit.labelIds.some(id => id === label.id)
         },
         toggleLabelFromTask(label) {
+            // console.log('label',label);
+            // console.log('this.taskToEdit.labelIds', this.taskToEdit.labelIds); this.taskToEdit.labelIds
             if (!this.taskToEdit.labelIds) this.taskToEdit.labelIds = [];
             var labelIds = this.taskToEdit.labelIds
             const idx = labelIds.findIndex(id => id === label.id)
-            if (idx === -1) labelIds.push(label)
+            if (idx === -1) labelIds.push(label.id)
             else labelIds.splice(idx, 1)
+            console.log('this.taskToEdit',this.taskToEdit);
             this.$emit('taskUpdated', this.taskToEdit)
 
         }
