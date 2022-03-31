@@ -93,6 +93,7 @@ import labelsEdit from '../components/main-edit-modal.cmps/labels-Edit.vue'
 import membersEdit from '../components/main-edit-modal.cmps/members-edit.vue'
 import checklistsEdit from '../components/main-edit-modal.cmps/checklists-edit.vue'
 import dateEdit from '../components/main-edit-modal.cmps/date-edit.vue'
+import coverEdit from "../components/main-edit-modal.cmps/cover-edit.vue"
 
 export default {
   name: 'task-details',
@@ -233,7 +234,8 @@ export default {
     labelsEdit,
     membersEdit,
     checklistsEdit,
-    dateEdit
+    dateEdit,
+    coverEdit
   }
 }
 </script>
