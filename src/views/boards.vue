@@ -1,11 +1,10 @@
 <template>
-  <h1>I'm about page!</h1>
+  <h1>I'm boards page!</h1>
 </template>
 
 <script>
 export default {
-  name: 'about'
-
+  name: 'boards'
 }
 </script>
 
