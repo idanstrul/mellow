@@ -10,9 +10,10 @@ export const boardStore = {
         currTaskIdxs: null
     },
     getters: {
-        boards(state) {
-            return JSON.parse(JSON.stringify(state.boards)) //maybe there will be no need for this
-        },
+        /* boards(state) {
+             return JSON.parse(JSON.stringify(state.boards)) //maybe there will be no need for this
+         },*/
+        boards({ boards }) { return boards },
         currBoard(state) {
             return JSON.parse(JSON.stringify(state.currBoard))
         },
@@ -93,6 +94,9 @@ export const boardStore = {
         //     const taskIdx = currGroup.tasks.findIndex(t => t.id === taskId)
         //     currGroup.tasks.splice(taskIdx, 1)
         // },
+    },
+    loadBoards(state, { boards }) {
+        state.boards = boards
     },
     actions: {
         async loadCurrBoard(context, { boardId }) {
@@ -271,6 +275,17 @@ export const boardStore = {
                 return await boardService.getById(boardId)
             } catch (err) {
                 console.log('Cannot get board', boardId, ',', err);
+                throw err;
+            }
+        },
+        async loadBoards({ commit }) {
+            try {
+                const boards = await boardService.query()
+                commit({ type: 'loadBoards', boards })
+                return boards
+            }
+            catch (err) {
+                console.log('Cannot load boards', err);
                 throw err;
             }
         },
