@@ -219,7 +219,7 @@ export default {
           if(!p.boardId) return
           if(!p.taskId)
          this.loadBoard()
-         socketService.emit(SOCKET_EMIT_BOARD_WATCH, this.boardId);
+        //  socketService.emit(SOCKET_EMIT_BOARD_WATCH, this.boardId);
        {immediate:true}
       },
         board(p){
