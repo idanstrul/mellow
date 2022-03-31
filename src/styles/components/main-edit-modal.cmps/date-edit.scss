@@ -1,8 +1,18 @@
 .date-edit{
 // min-height: 500px;
-    .dp__menu{
-        .btn-save-date{
-            @include defaultBtn;
+.date-title{
+    font-family: segBold;
+    color: #5e6c84;
+    font-size: 12px;
+    position: relative;
+    bottom: 50px;
+    z-index: 900;
+}
+.dp__menu{
+    .btn-save-date{
+        @include defaultBtn;
+        // z-index: 900;
+        // position: fixed;
             width: 280px;
             margin-inline-start: -9px;
             // align-self: center;
@@ -13,6 +23,22 @@
         border: none;
         overflow: hidden;
         height: 400px;
+        .dp__selection_preview{
+            position: absolute;
+            bottom: 10px;
+            font-size: 14px;
+            color: $clr-dark-title;
+            // div:first-child{
+            //     position: absolute;
+            //     left: 0;
+            //     bottom: 0;
+            // }
+            // div:not(:first-child){
+            //     position: absolute;
+            //     bottom: 0;
+            //     left: 150px;
+            // }
+        }
         .dp__month_year_row{
             height: 50px;
             justify-content: center;
@@ -74,7 +100,7 @@
             border-radius: 3px;
         }
         .dp__time_input:first-child{
-            display: none;
+            // display: none;
         }
     }
 }

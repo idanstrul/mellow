@@ -1,4 +1,5 @@
 <template>
+<section class="home">
   <div class="homepage">
      <section class="header-home">
       <div class="logo">
@@ -25,6 +26,7 @@
 </main>
 </div>
   </div>
+  </section>
 </template>
 
 <script>

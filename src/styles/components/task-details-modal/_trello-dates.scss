@@ -25,12 +25,12 @@
         display: block;
         margin-inline-start: 4px;
 
-        &.complete{
+        &.complete, &.done{
             background-color: $clr-labe0;
         }
 
-        &.overdue{
-            background-color: #EC9488;
+        &.overdue, &.over-due{
+            background-color: #eb5a46;
         }
 
         &.in-progress{
