@@ -18,7 +18,7 @@
         <h1>Mello helpss teams move work forward</h1>
          As your software team grows, Mello makes it easy to manage workflows across multiple teams and projects. Simple, intuitive, fast: Mello is where software teams do their best work.
          Free to get started, with easy user experience Mello. </p>
-      <button class="start-btn" @click="goToBoardsPage">Get Started it's free</button>
+      <button class="start-btn" @click="goToBoardsPage">Start as a guest</button>
     </section>
         <div class="img">
           <img src="../assets/Asset3.png">
