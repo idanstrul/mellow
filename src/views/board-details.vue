@@ -217,7 +217,6 @@ export default {
        {immediate:true}
         },
         '$route.params'(p){
-          console.log(p);
           if(!p.boardId) return
           if(!p.taskId)
          this.loadBoard()

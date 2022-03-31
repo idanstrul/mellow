@@ -2,7 +2,6 @@ import { boardService } from "../../services/board.service";
 import { utilService } from "../../services/util.service";
 import { socketService } from '../../services/socket.service';
 import { SOCKET_ON_BOARD_UPDATE } from '../../services/socket.service';
-console.log('socketService', socketService, SOCKET_ON_BOARD_UPDATE)
 export const boardStore = {
     state: {
         boards: [], //maybe there will be no need for this
