@@ -130,6 +130,7 @@ export default {
         groupId: this.parentGroupId,
         taskToSave: JSON.parse(JSON.stringify(taskToSave))
       })
+      //await this.socketUpdateBoard();
       console.log('Current task saved!');
       /// This function returns a promise with the value of 
       //the current board. I'm not sure if methods 
@@ -147,22 +148,26 @@ export default {
       console.log('updatedDesc', updatedDesc);
       this.currTask.description = updatedDesc
       this.saveCurrTask()
+      this.socketUpdateBoard();
     },
     updateChecklist(updatedChecklist) {
       // console.log('updatedChecklist', updatedChecklist);
       const idx = this.currTask.checklists.findIndex(cl => cl.id === updatedChecklist.id)
       this.currTask.checklists[idx] = updatedChecklist
       this.saveCurrTask()
+      this.socketUpdateBoard();
     },
     updateComments(updatedComments) {
       this.currTask.comments = updatedComments
       this.saveCurrTask()
+      this.socketUpdateBoard();
     },
     closeModal() {
       this.saveCurrTask()
       const boardId = this.$route.params.boardId
       // console.log('boardId',boardId);
       this.$router.push({ name: 'board', params: { boardId } })
+      //this.socketUpdateBoard();
     },
     openEditModal(event, editType) {
       console.log('event',event);

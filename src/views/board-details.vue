@@ -65,12 +65,14 @@
 // import { boardService } from '../services/board.service.js'
 import { Container, Draggable } from "vue3-smooth-dnd";
 import { utilService } from "../services/util.service";
-import boardGroup from "../components/board-group.vue"
-import groupAdd from "../components/group-add.vue"
-import boardHeader from "../components/board-header.vue"
+import boardGroup from "../components/board-group.vue";
+import groupAdd from "../components/group-add.vue";
+import boardHeader from "../components/board-header.vue";
 import taskPreview from "../components/task-preview.vue";
-  // import bg from '../../src/assets/bg.'
-// import TaskPreview from "../components/task-preview.vue";
+/*import { SOCKET_EMIT_BOARD_WATCH } from "../services/socket.service";
+import { SOCKET_EMIT_BOARD_UPDATE } from "../services/socket.service";
+import bg from '../../src/assets/bg.'
+import TaskPreview from "../components/task-preview.vue";*/
 
 export default {
   name: 'board-details',
@@ -99,6 +101,11 @@ export default {
    background-image: url(${this.board.style.bg});
    background-color: ${this.board.style.bg};`
   },
+  computed: {
+    unfilteredBoard() {
+      return this.$store.state.boardStore.currBoard;
+    },
+  },
   methods: {
     async saveTask(taskToSave, groupId){
       
@@ -114,14 +121,17 @@ export default {
 
       // const idx = this.board.groups.findIndex(g => g.id === groupId)
       // this.board.groups[idx].tasks
+      //this.socketUpdateBoard();
     },
     async removeGroup(group){
       const board = await this.$store.dispatch({type: 'removeGroup', group})
       this.board = board
+      this.socketUpdateBoard();
     },
     async removeTask(task, group){
       const board = await this.$store.dispatch({type: 'removeTask', groupId: group.id ,taskId: task.id})
       this.board = board
+      //this.socketUpdateBoard();
     },
     async updateGroup(groupToSave){
       if(!this.isAddingGroup) this.isAddingGroup = true
@@ -129,6 +139,7 @@ export default {
       if(!groupToSave.title) return
       const board = await this.$store.dispatch({type: 'updateGroup', groupToSave})
       this.board = board
+      //this.socketUpdateBoard();
     },
     async loadBoard(){
     const { boardId } = this.$route.params
@@ -191,7 +202,10 @@ export default {
     goToDetail(group, task) {
       this.$router.push(`/board/${this.board._id}/task/${group.id}/${task.id}`)
     },
-     
+     /*socketUpdateBoard() {
+      console.log("SOCKETUPDATEBOARDMOTHREREUFJKER SOCKETING");
+      socketService.emit(SOCKET_EMIT_BOARD_UPDATE, this.unfilteredBoard);
+    },*/
   },
    watch: {
         '$route.params.boardId'(id) {
@@ -205,6 +219,7 @@ export default {
           if(!p.boardId) return
           if(!p.taskId)
          this.loadBoard()
+         socketService.emit(SOCKET_EMIT_BOARD_WATCH, this.boardId);
        {immediate:true}
       },
         board(p){

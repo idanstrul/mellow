@@ -1,5 +1,7 @@
 import { boardService } from "../../services/board.service";
 import { utilService } from "../../services/util.service";
+import { socketService } from '../../services/socket.service';
+import { SOCKET_ON_BOARD_UPDATE } from '../../services/socket.service';
 
 export const boardStore = {
     state: {
@@ -68,6 +70,13 @@ export const boardStore = {
         setCurrBoard(state, { currBoard }) {
             state.currBoard = currBoard
         },
+        /*setCurrBoard(state, { currBoard }) {
+            socketService.on(SOCKET_ON_BOARD_UPDATE, currBoard => {
+                console.log('FROM STORE SOCKET', currBoard);
+                state.currBoard = currBoard
+            })
+            state.currBoard = currBoard
+        },*/
         addBoardToRecentBoards(state, { board }) {
             if (state.recentBoards.length >= 5) state.recentBoards.pop()
             state.recentBoards = state.recentBoards.filter(currBoard =>
