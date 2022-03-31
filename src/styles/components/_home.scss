@@ -1,21 +1,18 @@
-.home{
+.home {
     height: 100vh;
-    // overflow: hidden;
+    overflow: hidden;
 }
 
 .homepage {
-    // overflow: hidden;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    // width: 100vw;
     background-color: whitesmoke;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     text-align: center;
-    // height: 100vh;
     .header-home {
         position: fixed;
         z-index: 4;
@@ -31,28 +28,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-
-            .logo-icon {
-                -webkit-transition: -webkit-transform 0.8s ease-in-out;
-                -ms-transition: -ms-transform 0.8s ease-in-out;
-                transition: transform 0.8s ease-in-out;
-                transform: rotate(90deg);
-                font-size: 3rem;
-                font-weight: 600;
-                margin-bottom: 0;
-
-                &:hover {
-                    transform: unset;
-                }
-            }
-            @media (max-width: 600px) {
-                & {
-                    font-size: 2rem;
-                    & .logo-icon {
-                        font-size: 2rem;
-                    }
-                }
-            }
         }
         .homepage-nav {
             font-size: 20px;
@@ -63,10 +38,12 @@
             align-items: center;
             gap: 15px;
             .login {
+                text-decoration: none;
                 color: #0065ff;
             }
 
             .signup {
+                text-decoration: none;
                 padding: 0.25rem 0.5rem;
                 color: #fff;
                 font-size: 1.09375rem;

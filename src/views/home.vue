@@ -3,7 +3,7 @@
   <div class="homepage">
      <section class="header-home">
       <div class="logo">
-         <span class="material-icons-outlined logo-icon"></span>Mello
+         <span></span>Mello
       </div>
       <nav class="homepage-nav">
          <router-link to='/login' class="login">Log in</router-link>
