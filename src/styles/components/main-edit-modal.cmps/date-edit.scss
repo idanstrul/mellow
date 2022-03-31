@@ -1,6 +1,15 @@
 .date-edit{
 min-height: 500px;
     .dp__menu{
+        .btn-save-date{
+            @include defaultBtn;
+            width: 280px;
+            margin-inline-start: -9px;
+            // align-self: center;
+            // justify-content: center;
+            // margin: 0 auto;
+            // z-index: 10;
+        }
         border: none;
         overflow: hidden;
         height: 400px;
@@ -46,6 +55,9 @@ min-height: 500px;
             border-radius: 3px;
             width: 40px;
             height: 32px;
+        }
+        .dp__action_row{
+            display: block;
         }
         .dp__today{
             border: none;

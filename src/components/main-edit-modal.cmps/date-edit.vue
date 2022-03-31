@@ -1,6 +1,16 @@
 <template>
     <section class="date-edit">
-            <Datepicker v-model="currTaskDates.endDate" :startTime="null" utc inline range :monthChangeOnScroll="false" weekStart="0" monthNameFormat="long"></Datepicker>
+            <Datepicker
+            ref="date"
+            utc inline range
+            :startTime="{}"
+            :monthChangeOnScroll="false"
+            weekStart="0"
+            monthNameFormat="long">
+                 <template #action-select>
+                    <button class="btn-save-date" @click="selectDate">Save</button>
+                </template>
+            </Datepicker>
 
         <!-- <el-calendar v-model="currTaskDates.startDate" /> -->
         <!-- <el-date-picker
@@ -25,7 +35,7 @@
             </optgroup>
         </select>
         <button class="primary-btn">Add</button>
-        <pre>{{ currTaskDates }}</pre>
+        <pre>{{ taskDate }}</pre>
     </section>
 </template>
 
@@ -39,6 +49,9 @@ export default {
     components: { Datepicker },
     data() {
         return {
+            startDate: null,
+            dueDate: null,
+            taskDate: null,
             currTaskDates: {
                 startDate: null,
                 endDate: null,
@@ -50,8 +63,21 @@ export default {
     computed: {
         checklists() {
             return this.$store.getters.currBoardChecklists
+        },
+
+    },
+    methods:{
+        selectDate(){
+            var elDate = document.querySelector('.dp__selection_preview')
+            elDate = elDate.querySelectorAll('div')
+            this.startDate = Date.now(elDate[0]?.innerText)
+            this.dueDate = Date.now(elDate[1]?.innerText)
+            if(this.startDate === this.dueDate) this.startDate = null 
+            console.log(this.startDate, this.dueDate);
+
+            // console.log(this.$refs.date.selectDate());
         }
-    }
+    },
 }
 </script>
 
