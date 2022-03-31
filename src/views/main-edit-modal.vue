@@ -1,6 +1,7 @@
 <template>
+        <!-- v-clickoutside="closeModal" -->
     <section
-        v-clickoutside="closeModal"
+    
         class="main-edit-modal"
         :style="{ 'top': posCorrected.y + 'px', 'left': posCorrected.x + 'px' }"
         ref="elModal"

@@ -24,10 +24,10 @@ export const clickOutside ={
             }
 
             const startListening = function () {
-              document.body.addEventListener('click', el.clickOutsideEvent)
-              document.body.addEventListener('touchstart', el.clickOutsideEvent)
               document.body.removeEventListener('click', startListening)
               document.body.removeEventListener('touchstart', startListening)
+              document.body.addEventListener('click', el.clickOutsideEvent)
+              document.body.addEventListener('touchstart', el.clickOutsideEvent)
             }
 
             document.body.addEventListener('click', startListening)
@@ -45,6 +45,12 @@ export const clickOutside ={
           document.body.removeEventListener('click', el.clickOutsideEvent)
           document.body.removeEventListener('touchstart', el.clickOutsideEvent)
         },
+      //   beforeUnmount: function (el) {
+      // // unregister click and touch events before the element is unmounted
+      //     // console.log('puki',el.clickOutsideEvent );
+      //     document.body.removeEventListener('click', el.clickOutsideEvent)
+      //     document.body.removeEventListener('touchstart', el.clickOutsideEvent)
+      //   },
         stopProp(event) {
           event.stopPropagation()
         },

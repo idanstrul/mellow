@@ -2,7 +2,10 @@
   <!-- v-clickoutside="closeModal" -->
   <section v-if="currTask" class="task-details">
     <div class="modal-screen flex center">
-      <div class="modal-container flex column center" v-clickoutside="closeModal">
+      <div class="modal-container flex column center"
+      
+      >
+       <!-- v-clickoutside="closeModal" -->
         <div v-if="false" class="cover"></div>
         <button class="exit-btn" @click="closeModal"></button>
         <div class="modal-header section-title text-l icon-task-title">{{ currTask.title }}</div>

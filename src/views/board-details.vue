@@ -222,13 +222,6 @@ export default {
         //  socketService.emit(SOCKET_EMIT_BOARD_WATCH, this.boardId);
        {immediate:true}
       },
-        board(p){
-          // console.log(p);
-          if(!p.boardId) return
-          if(!p.taskId)
-         this.loadBoard()
-      //  {immediate:true}
-      }
     }
 }
 </script>
