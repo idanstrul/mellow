@@ -6,10 +6,6 @@
         <li v-for="board in boards" :key="board._id">
           <section
             @click="openBoard(board._id)"
-            :style="{
-              backgroundColor: board.style['background-color'],
-              backgroundImage: board.style['background-image'],
-            }"
           >
           </section>
         </li>
