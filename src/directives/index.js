@@ -10,19 +10,34 @@ export const clickOutside ={
         mounted: (el, binding, vnode) => {
             // assign event to the element
             el.clickOutsideEvent = function (event) {
+              // console.log('el.getBoundingClientRect()', el.getBoundingClientRect())
+              // console.log('event.clientX', event.clientX)
+              // console.log('event.clientY', event.clientY)
+              const elArea = el.getBoundingClientRect()
+              if (event.clientX < elArea.x || event.clientX > elArea.x + elArea.width || event.clientY < elArea.y || event.clientY > elArea.y + elArea.height){
                 // here we check if the click event is outside the element and it's children
-                if (!(el == event.target || el.contains(event.target))) {
+                // if (!(el == event.target || el.contains(event.target))) {
                     // if clicked outside, call the provided method
-                    console.log('puki');
+                    console.log('clicked outside!', el);
                     binding.value(event)
                 }
             }
-            // console.log('v-click-outside', vnode);
-            // register click and touch events
-            setTimeout(() => {
+
+            const startListening = function () {
               document.body.addEventListener('click', el.clickOutsideEvent)
               document.body.addEventListener('touchstart', el.clickOutsideEvent)
-            }, 500)
+              document.body.removeEventListener('click', startListening)
+              document.body.removeEventListener('touchstart', startListening)
+            }
+
+            document.body.addEventListener('click', startListening)
+            document.body.addEventListener('touchstart', startListening)
+            // console.log('v-click-outside', vnode);
+            // register click and touch events
+            // setTimeout(() => {
+            //   document.body.addEventListener('click', el.clickOutsideEvent)
+            //   document.body.addEventListener('touchstart', el.clickOutsideEvent)
+            // }, 500)
         },
         unmounted: function (el) {
       // unregister click and touch events before the element is unmounted
