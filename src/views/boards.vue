@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     openBoard(boardId) {
-      this.$router.push(`/b/${boardId}`);
+      this.$router.push(`/board/${boardId}`);
     },
     boardTitleToShow(boardTitle) {
       if (boardTitle.length > 40) return boardTitle.substring(0, 40) + "...";
