@@ -46,6 +46,7 @@ export const boardStore = {
         getCurrTask({ currTaskIdxs, currBoard }) {
             // const currGroup =  state.currBoard.groups.find(g => g.id === groupId)
             // const currTask = currGroup.tasks.find(t => t.id === taskId)
+            // debugger
             if (!currTaskIdxs) return null
             const { groupIdx, currTaskIdx } = currTaskIdxs
             const currTask = currBoard.groups[groupIdx].tasks[currTaskIdx]

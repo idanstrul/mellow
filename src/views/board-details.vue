@@ -201,10 +201,18 @@ export default {
        {immediate:true}
         },
         '$route.params'(p){
-          if(!p.board) return
+          console.log(p);
+          if(!p.boardId) return
           if(!p.taskId)
          this.loadBoard()
        {immediate:true}
+      },
+        board(p){
+          // console.log(p);
+          if(!p.boardId) return
+          if(!p.taskId)
+         this.loadBoard()
+      //  {immediate:true}
       }
     }
 }

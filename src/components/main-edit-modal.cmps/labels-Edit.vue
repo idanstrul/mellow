@@ -29,6 +29,7 @@ export default {
     },
     methods: {
         checkIfTaskLabel(label) {
+            console.log(label);
             return this.taskToEdit.labelIds.some(id => id === label.id)
         },
         toggleLabelFromTask(label) {
