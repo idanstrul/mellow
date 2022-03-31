@@ -11,9 +11,9 @@ export const socketService = createSocketService()
 // export const socketService = createDummySocketService()
 
 // For DEBUG:
-window.socketService = socketService
+// window.socketService = socketService
 
-// socketService.setup()
+socketService.setup()
 
 
 function createSocketService() {

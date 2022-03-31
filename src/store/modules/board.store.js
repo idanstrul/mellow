@@ -2,7 +2,7 @@ import { boardService } from "../../services/board.service";
 import { utilService } from "../../services/util.service";
 import { socketService } from '../../services/socket.service';
 import { SOCKET_ON_BOARD_UPDATE } from '../../services/socket.service';
-
+console.log('socketService', socketService, SOCKET_ON_BOARD_UPDATE)
 export const boardStore = {
     state: {
         boards: [], //maybe there will be no need for this
@@ -67,16 +67,13 @@ export const boardStore = {
         setCurrTask(state, { currTaskIdx, groupIdx }) {
             state.currTaskIdxs = { currTaskIdx, groupIdx }
         },
-        setCurrBoard(state, { currBoard }) {
-            state.currBoard = currBoard
-        },
         /*setCurrBoard(state, { currBoard }) {
-            socketService.on(SOCKET_ON_BOARD_UPDATE, currBoard => {
-                console.log('FROM STORE SOCKET', currBoard);
-                state.currBoard = currBoard
-            })
             state.currBoard = currBoard
         },*/
+        setCurrBoard(state, { currBoard }) {
+            state.currBoard = currBoard
+            console.log('state.currBoard', state.currBoard);
+        },
         addBoardToRecentBoards(state, { board }) {
             if (state.recentBoards.length >= 5) state.recentBoards.pop()
             state.recentBoards = state.recentBoards.filter(currBoard =>
@@ -108,6 +105,12 @@ export const boardStore = {
             try {
                 const currBoard = await boardService.getById(boardId)
                 context.commit({ type: 'setCurrBoard', currBoard })
+                socketService.emit('watch board', currBoard._id)
+                socketService.off(SOCKET_ON_BOARD_UPDATE)
+                socketService.on(SOCKET_ON_BOARD_UPDATE, (updatedBoard) => {
+                    console.log('board updated');
+                    context.commit({ type: 'setCurrBoard', currBoard: updatedBoard })
+                })
                 return JSON.parse(JSON.stringify(currBoard))
             }
             catch (err) {
@@ -151,6 +154,7 @@ export const boardStore = {
                     board.groups.push(groupToSave)
                 }
                 const currBoard = await context.dispatch({ type: 'saveCurrBoard', boardToSave: board })
+                socketService.emit('board update', board)
                 return currBoard
             }
             catch (err) {

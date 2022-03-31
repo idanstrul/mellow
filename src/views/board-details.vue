@@ -78,7 +78,7 @@ export default {
   name: 'board-details',
   data() {
     return {
-      board: null,
+      // board: null,
       isAddingGroup: true,
       labelsOpen: false,
       loadDate: false,
@@ -102,6 +102,9 @@ export default {
    background-color: ${this.board.style.bg};`
   },
   computed: {
+    board() {
+      return this.$store.getters.currBoard
+    },
     unfilteredBoard() {
       return this.$store.state.boardStore.currBoard;
     },
