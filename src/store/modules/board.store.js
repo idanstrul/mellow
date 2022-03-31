@@ -97,7 +97,7 @@ export const boardStore = {
     },
     actions: {
         async loadCurrBoard(context, { boardId }) {
-            context.commit({ type: 'setIsLoading', loadingStatus: true })
+            // context.commit({ type: 'setIsLoading', loadingStatus: true })
             try {
                 const currBoard = await boardService.getById(boardId)
                 context.commit({ type: 'setCurrBoard', currBoard })
@@ -120,14 +120,17 @@ export const boardStore = {
         async saveCurrBoard(context, { boardToSave }) {
             // console.log(boardToSave.groups[1].tasks);
             // console.log('hi');
-            context.commit({ type: 'setIsLoading', loadingStatus: true })
+            // context.commit({ type: 'setIsLoading', loadingStatus: true })
+            const boardUnchanged = context.getters.currBoard
             try {
-                const currBoard = await boardService.save(boardToSave)
                 context.commit({ type: 'setCurrBoard', currBoard: boardToSave })
+                const currBoard = await boardService.save(boardToSave)
+                socketService.emit('board update', boardToSave)
                 context.dispatch({ type: 'flashUserMsg', msg: `Board ${currBoard._id} saved successfully`, style: 'success' })
                 return currBoard
             }
             catch (err) {
+                context.commit({ type: 'setCurrBoard', currBoard: boardUnchanged })
                 console.error(`Cannot save board ${context.getters.currBoard._id}: `, err)
                 context.dispatch({ type: 'flashUserMsg', msg: `Oops! Cannot save board ${context.getters.currBoard._id}...`, style: 'warning' })
             }

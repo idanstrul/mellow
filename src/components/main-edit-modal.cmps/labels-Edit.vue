@@ -2,7 +2,7 @@
     <section class="labels-edit">
         <input class="search" type="text" placeholder="Search labels..." />
         <span class="secondary-section-title">Labels</span>
-        <ul>
+        <ul class="clean-list">
             <li v-for="label in labels" :key="label.id">
                 <div
                     class="label"

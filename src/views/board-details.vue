@@ -18,7 +18,6 @@
     <div>
     <board-group
     :group="group"
-    @move="move"
     @updateGroup="updateGroup"
     @saveGroup="updateGroup"
     @removeGroup="removeGroup">
@@ -96,7 +95,7 @@ export default {
   //  await this.loadBoard()
    const { boardId } = this.$route.params
   const board = await this.$store.dispatch({type: 'loadCurrBoard', boardId})
-  this.board = board
+  // this.board = board
    document.body.style=`
    background-image: url(${this.board.style.bg});
    background-color: ${this.board.style.bg};`
@@ -115,7 +114,7 @@ export default {
       // console.log('hi');
       // console.log(taskToSave, groupIdx);
       const board = await this.$store.dispatch({type: 'saveTask', groupId, taskToSave})
-      this.board = board
+      // this.board = board
       // this.loadBoard()
       // this.board = board
       // this.board.groups[groupIdx].tasks.findIndex(t => t.id === taskToSave.id)
@@ -128,12 +127,12 @@ export default {
     },
     async removeGroup(group){
       const board = await this.$store.dispatch({type: 'removeGroup', group})
-      this.board = board
+      // this.board = board
       this.socketUpdateBoard();
     },
     async removeTask(task, group){
       const board = await this.$store.dispatch({type: 'removeTask', groupId: group.id ,taskId: task.id})
-      this.board = board
+      // this.board = board
       //this.socketUpdateBoard();
     },
     async updateGroup(groupToSave){
@@ -141,7 +140,7 @@ export default {
       // console.log(groupToSave);
       if(!groupToSave.title) return
       const board = await this.$store.dispatch({type: 'updateGroup', groupToSave})
-      this.board = board
+      // this.board = board
       //this.socketUpdateBoard();
     },
     async loadBoard(){
@@ -162,7 +161,7 @@ export default {
       dropResult.payload.id = this.board.groups[dropResult.removedIndex].id
       console.log('drop>>',dropResult);
       scene.groups = utilService.applyDrag(scene.groups, dropResult)
-      this.board = JSON.parse(JSON.stringify(scene))
+      // this.board = JSON.parse(JSON.stringify(scene))
       const board = await this.$store.dispatch({type: 'saveCurrBoard', boardToSave: scene})
     },
    getCardPayload (groupId) {
@@ -190,7 +189,7 @@ export default {
         
         newColumn.tasks = utilService.applyDrag(newColumn.tasks, dropResult)
         scene.groups.splice(itemIndex, 1, newColumn)
-        this.board = JSON.parse(JSON.stringify(scene))
+        // this.board = JSON.parse(JSON.stringify(scene))
         const board = await this.$store.dispatch({type: 'saveCurrBoard', boardToSave: scene})
         // this.board = board
         // this.$emit('move', scene)
@@ -198,10 +197,10 @@ export default {
         // this.board = scene
       }
     },
-    async move(boardToSave){
-      const board = await this.$store.dispatch({type: 'saveCurrBoard', boardToSave})
-      this.loadBoard()
-    },
+    // async move(boardToSave){
+    //   const board = await this.$store.dispatch({type: 'saveCurrBoard', boardToSave})
+    //   this.loadBoard()
+    // },
     goToDetail(group, task) {
       this.$router.push(`/board/${this.board._id}/task/${group.id}/${task.id}`)
     },
