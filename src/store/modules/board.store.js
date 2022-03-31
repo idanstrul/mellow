@@ -67,12 +67,8 @@ export const boardStore = {
         setCurrTask(state, { currTaskIdx, groupIdx }) {
             state.currTaskIdxs = { currTaskIdx, groupIdx }
         },
-        /*setCurrBoard(state, { currBoard }) {
-            state.currBoard = currBoard
-        },*/
         setCurrBoard(state, { currBoard }) {
             state.currBoard = currBoard
-            console.log('state.currBoard', state.currBoard);
         },
         addBoardToRecentBoards(state, { board }) {
             if (state.recentBoards.length >= 5) state.recentBoards.pop()
