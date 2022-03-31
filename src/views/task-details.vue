@@ -130,7 +130,7 @@ export default {
         groupId: this.parentGroupId,
         taskToSave: JSON.parse(JSON.stringify(taskToSave))
       })
-      await this.socketUpdateBoard();
+      //await this.socketUpdateBoard();
       console.log('Current task saved!');
       /// This function returns a promise with the value of 
       //the current board. I'm not sure if methods 
@@ -167,7 +167,7 @@ export default {
       const boardId = this.$route.params.boardId
       // console.log('boardId',boardId);
       this.$router.push({ name: 'board', params: { boardId } })
-      this.socketUpdateBoard();
+      //this.socketUpdateBoard();
     },
     openEditModal(event, editType) {
       console.log('event',event);
