@@ -229,7 +229,7 @@ export const boardStore = {
         async saveTask(context, { groupId, taskToSave }) {
             const boardToSave = context.getters.currBoard
             const currGroup = boardToSave.groups.find(g => g.id === groupId)
-            console.log('taskToSave', taskToSave);
+            // console.log('taskToSave',taskToSave);
             if (!taskToSave.id) {
                 taskToSave.id = utilService.makeId()
                 taskToSave.createdAt = Date.now()

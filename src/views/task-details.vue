@@ -2,19 +2,20 @@
   <!-- v-clickoutside="closeModal" -->
   <section v-if="currTask" class="task-details">
     <div class="modal-screen flex center">
-      <div class="modal-container flex column center">
+      <div class="modal-container flex column center" v-clickoutside="closeModal">
         <div v-if="false" class="cover"></div>
         <button class="exit-btn" @click="closeModal"></button>
         <div class="modal-header section-title text-l icon-task-title">{{ currTask.title }}</div>
         <div class="flex-container flex space-between">
           <div class="modal-main">
             <div v-if="true" class="notations flex wrap">
-              <trello-members v-if="hasMembers" :members="currTask.members"></trello-members>
-              <trello-labels v-if="hasLabels" :labels="currTaskLabels"></trello-labels>
+              <trello-members v-if="hasMembers" :members="currTask.members" @editModalOpened="openEditModal"></trello-members>
+              <trello-labels v-if="hasLabels" :labels="currTaskLabels" @editModalOpened="openEditModal"></trello-labels>
               <trello-dates
                 v-if="currTask.dueDate"
                 :dueDate="currTask.dueDate"
                 :status="currTask.status"
+                @editModalOpened="openEditModal"
               ></trello-dates>
             </div>
             <div class="description">
@@ -43,26 +44,31 @@
           <div class="modal-sidebar flex column">
             <button class="btn side-bar">Join</button>
             <span class="secondary-section-title">Add to card</span>
-            <button class="btn side-bar icon-members" @click="openEditModal('members-edit')">Members</button>
-            <button class="btn side-bar icon-labels" @click="openEditModal('labels-edit')">Labels</button>
+            <button class="btn side-bar icon-members" @click="openEditModal($event, 'members-edit')">Members</button>
+            <button class="btn side-bar icon-labels" @click="openEditModal($event, 'labels-edit')">Labels</button>
             <button
               class="btn side-bar icon-checklist"
-              @click="openEditModal('checklists-edit')"
+              @click="openEditModal($event, 'checklists-edit')"
             >Checklist</button>
-            <button class="btn side-bar icon-dates" @click="openEditModal('date-edit')">Dates</button>
+            <button class="btn side-bar icon-dates" @click="openEditModal($event, 'date-edit')">Dates</button>
             <button
               class="btn side-bar icon-attachment"
-              @click="openEditModal('attachment-edit')"
+              @click="openEditModal($event, 'attachment-edit')"
             >Attachment</button>
-            <button class="btn side-bar icon-cover" @click="openEditModal('cover-edit')">Cover</button>
+            <button class="btn side-bar icon-cover" @click="openEditModal($event, 'cover-edit')">Cover</button>
             <span class="secondary-section-title">Actions</span>
-            <button class="btn side-bar icon-move" @click="openEditModal('move-edit')">Move</button>
-            <button class="btn side-bar icon-copy" @click="openEditModal('copy-edit')">Copy</button>
+            <button class="btn side-bar icon-move" @click="openEditModal($event, 'move-edit')">Move</button>
+            <button class="btn side-bar icon-copy" @click="openEditModal($event, 'copy-edit')">Copy</button>
             <button class="btn side-bar icon-archive" @click="removeTask()">Remove</button>
           </div>
         </div>
-        <main-edit-modal v-if="editModalStatus.isOpen" modal-title="Hello">
-          <component :is="editModalStatus.editType" :currTask="currTask" @taskUpdated="saveCurrTask"></component>
+        <main-edit-modal v-if="editModalStatus.isOpen" modal-title="Hello" @editModalClosed="closeEditModal" :pos="editModalStatus.pos">
+          <component
+            :is="editModalStatus.editType"
+            :currTask="currTask"
+            @taskUpdated="saveCurrTask"
+            @editModalClosed="closeEditModal"
+          ></component>
           <!-- <date-edit></date-edit> -->
         </main-edit-modal>
         <!-- <pre>{{ currTask }}</pre> -->
@@ -95,21 +101,22 @@ export default {
     // if (!this.currTask.labelIds) return
     // This should be computed boardLabels
     await this.$store.dispatch({ type: 'loadCurrTask', groupId, taskId })
-    console.log('this.currTask after dispatch', this.currTask)
+    // console.log('this.currTask after dispatch', this.currTask)
     // const boardLabels = this.$store.getters.currBoardLabels
     // Should be in a function
-    if (!this.currTask.labelIds || !this.currTask.labelIds.length) return
-    this.currTaskLabels = this.boardLabels.filter(label =>
-      this.currTask.labelIds.includes(label.id))
+    // if (!this.currTask.labelIds || !this.currTask.labelIds.length) return
+    // this.currTaskLabels = this.boardLabels.filter(label =>
+    //   this.currTask.labelIds.includes(label.id))
   },
   data() {
     return {
       editModalStatus: {
         isOpen: false,
-        editType: ''
+        editType: '',
+        pos: null
       },
       // currTask: null,
-      currTaskLabels: null,
+      // currTaskLabels: null,
       currTaskId: '',
       parentGroupId: ''
     }
@@ -117,8 +124,8 @@ export default {
   methods: {
     async saveCurrTask(updatedTask = null) {
       // Logic to support updatedTask param which only comes when updating from edit modal
-      const taskToSave = updatedTask? updatedTask : this.currTask
-            await this.$store.dispatch({
+      const taskToSave = updatedTask ? updatedTask : this.currTask
+      await this.$store.dispatch({
         type: 'saveTask',
         groupId: this.parentGroupId,
         taskToSave: JSON.parse(JSON.stringify(taskToSave))
@@ -131,9 +138,9 @@ export default {
       //if it will cuase problems with saving tasks this 
       //could be the reason 
     },
-    async removeTask(){
+    async removeTask() {
       const groupId = this.$route.params.groupId
-      const board = await this.$store.dispatch({type: 'removeTask', groupId, taskId: this.currTask.id})
+      const board = await this.$store.dispatch({ type: 'removeTask', groupId, taskId: this.currTask.id })
       this.$router.push(`/board/${board._id}`)
     },
     updateDesc(updatedDesc) {
@@ -157,14 +164,28 @@ export default {
       // console.log('boardId',boardId);
       this.$router.push({ name: 'board', params: { boardId } })
     },
-    openEditModal(editType) {
-      console.log('this.currTask', this.currTask);
+    openEditModal(event, editType) {
+      console.log('event',event);
+      console.log('editType',editType);
+      // console.log('event.target.getBoundingClientRect()', event.target.getBoundingClientRect());
+      const clickedElArea = event.target.getBoundingClientRect()
+      const pos = {
+        x: clickedElArea.x,
+        y: clickedElArea.y - clickedElArea.height - 10
+      }
       const status = {
         isOpen: true,
-        editType
+        editType,
+        pos
       }
       this.editModalStatus = status
       // this.$store.commit({ type: 'toggleEditModal', isOpen: true, editType, currTask: this.currTask, parentGroupId: this.parentGroupId })
+    },
+    closeEditModal(){
+      this.editModalStatus = {
+        isOpen: false,
+        editType: ''
+      }
     }
   },
   computed: {
@@ -181,6 +202,11 @@ export default {
     currTask() {
       return this.$store.getters.getCurrTask
     },
+    currTaskLabels() {
+      if (!this.currTask.labelIds || !this.currTask.labelIds.length) return []
+      return this.boardLabels.filter(label =>
+        this.currTask.labelIds.includes(label.id))
+    }
 
   },
   // watch: {
