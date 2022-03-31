@@ -123,6 +123,7 @@ export default {
         groupId: this.parentGroupId,
         taskToSave: JSON.parse(JSON.stringify(taskToSave))
       })
+      await this.socketUpdateBoard();
       console.log('Current task saved!');
       /// This function returns a promise with the value of 
       //the current board. I'm not sure if methods 
@@ -134,28 +135,33 @@ export default {
     async removeTask(){
       const groupId = this.$route.params.groupId
       const board = await this.$store.dispatch({type: 'removeTask', groupId, taskId: this.currTask.id})
+      await this.socketUpdateBoard();
       this.$router.push(`/board/${board._id}`)
     },
     updateDesc(updatedDesc) {
       console.log('updatedDesc', updatedDesc);
       this.currTask.description = updatedDesc
       this.saveCurrTask()
+      this.socketUpdateBoard();
     },
     updateChecklist(updatedChecklist) {
       // console.log('updatedChecklist', updatedChecklist);
       const idx = this.currTask.checklists.findIndex(cl => cl.id === updatedChecklist.id)
       this.currTask.checklists[idx] = updatedChecklist
       this.saveCurrTask()
+      this.socketUpdateBoard();
     },
     updateComments(updatedComments) {
       this.currTask.comments = updatedComments
       this.saveCurrTask()
+      this.socketUpdateBoard();
     },
     closeModal() {
       this.saveCurrTask()
       const boardId = this.$route.params.boardId
       // console.log('boardId',boardId);
       this.$router.push({ name: 'board', params: { boardId } })
+      this.socketUpdateBoard();
     },
     openEditModal(editType) {
       console.log('this.currTask', this.currTask);
@@ -165,7 +171,12 @@ export default {
       }
       this.editModalStatus = status
       // this.$store.commit({ type: 'toggleEditModal', isOpen: true, editType, currTask: this.currTask, parentGroupId: this.parentGroupId })
-    }
+      this.socketUpdateBoard();
+    },
+    socketUpdateBoard() {
+      if (!this.card) return;
+      this.$emit("socketUpdateBoard");
+    },
   },
   computed: {
     boardLabels() {

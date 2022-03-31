@@ -7,6 +7,7 @@
 
 <script>
 import mainHeader from './components/main-header.vue'
+import { socketService } from "./services/socket.service";
 
 export default {
   name: 'app-vue',
@@ -18,6 +19,15 @@ export default {
   //     console.log(!elMainEditModal || !elMainEditModal.contains(ev.target))
   //   })
   // },
+   /*async created() {
+    try {
+      socketService.setup();
+      await this.$store.dispatch({ type: "loadUsers" });
+      await this.$store.dispatch({ type: "loadBoards" });
+    } catch (err) {
+      console.log("ERROR cannot load users or boards");
+    }
+  },*/
   computed: {
     editModalStatus() {
       return this.$store.getters.editModalStatus

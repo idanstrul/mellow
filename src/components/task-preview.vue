@@ -70,9 +70,11 @@ export default {
       const taskToSave = JSON.parse(JSON.stringify(this.task))
       this.$emit('saveTask', taskToSave)
       // const task =  await this.$store.dispatch({type: 'updateTask', taskToSave: this.task, groupIdx: this.groupIdx})
+    this.$emit('socketUpdateBoard')
     },
     removeTask(){
       this.$emit('removeTask', this.task)
+      this.$emit('socketUpdateBoard')
     },
     toggleDateBg(diff){
       this.dateBg = utilService.lightenDarkenColor(this.dateBg, diff)
@@ -142,8 +144,10 @@ export default {
         this.task.status = 'due-soon'
         return
       }
-    }
-  
+    },
+    socketUpdateBoard() {
+      this.$emit("socketUpdateBoard");
+    },
   },
   computed: {
     checkBadges(){

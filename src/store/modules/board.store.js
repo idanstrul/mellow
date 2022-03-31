@@ -1,5 +1,7 @@
 import { boardService } from "../../services/board.service";
 import { utilService } from "../../services/util.service";
+import { socketService } from '../../services/socket.service';
+import { SOCKET_ON_BOARD_UPDATE } from '../../services/socket.service';
 
 export const boardStore = {
     state: {
@@ -43,11 +45,11 @@ export const boardStore = {
             console.log(allChecklists)
             return allChecklists
         },
-        getCurrTask({currTaskIdxs, currBoard}) {
+        getCurrTask({ currTaskIdxs, currBoard }) {
             // const currGroup =  state.currBoard.groups.find(g => g.id === groupId)
             // const currTask = currGroup.tasks.find(t => t.id === taskId)
             if (!currTaskIdxs) return null
-            const {groupIdx, currTaskIdx} = currTaskIdxs
+            const { groupIdx, currTaskIdx } = currTaskIdxs
             const currTask = currBoard.groups[groupIdx].tasks[currTaskIdx]
             return JSON.parse(JSON.stringify(currTask))
         },
@@ -61,12 +63,19 @@ export const boardStore = {
         },
     },
     mutations: {
-        setCurrTask(state, {currTaskIdx, groupIdx}){
-            state.currTaskIdxs = {currTaskIdx, groupIdx}
+        setCurrTask(state, { currTaskIdx, groupIdx }) {
+            state.currTaskIdxs = { currTaskIdx, groupIdx }
         },
         setCurrBoard(state, { currBoard }) {
             state.currBoard = currBoard
         },
+        /*setCurrBoard(state, { currBoard }) {
+            socketService.on(SOCKET_ON_BOARD_UPDATE, currBoard => {
+                console.log('FROM STORE SOCKET', currBoard);
+                state.currBoard = currBoard
+            })
+            state.currBoard = currBoard
+        },*/
         addBoardToRecentBoards(state, { board }) {
             if (state.recentBoards.length >= 5) state.recentBoards.pop()
             state.recentBoards = state.recentBoards.filter(currBoard =>
@@ -210,12 +219,12 @@ export const boardStore = {
                 context.commit({ type: 'setIsLoading', loadingStatus: false })
             }
         },
-        async loadCurrTask({commit, getters}, {groupId, taskId}){
+        async loadCurrTask({ commit, getters }, { groupId, taskId }) {
             // Should work with boardService.getTaskById and get it from DB
-            const currBoard =   getters.currBoard
-            const groupIdx = currBoard.groups.findIndex(g => g.id ===groupId )
+            const currBoard = getters.currBoard
+            const groupIdx = currBoard.groups.findIndex(g => g.id === groupId)
             const currTaskIdx = currBoard.groups[groupIdx].tasks.findIndex(t => t.id === taskId)
-            commit({type:'setCurrTask', groupIdx, currTaskIdx})
+            commit({ type: 'setCurrTask', groupIdx, currTaskIdx })
         },
         async getTaskById({ getters }, { groupId, taskId }) {
             const currBoard = getters.currBoard
@@ -229,7 +238,7 @@ export const boardStore = {
         async saveTask(context, { groupId, taskToSave }) {
             const boardToSave = context.getters.currBoard
             const currGroup = boardToSave.groups.find(g => g.id === groupId)
-            console.log('taskToSave',taskToSave);
+            console.log('taskToSave', taskToSave);
             if (!taskToSave.id) {
                 taskToSave.id = utilService.makeId()
                 taskToSave.createdAt = Date.now()
