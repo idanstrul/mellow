@@ -1,6 +1,10 @@
 .boards-page {
     background-color: white;
-    min-height: 93.5vh;
+    min-height: 95.5vh;
+    width: 100vw;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
     & .title {
         margin: 30px auto 0;
         letter-spacing: 1px;

@@ -1,6 +1,6 @@
 <template>
   <section class="main-header" :class="classBoardsPage">
-    <button @click="goToBoardsPage" class="btn-boards" title="Boards"><img src="../assets/boards.png" alt=""></button>
+    <router-link to="/board"><button class="btn-boards" title="Boards"><img src="../assets/boards.png" alt=""></button></router-link>
     <router-link to="/"><button title="Mello" class="btn-logo" ><img src="../assets/logo.gif" alt=""></button></router-link>
     <!-- <button class="btn-opt work" title="Workspaces">Workspaces <img class="img-arrow" src="../assets/arrow.png" alt=""></button> -->
     <button class="btn-opt" title="Recent">Recent <img class="img-arrow" src="../assets/arrow.png" alt=""></button>
@@ -98,27 +98,10 @@ export default {
       this.setBackground(style)
       this.$router.push("/");
     },
-    goToBoardsPage() {
-      const style = { "background-color": 'whitesmoke' };
-      this.setBackground(style)
-      if (this.$route.path !== '/board') {
-        this.$router.push("/board");
-      }
-      this.$store.commit({ type: 'setCurrBoard', board: null })
-    },
-    goToHomePage() {
-      const style = { "background-color": 'whitesmoke' };
-      this.setBackground(style)
-      this.$router.push("/");
-      this.$store.commit({ type: 'setCurrBoard', board: null })
-    },
   },
   computed: {
     boards() {
       return this.$store.getters.boards;
-    },
-    classBoardsPage() {
-      return { 'isBoards-page': this.$route.path === '/b' }
     },
   },
 };

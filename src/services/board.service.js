@@ -24,11 +24,11 @@ const defaultBoards = [
         "createdAt": 1589983468418,
         "createdBy": {
             "_id": "u101",
-            "fullname": "Puki Norma",
-            "imgUrl": "http://some-img"
+            "fullname": "Dani norman",
+            "imgUrl": "https://i.pinimg.com/236x/ff/e5/c7/ffe5c7867c2b9529b62a529ffcc567aa--mens-suits-gorgeous-men.jpg"
         },
         "style": {
-            "bg": '../../src/assets/bg2.jpg',
+            "bg": 'https://res.cloudinary.com/dxj8szufc/image/upload/v1648811988/bg/bg_iyfy8d.jpg',
 
         },
         "labels": [
@@ -120,7 +120,7 @@ const defaultBoards = [
                     {
                         "id": "c101",
                         "title": "Users Management",
-                        labelIds: ["l104", "l105", "l106", "l107", "l108", "l109", "l110"],
+                        "labelIds": ["l104", "l105", "l106", "l107", "l108", "l109", "l110"],
                         "members": [
                             {
                                 "_id": "u101",
@@ -156,10 +156,9 @@ const defaultBoards = [
                         "id": "c102",
                         "title": "Report Generator",
                         "dueDate": 1648587536553,
-                        labelIds: ["l108", "l109", "l102"]
+                        "labelIds": ["l108", "l109", "l102"]
                     }
-                ],
-                "style": {}
+                ]
             },
             {
                 "id": "g102",
@@ -232,7 +231,8 @@ const defaultBoards = [
                             "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                         },
                         "style": {
-                            "bgColor": "#26de81"
+                            "bg": "#FF8ED4",
+                            "size": "big"
                         }
                     },
                     {
@@ -276,7 +276,8 @@ const defaultBoards = [
                             "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                         },
                         "style": {
-                            "bgColor": "#26de81"
+                            "bg": "#CD8DE5",
+                            "size": "small"
                         }
                     },
                     {
@@ -346,9 +347,6 @@ const defaultBoards = [
                             "username": "Tal",
                             "fullname": "Tal Tarablus",
                             "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                        },
-                        "style": {
-                            "bgColor": "#26de81"
                         }
                     },
                     {
@@ -414,11 +412,11 @@ const defaultBoards = [
                             "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                         },
                         "style": {
-                            "bgColor": "#26de81"
+                            "bgColor": "#26de81",
+                            "size": "big"
                         }
                     },
-                ],
-                "style": {}
+                ]
             },
             {
                 "id": "g103",
@@ -461,8 +459,7 @@ const defaultBoards = [
                         "id": "c106",
                         "title": "Add Samples"
                     }
-                ],
-                "style": {}
+                ]
             },
             {
                 "id": "g104",
@@ -525,13 +522,9 @@ const defaultBoards = [
                             "username": "Tal",
                             "fullname": "Tal Tarablus",
                             "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                        },
-                        "style": {
-                            "bgColor": "#26de81"
                         }
                     }
-                ],
-                "style": {}
+                ]
             }
         ],
         "activities": [
@@ -615,14 +608,14 @@ async function getEmptyBoard() {
         "createdBy": {},
         "style": {
             "bgImg": [
-                '../../src/assets/bg.jpg',
-                '../../src/assets/bg1.jpg',
-                '../../src/assets/bg2.jpg',
-                '../../src/assets/bg3.jpg',
-                '../../src/assets/bg4.jpg',
-                '../../src/assets/bg5.jpg',
-                '../../src/assets/bg6.jpg',
-                '../../src/assets/bg7.jpg',
+                'https://res.cloudinary.com/dxj8szufc/image/upload/v1648812004/bg/bg6_hsbmsz.jpg',
+                'https://res.cloudinary.com/dxj8szufc/image/upload/v1648812001/bg/bg2_mz8ugr.jpg',
+                'https://res.cloudinary.com/dxj8szufc/image/upload/v1648812000/bg/bg3_dmcjgv.jpg',
+                'https://res.cloudinary.com/dxj8szufc/image/upload/v1648811997/bg/bg5_pkzq9o.jpg',
+                'https://res.cloudinary.com/dxj8szufc/image/upload/v1648811995/bg/bg4_mvddif.jpg',
+                'https://res.cloudinary.com/dxj8szufc/image/upload/v1648811991/bg/bg7_tbhddd.jpg',
+                'https://res.cloudinary.com/dxj8szufc/image/upload/v1648811988/bg/bg_iyfy8d.jpg',
+                'https://res.cloudinary.com/dxj8szufc/image/upload/v1648811985/bg/bg1_xzp635.jpg',
                 '#0079bf',
                 '#d29034',
                 '#519839',
@@ -637,27 +630,27 @@ async function getEmptyBoard() {
         "labels": [
             {
                 "id": "l101",
-                "title": "Done",
+                "title": "",
                 "color": "#61bd4f"
             },
             {
                 "id": "l102",
-                "title": "Progress",
+                "title": "",
                 "color": "#f2d600"
             },
             {
                 "id": "l103",
-                "title": "Urgent",
+                "title": "",
                 "color": "#ff9f1a"
             },
             {
                 "id": "l104",
-                "title": "Production",
+                "title": "",
                 "color": "#eb5a46"
             },
             {
                 "id": "l105",
-                "title": "Developmnet",
+                "title": "",
                 "color": "#c377e0"
             },
             {

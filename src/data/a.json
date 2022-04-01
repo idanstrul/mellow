@@ -1,13 +1,13 @@
 {
-    "title": "Robot dev proj",
+    "title": "Dev proj",
     "createdAt": 1589983468418,
     "createdBy": {
         "_id": "u101",
-        "fullname": "Puki Norma",
-        "imgUrl": "http://some-img"
+        "fullname": "Dani norman",
+        "imgUrl": "https://i.pinimg.com/236x/ff/e5/c7/ffe5c7867c2b9529b62a529ffcc567aa--mens-suits-gorgeous-men.jpg"
     },
     "style": {
-        "bg": "../../src/assets/bg2.jpg"
+        "bg": "https://res.cloudinary.com/dxj8szufc/image/upload/v1648811988/bg/bg_iyfy8d.jpg"
     },
     "labels": [
         {
@@ -142,8 +142,7 @@
                         "l102"
                     ]
                 }
-            ],
-            "style": {}
+            ]
         },
         {
             "id": "g102",
@@ -217,9 +216,6 @@
                         "username": "Tal",
                         "fullname": "Tal Tarablus",
                         "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                    },
-                    "style": {
-                        "bgColor": "#26de81"
                     }
                 },
                 {
@@ -263,9 +259,6 @@
                         "username": "Tal",
                         "fullname": "Tal Tarablus",
                         "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                    },
-                    "style": {
-                        "bgColor": "#26de81"
                     }
                 },
                 {
@@ -335,9 +328,6 @@
                         "username": "Tal",
                         "fullname": "Tal Tarablus",
                         "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                    },
-                    "style": {
-                        "bgColor": "#26de81"
                     }
                 },
                 {
@@ -400,13 +390,9 @@
                         "username": "Tal",
                         "fullname": "Tal Tarablus",
                         "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                    },
-                    "style": {
-                        "bgColor": "#26de81"
                     }
                 }
-            ],
-            "style": {}
+            ]
         },
         {
             "id": "g103",
@@ -446,8 +432,7 @@
                     "id": "c106",
                     "title": "Add Samples"
                 }
-            ],
-            "style": {}
+            ]
         },
         {
             "id": "g104",
@@ -512,13 +497,9 @@
                         "username": "Tal",
                         "fullname": "Tal Tarablus",
                         "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                    },
-                    "style": {
-                        "bgColor": "#26de81"
                     }
                 }
-            ],
-            "style": {}
+            ]
         }
     ],
     "activities": [
