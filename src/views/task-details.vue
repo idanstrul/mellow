@@ -152,19 +152,19 @@ export default {
       console.log('updatedDesc', updatedDesc);
       this.currTask.description = updatedDesc
       this.saveCurrTask()
-      this.socketUpdateBoard();
+      // this.socketUpdateBoard();
     },
     updateChecklist(updatedChecklist) {
       // console.log('updatedChecklist', updatedChecklist);
       const idx = this.currTask.checklists.findIndex(cl => cl.id === updatedChecklist.id)
       this.currTask.checklists[idx] = updatedChecklist
       this.saveCurrTask()
-      this.socketUpdateBoard();
+      // this.socketUpdateBoard();
     },
     updateComments(updatedComments) {
       this.currTask.comments = updatedComments
       this.saveCurrTask()
-      this.socketUpdateBoard();
+      // this.socketUpdateBoard();
     },
     closeModal() {
       this.saveCurrTask()
