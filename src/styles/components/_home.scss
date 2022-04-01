@@ -141,7 +141,6 @@
                 & {
                     margin-top: 100px;
                     flex-direction: column-reverse;
-                    margin-left: 265px;
 
                     & .started {
                         align-items: center;
@@ -149,20 +148,47 @@
                         & .txt-title {
                             text-align: center;
                         }
+                        @media (max-width: 714px) {
+                            & {
+                                align-items: center;
+
+                                & .started {
+                                    align-items: center;
+                                }
+                                & .txt-title {
+                                    text-align: center;
+                                }
+                            }
+                        }
+                        @media (max-width: 600px) {
+                            & {
+                                margin-right: 1350px;
+                            }
+                            & .txt-title {
+                                align-items: left;
+                                justify-content: left;
+                            }
+                        }
                     }
                 }
-            }
-            .img {
-                display: grid;
-                grid-template-columns: 500px;
-                max-width: 100%;
-                height: auto;
-                position: relative;
-                bottom: 90px;
-                @media (max-width: 1361px) {
-                    & {
-                        grid-template-columns: 250px;
-                        bottom: 5;
+                .img {
+                    display: grid;
+                    grid-template-columns: 500px;
+                    max-width: 100%;
+                    height: auto;
+                    position: relative;
+                    bottom: 90px;
+                    @media (max-width: 1361px) {
+                        & {
+                            grid-template-columns: 250px;
+                            bottom: 5;
+                        }
+                        @media (max-width: 714px) {
+                            & {
+                                grid-template-columns: 150px;
+                                bottom: 5;
+                            }
+                        }
                     }
                 }
             }
