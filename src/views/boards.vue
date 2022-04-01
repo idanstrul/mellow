@@ -1,5 +1,5 @@
 <template>
-  <section class="boards-page" :class="classToBoardPage">
+  <section class="boards-page">
     <div class="container">
     <h1 class="title">Choose Your Board</h1>
       <ul>
