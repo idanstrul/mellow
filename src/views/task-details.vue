@@ -31,7 +31,9 @@
                 @txt-is-empty="updateDesc"
               ></trello-txt-input>
             </div>
-            <div v-if="false" class="attachments"></div>
+            <div v-if="hasAttachments" class="attachments">
+              <trello-attachments :attachments="currTask.attachments" @editModalOpened="openEditModal($event, 'attachmentEdit')"></trello-attachments>
+            </div>
             <div v-if="true" class="checklists">
               <trello-checklist
                 v-for="checklist in currTask.checklists"
@@ -93,6 +95,8 @@ import labelsEdit from '../components/main-edit-modal.cmps/labels-Edit.vue'
 import membersEdit from '../components/main-edit-modal.cmps/members-edit.vue'
 import checklistsEdit from '../components/main-edit-modal.cmps/checklists-edit.vue'
 import dateEdit from '../components/main-edit-modal.cmps/date-edit.vue'
+import attachmentEdit from "../components/main-edit-modal.cmps/attachment-edit.vue"
+import trelloAttachments from "../components/task-edit.cmps/trello-attachments.vue"
 
 export default {
   name: 'task-details',
@@ -151,19 +155,16 @@ export default {
       console.log('updatedDesc', updatedDesc);
       this.currTask.description = updatedDesc
       this.saveCurrTask()
-      this.socketUpdateBoard();
     },
     updateChecklist(updatedChecklist) {
       // console.log('updatedChecklist', updatedChecklist);
       const idx = this.currTask.checklists.findIndex(cl => cl.id === updatedChecklist.id)
       this.currTask.checklists[idx] = updatedChecklist
       this.saveCurrTask()
-      this.socketUpdateBoard();
     },
     updateComments(updatedComments) {
       this.currTask.comments = updatedComments
       this.saveCurrTask()
-      this.socketUpdateBoard();
     },
     closeModal() {
       this.saveCurrTask()
@@ -173,8 +174,8 @@ export default {
       //this.socketUpdateBoard();
     },
     openEditModal(event, editType) {
-      console.log('event',event);
-      console.log('editType',editType);
+      // console.log('event',event);
+      // console.log('editType',editType);
       // console.log('event.target.getBoundingClientRect()', event.target.getBoundingClientRect());
       const clickedElArea = event.target.getBoundingClientRect()
       const pos = {
@@ -207,6 +208,9 @@ export default {
       if (!this.currTask) return
       return (this.currTask.members && this.currTask.members.length > 0)
     },
+    hasAttachments(){
+      return (this.currTask.attachments && this.currTask.attachments.length)
+    },
     currTask() {
       return this.$store.getters.getCurrTask
     },
@@ -233,7 +237,9 @@ export default {
     labelsEdit,
     membersEdit,
     checklistsEdit,
-    dateEdit
+    dateEdit,
+    attachmentEdit,
+    trelloAttachments
   }
 }
 </script>

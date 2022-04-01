@@ -14,7 +14,8 @@
             </optgroup>
         </select>
         <button class="primary-btn" @click="createChecklist">Add</button>
-        <pre>{{todosToCopy}}</pre>
+        <!-- <pre>{{todosToCopy}}</pre> -->
+        <!-- <pre>{{ taskToEdit }}</pre> -->
         <!-- <pre>{{ checklists }}</pre> -->
     </section>
 </template>
@@ -48,6 +49,7 @@ export default {
                 })
             // console.log('newTodos', newTodos);
             // console.log('this.todosToCopy',this.todosToCopy);
+            if (!this.taskToEdit.checklists) this.taskToEdit.checklists = [];
             this.taskToEdit.checklists.push(JSON.parse(JSON.stringify(this.newChecklist)))
             // console.log('this.taskToEdit', this.taskToEdit);
             this.$emit('taskUpdated', this.taskToEdit)

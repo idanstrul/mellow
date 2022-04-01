@@ -26,8 +26,9 @@ export default {
         pos: Object
     },
     mounted() {
-        console.log('this.$refs.elModal.getBoundingClientRect()', this.$refs.elModal.getBoundingClientRect());
-        console.log('this.$refs.elModal', this.$refs.elModal);
+        // console.log('this.$refs.elModal.getBoundingClientRect()', this.$refs.elModal.getBoundingClientRect());
+        // console.log('this.$refs.elModal', this.$refs.elModal);
+        console.log('Main edit modal is mounted!');
         const pos = JSON.parse(JSON.stringify(this.pos))
         const elArea = this.$refs.elModal.getBoundingClientRect()
         if (elArea.top < 0) pos.y = 20
@@ -36,12 +37,12 @@ export default {
             pos.y = (window.innerHeight || document.documentElement.clientHeight) - elArea.height - 20
         }
         if (elArea.right > (window.innerWidth || document.documentElement.clientWidth)) {
-            console.log('is out from right!');
+            // console.log('is out from right!');
             pos.x = (window.innerWidth || document.documentElement.clientWidth) - elArea.width - 20
         }
 
         this.posCorrected = pos
-        console.log('this.posCorrected',this.posCorrected);
+        // console.log('this.posCorrected',this.posCorrected);
 
 
     },

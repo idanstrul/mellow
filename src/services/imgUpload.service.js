@@ -15,5 +15,8 @@ export const uploadImg = (ev) => {
   })
     .then((res) => res.json())
     .then((res) => res) //return the res
-    .catch((err) => console.error(err));
+    .catch((err) => {
+      console.error(err)
+      throw esrr
+    });
 };

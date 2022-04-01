@@ -16,8 +16,8 @@
             </li>
         </ul>
         <button class="btn-default">Create a new label</button>
-        <pre>{{ taskToEdit }}</pre>
-        <pre>{{ labels }}</pre>
+        <!-- <pre>{{ taskToEdit }}</pre> -->
+        <!-- <pre>{{ labels }}</pre> -->
     </section>
 </template>
 
@@ -30,7 +30,7 @@ export default {
     methods: {
         checkIfTaskLabel(label) {
             if (!this.taskToEdit.labelIds) return false
-            console.log(label);
+            // console.log(label);
             return this.taskToEdit.labelIds.some(id => id === label.id)
         },
         toggleLabelFromTask(label) {
@@ -41,7 +41,7 @@ export default {
             const idx = labelIds.findIndex(id => id === label.id)
             if (idx === -1) labelIds.push(label.id)
             else labelIds.splice(idx, 1)
-            console.log('this.taskToEdit',this.taskToEdit);
+            // console.log('this.taskToEdit',this.taskToEdit);
             this.$emit('taskUpdated', this.taskToEdit)
 
         }

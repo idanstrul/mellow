@@ -22,7 +22,7 @@ export default {
     },
     methods: {
         openEditModal(event){
-            console.log('event',event);
+            // console.log('event',event);
             this.$emit('editModalOpened', event, 'labelsEdit' )
         }
     }
