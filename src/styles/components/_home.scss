@@ -136,7 +136,6 @@
                     }
                 }
             }
-
             @media (max-width: 870px) {
                 & {
                     margin-top: 100px;
@@ -147,14 +146,14 @@
 
                         & .txt-title {
                             text-align: center;
-                            .img {
-                                display: grid;
-                                grid-template-columns: 500px;
-                                max-width: 100%;
-                                height: auto;
-                                position: relative;
-                                bottom: 90px;
-                            }
+                        }
+                        .img {
+                            display: grid;
+                            grid-template-columns: 500px;
+                            max-width: 100%;
+                            height: auto;
+                            position: relative;
+                            bottom: 90px;
                         }
                     }
                 }
