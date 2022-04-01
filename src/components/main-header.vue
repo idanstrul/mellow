@@ -1,5 +1,5 @@
 <template>
-  <section class="main-header" :class="classBoardsPage">
+  <section class="main-header">
     <router-link to="/board"><button class="btn-boards" title="Boards"><img src="../assets/boards.png" alt=""></button></router-link>
     <router-link to="/"><button title="Mello" class="btn-logo" ><img src="../assets/logo.gif" alt=""></button></router-link>
     <!-- <button class="btn-opt work" title="Workspaces">Workspaces <img class="img-arrow" src="../assets/arrow.png" alt=""></button> -->
