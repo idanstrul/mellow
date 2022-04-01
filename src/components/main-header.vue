@@ -1,6 +1,6 @@
 <template>
   <section class="main-header" :class="classBoardsPage">
-    <button @click="goToBoardsPage" class="btn-boards" title="Boards"><img src="../assets/boards.png" alt=""></button>
+    <router-link to="/board"><button class="btn-boards" title="Boards"><img src="../assets/boards.png" alt=""></button></router-link>
     <router-link to="/"><button title="Mello" class="btn-logo" ><img src="../assets/logo.gif" alt=""></button></router-link>
     <!-- <button class="btn-opt work" title="Workspaces">Workspaces <img class="img-arrow" src="../assets/arrow.png" alt=""></button> -->
     <button class="btn-opt" title="Recent">Recent <img class="img-arrow" src="../assets/arrow.png" alt=""></button>
