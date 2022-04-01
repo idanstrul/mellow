@@ -98,27 +98,10 @@ export default {
       this.setBackground(style)
       this.$router.push("/");
     },
-    goToBoardsPage() {
-      const style = { "background-color": 'whitesmoke' };
-      this.setBackground(style)
-      if (this.$route.path !== '/board') {
-        this.$router.push("/board");
-      }
-      this.$store.commit({ type: 'setCurrBoard', board: null })
-    },
-    goToHomePage() {
-      const style = { "background-color": 'whitesmoke' };
-      this.setBackground(style)
-      this.$router.push("/");
-      this.$store.commit({ type: 'setCurrBoard', board: null })
-    },
   },
   computed: {
     boards() {
       return this.$store.getters.boards;
-    },
-    classBoardsPage() {
-      return { 'isBoards-page': this.$route.path === '/board' }
     },
   },
 };
