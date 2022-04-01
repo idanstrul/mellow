@@ -637,27 +637,27 @@ async function getEmptyBoard() {
         "labels": [
             {
                 "id": "l101",
-                "title": "Done",
+                "title": "",
                 "color": "#61bd4f"
             },
             {
                 "id": "l102",
-                "title": "Progress",
+                "title": "",
                 "color": "#f2d600"
             },
             {
                 "id": "l103",
-                "title": "Urgent",
+                "title": "",
                 "color": "#ff9f1a"
             },
             {
                 "id": "l104",
-                "title": "Production",
+                "title": "",
                 "color": "#eb5a46"
             },
             {
                 "id": "l105",
-                "title": "Developmnet",
+                "title": "",
                 "color": "#c377e0"
             },
             {
