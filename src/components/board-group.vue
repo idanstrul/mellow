@@ -9,6 +9,7 @@
  <section class="board-group">
    <div class="group-header ">
      <input type="text"
+            @mousedown="delay"
             v-model="group.title"
             class="group-title"
             @blur="updateGroup"
@@ -74,6 +75,12 @@ export default {
     TaskAdd
 },
   methods: {
+    async delay(){
+      // await
+      setTimeout(() => {
+        
+      }, 3000);
+    },
     closeMenu(){
       this.menuOpen = false
       this.subMenuOpen = false

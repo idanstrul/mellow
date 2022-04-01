@@ -1,0 +1,129 @@
+.cover-edit {
+    label {}
+
+    h4 {
+        font-size: 12px;
+        color: #5e6c84;
+        font-family: segSemiBold;
+        margin-inline-start: 3px;
+
+        &:first-child {
+            // margin-block-end: -15px;
+        }
+
+        &:not(:first-child) {
+            margin-top: 15px;
+        }
+    }
+
+    /* HIDE RADIO */
+    [type=radio] {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    /* IMAGE STYLES */
+    [type=radio]+.cover-opt {
+        cursor: pointer;
+        border-radius: 3px;
+    }
+
+    /* CHECKED STYLES */
+    [type=radio]:checked+.cover-opt {
+        // outline: 2px solid #f00;
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0079bf;
+    }
+
+    .cover-opt {
+        height: 62px;
+        width: 134px;
+        border: 1px solid #091e4214;
+        // background-color: lightgray;
+        cursor: pointer;
+        margin: 4px;
+
+        .cover-opt-lines {
+            // height: 10px;
+            // background-color: red;
+
+            .line {
+                // background-color: black;
+                width: 122px;
+                height: 4px;
+                border-radius: 2px;
+                margin-top: 4px;
+                margin-inline-start: 5px;
+            }
+
+            .line:nth-child(2) {
+                width: 98px;
+                // background-color: black;
+            }
+
+            .cube {
+                width: 16px;
+                height: 6px;
+                border-radius: 2px;
+                background-color: black;
+                display: inline-block;
+                margin: 1px;
+                position: relative;
+                bottom: 2px;
+                left: 4px;
+                background: #5E6C84;
+                opacity: 0.3;
+            }
+
+            .circle {
+                // background-color: black;
+                border-radius: 50px;
+                width: 10px;
+                height: 10px;
+                position: relative;
+                left: 120px;
+                bottom: 15px;
+                background: #5E6C84;
+                opacity: 0.3;
+            }
+        }
+
+        // background-position: center;
+        &.small {
+            .cover-opt-header {
+                border-radius: 2px 2px 0 0;
+                width: 134px;
+                height: 28px;
+                background: #5E6C84;
+                opacity: 0.3;
+
+            }
+
+            .line {
+                background: #5E6C84;
+                opacity: 0.3;
+            }
+        }
+
+        &.big {
+            .big-container {
+                border-radius: inherit;
+                height: 100%;
+                background: #5E6C84;
+                opacity: 0.3;
+            }
+
+            .cover-opt-lines {
+                position: relative;
+                top: 40px;
+
+                // margin-top: 42px;
+            }
+
+            .line {
+                background-color: $clr-base;
+            }
+        }
+    }
+}

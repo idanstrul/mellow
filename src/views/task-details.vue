@@ -97,6 +97,7 @@ import checklistsEdit from '../components/main-edit-modal.cmps/checklists-edit.v
 import dateEdit from '../components/main-edit-modal.cmps/date-edit.vue'
 import attachmentEdit from "../components/main-edit-modal.cmps/attachment-edit.vue"
 import trelloAttachments from "../components/task-edit.cmps/trello-attachments.vue"
+import coverEdit from "../components/main-edit-modal.cmps/cover-edit.vue"
 
 export default {
   name: 'task-details',
@@ -239,7 +240,8 @@ export default {
     checklistsEdit,
     dateEdit,
     attachmentEdit,
-    trelloAttachments
+    trelloAttachments,
+    coverEdit
   }
 }
 </script>
