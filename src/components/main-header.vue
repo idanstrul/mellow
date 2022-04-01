@@ -118,7 +118,7 @@ export default {
       return this.$store.getters.boards;
     },
     classBoardsPage() {
-      return { 'isBoards-page': this.$route.path === '/b' }
+      return { 'isBoards-page': this.$route.path === '/board' }
     },
   },
 };
