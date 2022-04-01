@@ -10,7 +10,7 @@
             <span class="modal-header-title">{{ modalTitle }}</span>
             <button class="exit-btn" @click="closeModal"></button>
         </header>
-        <main class="edit-modal-main">
+        <main class="edit-modal-main" :style="{'max-height': maxHeight + 'px'}">
             <slot></slot>
         </main>
         <pre>{{ position }}</pre>
@@ -33,12 +33,14 @@ export default {
         if (elArea.top < 0) pos.y = 20
         if (elArea.left < 0) pos.x = 20
         if (elArea.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
-            pos.y = (window.innerHeight || document.documentElement.clientHeight) - elArea.height - 20
+            pos.y = (window.innerHeight || document.documentElement.clientHeight) - elArea.height + 20
         }
         if (elArea.right > (window.innerWidth || document.documentElement.clientWidth)) {
             // console.log('is out from right!');
             pos.x = (window.innerWidth || document.documentElement.clientWidth) - elArea.width - 20
         }
+
+        this.maxHeight = (window.innerHeight || document.documentElement.clientHeight) - pos.y - 60
 
         this.posCorrected = pos
         // console.log('this.posCorrected',this.posCorrected);
@@ -47,7 +49,8 @@ export default {
     },
     data() {
         return {
-            posCorrected: JSON.parse(JSON.stringify(this.pos))
+            posCorrected: JSON.parse(JSON.stringify(this.pos)),
+            maxHeight: 0,
         }
     },
     methods: {

@@ -32,7 +32,7 @@
               ></trello-txt-input>
             </div>
             <div v-if="hasAttachments" class="attachments">
-              <trello-attachments :attachments="currTask.attachments" @editModalOpened="openEditModal($event, 'attachmentEdit')"></trello-attachments>
+              <trello-attachments :attachments="currTask.attachments" @editModalOpened="openEditModal($event, 'attachmentEdit')" @updated="updateAttachments"></trello-attachments>
             </div>
             <div v-if="true" class="checklists">
               <trello-checklist
@@ -167,6 +167,10 @@ export default {
       this.currTask.comments = updatedComments
       this.saveCurrTask()
     },
+    updateAttachments(updatedAttachments){
+      this.currTask.attachments = updatedAttachments
+      this.saveCurrTask()
+    },
     closeModal() {
       this.saveCurrTask()
       const boardId = this.$route.params.boardId
@@ -178,10 +182,14 @@ export default {
       // console.log('event',event);
       // console.log('editType',editType);
       // console.log('event.target.getBoundingClientRect()', event.target.getBoundingClientRect());
-      const clickedElArea = event.target.getBoundingClientRect()
-      const pos = {
-        x: clickedElArea.x,
-        y: clickedElArea.y - clickedElArea.height - 10
+        var pos;
+      if (!event) pos = this.pos;
+      else{
+        const clickedElArea = event.target.getBoundingClientRect()
+        pos = {
+          x: clickedElArea.x,
+          y: clickedElArea.y - clickedElArea.height - 10
+        }
       }
       const status = {
         isOpen: true,
