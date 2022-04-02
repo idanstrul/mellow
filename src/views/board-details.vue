@@ -220,13 +220,13 @@ export default {
       this.loadBoard()
       { immediate: true }
     },
-    '$route.params'(p) {
-      if (!p.boardId) return
-      if (!p.taskId)
-        this.loadBoard()
-      //  socketService.emit(SOCKET_EMIT_BOARD_WATCH, this.boardId);
-      { immediate: true }
-    },
+    // '$route.params'(p) {
+    //   if (!p.boardId) return
+    //   if (!p.taskId)
+    //     this.loadBoard()
+    //   //  socketService.emit(SOCKET_EMIT_BOARD_WATCH, this.boardId);
+    //   { immediate: true }
+    // },
   }
 }
 </script>

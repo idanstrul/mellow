@@ -6,7 +6,8 @@
         <!-- v-clickoutside="closeModal" -->
         <div v-if="false" class="cover"></div>
         <div class="cover" v-if="currTask.style">
-          <img v-if="checkImg" :src="currTask.style.bg" alt="">
+          <img v-if="currTask.style && currTask.style.bg.split('')[0] !== '#'" :src="currTask.style.bg" alt="">
+          <div :style="getCoverClr" class="cover-clr" v-else></div>
         </div>
         <button class="exit-btn" @click="closeModal"></button>
         <div class="modal-header section-title text-l icon-task-title">{{ currTask.title }}</div>
@@ -95,9 +96,11 @@
             <span class="secondary-section-title">Actions</span>
             <button class="btn side-bar icon-move" @click="openEditModal($event, 'move-edit')">Move</button>
             <button class="btn side-bar icon-copy" @click="openEditModal($event, 'copy-edit')">Copy</button>
-            <button class="btn delete-btn side-bar icon-delete" @click="removeTask()">Delete</button>
+            <!-- <button class="btn delete-btn side-bar icon-delete" @click="removeTask()">Delete</button> -->
           </div>
         </div>
+        <Transition enter-active-class="animate__animated animate__fadeIn animate__faster"
+    leave-active-class="animate__animated animate__fadeOut animate__faster">
         <main-edit-modal
           v-if="editModalStatus.isOpen"
           modal-title="Hello"
@@ -115,6 +118,7 @@
             @closeSearch="openEditModal(undefined, 'cover-edit')" 
           ></component>
         </main-edit-modal>
+        </Transition>
         <!-- <main-edit-modal v-if="editModalStatus.isOpen && editModalStatus.editType==='search-photo'" modal-title="se" @editModalClosed="closeEditModal" :pos="editModalStatus.pos">
           <component
             :is="editModalStatus.editType"
@@ -180,7 +184,13 @@ export default {
       parentGroupId: ''
     }
   },
+  mounted(){
+
+    // console.log('check', this.currTask.style.bg.split('')[0] !== '#');
+  },
+  
   methods: {
+   
   checkImg(){
     return this.currTask.style.bg.split('')[0] !== '#'
   },
@@ -269,6 +279,9 @@ export default {
     }
   },
   computed: {
+     getCoverClr(){
+      return `background-color: ${this.currTask.style.bg} !important`
+    },
     boardLabels() {
       return this.$store.getters.currBoardLabels
     },
