@@ -5,7 +5,7 @@
       <div class="modal-container flex column center">
         <!-- v-clickoutside="closeModal" -->
         <div v-if="false" class="cover"></div>
-        <div class="cover" v-if="currTask.style.bg">
+        <div class="cover" v-if="currTask.style">
           <img v-if="checkImg" :src="currTask.style.bg" alt="">
         </div>
         <button class="exit-btn" @click="closeModal"></button>
