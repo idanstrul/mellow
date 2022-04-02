@@ -14,9 +14,12 @@ export const clickOutside ={
               // console.log('event.clientX', event.clientX)
               // console.log('event.clientY', event.clientY)
               const elArea = el.getBoundingClientRect()
-              if (event.clientX < elArea.x || event.clientX > elArea.x + elArea.width || event.clientY < elArea.y || event.clientY > elArea.y + elArea.height){
-                // here we check if the click event is outside the element and it's children
-                // if (!(el == event.target || el.contains(event.target))) {
+              if ((event.clientX < elArea.x ||
+                 event.clientX > elArea.x + elArea.width ||
+                  event.clientY < elArea.y ||
+                  event.clientY > elArea.y + elArea.height) &&
+                  // here we check if the click event is outside the element and it's children
+                   !(el == event.target || el.contains(event.target))){
                     // if clicked outside, call the provided method
                     console.log('clicked outside!', el);
                     binding.value(event)

@@ -125,8 +125,8 @@ export default {
                 this.isDeleteContentTeleported = false
                 this.isNameContentTeleported = false
             }
-            console.log('val', val);
-            console.log('this.isDeleteContentTeleported', this.isDeleteContentTeleported);
+            // console.log('val', val);
+            // console.log('this.isDeleteContentTeleported', this.isDeleteContentTeleported);
         }
     }
 
