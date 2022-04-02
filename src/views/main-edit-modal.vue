@@ -29,7 +29,7 @@ export default {
         // console.log('this.$refs.elModal', this.$refs.elModal);
         console.log('Main edit modal is mounted!');
         // this.$refs.elModal.onload = () => {
-        setTimeout(() => {
+        // setTimeout(() => {
             const pos = JSON.parse(JSON.stringify(this.pos))
             const elArea = this.$refs.elModal.getBoundingClientRect()
             const viewPortSize = {
@@ -65,7 +65,7 @@ export default {
 
             this.posCorrected = pos
 
-        }, 50)
+        // }, 50)
 
         // }
         // console.log('this.posCorrected',this.posCorrected);
