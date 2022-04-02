@@ -6,14 +6,14 @@
             @txt-saved="updateChecklistTitle"
             deny-empty-save
         >
-            <button class="btn float-right btn-default" @click.stop>Delete</button>
+            <button class="btn float-right btn-default" @click.stop="openDeleteModal">Delete</button>
         </trello-txt-input>
         <!-- <span class="progress-count"></span> -->
         <el-progress :percentage="completePercentage" :status="passSuccess" />
         <!-- <div class="progress-bar"></div> -->
         <ul class="todos clean-list">
             <li v-for="(todo, todoIdx) in updatedChecklist.todos" :key="todo.id">
-                <input type="checkbox" :checked="todo.isDone" @change="toggleTodoStatus(todoIdx)"/>
+                <input type="checkbox" :checked="todo.isDone" @change="toggleTodoStatus(todoIdx)" />
                 <trello-txt-input
                     :txt="todo.title"
                     @txt-saved="updateTodoTitle($event, todo.id)"
@@ -30,6 +30,10 @@
             @enter-clicked="next()"
             ref="input"
         ></trello-txt-input>
+        <Teleport v-if="isDeleteContentTeleported && isEditModalMounted" to=".teleport-container">
+            <p class="msg">Deleting a checklist is permanent and there is no way to get it back.</p>
+            <button @click="removeChecklist" class="delete-btn btn">Delete checklist</button>
+        </Teleport>
         <!-- <pre>{{ updatedChecklist }}</pre> -->
     </section>
 </template>
@@ -42,19 +46,21 @@ export default {
     name: 'trello-checklist',
     props: {
         // modelValue: Object
-        checklist: Object
+        checklist: Object,
+        isEditModalMounted: Boolean
     },
     data() {
         return {
-            updatedChecklist: JSON.parse(JSON.stringify(this.checklist))
+            updatedChecklist: JSON.parse(JSON.stringify(this.checklist)),
+            isDeleteContentTeleported: false
         }
     },
     methods: {
-        saveChecklist(){
+        saveChecklist() {
             const checklistToSave = JSON.parse(JSON.stringify(this.updatedChecklist))
             this.$emit('updated', checklistToSave)
         },
-        toggleTodoStatus(todoIdx){
+        toggleTodoStatus(todoIdx) {
             const todo = this.updatedChecklist.todos[todoIdx]
             todo.isDone = !todo.isDone
             this.saveChecklist()
@@ -75,6 +81,10 @@ export default {
             this.saveChecklist()
 
         },
+        removeChecklist() {
+            this.$emit('removed')
+            this.$emit('editModalClosed')
+        },
         addTodo(title) {
             this.updatedChecklist.todos.push({
                 id: utilService.makeId(),
@@ -88,6 +98,10 @@ export default {
             // console.log(this.$refs.input.$el);
             this.$refs.input.$el.click()
             // event.target.click()
+        },
+        openDeleteModal(event) {
+            this.isDeleteContentTeleported = true
+            this.$emit('teleportContainerOpened', event)
         }
 
     },
@@ -104,11 +118,21 @@ export default {
             return ''
         }
     },
+    watch: {
+        isEditModalMounted(val) {
+            if (!val) {
+                this.isDeleteContentTeleported = false
+            }
+            console.log('val', val);
+            console.log('this.isDeleteContentTeleported', this.isDeleteContentTeleported);
+        }
+    },
     components: {
         trelloTxtInput
     }
 
 }
+
 </script>
 
 <style>

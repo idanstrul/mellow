@@ -111,6 +111,19 @@ section.task-details {
         line-height: 1.43;
         font-family: inherit;
 
+        &.delete-btn.btn{
+            color: #fff;
+            background-color: #b04632;
+            &::before{
+                color: inherit;
+            }
+            
+            &:hover{
+                background-color: #933b27;
+                color: #fff;
+            }
+        }
+
         &.side-bar {
             width: 168px;
             text-align: start;
@@ -235,8 +248,8 @@ section.task-details {
     @include add-trello-icon("\e91f");
 }
 
-.icon-archive {
-    @include add-trello-icon("\e907");
+.icon-delete {
+    @include add-trello-icon("\e95c");
 }
 
 .icon-task-title {

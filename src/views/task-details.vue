@@ -2,18 +2,24 @@
   <!-- v-clickoutside="closeModal" -->
   <section v-if="currTask" class="task-details">
     <div class="modal-screen flex center">
-      <div class="modal-container flex column center"
-      
-      >
-       <!-- v-clickoutside="closeModal" -->
+      <div class="modal-container flex column center">
+        <!-- v-clickoutside="closeModal" -->
         <div v-if="false" class="cover"></div>
         <button class="exit-btn" @click="closeModal"></button>
         <div class="modal-header section-title text-l icon-task-title">{{ currTask.title }}</div>
         <div class="flex-container flex space-between">
           <div class="modal-main">
             <div v-if="true" class="notations flex wrap">
-              <trello-members v-if="hasMembers" :members="currTask.members" @editModalOpened="openEditModal"></trello-members>
-              <trello-labels v-if="hasLabels" :labels="currTaskLabels" @editModalOpened="openEditModal"></trello-labels>
+              <trello-members
+                v-if="hasMembers"
+                :members="currTask.members"
+                @editModalOpened="openEditModal"
+              ></trello-members>
+              <trello-labels
+                v-if="hasLabels"
+                :labels="currTaskLabels"
+                @editModalOpened="openEditModal"
+              ></trello-labels>
               <trello-dates
                 v-if="currTask.dueDate"
                 :dueDate="currTask.dueDate"
@@ -32,14 +38,24 @@
               ></trello-txt-input>
             </div>
             <div v-if="hasAttachments" class="attachments">
-              <trello-attachments :attachments="currTask.attachments" @editModalOpened="openEditModal($event, 'attachmentEdit')"></trello-attachments>
+              <trello-attachments
+                :attachments="currTask.attachments"
+                :isEditModalMounted="isEditModalMounted"
+                @editModalOpened="openEditModal($event, 'attachmentEdit')"
+                @teleportContainerOpened="openEditModal($event, 'teleportContainer')"
+                @updated="updateAttachments"
+              ></trello-attachments>
             </div>
             <div v-if="true" class="checklists">
               <trello-checklist
-                v-for="checklist in currTask.checklists"
+                v-for="(checklist, checklistIdx) in currTask.checklists"
                 :key="checklist.id"
                 :checklist="checklist"
+                :isEditModalMounted="isEditModalMounted"
                 @updated="updateChecklist"
+                @removed="removeChecklist(checklistIdx)"
+                @editModalClosed="closeEditModal"
+                @teleportContainerOpened="openEditModal($event, 'teleportContainer')"
               ></trello-checklist>
             </div>
             <div class="activity-log">
@@ -47,27 +63,46 @@
             </div>
           </div>
           <div class="modal-sidebar flex column">
-            <button class="btn side-bar">Join</button>
+            <!-- <button class="btn side-bar">Join</button> -->
             <span class="secondary-section-title">Add to card</span>
-            <button class="btn side-bar icon-members" @click="openEditModal($event, 'members-edit')">Members</button>
-            <button class="btn side-bar icon-labels" @click="openEditModal($event, 'labels-edit')">Labels</button>
+            <button
+              class="btn side-bar icon-members"
+              @click="openEditModal($event, 'members-edit')"
+            >Members</button>
+            <button
+              class="btn side-bar icon-labels"
+              @click="openEditModal($event, 'labels-edit')"
+            >Labels</button>
             <button
               class="btn side-bar icon-checklist"
               @click="openEditModal($event, 'checklists-edit')"
             >Checklist</button>
-            <button class="btn side-bar icon-dates" @click="openEditModal($event, 'date-edit')">Dates</button>
+            <button
+              class="btn side-bar icon-dates"
+              @click="openEditModal($event, 'date-edit')"
+            >Dates</button>
             <button
               class="btn side-bar icon-attachment"
               @click="openEditModal($event, 'attachment-edit')"
             >Attachment</button>
-            <button class="btn side-bar icon-cover" @click="openEditModal($event, 'cover-edit')">Cover</button>
+            <button
+              class="btn side-bar icon-cover"
+              @click="openEditModal($event, 'cover-edit')"
+            >Cover</button>
             <span class="secondary-section-title">Actions</span>
             <button class="btn side-bar icon-move" @click="openEditModal($event, 'move-edit')">Move</button>
             <button class="btn side-bar icon-copy" @click="openEditModal($event, 'copy-edit')">Copy</button>
-            <button class="btn side-bar icon-archive" @click="removeTask()">Remove</button>
+            <button class="btn delete-btn side-bar icon-delete" @click="removeTask()">Delete</button>
           </div>
         </div>
-        <main-edit-modal v-if="editModalStatus.isOpen" modal-title="Hello" @editModalClosed="closeEditModal" :pos="editModalStatus.pos">
+        <main-edit-modal
+          v-if="editModalStatus.isOpen"
+          modal-title="Hello"
+          @editModalClosed="closeEditModal"
+          :pos="editModalStatus.pos"
+          @mounted="this.isEditModalMounted = true"
+          @unmounted="this.isEditModalMounted = false"
+        >
           <component
             :is="editModalStatus.editType"
             :currTask="currTask"
@@ -107,8 +142,7 @@ import dateEdit from '../components/main-edit-modal.cmps/date-edit.vue'
 import attachmentEdit from "../components/main-edit-modal.cmps/attachment-edit.vue"
 import trelloAttachments from "../components/task-edit.cmps/trello-attachments.vue"
 import coverEdit from "../components/main-edit-modal.cmps/cover-edit.vue"
-import searchPhoto from "../components/main-edit-modal.cmps/search-photo.vue"
-
+import teleportContainer from "../components/main-edit-modal.cmps/teleport-container.vue"
 
 export default {
   name: 'task-details',
@@ -132,8 +166,9 @@ export default {
       editModalStatus: {
         isOpen: false,
         editType: '',
-        pos: null
+        pos: null,
       },
+      isEditModalMounted: false,
       // currTask: null,
       // currTaskLabels: null,
       currTaskId: '',
@@ -177,8 +212,16 @@ export default {
       this.currTask.checklists[idx] = updatedChecklist
       this.saveCurrTask()
     },
+    removeChecklist(checklistIdx){
+      this.currTask.checklists.splice(checklistIdx, 1)
+      this.saveCurrTask()
+    },
     updateComments(updatedComments) {
       this.currTask.comments = updatedComments
+      this.saveCurrTask()
+    },
+    updateAttachments(updatedAttachments) {
+      this.currTask.attachments = updatedAttachments
       this.saveCurrTask()
     },
     closeModal() {
@@ -189,13 +232,17 @@ export default {
       //this.socketUpdateBoard();
     },
     openEditModal(event, editType) {
-      // console.log('event',event);
+      console.log('event', event);
       // console.log('editType',editType);
       // console.log('event.target.getBoundingClientRect()', event.target.getBoundingClientRect());
-      const clickedElArea = event.target.getBoundingClientRect()
-      const pos = {
-        x: clickedElArea.x,
-        y: clickedElArea.y - clickedElArea.height - 10
+      var pos;
+      if (!event) pos = this.pos;
+      else {
+        const clickedElArea = event.target.getBoundingClientRect()
+        pos = {
+          x: clickedElArea.x,
+          y: clickedElArea.y - clickedElArea.height - 10
+        }
       }
       const status = {
         isOpen: true,
@@ -205,10 +252,11 @@ export default {
       this.editModalStatus = status
       // this.$store.commit({ type: 'toggleEditModal', isOpen: true, editType, currTask: this.currTask, parentGroupId: this.parentGroupId })
     },
-    closeEditModal(){
+    closeEditModal() {
       this.editModalStatus = {
         isOpen: false,
-        editType: ''
+        editType: '',
+        pos: null,
       }
     }
   },
@@ -223,7 +271,7 @@ export default {
       if (!this.currTask) return
       return (this.currTask.members && this.currTask.members.length > 0)
     },
-    hasAttachments(){
+    hasAttachments() {
       return (this.currTask.attachments && this.currTask.attachments.length)
     },
     currTask() {
@@ -256,7 +304,7 @@ export default {
     attachmentEdit,
     trelloAttachments,
     coverEdit,
-    searchPhoto
+    teleportContainer
   }
 }
 </script>
