@@ -72,7 +72,26 @@
             <div class="btn-clr navy"></div>
             </label>
         </div>
+        <h4>Attachments</h4>
+        <div v-if="currTask.attachments" class="btn-cover-container img-container flex wrap">
+        <label v-for="a in currTask.attachments" :key="a.asset_id" @click="setCoverImg(a.secure_url)">
+            <input :checked="currTask.style && currTask.style.bg==a.secure_url" type="radio" name="btn-clr">
+            <div class="btn-clr cover-opt-img"><img class="cover-opt-img" :src="a.secure_url" alt=""></div>
+        </label>
+        </div>
+        <label class="btn-upload-cover" v-if="currStatus.isWaiting || !currStatus.isLoading">
+            Upload a cover image
+        <input type="file" class="attach" @change="onUpload">
+        </label>
+
+        <div v-if="currStatus.isLoading">
+            <img :src="'../../../../src/assets/' + currStatus.imgName" />
+            <span>{{ currStatus.txt }}</span>
+        </div>
+        <button @click.stop="openSearch" class="btn-search-photo">Search for photos</button>
+
        
+        <!-- <button class="btn-upload-cover">Upload a cover image</button> -->
             <!-- <div class="cover-opt">
              
 
@@ -88,6 +107,7 @@
 
 <script>
 // import { json } from "stream/consumers";
+import { uploadImg } from "../../services/imgUpload.service";
 
 
 export default {
@@ -97,10 +117,53 @@ export default {
     },
     data(){
         return {
-            coverSize:''
+            currStatus: null,
+            statusOptions: {
+                waiting: {
+                    imgName: "Upload-PNG-Image-File.png",
+                    txt: "Upload file",
+                    isWaiting: true
+                },
+                loading: {
+                    imgName: "loader.gif",
+                    txt: 'Loading...',
+                    isLoading: true
+                },
+                complete: {
+                    imgName: "checkmark-cut.gif",
+                    txt: 'Attachment added successfuly!'
+                },
+                failed: {
+                    imgName: "ezgif.com-gif-maker.gif",
+                    txt: 'OOPS! File upload failed!'
+                }
+            }        
         } 
     },
+    created(){
+        this.currStatus = this.statusOptions.waiting
+    },
     methods: {
+        openSearch(){
+            // debugger
+            this.$emit('openSearch')
+        },
+        async onUpload(ev) {
+            console.log('ev.target.files[0]', ev.target.files[0]);
+            this.currStatus = this.statusOptions.loading;
+            try {
+                const attachment = await uploadImg(ev)
+                console.log(attachment);
+                if (!this.taskToEdit.attachments) this.taskToEdit.attachments = [];
+                this.taskToEdit.attachments.push(attachment)
+                console.log('this.taskToEdit', this.taskToEdit);
+                this.$emit('taskUpdated', this.taskToEdit)
+                this.currStatus = this.statusOptions.complete
+            } catch (err) {
+                this.currStatus = this.statusOptions.failed
+            }
+            // setTimeout(this.closeModal, 2000)
+        },
         setCoverClr(clr){
            console.log(this.taskToEdit);
             if(!this.taskToEdit.style) this.taskToEdit.style = {}
@@ -108,6 +171,14 @@ export default {
             if(!this.taskToEdit.style.size) this.taskToEdit.style.size = 'small'
             this.$emit('taskUpdated', this.taskToEdit)
             // console.log(this.currTask);
+       },
+        setCoverImg(pic){
+        //    console.log(this.taskToEdit);
+            if(!this.taskToEdit.style) this.taskToEdit.style = {}
+            this.taskToEdit.style.bg = pic
+            if(!this.taskToEdit.style.size) this.taskToEdit.style.size = 'big'
+            this.$emit('taskUpdated', this.taskToEdit)
+            console.log(this.currTask);
        },
        setCoverSize(size){
            console.log(this.taskToEdit);
@@ -132,9 +203,13 @@ export default {
             bg.style.bg = ''
             }
             // console.log(this.taskToEdit.style.bg);
-            if(bg.style.bg)
-            return `background-color: ${bg.style.bg}; opacity:1`
-            return `background-color: ${bg.style.bg}`
+            if(bg.style.bg){
+                console.log(bg.style);
+                if(bg.style.bg.split('')[0] === '#')
+                return `background-color: ${bg.style.bg}; opacity:1`
+                else return `background-image: url('${bg.style.bg}'); opacity:1; background-color:transparent;`
+            }
+            // return `background-color: ${bg.style.bg}`
             //  return `background-color: ${this.taskToEdit.style.bg}` 
             // return {'background-color': this.taskToEdit.style.bg}
             // return `background-color: ${this.taskToEdit.style.bg}; position: absolute`
