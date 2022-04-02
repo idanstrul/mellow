@@ -73,9 +73,18 @@
             :currTask="currTask"
             @taskUpdated="saveCurrTask"
             @editModalClosed="closeEditModal"
+            @openSearch="openEditModal(undefined, 'search-photo')" 
           ></component>
-          <!-- <date-edit></date-edit> -->
         </main-edit-modal>
+        <!-- <main-edit-modal v-if="editModalStatus.isOpen && editModalStatus.editType==='search-photo'" modal-title="se" @editModalClosed="closeEditModal" :pos="editModalStatus.pos">
+          <component
+            :is="editModalStatus.editType"
+            :currTask="currTask"
+            @taskUpdated="saveCurrTask"
+            @editModalClosed="closeEditModal"
+          ></component>
+        </main-edit-modal> -->
+          <!-- <date-edit></date-edit> -->
         <!-- <pre>{{ currTask }}</pre> -->
         <!-- <pre>{{ currTaskLabels }}</pre> -->
       </div>
@@ -98,6 +107,8 @@ import dateEdit from '../components/main-edit-modal.cmps/date-edit.vue'
 import attachmentEdit from "../components/main-edit-modal.cmps/attachment-edit.vue"
 import trelloAttachments from "../components/task-edit.cmps/trello-attachments.vue"
 import coverEdit from "../components/main-edit-modal.cmps/cover-edit.vue"
+import searchPhoto from "../components/main-edit-modal.cmps/search-photo.vue"
+
 
 export default {
   name: 'task-details',
@@ -130,6 +141,9 @@ export default {
     }
   },
   methods: {
+    openSearch(){
+      this.editModalStatus.editType = 'search-photo'
+    },
     async saveCurrTask(updatedTask = null) {
       // Logic to support updatedTask param which only comes when updating from edit modal
       const taskToSave = updatedTask ? updatedTask : this.currTask
@@ -241,7 +255,8 @@ export default {
     dateEdit,
     attachmentEdit,
     trelloAttachments,
-    coverEdit
+    coverEdit,
+    searchPhoto
   }
 }
 </script>
