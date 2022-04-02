@@ -7,7 +7,8 @@ export const utilService = {
     applyDrag,
     saveToStorage,
     loadFromStorage,
-    lightenDarkenColor
+    lightenDarkenColor,
+    debounce
 }
 
 function delay(ms = 1500) {
@@ -104,4 +105,14 @@ function lightenDarkenColor(colorCode, amount) {
     }
 
     return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
+}
+
+function debounce(callback, wait) {
+    let timerId;
+    return (...args) => {
+        clearTimeout(timerId);
+        timerId = setTimeout(() => {
+            callback(...args);
+        }, wait);
+    };
 }

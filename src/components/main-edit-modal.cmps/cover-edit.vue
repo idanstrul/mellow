@@ -73,8 +73,8 @@
             </label>
         </div>
         <h4>Attachments</h4>
-        <div v-if="currTask.attachments" class="btn-cover-container img-container flex center wrap">
-        <label v-for="a in currTask.attachments" :key="a.asset_id" @click="setCoverPic(a.secure_url)">
+        <div v-if="currTask.attachments" class="btn-cover-container img-container flex wrap">
+        <label v-for="a in currTask.attachments" :key="a.asset_id" @click="setCoverImg(a.secure_url)">
             <input :checked="currTask.style && currTask.style.bg==a.secure_url" type="radio" name="btn-clr">
             <div class="btn-clr cover-opt-img"><img class="cover-opt-img" :src="a.secure_url" alt=""></div>
         </label>
@@ -88,7 +88,7 @@
             <img :src="'../../../../src/assets/' + currStatus.imgName" />
             <span>{{ currStatus.txt }}</span>
         </div>
-        <button @click="openSearch" class="btn-search-photo">Search for photos</button>
+        <button @click.stop="openSearch" class="btn-search-photo">Search for photos</button>
 
        
         <!-- <button class="btn-upload-cover">Upload a cover image</button> -->
@@ -145,6 +145,7 @@ export default {
     },
     methods: {
         openSearch(){
+            // debugger
             this.$emit('openSearch')
         },
         async onUpload(ev) {
@@ -152,6 +153,7 @@ export default {
             this.currStatus = this.statusOptions.loading;
             try {
                 const attachment = await uploadImg(ev)
+                console.log(attachment);
                 if (!this.taskToEdit.attachments) this.taskToEdit.attachments = [];
                 this.taskToEdit.attachments.push(attachment)
                 console.log('this.taskToEdit', this.taskToEdit);
@@ -170,7 +172,7 @@ export default {
             this.$emit('taskUpdated', this.taskToEdit)
             // console.log(this.currTask);
        },
-        setCoverPic(pic){
+        setCoverImg(pic){
         //    console.log(this.taskToEdit);
             if(!this.taskToEdit.style) this.taskToEdit.style = {}
             this.taskToEdit.style.bg = pic

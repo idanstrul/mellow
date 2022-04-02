@@ -5,6 +5,9 @@
       <div class="modal-container flex column center">
         <!-- v-clickoutside="closeModal" -->
         <div v-if="false" class="cover"></div>
+        <div class="cover" v-if="currTask.style.bg">
+          <img v-if="checkImg" :src="currTask.style.bg" alt="">
+        </div>
         <button class="exit-btn" @click="closeModal"></button>
         <div class="modal-header section-title text-l icon-task-title">{{ currTask.title }}</div>
         <div class="flex-container flex space-between">
@@ -108,7 +111,8 @@
             :currTask="currTask"
             @taskUpdated="saveCurrTask"
             @editModalClosed="closeEditModal"
-            @openSearch="openEditModal(undefined, 'search-photo')" 
+            @openSearch="openEditModal(undefined, 'search-photo')"
+            @closeSearch="openEditModal(undefined, 'cover-edit')" 
           ></component>
         </main-edit-modal>
         <!-- <main-edit-modal v-if="editModalStatus.isOpen && editModalStatus.editType==='search-photo'" modal-title="se" @editModalClosed="closeEditModal" :pos="editModalStatus.pos">
@@ -143,6 +147,7 @@ import attachmentEdit from "../components/main-edit-modal.cmps/attachment-edit.v
 import trelloAttachments from "../components/task-edit.cmps/trello-attachments.vue"
 import coverEdit from "../components/main-edit-modal.cmps/cover-edit.vue"
 import teleportContainer from "../components/main-edit-modal.cmps/teleport-container.vue"
+import searchPhoto from "../components/main-edit-modal.cmps/search-photo.vue"
 
 export default {
   name: 'task-details',
@@ -176,6 +181,9 @@ export default {
     }
   },
   methods: {
+  checkImg(){
+    return this.currTask.style.bg.split('')[0] !== '#'
+  },
     openSearch(){
       this.editModalStatus.editType = 'search-photo'
     },
@@ -304,7 +312,9 @@ export default {
     attachmentEdit,
     trelloAttachments,
     coverEdit,
-    teleportContainer
+    teleportContainer,
+    searchPhoto
+
   }
 }
 </script>

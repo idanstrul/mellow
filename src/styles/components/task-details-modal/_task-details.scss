@@ -8,6 +8,16 @@ section.task-details {
     height: 100%;
     color: #172b4d;
 
+    .cover {
+        height: 160px;
+
+        img {
+            height: 160px;
+            object-fit: contain;
+
+        }
+    }
+
     .modal-screen {
         background-color: rgba(0, 0, 0, 0.64);
         width: 100vw;
@@ -90,7 +100,7 @@ section.task-details {
                 width: 100%;
                 padding-inline-end: 16px;
 
-                & > div {
+                &>div {
                     margin-bottom: 24px;
                 }
 
@@ -111,14 +121,15 @@ section.task-details {
         line-height: 1.43;
         font-family: inherit;
 
-        &.delete-btn.btn{
+        &.delete-btn.btn {
             color: #fff;
             background-color: #b04632;
-            &::before{
+
+            &::before {
                 color: inherit;
             }
-            
-            &:hover{
+
+            &:hover {
                 background-color: #933b27;
                 color: #fff;
             }
@@ -155,6 +166,7 @@ section.task-details {
     input[type="checkbox"] {
         box-shadow: inset 0 0 1px 1px #dfe1e6;
         transform: scale(1.1);
+
         &:checked {
             box-shadow: none;
         }
@@ -223,7 +235,8 @@ section.task-details {
 
 .icon-checklist {
     @include add-trello-icon("\e91a");
-    &::before{
+
+    &::before {
         top: 1px !important;
     }
 }
