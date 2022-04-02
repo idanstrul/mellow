@@ -30,6 +30,31 @@ export default {
         console.log('Main edit modal is mounted!');
         // this.$refs.elModal.onload = () => {
         // setTimeout(() => {
+        this.correctPosition()
+        const resizeObserver = new ResizeObserver(() => {
+            console.error('resize obsereved')
+            this.correctPosition
+        });
+        resizeObserver.observe(this.$refs.elModal);
+
+        // }, 50)
+
+        // }
+        // console.log('this.posCorrected',this.posCorrected);
+        this.$emit('mounted')
+    },
+    data() {
+        return {
+            posCorrected: JSON.parse(JSON.stringify(this.pos)),
+            maxHeight: (window.innerHeight || document.documentElement.clientHeight)
+        }
+    },
+    methods: {
+        closeModal() {
+            this.$emit('editModalClosed')
+            // this.$store.commit({type: 'toggleEditModal', isOpen: false, editType: ''})
+        },
+        correctPosition() {
             const pos = JSON.parse(JSON.stringify(this.pos))
             const elArea = this.$refs.elModal.getBoundingClientRect()
             const viewPortSize = {
@@ -64,23 +89,6 @@ export default {
             console.log('this.maxHeight', this.maxHeight);
 
             this.posCorrected = pos
-
-        // }, 50)
-
-        // }
-        // console.log('this.posCorrected',this.posCorrected);
-        this.$emit('mounted')
-    },
-    data() {
-        return {
-            posCorrected: JSON.parse(JSON.stringify(this.pos)),
-            maxHeight: (window.innerHeight || document.documentElement.clientHeight)
-        }
-    },
-    methods: {
-        closeModal() {
-            this.$emit('editModalClosed')
-            // this.$store.commit({type: 'toggleEditModal', isOpen: false, editType: ''})
         }
     },
     computed: {
@@ -92,6 +100,9 @@ export default {
             console.error('this.$refs.elModal.getBoundingClientRect().height', this.$refs.elModal.getBoundingClientRect().height)
             return this.$refs.elModal.getBoundingClientRect().height
         }
+    },
+    watch: {
+
     },
     unmounted() {
         console.log('main edit modal is unmounted');
