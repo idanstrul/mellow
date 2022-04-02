@@ -44,8 +44,7 @@ export default {
 
         this.posCorrected = pos
         // console.log('this.posCorrected',this.posCorrected);
-
-
+        this.$emit('mounted')
     },
     data() {
         return {
@@ -66,6 +65,7 @@ export default {
     },
     unmounted(){
         console.log('main edit modal is unmounted');
+        this.$emit('unmounted')
     }
 
 }
