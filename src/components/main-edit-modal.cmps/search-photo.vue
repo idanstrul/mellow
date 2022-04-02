@@ -63,8 +63,8 @@ export default {
                asset_id: img.id,
                format: 'png',
                original_filename: img.alt_description,
-               secure_url: img.urls.full
-            //    created_at: img
+               secure_url: img.urls.full,
+               created_at: img.created_at
                }
         })
      },

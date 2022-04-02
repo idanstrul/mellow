@@ -9,17 +9,27 @@ section.task-details {
     color: #172b4d;
 
     .cover {
-        height: 160px;
+        // height: 160px;
         background-color: lightgray;
-        width: 691px;
-        position: relative;
+        // width: 691px;
+        // position: relative;
         right: 16px;
+        width: calc(100vw - 16px);
+        // width: 100%;
+        position: relative;
         bottom: 16px;
+        max-height: 160px;
 
         img {
             height: 160px;
             object-fit: contain;
 
+        }
+
+        .cover-clr {
+            height: 116px;
+            // width: ;
+            // position: absolute;
         }
     }
 
@@ -39,6 +49,7 @@ section.task-details {
             width: calc(100vw - 16px);
 
             button.exit-btn {
+                background-color: rgba(0, 0, 0, 0.035);
                 position: absolute;
                 top: 5px;
                 right: 5px;
@@ -54,6 +65,10 @@ section.task-details {
 
                 &:hover {
                     background-color: #091e4214;
+                }
+
+                &:active {
+                    background-color: #091e4240;
                 }
 
                 &::before {
@@ -75,6 +90,10 @@ section.task-details {
 
             @media (min-width: 784px) {
                 width: 768px;
+
+                .cover {
+                    width: 768px;
+                }
 
                 .modal-header {
                     margin: 4px 38px 8px;
