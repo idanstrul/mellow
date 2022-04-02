@@ -66,15 +66,15 @@
             }
         }
     }
-
+    
     .layout {
         display: grid;
         grid-template-columns: 0 1fr 300px;
-
+        
         .main-home-page {
             grid-column: 2;
-            margin-top: 180px;
-            margin-left: 220px;
+            margin-top: 220px;
+            margin-left: 110px;
             display: flex;
             align-items: center;
             justify-content: space-around;
@@ -93,6 +93,7 @@
                         line-height: 1.3;
                     }
                 }
+
 
                 .txt-title {
                     color: #091e42;
@@ -171,23 +172,23 @@
                         }
                     }
                 }
-                .img {
-                    display: grid;
-                    grid-template-columns: 500px;
-                    max-width: 100%;
-                    height: auto;
-                    position: relative;
-                    bottom: 90px;
-                    @media (max-width: 1361px) {
+            }
+            .img {
+                display: grid;
+                grid-template-columns: 500px;
+                max-width: 100%;
+                height: auto;
+                position: relative;
+                bottom: 90px;
+                @media (max-width: 1361px) {
+                    & {
+                        grid-template-columns: 250px;
+                        bottom: 5;
+                    }
+                    @media (max-width: 714px) {
                         & {
-                            grid-template-columns: 250px;
+                            grid-template-columns: 150px;
                             bottom: 5;
-                        }
-                        @media (max-width: 714px) {
-                            & {
-                                grid-template-columns: 150px;
-                                bottom: 5;
-                            }
                         }
                     }
                 }
