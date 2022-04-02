@@ -10,10 +10,10 @@
             <span class="modal-header-title">{{ modalTitle }}</span>
             <button class="exit-btn" @click="closeModal"></button>
         </header>
-        <main class="edit-modal-main" :style="{'max-height': maxHeight + 'px'}">
+        <main class="edit-modal-main" :style="{ 'max-height': maxHeight + 'px' }">
             <slot></slot>
         </main>
-        <pre>{{ position }}</pre>
+        <!-- <pre>{{ position }}</pre> -->
     </section>
 </template>
 
@@ -28,28 +28,53 @@ export default {
         // console.log('this.$refs.elModal.getBoundingClientRect()', this.$refs.elModal.getBoundingClientRect());
         // console.log('this.$refs.elModal', this.$refs.elModal);
         console.log('Main edit modal is mounted!');
-        const pos = JSON.parse(JSON.stringify(this.pos))
-        const elArea = this.$refs.elModal.getBoundingClientRect()
-        if (elArea.top < 0) pos.y = 20
-        if (elArea.left < 0) pos.x = 20
-        if (elArea.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
-            pos.y = (window.innerHeight || document.documentElement.clientHeight) - elArea.height + 20
-        }
-        if (elArea.right > (window.innerWidth || document.documentElement.clientWidth)) {
-            // console.log('is out from right!');
-            pos.x = (window.innerWidth || document.documentElement.clientWidth) - elArea.width - 20
-        }
+        // this.$refs.elModal.onload = () => {
+        setTimeout(() => {
+            const pos = JSON.parse(JSON.stringify(this.pos))
+            const elArea = this.$refs.elModal.getBoundingClientRect()
+            const viewPortSize = {
+                h: (window.innerHeight || document.documentElement.clientHeight),
+                w: (window.innerWidth || document.documentElement.clientWidth)
+            }
 
-        this.maxHeight = (window.innerHeight || document.documentElement.clientHeight) - pos.y - 60
+            if (elArea.left < 0) pos.x = 20
+            if (elArea.right > viewPortSize.w) {
+                // console.log('is out from right!');
+                pos.x = viewPortSize.w - elArea.width - 20
+            }
 
-        this.posCorrected = pos
+            this.maxHeight = viewPortSize.h
+            // setTimeout(() =>
+            console.error('elArea.height', this.$refs.elModal.getBoundingClientRect().height), 2000
+            // )
+            console.error('pos.y + elArea.height', pos.y + elArea.height)
+            console.error('viewPortSize.h', viewPortSize.h)
+
+            if (pos.y + elArea.height > viewPortSize.h) {
+                pos.y = viewPortSize.h - elArea.height - 20
+                console.error('Larger then view port!')
+            }
+            console.log('pos.y', pos.y);
+
+            if (pos.y < 20) {
+                console.error('Less then 20 from top')
+                pos.y = 20
+                this.maxHeight = viewPortSize.h - 80
+            }
+            console.log('this.maxHeight', this.maxHeight);
+
+            this.posCorrected = pos
+
+        }, 50)
+
+        // }
         // console.log('this.posCorrected',this.posCorrected);
         this.$emit('mounted')
     },
     data() {
         return {
             posCorrected: JSON.parse(JSON.stringify(this.pos)),
-            maxHeight: 0,
+            maxHeight: (window.innerHeight || document.documentElement.clientHeight)
         }
     },
     methods: {
@@ -61,9 +86,14 @@ export default {
     computed: {
         position() {
             return this.$refs.elModal
+        },
+        elheight() {
+            if (!this.$refs.elModal) return
+            console.error('this.$refs.elModal.getBoundingClientRect().height', this.$refs.elModal.getBoundingClientRect().height)
+            return this.$refs.elModal.getBoundingClientRect().height
         }
     },
-    unmounted(){
+    unmounted() {
         console.log('main edit modal is unmounted');
         this.$emit('unmounted')
     }

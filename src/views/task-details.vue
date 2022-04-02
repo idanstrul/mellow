@@ -2,7 +2,7 @@
   <!-- v-clickoutside="closeModal" -->
   <section v-if="currTask" class="task-details">
     <div class="modal-screen flex center">
-      <div class="modal-container flex column center">
+      <div v-clickoutside="closeModal" class="modal-container flex column center">
         <!-- v-clickoutside="closeModal" -->
         <div v-if="false" class="cover"></div>
         <button class="exit-btn" @click="closeModal"></button>

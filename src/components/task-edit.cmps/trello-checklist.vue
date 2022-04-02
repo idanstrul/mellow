@@ -6,7 +6,7 @@
             @txt-saved="updateChecklistTitle"
             deny-empty-save
         >
-            <button class="btn float-right btn-default" @click.stop="openDeleteModal">Delete</button>
+            <button class="btn float-right btn-default" @click="openDeleteModal">Delete</button>
         </trello-txt-input>
         <!-- <span class="progress-count"></span> -->
         <el-progress :percentage="completePercentage" :status="passSuccess" />
@@ -27,7 +27,7 @@
             deny-empty-save
             reset-on-save
             @txt-saved="addTodo"
-            @enter-clicked="next()"
+            allow-next
             ref="input"
         ></trello-txt-input>
         <Teleport v-if="isDeleteContentTeleported && isEditModalMounted" to=".teleport-container">
@@ -123,8 +123,8 @@ export default {
             if (!val) {
                 this.isDeleteContentTeleported = false
             }
-            console.log('val', val);
-            console.log('this.isDeleteContentTeleported', this.isDeleteContentTeleported);
+            // console.log('val', val);
+            // console.log('this.isDeleteContentTeleported', this.isDeleteContentTeleported);
         }
     },
     components: {
