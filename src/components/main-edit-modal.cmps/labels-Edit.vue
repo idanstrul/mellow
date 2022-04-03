@@ -1,21 +1,45 @@
 <template>
     <section class="labels-edit">
-        <input class="search" type="text" placeholder="Search labels..." />
-        <span class="secondary-section-title">Labels</span>
-        <ul class="clean-list">
-            <li v-for="label in labels" :key="label.id">
-                <div
-                    class="label"
-                    :class="{ 'selected': checkIfTaskLabel(label) }"
-                    :style="{ 'background-color': label.color }"
-                    @click="toggleLabelFromTask(label)"
-                >
-                    <span>{{ label.title }}</span>
-                </div>
-                <span class="edit-icon"></span>
-            </li>
-        </ul>
-        <button class="btn-default">Create a new label</button>
+        <div v-if="!labelInEdit" class="all-labels">
+            <input class="search" type="text" placeholder="Search labels..." v-model="filterBy" />
+            <span class="secondary-section-title">Labels</span>
+            <ul class="clean-list">
+                <li v-for="label in labelsForDisplay" :key="label.id">
+                    <div
+                        class="label"
+                        :class="[checkIfTaskLabel(label) ? 'selected' : '', label.class]"
+                        :style="{ 'background-color': label.color }"
+                        @click="toggleLabelFromTask(label)"
+                    >
+                        <span>{{ label.title }}</span>
+                    </div>
+                    <span
+                        class="edit-icon"
+                        @click.stop="labelInEdit = JSON.parse(JSON.stringify(label))"
+                    ></span>
+                </li>
+            </ul>
+            <!-- <button class="btn-default">Create a new label</button> -->
+        </div>
+        <div v-else class="label-editor">
+            <div
+                class="label"
+                :class="[checkIfTaskLabel(labelInEdit) ? 'selected' : '']"
+                :style="{ 'background-color': labelInEdit.color }"
+            >
+                <!-- <span>{{ labelInEdit.title }}</span> -->
+            <input
+                type="text"
+                placeholder="Enter label name..."
+                v-model="labelInEdit.title"
+            />
+            </div>
+            <div class="controlls flex space-between align-center">
+                <button class="primary-btn" @click="saveLabel">Save</button>
+                <button class="btn" @click="labelInEdit = null">Cancel</button>
+            </div>
+
+        </div>
         <!-- <pre>{{ taskToEdit }}</pre> -->
         <!-- <pre>{{ labels }}</pre> -->
     </section>
@@ -26,6 +50,12 @@ export default {
     name: 'labels-edit',
     props: {
         currTask: Object
+    },
+    data() {
+        return {
+            filterBy: '',
+            labelInEdit: null
+        }
     },
     methods: {
         checkIfTaskLabel(label) {
@@ -43,7 +73,10 @@ export default {
             else labelIds.splice(idx, 1)
             // console.log('this.taskToEdit',this.taskToEdit);
             this.$emit('taskUpdated', this.taskToEdit)
-
+        },
+        saveLabel(){
+            this.$emit('labelUpdated', this.labelInEdit)
+            this.labelInEdit = null
         }
     },
     computed: {
@@ -52,6 +85,11 @@ export default {
         },
         taskToEdit() {
             return JSON.parse(JSON.stringify(this.currTask))
+        },
+        labelsForDisplay() {
+            return this.labels.filter(label => {
+                return label.title.toLowerCase().includes(this.filterBy.toLowerCase())
+            })
         }
     }
 }

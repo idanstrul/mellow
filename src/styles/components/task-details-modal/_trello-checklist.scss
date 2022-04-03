@@ -1,5 +1,4 @@
 .trello-checklist {
-
     .input-edit {
         display: inline-block;
         vertical-align: top;
@@ -17,12 +16,15 @@
         i.el-icon {
             transform: scale(1.5);
         }
-
     }
-    
+
+    div.flex.space-between {
+        height: 100%;
+    }
+
     .el-progress.el-progress--line {
         margin-inline-start: -5px;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
         @media (min-width: 784px) {
             width: calc(100% + 34px);
             margin-inline-start: -34px;
@@ -30,8 +32,12 @@
     }
 
     ul li {
-        margin-bottom: 20px;
         display: flex;
+        padding: 10px 0;
+        &:hover {
+            cursor: pointer;
+            // background-color: #eaecf0;
+        }
     }
 
     input[type="checkbox"] {

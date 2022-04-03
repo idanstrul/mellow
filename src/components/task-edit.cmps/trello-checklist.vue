@@ -18,7 +18,12 @@
                     :txt="todo.title"
                     @txt-saved="updateTodoTitle($event, todo.id)"
                     @txt-is-empty="removeTodo(todoIdx)"
-                ></trello-txt-input>
+                >
+                    <button class="remove-btn-quite" @click="removeTodo(todoIdx)"></button>
+                    <template #edit-controlls>
+                        <button class="remove-btn-quite" @click="removeTodo(todoIdx)"></button>
+                    </template>
+                </trello-txt-input>
             </li>
         </ul>
         <trello-txt-input

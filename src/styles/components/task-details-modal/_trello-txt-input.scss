@@ -40,6 +40,17 @@ section.trello-txt-input.make-btn {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
     }
+
+    div.flex.space-between{
+        button.remove-btn-quite {
+            margin-inline-end: 10px;
+            display: none;
+
+            li:hover &{
+                display: block;
+            }
+        }
+    }
 }
 
 .input-edit {
@@ -65,21 +76,27 @@ section.trello-txt-input.make-btn {
         margin-block-end: 5px;
     }
     button.cancel-btn {
+        @include quite-icon-btn("\e91c");
         position: relative;
         top: 5px;
         left: 8px;
-        border: none;
-        // width: 15px;
-        font-size: rem(24px);
-        color: #6b778c;
-        font-family: trellicons;
-        &::before {
-            content: "\e91c";
-        }
-        &:hover {
-            color: #172b4d;
-        }
     }
+
+    div.controlls{
+        position: relative;
+    }
+
+    button.remove-btn-quite {
+        float: right;
+        margin-inline-end: 10px;
+        margin-top: 10px;
+    }
+}
+
+button.remove-btn-quite{
+    @include quite-icon-btn("\e907");
+    font-size: inherit;
+
 }
 
 

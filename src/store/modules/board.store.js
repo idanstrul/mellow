@@ -289,6 +289,14 @@ export const boardStore = {
                 throw err;
             }
         },
+        async updateLabel(context, {label}){
+            // const currBoard
+            const currBoard = context.getters.currBoard
+            const idx = currBoard.labels.findIndex(l => l.id === label.id)
+            currBoard.labels[idx] = label
+            return await context.dispatch({ type: 'saveCurrBoard', boardToSave: currBoard })
+
+        }
         // async saveTask(context, {groupId, taskToSave}){
         //     context.commit({ type: 'setIsLoading', loadingStatus: true })
         //     try {
