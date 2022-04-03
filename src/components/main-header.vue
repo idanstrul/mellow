@@ -1,5 +1,5 @@
 <template>
-  <section class="main-header">
+  <section :style="{'background-color': `${bg}`}" class="main-header">
     <router-link to="/board"><button class="btn-boards" title="Boards"><img src="../assets/boards.png" alt=""></button></router-link>
     <router-link to="/"><button title="Mello" class="btn-logo" ><img src="../assets/logo.gif" alt=""></button></router-link>
     <!-- <button class="btn-opt work" title="Workspaces">Workspaces <img class="img-arrow" src="../assets/arrow.png" alt=""></button> -->
@@ -57,7 +57,8 @@ export default {
 
       // isUserMenuOpen: false,
       boardMenuOpen: false,
-      user: null
+      user: null,
+      bg: ''
     };
   },
   components: {
@@ -103,6 +104,17 @@ export default {
     boards() {
       return this.$store.getters.boards;
     },
+    getClr(){
+
+    }
   },
+  watch: {
+    '$route.params'(p) {
+      if (!p.boardId) 
+        this.bg = '#026AA7'
+        else this.bg = '#00000040'
+      { immediate: true }
+    },
+  }
 };
 </script>
