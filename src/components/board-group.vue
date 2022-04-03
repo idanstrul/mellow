@@ -115,6 +115,11 @@ export default {
       const groupToCopy = JSON.parse(JSON.stringify(this.group))
       groupToCopy.title = title
       groupToCopy.id = ''
+      // console.log(groupToCopy);
+      groupToCopy.tasks.forEach(task => {
+        task.id = utilService.makeId()
+      })
+        // console.log(groupToCopy);
       this.menuOpen = false
       this.subMenuOpen = false
       this.$emit('saveGroup', groupToCopy)
