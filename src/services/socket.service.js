@@ -6,7 +6,9 @@ export const SOCKET_EMIT_BOARD_UPDATE = 'board update';
 export const SOCKET_ON_BOARD_UPDATE = 'board updated';
 export const SOCKET_EVENT_USER_UPDATED = 'user-updated';
 
-const baseUrl = (process.env.NODE_ENV === 'production') ? '' : '//localhost:3030'
+const baseUrl = (process.env.NODE_ENV !== 'development')
+  ? '/api/'
+  : '//localhost:3030/api/'
 export const socketService = createSocketService()
 // export const socketService = createDummySocketService()
 
