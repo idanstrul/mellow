@@ -250,9 +250,12 @@ export const boardStore = {
             const currGroup = boardToSave.groups.find(g => g.id === groupId)
             // console.log('taskToSave',taskToSave);
             if (!taskToSave.id) {
+                debugger
                 taskToSave.id = utilService.makeId()
                 taskToSave.createdAt = Date.now()
-                currGroup.tasks.unshift(taskToSave)
+                console.log(currGroup);
+                currGroup.tasks.push(taskToSave)
+                console.log(currGroup);
             } else {
                 const taskIdx = currGroup.tasks.findIndex(t => t.id === taskToSave.id)
                 currGroup.tasks[taskIdx] = taskToSave
@@ -293,7 +296,7 @@ export const boardStore = {
                 throw err;
             }
         },
-        async updateLabel(context, {label}){
+        async updateLabel(context, { label }) {
             // const currBoard
             const currBoard = context.getters.currBoard
             const idx = currBoard.labels.findIndex(l => l.id === label.id)

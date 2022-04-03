@@ -15,7 +15,7 @@
             @blur="updateGroup"
      >
      <button @click="toggleMenu" class="btn-group-menu" title="Menu"></button>
-     <group-menu @copyGroup="menuOpen=false;  subMenuOpen=true" @closeMenu="menuOpen=false" @newTask="addTask('taskToEdit')" :menuOpen="menuOpen"></group-menu>
+     <group-menu @removeGroup="$emit('removeGroup',group)" @copyGroup="menuOpen=false;  subMenuOpen=true" @closeMenu="menuOpen=false" @newTask="addTask('taskToEdit')" :menuOpen="menuOpen"></group-menu>
     <copy-group-menu @saveGroup="saveGroup" @closeMenu="subMenuOpen=false" :menuOpen="subMenuOpen" :groupTitle="group.title"></copy-group-menu>
      </div>
      <task-add v-if="taskToEdit" :task="taskToEdit" @saveTask="saveTask"></task-add>
@@ -105,7 +105,7 @@ export default {
     },
     saveTask(taskToSave){
       if(taskToSave.title){
-        this.group.tasks.unshift(taskToSave)
+        this.group.tasks.push(taskToSave)
         this.updateGroup()
       }
       this.taskToEdit = null

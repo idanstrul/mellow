@@ -135,7 +135,7 @@ export default {
     async removeGroup(group) {
       const board = await this.$store.dispatch({ type: 'removeGroup', group })
       // this.board = board
-      this.socketUpdateBoard();
+      // this.socketUpdateBoard();
     },
     async removeTask(task, group) {
       const board = await this.$store.dispatch({ type: 'removeTask', groupId: group.id, taskId: task.id })
