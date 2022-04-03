@@ -91,6 +91,15 @@
                 transform: scale(1.2);
             }
         }
+
+        &.star-on {
+            div::before {
+                content: "\e967";
+            }
+
+            color: #f2d600;
+
+        }
     }
 
     .btn-user-space {

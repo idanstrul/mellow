@@ -3,7 +3,7 @@
     <div class="flex">
     <button class="btn-boards-drop"><img class="boards-icon" src="../assets/boardsIcon.png" alt=""><span> Boards </span><img class="img-arrow" src="../assets/arrow.png" alt=""></button>
     <h2 class="board-title" contenteditable="true">{{ board.title }}</h2>
-    <button class="btn-star-board"><div></div></button> <span class="nav-divider">|</span>
+    <button @click="starBoard" :class="checkStar" class="btn-star-board"><div></div></button> <span class="nav-divider">|</span>
     <button class="btn-user-space"><h4>{{ userWorkspace }} Workspace</h4></button>
     <button class="btn-show-menu"><span></span><span> Show menu</span></button>
     </div>
@@ -74,6 +74,10 @@ export default {
       // const lName = this.board.createdBy.fullname.split(' ')
       // console.log(name[1].split());
       return name[0] +' ' +  name[1].split('')[0] + `'s`
+    },
+    checkStar(){
+      if(this.board.star)
+      return 'star-on'
     }
   },
   created() {
@@ -90,6 +94,12 @@ export default {
     setBackground(style) {
       this.$emit("setBackground", style);
     },
+    starBoard(){
+      if(!this.board.star)
+      this.$emit('starBoard', true)
+      else
+      this.$emit('starBoard', false)
+    }
   },
   components: {
     userAvatar,

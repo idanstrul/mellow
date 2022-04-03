@@ -16,6 +16,9 @@ export const boardStore = {
         boards(state) {
             return JSON.parse(JSON.stringify(state.boards))
         },
+        starBoards(state) {
+            return JSON.parse(JSON.stringify(state.boards.filter(b => b.star)))
+        },
         currBoard(state) {
             return JSON.parse(JSON.stringify(state.currBoard))
         },

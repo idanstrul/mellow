@@ -1,7 +1,7 @@
 <template>
   <section v-if="board" class="board-details">
     <div class="bg"></div>
-    <board-header :board="board"></board-header>
+    <board-header @starBoard="starBoard" :board="board"></board-header>
     <router-view></router-view>
 
     <div class="group-list flex">
@@ -102,6 +102,7 @@ export default {
     document.body.style = `
    background-image: url(${this.board.style.bg});
    background-color: ${this.board.style.bg};`
+   console.log(this.board);
   },
   unmounted(){
  document.body.style = `
@@ -116,6 +117,11 @@ export default {
     },
   },
   methods: {
+    async starBoard(star){
+      const board = this.$store.getters.currBoard
+      board.star = star
+      await this.$store.dispatch({type: 'saveCurrBoard', boardToSave: board})
+    },
     async saveTask(taskToSave, groupId) {
 
       // console.log('hi');
