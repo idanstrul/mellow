@@ -8,14 +8,13 @@
    <div :style="getBg" class="board-image-container flex center align-center"><img class="board-image" src="../assets/boardAdd.svg" alt=""></div>
    <div class="bg-selector">
    <p>Background</p>
-   <div class="btn-bg-container">
-   <button v-for="(bg, idx) in boardToAdd.style.bgImg" :key="idx" @click.stop="setBg(bg)">
-   <label :idx="idx">
-      <!-- <input  name="bgImg" type="radio" style="appearance: none"> -->
+   <div class="btn-bg-container flex wrap">
+   <!-- <button > -->
+   <label v-for="(bg, idx) in boardToAdd.style.bgImg" :key="idx" @click.stop="setBg(bg)" :idx="idx">
       <img v-if="bg.split('')[0] !== '#'" class="bg-opt" :src="bg" alt="" :ref="bg">
       <div :style="getStyle(bg)" class="bg-opt clr" v-if="bg.split('')[0] == '#'" :ref="bg"></div>
    </label>
-   </button>
+   <!-- </button> -->
    <p>Board title <span>*</span></p>
     <form action="submit" @submit.prevent="">
    <input required ref="title" @focus="getClass" @input="getClass" placeholder="   " v-focus type="text">
@@ -73,13 +72,13 @@ export default {
         if(this.boardBg === bg){
           if(bg.split('')[0] === '#'){
             this.$refs[bg][0].classList.value = 'bg-opt clr checked'
-          } else if(bg.split('')[0] === '.') {
+          } else {
             this.$refs[bg][0].classList.value = 'bg-opt checked'
           }
         } else {
           if(bg.split('')[0] === '#'){
             this.$refs[bg][0].classList.value = 'bg-opt clr'
-          } else if(bg.split('')[0] === '.'){
+          } else {
             this.$refs[bg][0].classList.value = 'bg-opt'
           }
         }

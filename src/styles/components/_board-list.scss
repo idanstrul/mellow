@@ -1,147 +1,112 @@
 .board-list {
-    z-index: 3;
-    position: absolute;
-    top: 40px;
-    background-color: #ffffff;
-    color: #172b4d94;
-    height: 93.5%;
-    overflow-y: auto;
-    width: 280px;
-    padding: 8px 4px 8px 8px;
-    border-radius: 3px;
-    box-shadow: 0 8px 12px -4px rgba(212, 212, 212, 0.46);
-    .header-list {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        margin-bottom: 16px;
-        .input-search-boards {
-            height: 36px;
-            padding: 8px 12px;
-            font-size: 14px;
-            font-family: Segoe-UI;
-            width: 85%;
-            color: #172b4dbe;
-            border: 2px solid rgb(226, 226, 226);
-            border-radius: 3px;
-            &:focus {
-                border: 2px solid $clr-outline;
-                outline: none;
-            }
+    // width: 100vw;
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    margin: 100px auto;
+    // width: 80vw;
+    // margin: 0 auto;
+
+    h3 {
+        // max-width: 800px;
+        // margin: 0 auto;
+        position: relative;
+        right: 345px;
+        color: #5e6c84;
+        font-size: 16px;
+        font-family: segBold;
+        margin-block-end: 10px;
+
+        @media (max-width: 840px) {
+            right: 133px;
+
         }
-        .close {
+    }
+}
+
+.board-list-container {
+    @media (max-width: 840px) {
+        max-width: 380px;
+    }
+
+    gap: 10px;
+    max-width: 800px;
+    // width: 80vw;
+    // margin: 0 aut;
+    // margin-inline-start: 250px;
+    // margin-inline-end: auto;
+    // justify-content: space-between;
+
+    label,
+    img {
+        @media (max-width: 840px) {
+            width: 170px;
+            height: 92px;
+        }
+
+        cursor: pointer;
+        width: 190px;
+        height: 96px;
+        // background-position: center;
+        // background-size: cover;
+        background-color: black;
+        border-radius: 3px;
+
+        .board-title {
+            position: absolute;
+            z-index: 1;
+            word-wrap: break-word;
+            text-overflow: ellipsis;
+            font-size: 16px;
+            color: $clr-base;
+            font-family: segBold;
+            padding: 8px;
+            // @media (max-width: 840px) {
+            //     width: 170px;
+            //     height: 92px;
+            // }
+            // opacity: 1;
+
+        }
+
+    }
+
+    img {
+        transition: all .3s;
+        opacity: 0.8;
+
+        &:hover {
+            opacity: 0.7;
+        }
+
+        &:active {
+            opacity: 0.6;
+        }
+
+    }
+
+    label {
+        div {
+            transition: all .3s;
             cursor: pointer;
-        }
-    }
-    main {
-        .list-starred,
-        .list-recent,
-        .list-all,
-        .search-list {
-            .title {
-                font-size: 1.1rem;
-                display: flex;
-                gap: 5px;
-                margin-left: 6px;
-                margin-bottom: 6px;
-                position: relative;
-                .close-list {
-                    position: absolute;
-                    right: 8px;
-                    cursor: pointer;
-                }
-                .star-title {
-                    font-size: rem(24px);
-                }
+            width: 190px;
+            height: 96px;
+            border-radius: 3px;
+            opacity: 0.9;
+
+            @media (max-width: 840px) {
+                width: 170px;
+                height: 92px;
             }
-            .main-list {
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-                margin-bottom: 16px;
-                position: relative;
-                .background {
-                    // height: 100%;
-                    width: 100px;
-                    height: 35px;
-                    position: absolute;
-                    z-index: 5;
-                }
-                .board-preview {
-                    z-index: 1;
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-                    cursor: pointer;
-                    color: black;
-                    position: relative;
-                    overflow-x: hidden;
-                    .bgc {
-                        position: absolute;
-                        opacity: 0.2;
-                        z-index: -1;
-                        width: 100%;
-                        height: 100%;
-                        background-size: cover;
-                    }
-                    &:hover {
-                        .bgc {
-                            opacity: 0.4;
-                        }
-                        .bgc-square {
-                            opacity: 1;
-                        }
-                    }
-                    .bgc-square {
-                        width: 35px;
-                        height: 35px;
-                        opacity: 0.7;
-                        background-size: cover;
-                    }
-                    .star {
-                        position: absolute;
-                        right: -20px;
-                        transition: right 0.5s;
-                        font-size: rem(26px);
-                        &:hover {
-                            font-size: rem(26px);
-                            color: unset;
-                        }
-                        &.selected {
-                            color: rgb(255, 255, 53);
-                            right: 8px;
-                            &:hover {
-                                color: unset;
-                            }
-                        }
-                    }
-                    &:hover .star {
-                        right: 8px;
-                        transition: right 0.5s;
-                    }
-                }
+
+            &:hover {
+                opacity: 0.8;
+            }
+
+            &:active {
+                opacity: 0.7;
             }
         }
-    }
-    &::-webkit-scrollbar {
-        height: 8px;
-        width: 9px;
-        border-radius: 3px;
-        right: 20px;
-    }
-
-    /* Track */
-
-    &::-webkit-scrollbar-track {
-        background: rgba(9, 30, 66, 0.08);
-        border-radius: 3px;
-        margin-left: 100%;
-    }
-    /* Handle */
-
-    &::-webkit-scrollbar-thumb {
-        background-color: #bfc4ce;
-        border-radius: 6px;
-        height: 195px;
     }
 }

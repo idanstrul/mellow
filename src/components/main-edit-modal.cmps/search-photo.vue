@@ -59,18 +59,19 @@ export default {
         this.res = this.res.results.map(img =>{
            return {
                small: img.urls.thumb,
+               regular: img.urls.regular,
                big: img.urls.full,
                asset_id: img.id,
                format: 'png',
                original_filename: img.alt_description,
-               secure_url: img.urls.full,
+               secure_url: img.urls.regular,
                created_at: img.created_at
                }
         })
      },
      setImg(img){
          if(!this.taskToEdit.style) this.taskToEdit.style = {}
-         this.taskToEdit.style.bg = img.big
+         this.taskToEdit.style.bg = img.regular
          if(!this.taskToEdit.style.size) this.taskToEdit.style.size = 'big'
          if (!this.taskToEdit.attachments) this.taskToEdit.attachments = [];
         this.taskToEdit.attachments.push(img)

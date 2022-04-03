@@ -1,5 +1,5 @@
+.board-details {
 
-.board-details{
     // height: calc(100vh - 430px) !important;
     // .bg{
     //     background-image: url(../assets/bg.jpg);
@@ -26,7 +26,7 @@
     //       border-radius: 4px;
     //       background: #00000038; 
     //     }
-    .group-list{
+    .group-list {
         // padding-block-end: 70px !important;
         width: 99%;
         position: absolute;
@@ -40,5 +40,11 @@
         // height: calc(100vh - 200px);
 
         height: calc(100vh - 103px);
+
+        @media (max-width: 535px) {
+            height: calc(100vh - 143px);
+
+            top: 130px;
+        }
     }
 }

@@ -3,6 +3,30 @@
   <Draggable>
 <section class="task-preview">
   <button @click.stop="removeTask" title="Remove card" class="btn-remove-task"></button>
+  <section v-if="task.style && task.style.size==='small'" class="small-cover">
+          <img v-if="task.style && task.style.bg.split('')[0] !== '#'" :src="task.style.bg" alt="">
+          <div :style="getCoverClr" class="cover-clr" v-else></div>
+  </section>
+  <section v-if="task.style && task.style.size==='big'" class="big-cover">
+          <div class="big-cover-img" v-if="task.style && task.style.bg.split('')[0] !== '#'" :style="{'background-image': `url(${task.style.bg})`}">
+            <div class="img-txt">
+            <div></div>
+            <div>
+              <span>
+                {{ task.title }}
+              </span>
+            </div>
+            </div>
+          </div>
+          <div v-if="task.style && task.style.bg.split('')[0] === '#'" class="big-cover-clr" :style="{'background-color': `${task.style.bg}`}">
+            <div>
+              <span>{{ task.title }}</span>
+            </div>
+          </div>
+          <!-- <img v-if="task.style && task.style.bg.split('')[0] !== '#'" :src="task.style.bg" alt=""> -->
+          <!-- <div :style="getCoverClr" class="cover-clr" v-else></div> -->
+  </section>
+  <section v-if="!task.style || task.style.size==='small'">
   <section v-if="task.labelIds" class="task-labels">
     <span @click.stop="toggleLabels" @mouseover="hover=true" @mouseleave="hover=false" v-for="l in task.labelIds" :key="l" class="task-preview-label" :class="getClass" :style="getStyle(l)"><span>{{ getLabelText(l) }}</span></span>
   </section>
@@ -30,6 +54,8 @@
 </section>
 <!-- </div> -->
 </section>
+</section>
+
 </section>
 </Draggable>
 <!-- </Container> -->
@@ -150,6 +176,15 @@ export default {
     },
   },
   computed: {
+    checkStyle(){
+      if(this.task.style){
+        if(this.task.style.size === 'big')
+        return `border-bottom: none`
+        }
+    },
+    getCoverClr(){
+      return `background-color: ${this.task.style.bg} !important`
+    },
     checkBadges(){
       if(!this.task.members && !this.task.startDate && !this.task.dueDate) return false
       return true

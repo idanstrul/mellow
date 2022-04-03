@@ -103,6 +103,10 @@ export default {
    background-image: url(${this.board.style.bg});
    background-color: ${this.board.style.bg};`
   },
+  unmounted(){
+ document.body.style = `
+   background: none;`
+  },
   computed: {
     board() {
       return this.$store.getters.currBoard
