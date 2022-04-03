@@ -15,7 +15,7 @@
     </section>
 
     <section>
-    <h3>YOUR BOARDS</h3>
+    <h3 class="boards">YOUR BOARDS</h3>
     <div class="board-list-container flex wrap center">
       <label @click="$router.push(`/board/${b._id}`)" v-for="b in boards" :key="b._id" >
         <span class="board-title">

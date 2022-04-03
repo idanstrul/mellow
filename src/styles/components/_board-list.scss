@@ -12,7 +12,9 @@
     }
 
     h3 {
-
+        &.boards {
+            margin-inline-start: 22px;
+        }
 
         margin-inline-start: 3px;
         color: #5e6c84;
@@ -22,7 +24,10 @@
 
         @media (max-width: 840px) {
             margin-inline-start: 15px;
-            // right: 120px;
+
+            &.boards {
+                margin-inline-start: 15px;
+            }
 
         }
     }
@@ -34,8 +39,8 @@
         max-width: 380px;
     }
 
-    gap: 10px;
-    max-width: 800px;
+    gap: 15px;
+    max-width: 850px;
     // width: 100%;
     // margin: 0 auto;
     // justify-content: center;
