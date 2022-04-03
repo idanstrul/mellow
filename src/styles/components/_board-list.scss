@@ -61,11 +61,14 @@
             position: absolute;
             z-index: 1;
             word-wrap: break-word;
-            text-overflow: ellipsis;
             font-size: 16px;
             color: $clr-base;
             font-family: segBold;
             padding: 8px;
+            width: inherit;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             // @media (max-width: 840px) {
             //     width: 170px;
             //     height: 92px;
