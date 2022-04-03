@@ -13,22 +13,22 @@
 }
 
 @mixin mainHeaderBtn {
-       cursor: pointer;
-       height: 32px;
-       background-color: transparent;
-       border: none;
-       border-radius: 3px;
-       &:hover{
-           background-color: rgba(255, 255, 255, 0.25);
-       }
-       &:active{
-           background-color: rgba(255, 255, 255, 0.375);
-       }
-       img{
-           margin-top: 3px;
-           width: 16px;
-           height: 16px;
-       }
+  cursor: pointer;
+  height: 32px;
+  background-color: transparent;
+  border: none;
+  border-radius: 3px;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+  &:active {
+    background-color: rgba(255, 255, 255, 0.375);
+  }
+  img {
+    margin-top: 3px;
+    width: 16px;
+    height: 16px;
+  }
 }
 
 @mixin add-trello-icon($icon-tag) {
@@ -61,5 +61,26 @@
     .modal-main & {
       margin-inline-end: 12px;
     }
+  }
+}
+
+@mixin trello-label-shadow-box($color) {
+  &:hover{
+    margin-left: 4px;
+    box-shadow: -8px 0 $color;
+  }
+}
+
+@mixin quite-icon-btn($iconTag) {
+  border: none;
+  // width: 15px;
+  font-size: rem(24px);
+  color: #6b778c;
+  font-family: trellicons;
+  &::before {
+      content: $iconTag;
+  }
+  &:hover {
+      color: #172b4d;
   }
 }

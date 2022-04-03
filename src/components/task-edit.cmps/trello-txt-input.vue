@@ -1,5 +1,5 @@
 <template>
-    <section class="trello-txt-input" v-clickoutside="handleClickOutside" @click="openEdit"> 
+    <section class="trello-txt-input" v-clickoutside="handleClickOutside" @click="openEdit">
         <div v-if="!isInEdit" class="flex space-between">
             <span class="input-title">{{ txtToShow }}</span>
             <slot></slot>
@@ -15,8 +15,11 @@
                 v-focus
             ></textarea>
             <!-- <pre>{{updatedTxt}}</pre> -->
-            <button class="primary-btn" @click="saveTxt">Save</button>
-            <button class="cancel-btn" @click="cancel"></button>
+            <div class="controlls">
+                <button class="primary-btn" @click="saveTxt">Save</button>
+                <button class="cancel-btn" @click="cancel"></button>
+                <slot name="edit-controlls"></slot>
+            </div>
         </div>
     </section>
 </template>
@@ -60,9 +63,9 @@ export default {
             if (this.resetOnSave) this.updatedTxt = '';
             this.isInEdit = false
         },
-        openEdit(event){
+        openEdit(event) {
             console.log('event.target.tagName', typeof event.target.tagName);
-            if(event.target.tagName === 'BUTTON') return
+            if (event.target.tagName === 'BUTTON') return
             this.isInEdit = true
         },
         cancel() {
@@ -73,7 +76,7 @@ export default {
             this.saveTxt()
             if (!this.isInEdit && this.allowNext) this.isInEdit = true/* $emit('enterClicked') */
         },
-        handleClickOutside(){
+        handleClickOutside() {
             if (!this.isInEdit) return
             // this.saveTxt()
             if (!this.updatedTxt) this.cancel()

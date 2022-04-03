@@ -35,52 +35,64 @@ const defaultBoards = [
             {
                 "id": "l101",
                 "title": "Done",
-                "color": "#61bd4f"
+                "color": "#61bd4f",
+                "class": "green"
             },
             {
                 "id": "l102",
                 "title": "Progress",
-                "color": "#f2d600"
+                "color": "#f2d600",
+                "class": "yellow"
             },
             {
                 "id": "l103",
                 "title": "Urgent",
-                "color": "#ff9f1a"
+                "color": "#ff9f1a",
+                "class": "orange"
             },
             {
                 "id": "l104",
                 "title": "Production",
-                "color": "#eb5a46"
+                "color": "#eb5a46",
+                "class": "red"
+
             },
             {
                 "id": "l105",
                 "title": "Developmnet",
-                "color": "#c377e0"
+                "color": "#c377e0",
+                "class": "purple"
             },
             {
                 "id": "l106",
                 "title": "",
-                "color": "#0079bf"
+                "color": "#0079bf",
+                "class": "blue"
             },
             {
                 "id": "l107",
                 "title": "",
-                "color": "#00c2e0"
+                "color": "#00c2e0",
+                "class": "light-blue"
+
             },
             {
                 "id": "l108",
                 "title": "",
-                "color": "#51e898"
+                "color": "#51e898",
+                "class": "light-green"
             },
             {
                 "id": "l109",
                 "title": "",
-                "color": "#ff78cb"
+                "color": "#ff78cb",
+                "class": "pink"
             },
             {
                 "id": "l110",
                 "title": "",
-                "color": "#344563"
+                "color": "#344563",
+                "class": "black"
             },
         ],
         "members": [

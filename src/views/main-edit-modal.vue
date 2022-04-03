@@ -22,7 +22,7 @@ export default {
     name: 'main-edit-modal',
     props: {
         modalTitle: String,
-        pos: Object
+        pos: Object,
     },
     mounted() {
         // console.log('this.$refs.elModal.getBoundingClientRect()', this.$refs.elModal.getBoundingClientRect());
@@ -32,7 +32,7 @@ export default {
         // setTimeout(() => {
         this.correctPosition()
         const resizeObserver = new ResizeObserver(() => {
-            console.error('resize obsereved')
+            // console.error('resize obsereved')
             this.correctPosition
         });
         resizeObserver.observe(this.$refs.elModal);
@@ -70,23 +70,23 @@ export default {
 
             this.maxHeight = viewPortSize.h
             // setTimeout(() =>
-            console.error('elArea.height', this.$refs.elModal.getBoundingClientRect().height), 2000
+            // console.error('elArea.height', this.$refs.elModal.getBoundingClientRect().height), 2000
             // )
-            console.error('pos.y + elArea.height', pos.y + elArea.height)
-            console.error('viewPortSize.h', viewPortSize.h)
+            // console.error('pos.y + elArea.height', pos.y + elArea.height)
+            // console.error('viewPortSize.h', viewPortSize.h)
 
             if (pos.y + elArea.height > viewPortSize.h) {
                 pos.y = viewPortSize.h - elArea.height - 20
-                console.error('Larger then view port!')
+                // console.error('Larger then view port!')
             }
-            console.log('pos.y', pos.y);
+            // console.log('pos.y', pos.y);
 
             if (pos.y < 20) {
-                console.error('Less then 20 from top')
+                // console.error('Less then 20 from top')
                 pos.y = 20
                 this.maxHeight = viewPortSize.h - 80
             }
-            console.log('this.maxHeight', this.maxHeight);
+            // console.log('this.maxHeight', this.maxHeight);
 
             this.posCorrected = pos
         }
@@ -97,7 +97,7 @@ export default {
         },
         elheight() {
             if (!this.$refs.elModal) return
-            console.error('this.$refs.elModal.getBoundingClientRect().height', this.$refs.elModal.getBoundingClientRect().height)
+            // console.error('this.$refs.elModal.getBoundingClientRect().height', this.$refs.elModal.getBoundingClientRect().height)
             return this.$refs.elModal.getBoundingClientRect().height
         }
     },

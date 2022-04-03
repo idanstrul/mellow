@@ -1,10 +1,10 @@
 <template>
     <section class="members-edit">
-        <input class="search" type="text" placeholder="Search members" />
+        <input class="search" type="text" placeholder="Search members" v-model="filterBy"/>
         <span class="secondary-section-title">Board members</span>
         <ul>
             <li
-                v-for="member in currBoardMembers"
+                v-for="member in membersForDisplay"
                 :key="member._id"
                 class="flex align-center"
                 :class="{ selected: checkIfTaskMember(member._id) }"
@@ -16,7 +16,7 @@
                 </div>
             </li>
         </ul>
-        <!-- <pre>{{ currTask }}</pre> -->
+        <!-- <pre>{{ currBoardMembers }}</pre> -->
     </section>
 </template>
 
@@ -27,6 +27,11 @@ export default {
     name: 'members-edit',
     props: {
         currTask: Object,
+    },
+    data(){
+        return {
+            filterBy: ''
+        }
     },
     methods: {
         checkIfTaskMember(memberId) {
@@ -56,6 +61,12 @@ export default {
     computed: {
         currBoardMembers() {
             return this.$store.getters.currBoardMembers
+        },
+        membersForDisplay(){
+            return this.currBoardMembers.filter(member => {
+                return member.username.toLowerCase().includes(this.filterBy.toLowerCase()) ||
+                member.fullname.toLowerCase().includes(this.filterBy.toLowerCase())
+            })
         },
         taskToEdit() {
             return JSON.parse(JSON.stringify(this.currTask))

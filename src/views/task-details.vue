@@ -6,7 +6,11 @@
         <!-- v-clickoutside="closeModal" -->
         <div v-if="false" class="cover"></div>
         <div class="cover" v-if="currTask.style">
-          <img v-if="currTask.style && currTask.style.bg.split('')[0] !== '#'" :src="currTask.style.bg" alt="">
+          <img
+            v-if="currTask.style && currTask.style.bg.split('')[0] !== '#'"
+            :src="currTask.style.bg"
+            alt
+          />
           <div :style="getCoverClr" class="cover-clr" v-else></div>
         </div>
         <button class="exit-btn" @click="closeModal"></button>
@@ -46,7 +50,7 @@
                 :attachments="currTask.attachments"
                 :isEditModalMounted="isEditModalMounted"
                 @editModalOpened="openEditModal($event, 'attachmentEdit')"
-                @teleportContainerOpened="openEditModal($event, 'teleportContainer')"
+                @teleportContainerOpened="openEditModal($event, 'teleportContainer', 'Delete attachment?')"
                 @updated="updateAttachments"
               ></trello-attachments>
             </div>
@@ -59,7 +63,7 @@
                 @updated="updateChecklist"
                 @removed="removeChecklist(checklistIdx)"
                 @editModalClosed="closeEditModal"
-                @teleportContainerOpened="openEditModal($event, 'teleportContainer')"
+                @teleportContainerOpened="openEditModal($event, 'teleportContainer', 'Delete Checklist?')"
               ></trello-checklist>
             </div>
             <div class="activity-log">
@@ -94,31 +98,41 @@
               @click="openEditModal($event, 'cover-edit')"
             >Cover</button>
             <span class="secondary-section-title">Actions</span>
-            <button class="btn side-bar icon-move" @click="openEditModal($event, 'move-edit')">Move</button>
+            <!-- <button class="btn side-bar icon-move" @click="openEditModal($event, 'move-edit')">Move</button> -->
             <button class="btn side-bar icon-copy" @click="openEditModal($event, 'copy-edit')">Copy</button>
-            <!-- <button class="btn delete-btn side-bar icon-delete" @click="removeTask()">Delete</button> -->
+            <button class="btn delete-btn side-bar icon-delete" @click="openDeleteModal">Delete</button>
           </div>
         </div>
-        <Transition enter-active-class="animate__animated animate__fadeIn animate__faster"
-    leave-active-class="animate__animated animate__fadeOut animate__faster">
-        <main-edit-modal
-          v-if="editModalStatus.isOpen"
-          modal-title="Hello"
-          @editModalClosed="closeEditModal"
-          :pos="editModalStatus.pos"
-          @mounted="this.isEditModalMounted = true"
-          @unmounted="this.isEditModalMounted = false"
+        <Transition
+          enter-active-class="animate__animated animate__fadeIn animate__faster"
+          leave-active-class="animate__animated animate__fadeOut animate__faster"
         >
-          <component
-            :is="editModalStatus.editType"
-            :currTask="currTask"
-            @taskUpdated="saveCurrTask"
+          <main-edit-modal
+            v-if="editModalStatus.isOpen"
+            :modal-title="editModalStatus.title"
             @editModalClosed="closeEditModal"
-            @openSearch="openEditModal(undefined, 'search-photo')"
-            @closeSearch="openEditModal(undefined, 'cover-edit')" 
-          ></component>
-        </main-edit-modal>
+            :pos="editModalStatus.pos"
+            @mounted="this.isEditModalMounted = true"
+            @unmounted="this.isEditModalMounted = false"
+          >
+            <component
+              :is="editModalStatus.editType"
+              :currTask="currTask"
+              @taskUpdated="saveCurrTask"
+              @editModalClosed="closeEditModal"
+              @labelUpdated="updateLabel"
+              @openSearch="openEditModal(undefined, 'search-photo')"
+              @closeSearch="openEditModal(undefined, 'cover-edit')"
+            ></component>
+          </main-edit-modal>
         </Transition>
+
+        <Teleport v-if="isDeleteContentTeleported && isEditModalMounted" to=".teleport-container">
+          <p
+            class="msg"
+          >All actions will be removed from the activity feed and you won’t be able to re-open the card. There is no undo.</p>
+          <button @click="removeTask" class="delete-btn btn">Delete</button>
+        </Teleport>
         <!-- <main-edit-modal v-if="editModalStatus.isOpen && editModalStatus.editType==='search-photo'" modal-title="se" @editModalClosed="closeEditModal" :pos="editModalStatus.pos">
           <component
             :is="editModalStatus.editType"
@@ -126,8 +140,8 @@
             @taskUpdated="saveCurrTask"
             @editModalClosed="closeEditModal"
           ></component>
-        </main-edit-modal> -->
-          <!-- <date-edit></date-edit> -->
+        </main-edit-modal>-->
+        <!-- <date-edit></date-edit> -->
         <!-- <pre>{{ currTask }}</pre> -->
         <!-- <pre>{{ currTaskLabels }}</pre> -->
       </div>
@@ -176,7 +190,9 @@ export default {
         isOpen: false,
         editType: '',
         pos: null,
+        title: ''
       },
+      isDeleteContentTeleported: false,
       isEditModalMounted: false,
       // currTask: null,
       // currTaskLabels: null,
@@ -184,17 +200,17 @@ export default {
       parentGroupId: ''
     }
   },
-  mounted(){
+  mounted() {
 
     // console.log('check', this.currTask.style.bg.split('')[0] !== '#');
   },
-  
+
   methods: {
-   
-  checkImg(){
-    return this.currTask.style.bg.split('')[0] !== '#'
-  },
-    openSearch(){
+
+    checkImg() {
+      return this.currTask.style.bg.split('')[0] !== '#'
+    },
+    openSearch() {
       this.editModalStatus.editType = 'search-photo'
     },
     async saveCurrTask(updatedTask = null) {
@@ -230,7 +246,11 @@ export default {
       this.currTask.checklists[idx] = updatedChecklist
       this.saveCurrTask()
     },
-    removeChecklist(checklistIdx){
+    updateLabel(updatedLabel){
+      updatedLabel = JSON.parse(JSON.stringify(updatedLabel))
+      this.$store.dispatch({type: 'updateLabel', label: updatedLabel})
+    },
+    removeChecklist(checklistIdx) {
       this.currTask.checklists.splice(checklistIdx, 1)
       this.saveCurrTask()
     },
@@ -249,9 +269,14 @@ export default {
       this.$router.push({ name: 'board', params: { boardId } })
       //this.socketUpdateBoard();
     },
-    openEditModal(event, editType) {
-      console.log('event', event);
-      // console.log('editType',editType);
+    openDeleteModal(event) {
+      // console.log('event', event);
+      this.isDeleteContentTeleported = true
+      this.openEditModal(event, 'teleportContainer', 'Delete card?')
+    },
+    openEditModal(event, editType, title = '') {
+      // console.log('event', event);
+      console.log('editType',editType);
       // console.log('event.target.getBoundingClientRect()', event.target.getBoundingClientRect());
       var pos;
       if (!event) pos = this.pos;
@@ -262,10 +287,40 @@ export default {
           y: clickedElArea.y - clickedElArea.height - 10
         }
       }
+
+      if (!title){
+        switch (editType) {
+          case 'labels-edit':
+            console.log('inside switch labels edit');
+            title = 'Labels'
+            break
+          case 'members-edit':
+            title = 'Members'
+            break
+          case 'checklists-edit':
+            title = 'Add checklist'
+            break
+          case 'date-edit':
+            title = 'Dates'
+            break
+          case 'attachment-edit':
+            title = 'Attach from computer'
+            break
+          case 'cover-edit':
+            title = 'Cover'
+            break           
+          case 'searchPhoto':
+            title = 'Photo search'
+        }
+      }
+
+      console.log('title',title);
+
       const status = {
         isOpen: true,
         editType,
-        pos
+        pos,
+        title
       }
       this.editModalStatus = status
       // this.$store.commit({ type: 'toggleEditModal', isOpen: true, editType, currTask: this.currTask, parentGroupId: this.parentGroupId })
@@ -275,11 +330,12 @@ export default {
         isOpen: false,
         editType: '',
         pos: null,
+        title: ''
       }
     }
   },
   computed: {
-     getCoverClr(){
+    getCoverClr() {
       return `background-color: ${this.currTask.style.bg} !important`
     },
     boardLabels() {
@@ -304,6 +360,15 @@ export default {
         this.currTask.labelIds.includes(label.id))
     }
 
+  },
+  watch: {
+    isEditModalMounted(val) {
+      if (!val) {
+        this.isDeleteContentTeleported = false
+      }
+      // console.log('val', val);
+      // console.log('this.isDeleteContentTeleported', this.isDeleteContentTeleported);
+    }
   },
   // watch: {
   //   this.updatedTask: {
