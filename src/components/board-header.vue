@@ -4,7 +4,7 @@
     <button class="btn-boards-drop"><img class="boards-icon" src="../assets/boardsIcon.png" alt=""><span> Boards </span><img class="img-arrow" src="../assets/arrow.png" alt=""></button>
     <h2 class="board-title" contenteditable="true">{{ board.title }}</h2>
     <button @click="starBoard" :class="checkStar" class="btn-star-board"><div></div></button> <span class="nav-divider">|</span>
-    <button class="btn-user-space"><h4>{{ userWorkspace }} Workspace</h4></button> <span class="nav-divider">|</span>
+    <button class="btn-user-space"><h4>{{ userWorkspace }} Workspace</h4></button> <span class="nav-divider sub">|</span>
     <div class="flex board-members">
       <user-avatar v-for="m in board.members" :key="m._id" :user="m"></user-avatar>
       <button class="btn-share-board flex center align-center"><span></span>Share</button>

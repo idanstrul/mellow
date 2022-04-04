@@ -3,7 +3,7 @@
         <span class="section-title text-m icon-activity">Activity</span>
         <ul class="clean-list">
             <li>
-                <user-avatar :user="byMember"></user-avatar>
+                <user-avatar :user="user"></user-avatar>
                 <trello-txt-input
                     placeholder="Write a comment..."
                     deny-empty-save
@@ -38,10 +38,11 @@ export default {
     data() {
         return {
             updatedComments: (this.comments) ? JSON.parse(JSON.stringify(this.comments)) : [],
+
             byMember: {
-                "_id": "u101",
-                "fullname": "Tal Tarablus",
-                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                // "_id": this.user._id,
+                // "fullname": this.user.fullname,
+                // "imgUrl": this.user.imgUrl
             } //should be the logged in user
         }
     },
@@ -60,6 +61,12 @@ export default {
             this.updatedComments.unshift(newComment)
             this.$emit('updated', JSON.parse(JSON.stringify(this.updatedComments)))
         },
+    },
+    computed: { 
+    user(){
+        console.log(this.$store.getters.loggedinUser);
+        return this.$store.getters.loggedinUser
+    }
     },
     components: {
         userAvatar,

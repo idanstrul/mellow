@@ -4,7 +4,7 @@ import { socketService, SOCKET_EVENT_USER_UPDATED } from './socket.service'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 var gWatchedUser = null;
 
-_saveLocalUser({ _id: 'bk8d9sad', fullname: 'Dani Norman', username: 'dani', password: '123', imgUrl: '', isAdmin: false, color: 'purple' })
+_saveLocalUser({ _id: '6245e54524c152b7c822ae91', fullname: 'Amit Miz', username: 'amit', password: '123', imgUrl: 'https://ca.slack-edge.com/T02L3AYJGN4-U02K3QJLCBH-762de20f3035-512', isAdmin: false })
 
 export const userService = {
     login,
@@ -86,7 +86,9 @@ function _saveLocalUser(user) {
 }
 
 function getLoggedinUser() {
-    return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER) || 'null')
+    const user = JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER) || 'null')
+    delete user._id
+    return user
 }
 
 async function getMiniUser(userId) {
