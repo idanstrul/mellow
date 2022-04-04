@@ -4,9 +4,12 @@
   border-radius: 3px;
   border: none;
   height: 33px;
+  text-align: center;
+
   &:hover {
     background-color: #026aa7;
   }
+
   &:active {
     background-color: #055a8c;
   }
@@ -18,12 +21,15 @@
   background-color: transparent;
   border: none;
   border-radius: 3px;
+
   &:hover {
     background-color: rgba(255, 255, 255, 0.25);
   }
+
   &:active {
     background-color: rgba(255, 255, 255, 0.375);
   }
+
   img {
     margin-top: 3px;
     width: 16px;
@@ -65,7 +71,7 @@
 }
 
 @mixin trello-label-shadow-box($color) {
-  &:hover{
+  &:hover {
     margin-left: 4px;
     box-shadow: -8px 0 $color;
   }
@@ -77,10 +83,12 @@
   font-size: rem(24px);
   color: #6b778c;
   font-family: trellicons;
+
   &::before {
-      content: $iconTag;
+    content: $iconTag;
   }
+
   &:hover {
-      color: #172b4d;
+    color: #172b4d;
   }
 }
