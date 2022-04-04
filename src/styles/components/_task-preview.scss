@@ -231,7 +231,15 @@
 
             // margin: ;
             // background-color: $clr-base;
-            span {}
+            // div {
+            span:not(:first-child) {
+                // color: black;
+                position: relative;
+                bottom: 1px;
+                // margin-bottom: 100px;
+            }
+
+            // }
 
             span:first-child {
                 color: #5e6c84e0;
@@ -239,7 +247,7 @@
                 // width: 99px;
                 font-size: rem(16px);
                 position: relative;
-                bottom: -2px;
+                bottom: -1px;
 
                 // right: 5px;
                 // display: inline;

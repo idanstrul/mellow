@@ -6,7 +6,7 @@
     <button class="btn-opt" title="Recent">Recent <img class="img-arrow" src="../assets/arrow.png" alt=""></button>
     <button @click="boardMenuOpen=!boardMenuOpen" class="btn-opt create" title="Create">Create</button>
     <board-add-menu  @closeMenu="boardMenuOpen=false" :menuOpen="boardMenuOpen"></board-add-menu>
-
+  
   <!--div class="header-features"></!--div>
     <div @click.stop="isUserMenuOpen = true">
     <user-menu
