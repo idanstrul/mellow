@@ -11,36 +11,7 @@
     </div>
     <button class="btn-show-menu"><span></span><span> Show menu</span></button>
     </div>
-    <!-- <div class="board-members-section"> -->
-      <!--div class="board-section">
-        <contenteditable
-          v-if="isEditing"
-          tag="h1"
-          :contenteditable="true"
-          v-model="boardTitleToEdit"/>
-        <h1
-          v-else
-          @click="isEditing = !isEditing">
-          {{ boardTitle }}
-        </h1>
-      </div-->
-      <!-- <div class="board-section"> -->
-        <!--section class="user-avatar">
-          <user-avatar></user-avatar>
-        </@section-->
-        <!-- <button class="board-header-btn">
-          Invite
-        </button> -->
-      <!-- </div>
-    </div> -->
-    <!-- <div class="board-section">
-      <button class="board-header-btn">
-        <span> Laderboard </span>
-      </button>
-      <button class="board-header-btn">
-        <span>Show menu</span>
-      </button>
-    </div> -->
+    
   </div>
 </template>
 

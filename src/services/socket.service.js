@@ -6,11 +6,11 @@ export const SOCKET_EMIT_BOARD_UPDATE = 'board update';
 export const SOCKET_ON_BOARD_UPDATE = 'board updated';
 export const SOCKET_EVENT_USER_UPDATED = 'user-updated';
 
-const baseUrl = (process.env.NODE_ENV === 'production') ? 'https://obscure-bayou-99068.herokuapp.com' : '//localhost:3030'
+const baseUrl = (process.env.NODE_ENV === 'production') ? '' : '//localhost:3030'
 export const socketService = createSocketService()
 // export const socketService = createDummySocketService()
 // For DEBUG:
-// window.socketService = socketService
+window.socketService = socketService
 
 socketService.setup()
 
