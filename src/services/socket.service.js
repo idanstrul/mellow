@@ -19,10 +19,8 @@ function createSocketService() {
   var socket = null;
   const socketService = {
     async setup() {
-      socket = io(baseUrl, {
-        transports: ['websocket'],
-      });
-      console.log('socket:', socket);
+      socket = io(baseUrl)
+      console.log('socket', socket);
     },
     on(eventName, cb) {
       socket.on(eventName, cb)
