@@ -23,7 +23,6 @@ section.task-details {
         img {
             height: 160px;
             object-fit: contain;
-
         }
 
         .cover-clr {
@@ -108,6 +107,11 @@ section.task-details {
                 display: inline-block;
                 font-family: segSemiBold;
                 color: $clr-dark-title;
+                margin-bottom: 12px;
+                
+                @media (min-width: 784px) {
+                    margin-bottom: 17px;
+                }
                 // padding: 8px 0;
                 // margin-bottom: 20px;
                 // position: relative;
@@ -126,7 +130,7 @@ section.task-details {
                 width: 100%;
                 padding-inline-end: 16px;
 
-                &>div {
+                & > div {
                     margin-bottom: 24px;
                 }
 
@@ -186,7 +190,6 @@ section.task-details {
             color: hsl(218, 76%, 15%);
             background-color: hsla(218, 76%, 15%, 0.078);
         }
-
     }
 
     input[type="checkbox"] {
@@ -293,6 +296,20 @@ section.task-details {
 
 .icon-task-title {
     @include add-trello-icon("\e912");
+    &::before {
+        font-size: 1.714rem;
+        margin-inline-end: 8px;
+        position: relative;
+        bottom: 3px;
+    }
+
+    @media (min-width: 784px) {
+        &.section-title::before {
+            position: absolute;
+            left: -28px;
+            top: -1px;
+        }
+    }
 }
 
 .icon-description {

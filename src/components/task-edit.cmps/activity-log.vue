@@ -20,6 +20,7 @@
                 <p>{{ comment.txt }}</p>
             </li>
             <!-- <pre>{{updatedComments}}</pre> -->
+            <!-- <pre>{{byMember}}</pre> -->
         </ul>
     </section>
 </template>
@@ -41,11 +42,8 @@ export default {
         return {
             updatedComments: (this.comments) ? JSON.parse(JSON.stringify(this.comments)) : [],
 
-            byMember: {
-                // "_id": this.user._id,
-                // "fullname": this.user.fullname,
-                // "imgUrl": this.user.imgUrl
-            } //should be the logged in user
+            byMember: this.$store.getters.getMyMiniUser
+            //should be the logged in user
         }
     },
     methods: {

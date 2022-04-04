@@ -6,7 +6,7 @@
         ref="elModal"
     >
         <!-- v-clickoutside="closeModal" -->
-        <header class="modal-header">
+        <header class="edit-modal-header">
             <span class="modal-header-title">{{ modalTitle }}</span>
             <button class="exit-btn" @click="closeModal"></button>
         </header>

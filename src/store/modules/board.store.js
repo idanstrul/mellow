@@ -135,6 +135,7 @@ export const boardStore = {
                 context.commit({ type: 'setCurrBoard', currBoard: boardToSave })
                 const currBoard = await boardService.save(boardToSave)
                 socketService.emit('board update', boardToSave)
+                // console.error('saving board')
                 context.dispatch({ type: 'flashUserMsg', msg: `Board ${currBoard._id} saved successfully`, style: 'success' })
                 return currBoard
             }
