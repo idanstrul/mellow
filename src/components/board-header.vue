@@ -4,10 +4,14 @@
     <button class="btn-boards-drop"><img class="boards-icon" src="../assets/boardsIcon.png" alt=""><span> Boards </span><img class="img-arrow" src="../assets/arrow.png" alt=""></button>
     <h2 class="board-title" contenteditable="true">{{ board.title }}</h2>
     <button @click="starBoard" :class="checkStar" class="btn-star-board"><div></div></button> <span class="nav-divider">|</span>
-    <button class="btn-user-space"><h4>{{ userWorkspace }} Workspace</h4></button>
+    <button class="btn-user-space"><h4>{{ userWorkspace }} Workspace</h4></button> <span class="nav-divider">|</span>
+    <div class="flex board-members">
+      <user-avatar v-for="m in board.members" :key="m._id" :user="m"></user-avatar>
+      <button class="btn-share-board flex center align-center"><span></span>Share</button>
+    </div>
     <button class="btn-show-menu"><span></span><span> Show menu</span></button>
     </div>
-    <div class="board-members-section">
+    <!-- <div class="board-members-section"> -->
       <!--div class="board-section">
         <contenteditable
           v-if="isEditing"
@@ -20,15 +24,15 @@
           {{ boardTitle }}
         </h1>
       </div-->
-      <div class="board-section">
+      <!-- <div class="board-section"> -->
         <!--section class="user-avatar">
           <user-avatar></user-avatar>
         </@section-->
         <!-- <button class="board-header-btn">
           Invite
         </button> -->
-      </div>
-    </div>
+      <!-- </div>
+    </div> -->
     <!-- <div class="board-section">
       <button class="board-header-btn">
         <span> Laderboard </span>

@@ -1,4 +1,34 @@
 .board-header {
+    .board-members>* {
+        margin-inline-start: -1px;
+        // margin-inline-end: 5px;
+    }
+
+    .board-members {
+        .btn-share-board {
+            width: 74px;
+            height: 32px;
+            background-color: $clr-base;
+            margin-inline-start: 7px;
+            color: black;
+
+            &:hover {
+                background-color: #ffffffe6;
+            }
+
+            span {
+                font-family: trellicons;
+                font-size: 18px;
+                margin-inline-end: 5px;
+
+                &::before {
+                    content: "\e950";
+                }
+
+            }
+        }
+    }
+
     button {
         color: $clr-base;
         @include mainHeaderBtn;
@@ -26,7 +56,7 @@
             }
         }
 
-        @media (max-width: 535px) {
+        @media (max-width: 780px) {
             top: 90px;
         }
     }
@@ -106,7 +136,7 @@
         padding-inline-start: 12px;
         padding-inline-end: 12px;
 
-        @media (max-width: 535px) {
+        @media (max-width: 780px) {
             position: absolute;
             top: 90px;
             right: 130px;
