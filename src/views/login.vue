@@ -55,7 +55,7 @@ export default {
           userCred: this.user,
         });
 
-        if (user) this.$router.push(`/board/624afa5e47cdb81018c1bc99`);
+        if (user) this.$router.push(`/board/6249680f207696d8ae3ee216`);
         //if (user) this.$router.push(`/b/${this.$store.getters.boards[0]._id}`);
       } catch (err) {
         console.log( "ERROR: cannot login. User and/or password are incorrect", err );
