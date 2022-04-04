@@ -3,7 +3,7 @@
     border-radius: 50px;
 }
 
-.user-avatar div{
+.user-avatar div {
     width: 100%;
     height: 100%;
     color: white;
@@ -16,13 +16,15 @@
 
 }
 
-.user-avatar:hover{
+.user-avatar:hover {
     opacity: 0.8;
     cursor: pointer;
 }
 
 img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .user-avatar * {
