@@ -63,7 +63,7 @@ export default {
     },
     async signup() {
       await this.$store.dispatch({ type: "signup", userCred: this.user });
-      this.$router.push('/board/6244b761207696d8ae1f3618');
+      this.$router.push('/board/6249680f207696d8ae3ee216');
       //add(this.user);
       //this.$router.push(`/b/${this.$store.getters.boards[0]._id}`);
     },
