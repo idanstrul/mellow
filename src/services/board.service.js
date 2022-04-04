@@ -35,64 +35,52 @@ const defaultBoards = [
             {
                 "id": "l101",
                 "title": "Done",
-                "color": "#61bd4f",
-                "class": "green"
+                "color": "#61bd4f"
             },
             {
                 "id": "l102",
                 "title": "Progress",
-                "color": "#f2d600",
-                "class": "yellow"
+                "color": "#f2d600"
             },
             {
                 "id": "l103",
                 "title": "Urgent",
-                "color": "#ff9f1a",
-                "class": "orange"
+                "color": "#ff9f1a"
             },
             {
                 "id": "l104",
                 "title": "Production",
-                "color": "#eb5a46",
-                "class": "red"
-
+                "color": "#eb5a46"
             },
             {
                 "id": "l105",
                 "title": "Developmnet",
-                "color": "#c377e0",
-                "class": "purple"
+                "color": "#c377e0"
             },
             {
                 "id": "l106",
                 "title": "",
-                "color": "#0079bf",
-                "class": "blue"
+                "color": "#0079bf"
             },
             {
                 "id": "l107",
                 "title": "",
-                "color": "#00c2e0",
-                "class": "light-blue"
-
+                "color": "#00c2e0"
             },
             {
                 "id": "l108",
                 "title": "",
-                "color": "#51e898",
-                "class": "light-green"
+                "color": "#51e898"
             },
             {
                 "id": "l109",
                 "title": "",
-                "color": "#ff78cb",
-                "class": "pink"
+                "color": "#ff78cb"
             },
             {
                 "id": "l110",
                 "title": "",
-                "color": "#344563",
-                "class": "black"
+                "color": "#344563"
             },
         ],
         "members": [
