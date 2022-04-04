@@ -113,7 +113,7 @@ export const boardStore = {
                 socketService.emit('watch board', currBoard._id)
                 socketService.off(SOCKET_ON_BOARD_UPDATE)
                 socketService.on(SOCKET_ON_BOARD_UPDATE, (updatedBoard) => {
-                    console.log('board updated');
+                    console.log('board updated', updatedBoard);
                     context.commit({ type: 'setCurrBoard', currBoard: updatedBoard })
                 })
                 return JSON.parse(JSON.stringify(currBoard))
