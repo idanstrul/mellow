@@ -116,7 +116,6 @@
                             ]
                         }
                     ],
-                    "members": [],
                     "labelIds": [
                         "l102",
                         "l105"
@@ -161,8 +160,7 @@
                     "labelIds": [
                         "l110",
                         "l101"
-                    ],
-                    "members": []
+                    ]
                 },
                 {
                     "id": "c103",
@@ -187,7 +185,6 @@
                             ]
                         }
                     ],
-                    "members": [],
                     "labelIds": [
                         "l103",
                         "l102",
@@ -245,8 +242,7 @@
                             "secure_url": "https://images.unsplash.com/photo-1543286386-713bdd548da4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMTU3NzJ8MHwxfHNlYXJjaHw2fHxyZXBvcnR8ZW58MHwwfHx8MTY0OTA2Nzk4MA&ixlib=rb-1.2.1&q=80&w=1080",
                             "created_at": "2018-11-26T21:39:58-05:00"
                         }
-                    ],
-                    "members": []
+                    ]
                 },
                 {
                     "id": "c101",
@@ -260,7 +256,6 @@
                         "l109",
                         "l110"
                     ],
-                    "members": [],
                     "startDate": 16156211111,
                     "style": {
                         "bg": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMTU3NzJ8MHwxfHNlYXJjaHwxfHx1c2Vyc3xlbnwwfDB8fHwxNjQ4OTc4NTE3&ixlib=rb-1.2.1&q=80&w=1080",
@@ -352,8 +347,7 @@
                     "style": {
                         "bg": "#f5dd29",
                         "size": "small"
-                    },
-                    "members": []
+                    }
                 }
             ]
         },
@@ -391,7 +385,6 @@
                             ]
                         }
                     ],
-                    "members": [],
                     "labelIds": [
                         "l102"
                     ],
@@ -423,7 +416,6 @@
                             ]
                         }
                     ],
-                    "members": [],
                     "labelIds": [
                         "l101",
                         "l102"
@@ -453,7 +445,6 @@
                         "fullname": "Amit Miz",
                         "imgUrl": "6245e54524c152b7c822ae91"
                     },
-                    "members": [],
                     "labelIds": [
                         "l107"
                     ]
@@ -470,7 +461,6 @@
                         "fullname": "Amit Miz",
                         "imgUrl": "6245e54524c152b7c822ae91"
                     },
-                    "members": [],
                     "labelIds": [
                         "l104"
                     ]
@@ -509,7 +499,6 @@
                 {
                     "id": "c105",
                     "title": "Replace logo",
-                    "members": [],
                     "style": {
                         "bg": "#FFAF3F",
                         "size": "small"
@@ -537,7 +526,6 @@
                         "l109",
                         "l108"
                     ],
-                    "members": [],
                     "style": {
                         "bg": "https://images.unsplash.com/photo-1500989145603-8e7ef71d639e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMTU3NzJ8MHwxfHNlYXJjaHwzfHxkZXNrfGVufDB8MHx8fDE2NDg5Nzk4MjA&ixlib=rb-1.2.1&q=80&w=1080",
                         "size": "small"
@@ -642,8 +630,7 @@
                     "style": {
                         "bg": "#f5dd29",
                         "size": "small"
-                    },
-                    "members": []
+                    }
                 }
             ]
         }
