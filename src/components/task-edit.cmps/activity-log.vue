@@ -28,6 +28,8 @@
 import { utilService } from "../../services/util.service"
 import userAvatar from "../user-avatar.vue"
 import trelloTxtInput from "./trello-txt-input.vue"
+import format from 'date-fns/format'
+
 
 export default {
     name: 'activity-log',
@@ -48,6 +50,7 @@ export default {
     },
     methods: {
         formatCreatedAt(timeStamp) {
+            return format(timeStamp, 'MMM d') + ' at ' + format(timeStamp, 'HH:MM')
             const options = { month: 'long', day: '2-digit', hour: 'numeric', minute: 'numeric' }
             return new Date(timeStamp).toLocaleString(undefined, options)
         },

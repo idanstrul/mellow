@@ -27,6 +27,10 @@
 </template>
 
 <script>
+
+import format from 'date-fns/format'
+
+
 export default {
     name: 'trello-dates',
     props: {
@@ -41,8 +45,9 @@ export default {
     },
     computed: {
         formatDueDate() {
-            const options = { month: 'long', day: '2-digit', hour: 'numeric', minute: 'numeric' }
-            return new Date(this.dueDate).toLocaleString(undefined, options)
+            return format(this.dueDate, 'MMM d') + ' at ' + format(this.dueDate, 'HH:MM')
+            // const options = { month: 'long', day: '2-digit', hour: 'numeric', minute: 'numeric' }
+            // return new Date(this.dueDate).toLocaleString(undefined, options)
         }
     }
 }
