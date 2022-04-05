@@ -25,15 +25,15 @@ export default {
         pos: Object,
     },
     mounted() {
-        // console.log('this.$refs.elModal.getBoundingClientRect()', this.$refs.elModal.getBoundingClientRect());
+        // console.error('this.$refs.elModal.getBoundingClientRect()', this.$refs.elModal.getBoundingClientRect());
         // console.log('this.$refs.elModal', this.$refs.elModal);
         console.log('Main edit modal is mounted!');
         // this.$refs.elModal.onload = () => {
         // setTimeout(() => {
-        this.correctPosition()
+        // this.correctPosition()
         const resizeObserver = new ResizeObserver(() => {
             // console.error('resize obsereved')
-            this.correctPosition
+            this.correctPosition()
         });
         resizeObserver.observe(this.$refs.elModal);
 
@@ -45,7 +45,7 @@ export default {
     },
     data() {
         return {
-            posCorrected: JSON.parse(JSON.stringify(this.pos)),
+            posCorrected: (this.pos)? JSON.parse(JSON.stringify(this.pos)): {x: 0, y: 0},
             maxHeight: (window.innerHeight || document.documentElement.clientHeight)
         }
     },
@@ -55,6 +55,7 @@ export default {
             // this.$store.commit({type: 'toggleEditModal', isOpen: false, editType: ''})
         },
         correctPosition() {
+            if (!this.$refs.elModal || !this.pos) return
             const pos = JSON.parse(JSON.stringify(this.pos))
             const elArea = this.$refs.elModal.getBoundingClientRect()
             const viewPortSize = {
@@ -62,10 +63,11 @@ export default {
                 w: (window.innerWidth || document.documentElement.clientWidth)
             }
 
-            if (elArea.left < 0) pos.x = 20
-            if (elArea.right > viewPortSize.w) {
-                // console.log('is out from right!');
+            if (pos.x < 0) pos.x = 20
+            if (pos.x + elArea.width > viewPortSize.w) {
+                // console.log('is out from right!', elArea.right, viewPortSize.w);
                 pos.x = viewPortSize.w - elArea.width - 20
+                // console.log('is out from right!', elArea.right, viewPortSize.w);
             }
 
             this.maxHeight = viewPortSize.h
@@ -89,6 +91,7 @@ export default {
             // console.log('this.maxHeight', this.maxHeight);
 
             this.posCorrected = pos
+            // console.error('this.posCorrected', this.posCorrected)
         }
     },
     computed: {

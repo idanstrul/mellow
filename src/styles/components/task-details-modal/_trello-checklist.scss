@@ -55,4 +55,11 @@
             box-shadow: none;
         }
     }
+
+    section.trello-txt-input.done {
+        span.input-title {
+            text-decoration-line: line-through;
+            color: #5e6c84;
+        }
+    }
 }

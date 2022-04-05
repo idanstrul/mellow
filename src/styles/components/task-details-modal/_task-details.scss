@@ -108,7 +108,33 @@ section.task-details {
                 font-family: segSemiBold;
                 color: $clr-dark-title;
                 margin-bottom: 12px;
-                
+                &.text-l {
+                    margin-bottom: 24px;
+
+                    @media (min-width: 784px) {
+                        margin-bottom: 17px;
+                    }
+                }
+
+                .group-data {
+                    color: #5e6c84;
+                    font-size: 1rem;
+                    font-family: "seg";
+                    margin: -1px 8px 4px 28px;
+
+                    @media (min-width: 784px) {
+                        margin: 4px 8px 4px 2px;
+                    }
+
+                    a {
+                        color: inherit;
+                    }
+
+                    a:hover {
+                        color: #172b4d;
+                    }
+                }
+
                 @media (min-width: 784px) {
                     margin-bottom: 17px;
                 }
@@ -132,6 +158,18 @@ section.task-details {
 
                 & > div {
                     margin-bottom: 24px;
+
+                    &.notations {
+                        margin-bottom: 32px;
+                    }
+
+                    &.gutter {
+                        margin-bottom: 20px;
+
+                        @media (min-width: 784px) {
+                            margin-bottom: 14px;
+                        }
+                    }
                 }
 
                 .notations {
