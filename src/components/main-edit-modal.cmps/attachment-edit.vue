@@ -2,14 +2,35 @@
     <section class="attachment-edit flex column">
         <span class="secondary-section-title">Upload file</span>
         <label v-if="currStatus.isWaiting">
-            <img class="upload-icon" :src="'../../../../src/assets/' + currStatus.imgName" :alt="currStatus.txt" />
+            <img
+                class="upload-icon"
+                src="../../../src/assets/Upload-PNG-Image-File.png"
+                :alt="currStatus.txt"
+            />
             <input class="search" type="file" v-focus @change="onUpload" />
             <!-- <span class="secondary-section-title">Attach a link</span>
-            <button class="primary-btn">Attach</button> -->
+            <button class="primary-btn">Attach</button>-->
         </label>
-        <div class="status-msg flex align-center" v-else>
-            <span class="secondary-section-title" :style="{color: currStatus.txtColor}">{{ currStatus.txt }}</span>
-            <img class="status-icon" :src="'../../../../src/assets/' + currStatus.imgName" />
+        <div class="status-msg flex align-center" v-else-if="currStatus.isLoading">
+            <span
+                class="secondary-section-title"
+                :style="{ color: currStatus.txtColor }"
+            >{{ currStatus.txt }}</span>
+            <img class="status-icon" src="../../../src/assets/loader.gif" />
+        </div>
+        <div class="status-msg flex align-center" v-else-if="currStatus.isComplete">
+            <span
+                class="secondary-section-title"
+                :style="{ color: currStatus.txtColor }"
+            >{{ currStatus.txt }}</span>
+            <img class="status-icon" src="../../../src/assets/checkmark-cut.gif" ref="checkmarkImg" />
+        </div>
+        <div class="status-msg flex align-center" v-else-if="currStatus.isFailed">
+            <span
+                class="secondary-section-title"
+                :style="{ color: currStatus.txtColor }"
+            >{{ currStatus.txt }}</span>
+            <img class="status-icon" src="../../../src/assets/ezgif.com-gif-maker.gif" />
         </div>
         <!-- <pre>{{todosToCopy}}</pre> -->
         <!-- <pre>{{ taskToEdit }}</pre> -->
@@ -27,7 +48,7 @@ export default {
     props: {
         currTask: Object
     },
-    created(){
+    created() {
         this.currStatus = this.statusOptions.waiting
     },
     data() {
@@ -35,26 +56,23 @@ export default {
             currStatus: null,
             statusOptions: {
                 waiting: {
-                    imgName: "Upload-PNG-Image-File.png",
                     txt: "Upload file",
                     isWaiting: true
                 },
                 loading: {
-                    imgName: "loader.gif",
                     txt: 'Loading...',
                     isLoading: true,
                     txtColor: '#00c2e0'
                 },
                 complete: {
-                    imgName: "checkmark-cut.gif",
                     txt: 'Attachment added successfuly!',
+                    isComplete: true,
                     txtColor: '#61bd4f'
                 },
                 failed: {
-                    imgName: "ezgif.com-gif-maker.gif",
                     txt: 'OOPS! File upload failed!',
+                    isFailed: true,
                     txtColor: '#eb5a46'
-
                 }
             }
         }
@@ -73,7 +91,12 @@ export default {
             } catch (err) {
                 this.currStatus = this.statusOptions.failed
             }
-            setTimeout(this.closeModal, 2000)
+            setTimeout(() => {
+                this.closeModal()
+                // setTimeout( () =>
+                this.$refs.checkmarkImg.src += `?v=${Date.now()}`
+                // , 500)
+            }, 2000)
         },
         closeModal() {
             this.$emit('editModalClosed')

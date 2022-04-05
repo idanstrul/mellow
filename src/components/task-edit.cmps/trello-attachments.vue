@@ -3,7 +3,7 @@
         <div class="section-title text-m icon-attachment">Attachments</div>
         <ul class="attachments clean-list">
             <li
-                class="flex"
+                class="flex align-center"
                 v-for="(attachment, attachmentIdx) in attachments"
                 :key="attachment.asset_id"
             >
@@ -16,7 +16,7 @@
                     <span
                         class="attachment-name"
                     >{{ attachment.original_filename + '.' + attachment.format }}</span>
-                    <span class="attachment-addedAt">Added at {{ attachment.created_at }}</span>
+                    <span class="attachment-addedAt">Added at {{ formatCreatedAt(attachment) }}</span>
                     <span class="attachment-delete">
                         <a href="#" @click.prevent="openDeleteModal($event, attachmentIdx)">Delete</a>
                     </span>
@@ -39,6 +39,9 @@
 </template>
 
 <script>
+import format from 'date-fns/format'
+
+
 export default {
     name: 'trello-attachments',
     props: {
@@ -72,6 +75,12 @@ export default {
             this.attachmentToEditIdx = attachmentIdx
             this.isNameContentTeleported = true
             this.$emit('teleportContainerOpened', event)
+        },
+        formatCreatedAt(attachment) {
+            // return attachment.created_at
+            const createdAt = new Date(attachment.created_at).getTime()
+            console.log('createdAt', createdAt);
+            return format(createdAt, 'MMM d') + ' at ' + format(createdAt, 'HH:MM')
         }
         // saveChecklist() {
         //     const checklistToSave = JSON.parse(JSON.stringify(this.updatedChecklist))

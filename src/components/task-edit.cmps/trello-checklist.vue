@@ -15,6 +15,7 @@
             <li v-for="(todo, todoIdx) in updatedChecklist.todos" :key="todo.id">
                 <input type="checkbox" :checked="todo.isDone" @change="toggleTodoStatus(todoIdx)" />
                 <trello-txt-input
+                    :class="{done: todo.isDone}"
                     :txt="todo.title"
                     @txt-saved="updateTodoTitle($event, todo.id)"
                     @txt-is-empty="removeTodo(todoIdx)"

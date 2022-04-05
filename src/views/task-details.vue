@@ -14,10 +14,16 @@
           <div :style="getCoverClr" class="cover-clr" v-else></div>
         </div>
         <button class="exit-btn" @click="closeModal"></button>
-        <div class="modal-header section-title text-l icon-task-title">{{ currTask.title }}</div>
+        <div class="modal-header section-title text-l icon-task-title">
+          {{ currTask.title }}
+          <div class="group-data">
+            in list
+            <a @click.prevent href="#">{{ parentGroupName }}</a>
+          </div>
+        </div>
         <div class="flex-container flex space-between">
           <div class="modal-main">
-            <div v-if="true" class="notations flex wrap">
+            <div v-if="hasMembers || hasLabels || currTask.dueDate" class="notations flex wrap">
               <trello-members
                 v-if="hasMembers"
                 :members="currTask.members"
@@ -35,6 +41,7 @@
                 @editModalOpened="openEditModal"
               ></trello-dates>
             </div>
+            <div v-else class="gutter"></div>
             <div class="description">
               <span class="section-title text-m icon-description">Description</span>
               <trello-txt-input
@@ -172,6 +179,7 @@ export default {
   async created() {
     this.currTaskId = this.$route.params.taskId
     this.parentGroupId = this.$route.params.groupId
+    this.parentGroupName = this.$store.getters.currBoard.groups.find(g => g.id === this.parentGroupId).title
     const { groupId, taskId } = this.$route.params
     // this.currTask = await this.$store.dispatch({ type: 'getTaskById', groupId: this.parentGroupId, taskId: this.currTaskId })
     // if (!this.currTask.labelIds) return
@@ -197,7 +205,8 @@ export default {
       // currTask: null,
       // currTaskLabels: null,
       currTaskId: '',
-      parentGroupId: ''
+      parentGroupId: '',
+      parentGroupName: ''
     }
   },
   mounted() {
@@ -246,9 +255,9 @@ export default {
       this.currTask.checklists[idx] = updatedChecklist
       this.saveCurrTask()
     },
-    updateLabel(updatedLabel){
+    updateLabel(updatedLabel) {
       updatedLabel = JSON.parse(JSON.stringify(updatedLabel))
-      this.$store.dispatch({type: 'updateLabel', label: updatedLabel})
+      this.$store.dispatch({ type: 'updateLabel', label: updatedLabel })
     },
     removeChecklist(checklistIdx) {
       this.currTask.checklists.splice(checklistIdx, 1)
@@ -275,8 +284,8 @@ export default {
       this.openEditModal(event, 'teleportContainer', 'Delete card?')
     },
     openEditModal(event, editType, title = '') {
-      // console.log('event', event);
-      console.log('editType',editType);
+      console.log('event', event);
+      // console.log('editType',editType);
       // console.log('event.target.getBoundingClientRect()', event.target.getBoundingClientRect());
       var pos;
       if (!event) pos = this.pos;
@@ -288,33 +297,40 @@ export default {
         }
       }
 
-      if (!title){
+      if (!title) {
         switch (editType) {
           case 'labels-edit':
-            console.log('inside switch labels edit');
+          case 'labelsEdit':
+            // console.log('inside switch labels edit');
             title = 'Labels'
             break
           case 'members-edit':
+          case 'membersEdit':
             title = 'Members'
             break
           case 'checklists-edit':
+          case 'checklistsEdit':
             title = 'Add checklist'
             break
           case 'date-edit':
+          case 'dateEdit':
             title = 'Dates'
             break
           case 'attachment-edit':
+          case 'attachmentEdit':
             title = 'Attach from computer'
             break
           case 'cover-edit':
+          case 'coverEdit':
             title = 'Cover'
-            break           
+            break
+          case 'search-photo':
           case 'searchPhoto':
             title = 'Photo search'
         }
       }
 
-      console.log('title',title);
+      console.log('title', title);
 
       const status = {
         isOpen: true,

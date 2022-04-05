@@ -8,7 +8,7 @@
                 </div>
             </li>
             <li>
-                <button class="btn add-label btn-default" @click="openEditModal"></button>
+                <button class="add-label btn-default" @click="openEditModal"></button>
             </li>
         </ul>
     </section>

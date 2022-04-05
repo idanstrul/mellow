@@ -17,7 +17,7 @@
 
     span.status-tag{
         font-size: 0.85rem;
-        font-family: segSemiBold;
+        font-family: seg;
         border-radius: 2px;
         line-height: 1.143rem;
         color: white;
@@ -35,6 +35,11 @@
 
         &.in-progress{
             background-color: darken($clr-labe1, 3%);
+        }
+
+        &.due-soon{
+            background-color: #F2D600;
+            color: #172B4D;
         }
     }
 

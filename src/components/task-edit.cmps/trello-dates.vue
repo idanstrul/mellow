@@ -5,7 +5,7 @@
             <input type="checkbox" />
             <button class="btn-default flex align-center" @click="openEditModal">
                 {{ formatDueDate }}
-                <span class="status-tag" :class="status">{{ status }}</span>
+                <span v-if="status !== 'in-progress'" class="status-tag" :class="status">{{ status }}</span>
                 <!-- <span class="sc-bdVaJa jKipYA" role="img" aria-label="DownIcon"> -->
                 <svg
                     width="24"
