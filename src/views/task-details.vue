@@ -309,7 +309,7 @@ export default {
           case 'cover-edit':
             title = 'Cover'
             break           
-          case 'searchPhoto':
+          case 'search-photo':
             title = 'Photo search'
         }
       }

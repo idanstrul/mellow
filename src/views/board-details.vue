@@ -6,7 +6,11 @@
 
     <div class="group-list flex">
       <!-- <Container>  -->
-      <Container group-name="cols" tag="div" orientation="horizontal" @drop="onColumnDrop($event)">
+      <Container  :drop-placeholder="{ className: 
+                `col-drop`, 
+              animationDuration: '100', 
+              showOnTop: false }"
+              drag-class="col-drag" group-name="cols" tag="div" orientation="horizontal" @drop="onColumnDrop($event)">
         <Draggable v-for="(group) in board.groups" :key="group.id">
           <div>
             <board-group
@@ -20,6 +24,11 @@
                 group-name="col-items"
                 :shouldAcceptDrop="(e, payload) => (e.groupName === 'col-items')"
                 :get-child-payload="getCardPayload(group.id)"
+                :drop-placeholder="{ className: 
+                `item-drop`, 
+              animationDuration: '200', 
+              showOnTop: true }"
+              drag-class="item-drag"
                 @drop="(e) => onCardDrop(group.id, e)"
               >
                 <task-preview
